@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UIStrings LanguageCode="en-US">
+  <!--Labels used in XAMLs-->
+  <UIString ID="LBL1">Folder</UIString>
+  <UIString ID="LBL2">Title</UIString>
+  <UIString ID="LBL3">Description</UIString>
+  <UIString ID="LBL4">State</UIString>
+  <UIString ID="LBL5">Path</UIString>
+  <UIString ID="LBL6">File Name</UIString>
+  <UIString ID="LBL7">Comments</UIString>
+  <UIString ID="LBL8">Category</UIString>
+  <UIString ID="LBL9">Template</UIString>
+  <UIString ID="LBL10">Number Scheme</UIString>
+  <UIString ID="LBL11">Folder Name</UIString>
+  <UIString ID="LBL12">Revision</UIString>
+  <UIString ID="LBL13">Version</UIString>
+  <UIString ID="LBL14">Lifecycle State</UIString>
+  <UIString ID="LBL15">Position</UIString>
+  <UIString ID="LBL16">Part Number</UIString>
+  <UIString ID="LBL17">Quantity</UIString>
+  <UIString ID="LBL18">Component Type</UIString>
+  <UIString ID="LBL19">Name</UIString>
+  <UIString ID="LBL20">Change Order Number</UIString>
+  <UIString ID="LBL21">Due Date</UIString>
+  <UIString ID="LBL22">Change Order Title</UIString>
+  <UIString ID="LBL23">Document Type</UIString>
+  <UIString ID="LBL24">New File</UIString>
+  <UIString ID="LBL25">Edit File Datasheet</UIString>
+  <UIString ID="LBL26">(Read Only)</UIString>
+  <UIString ID="LBL27">[Assigned]</UIString>
+  <UIString ID="LBL28">Add template folders and files first</UIString>
+  <UIString ID="LBL29">New Folder</UIString>
+  <UIString ID="LBL30">Edit Folder Datasheet</UIString>
+  <UIString ID="LBL31">Number</UIString>
+  <UIString ID="LBL32">Detailed Description</UIString>
+  <UIString ID="LBL33">Create Date</UIString>
+  <UIString ID="LBL34">Created By</UIString>
+  <UIString ID="LBL35">Please fill out all required fields in order to continue</UIString>
+  <UIString ID="LBL36">Datasheet</UIString>
+  <UIString ID="LBL37">Associated Files</UIString>
+  <UIString ID="LBL38">CAD BOM</UIString>
+  <UIString ID="LBL39">New Files - Tube and Pipe</UIString>
+  <UIString ID="LBL40">Run Assemblies</UIString>
+  <UIString ID="LBL41">Container Assemblies</UIString>
+  <UIString ID="LBL42">Route Part(s)</UIString>
+  <UIString ID="LBL43">Run Components</UIString>
+  <UIString ID="LBL44">New Files - Cable and Harness</UIString>
+  <UIString ID="LBL45">Harness Container Assemblies</UIString>
+  <UIString ID="LBL46">Cable and Harness Container Assemblies</UIString>
+  <UIString ID="LBL47">Harness Part(s)</UIString>
+  <UIString ID="LBL48">Cable and Harness Part(s)</UIString>
+  <UIString ID="LBL49">Copy properties to part</UIString>
+  <UIString ID="LBL50">New Files - Design Accelerator</UIString>
+  <UIString ID="LBL51">Design Accelerator Assemblies</UIString>
+  <UIString ID="LBL52">Design Accelerator Container Assemblies</UIString>
+  <UIString ID="LBL53">Design Accelerator Components</UIString>
+  <UIString ID="LBL54">New Files - Frame Generator</UIString>
+  <UIString ID="LBL55">Frame Assemblies</UIString>
+  <UIString ID="LBL56">Frame Skeleton Part(s)</UIString>
+  <UIString ID="LBL57">Frame Components</UIString>
+  <UIString ID="LBL58">Thumbnail</UIString>
+  <UIString ID="LBL59">Will be generated</UIString>
+  <UIString ID="LBL60">Copy of</UIString>
+  <UIString ID="LBL61">New Custom Object</UIString>
+  <UIString ID="LBL62">Edit Custom Object Datasheet</UIString>
+  <UIString ID="LBL63">Category Properties</UIString>
+  <UIString ID="LBL64">Property Name</UIString>
+  <UIString ID="LBL65">Property Value</UIString>
+  <UIString ID="LBL66">Drawing Title</UIString>
+  <UIString ID="LBL67">Drawing Subtitle</UIString>
+  <UIString ID="LBL68">Author</UIString>
+  <UIString ID="LBL69">Subject</UIString>
+  <UIString ID="LBL70">Keywords</UIString>
+  <UIString ID="LBL71">Save As Type</UIString>
+  <UIString ID="LBL72">Save copy as</UIString>
+  <UIString ID="LBL73">General Properties</UIString>
+  <UIString ID="LBL74">Set options for selected file format</UIString>
+  <UIString ID="LBL75">Material</UIString>
+  <UIString ID="LBL76">Stock Number</UIString>
+  <UIString ID="LBL77">None</UIString>
+  <UIString ID="BTN1">OK</UIString>
+  <UIString ID="BTN2">Cancel</UIString>
+  <UIString ID="BTN3">Options</UIString>
+  <!--Text strings used in MNU file-->
+  <UIString ID="MNU1">New Standard File ...</UIString>
+  <UIString ID="MNU2">Edit File Datasheet ...</UIString>
+  <UIString ID="MNU3">New Standard Folder ...</UIString>
+  <UIString ID="MNU4">Edit Folder Datasheet...</UIString>
+  <UIString ID="MNU5">Show Data Standard Log Window</UIString>
+  <UIString ID="MNU6">About Autodesk Vault Data Standard</UIString>
+  <UIString ID="MNU7">Create a new file</UIString>
+  <UIString ID="MNU8">Edit a file data</UIString>
+  <UIString ID="MNU9">Create a new folder</UIString>
+  <UIString ID="MNU10">Edit folder data</UIString>
+  <UIString ID="MNU11">New Standard file</UIString>
+  <UIString ID="MNU12">Edit file</UIString>
+  <UIString ID="MNU13">New Folder</UIString>
+  <UIString ID="MNU14">Edit Folder</UIString>
+  <UIString ID="MNU15">Show Log</UIString>
+  <UIString ID="MNU16">Show About Dialog</UIString>
+  <UIString ID="MNU17">New Custom Object</UIString>
+  <UIString ID="MNU18">Create a new custom object</UIString>
+  <UIString ID="MNU19">Edit Custom Object</UIString>
+  <UIString ID="MNU20">Edit a custom object</UIString>
+  <UIString ID="MNU21">Edit Custom Object...</UIString>
+  <UIString ID="MNU22">New Custom Object...</UIString>
+  <UIString ID="MNU23">Custom Object</UIString>
+  <!--Messages used in Message Boxes-->
+  <UIString ID="MSG1">This function is not allowed for CAD documents in Vault Office Client</UIString>
+  <UIString ID="MSG2">"Successfully loaded new custom object definitions! Please restart Vault Explorer to use them in Data Standard dialogs!"</UIString>
+  <UIString ID="MSG3">"There is no connection to Vault! Do you want to login now?"</UIString>
+  <UIString ID="MSG4">"A file with this name already exists. Please choose another name."</UIString>
+  <UIString ID="MSG5">Warning</UIString>
+  <UIString ID="MSG6">More than one entry found for menu item {0}. Please correct the file 'MenuDefinitions.xml' and restart the vault again.</UIString>
+  <UIString ID="MSG7">The label attribute for the menu item {0} could not be found. Please correct the file 'MenuDefinitions.xml' and restart the vault again.</UIString>
+  <UIString ID="MSG8">The PS1File attribute for the menu item {0} could not be found. Please correct the file 'MenuDefinitions.xml' and restart the vault again.</UIString>
+  <UIString ID="MSG9">The Location attribute for the command site {0} could not be found. Please correct the file 'MenuDefinitions.xml' and restart the vault again.</UIString>
+  <!--Messages used in AutoCAD.cfg and Inventor.cfg-->
+  <UIString ID="CFG1">Copy of</UIString>
+  <UIString ID="CFG2">Copy_of_</UIString>
+  <!--Messages used in Validation Tooltip-->
+  <UIString ID="VAL1">Field should not be empty</UIString>
+  <UIString ID="VAL2">Field should contain values from {0}</UIString>
+  <UIString ID="VAL3">Minimum Length of {0} characters required</UIString>
+  <UIString ID="VAL4">Too Long. Length must not exceed {0}</UIString>
+  <UIString ID="VAL5">Minimum Date {0} required</UIString>
+  <UIString ID="VAL6">Not in range of {0}</UIString>
+  <UIString ID="VAL7">Minimum value allowed is {0}</UIString>
+  <UIString ID="VAL8">Maximum value allowed is {0}</UIString>
+  <UIString ID="VAL9">Validation failed due to a Data Standard rule</UIString>
+  <UIString ID="VAL10">Input string was not in correct format</UIString>
+  <UIString ID="VAL11">Custom validation failed.</UIString>
+  <UIString ID="VAL12">A file with this name already exists in Vault at this path. Please choose another name.</UIString>
+  <UIString ID="VAL13">A file with this name already exists in Vault at another path. Please choose another name.</UIString>
+  <UIString ID="VAL14">A file with this name already exists in Vault at this path and is checked out by another user.</UIString>
+  <UIString ID="VAL15">The field cannot contain any of the following characters &quot;/?&lt;&gt;\;*|</UIString>  
+  <!--AutoCAD title block attributes / file properties for dynamic properties-->
+  <!--use to change display name for localization or user friendly naming-->
+  <UIString ID="GEN-TITLE-DES1">Title</UIString>
+  <UIString ID="GEN-TITLE-DES2">Description</UIString>
+  <UIString ID="GEN-TITLE-NR">Part Number</UIString>
+  <UIString ID="GEN-TITLE-MAT1">Material</UIString>
+  <UIString ID="GEN-TITLE-MAT2">Dimensions</UIString>
+  <UIString ID="GEN-TITLE-SIZ">Format</UIString>
+  <UIString ID="GEN-TITLE-SHEET">Sheet</UIString>
+  <UIString ID="GEN-TITLE-SCA">Scale</UIString>
+  <UIString ID="GEN-TITLE-WT">Mass</UIString>
+  <UIString ID="GEN-TITLE-DACT">Document Type</UIString>
+  <UIString ID="GEN-TITLE-NAME">Designer</UIString>
+  <UIString ID="GEN-TITLE-DAT">Create Date</UIString>
+  <UIString ID="GEN-TITLE-CHKD">Checked Date</UIString>
+  <UIString ID="GEN-TITLE-CHKM">Checked By</UIString>
+  <UIString ID="GEN-TITLE-ISSD">Eng Approved Date</UIString>
+  <UIString ID="GEN-TITLE-ISSM">Eng Approved By</UIString>
+  <!--Inventor custom iProperties Displaynames for dynamic properties-->
+  <!--use to change display name for localization or user friendly naming-->
+  <!--<UIString ID="aim_description1">Description</UIString>-->
+
+  <!--Vault user Defined Properties Displaynames for dynamic properties-->
+  <!--use to change display name for localization or user friendly naming-->
+  <UIString ID="Comments">Comments</UIString>
+  <UIString ID="Manager">Manager</UIString>
+  <UIString ID="Subject">Subject</UIString>
+  <UIString ID="CreateUserName">Created By</UIString>
+  <UIString ID="CreateDate">Create Date</UIString>
+  <UIString ID="CheckedBy">Checked By</UIString>
+  <UIString ID="DWGCreatorVersion">DWG Creator Version</UIString>
+  <UIString ID="EngrApprovedBy">Engr Approved By</UIString>
+  <UIString ID="Keywords">Keywords</UIString>
+  <UIString ID="Author">Author</UIString>
+  <UIString ID="Engineer">Engineer</UIString>
+  <UIString ID="GeoRss">GeoRss</UIString>
+  <UIString ID="Material">Material</UIString>
+  <UIString ID="Designer">Designer</UIString>
+  <UIString ID="StockNumber">Stock Number</UIString>
+  <UIString ID="Title">Title</UIString>
+  <UIString ID="SharePath">Share Path</UIString>
+  <UIString ID="TypeTag">Type Tag</UIString>
+  <UIString ID="Description">Description</UIString>
+  <UIString ID="PartNumber">Part Number</UIString>
+  <UIString ID="CostCenter">Cost Center</UIString>
+  <UIString ID="DWGCreatorName">DWG Creator Name</UIString>
+  <UIString ID="ApplicationVersion">Application Version</UIString>
+  <UIString ID="CreationDate">Date File Created</UIString>
+  <UIString ID="RevNumber">Rev Number</UIString>
+  <UIString ID="Project">Project</UIString>
+  <UIString ID="MfgApprovedBy">Mfg Approved By</UIString>
+  <UIString ID="Company">Company</UIString>
+  <UIString ID="Cost">Cost</UIString>
+  <UIString ID="UserStatus">User Status</UIString>
+  <UIString ID="DwgType">DWG Type</UIString>
+  
+  <!--Inventor custom iProperties Displaynames for dynamic properties-->
+  <UIString ID="Part Type name">Sub-Type</UIString>
+  
+  <!--Vault Categories-->
+  <UIString ID="CAT1">Engineering</UIString>
+  <UIString ID="CAT2">Office</UIString>
+  <UIString ID="CAT3">Standard</UIString>
+  <UIString ID="CAT4">Base</UIString>
+  <UIString ID="CAT5">Folder</UIString>
+  <UIString ID="CAT6">Project</UIString>
+
+  <UIString ID="TLT1">Local path</UIString>
+
+  <!--VDS Sample Multilang Strings Start-->
+
+  <!--Sample Vault 'Quickstart'  Category Names (additional ones not in default)-->
+  <UIString ID="MSDCE_CAT00">Drawing Inventor</UIString>
+  <UIString ID="MSDCE_CAT01">Drawing AutoCAD</UIString>
+  <UIString ID="MSDCE_CAT02">3D Component</UIString>
+  <!--<UIString ID="MSDCE_CAT03"></UIString>-->
+  <UIString ID="MSDCE_CAT04">Electrical Drawing</UIString>
+  <UIString ID="MSDCE_CAT05">Electrical Project</UIString>
+  <UIString ID="MSDCE_CAT06">Sheet Set</UIString>
+  <UIString ID="MSDCE_CAT07">Sheet Set Drawing</UIString>
+  <UIString ID="MSDCE_CAT08">Part</UIString>
+  <UIString ID="MSDCE_CAT09">Sheet Metal Part</UIString>
+  <UIString ID="MSDCE_CAT10">Assembly</UIString>
+  <UIString ID="MSDCE_CAT11">Weldment Assembly</UIString>
+  <UIString ID="MSDCE_CAT12">Substitute</UIString>
+  <UIString ID="MSDCE_CAT13">Presentation</UIString>
+  <!--Sample Vault 'Quickstart'  Category Names-->
+
+  <!--VDS Sample CAD-BOM-->
+  <UIString ID="MSDCE_CAD-BOM01">Note - Assembly contains virtual components! These are filtered in CAD-BOM views. Create Item BOM to leverage virtual components' meta data.</UIString>
+  <UIString ID="MSDCE_CAD-BOM02">Note - Selected component has no CAD-BOM data available.</UIString>
+  <!--VDS Sample CAD-BOM end-->
+
+  <!--VDS Sample Inventor Dialog-->
+  <UIString ID="MSDCE_MSG00">Missing Model View! Your system is set to save IPN/IDW/DWG depending on model's name and location. Either add a model or change the Vault option to generate numbers for IPN/IDW/DWG.</UIString>
+  <UIString ID="MSDCE_OrphShtOption">Remove orphaned sheets</UIString>
+  <UIString ID="MSDCE_OrphShtToolTip">Deletes all sheets without view(s).</UIString>
+  <!--VDS Sample Inventor Dialog end-->
+  
+  <!--VDS Sample Functional Dialogs (FG, DA, TP, CH)-->
+  <UIString ID="MSDCE_BOMType_00">Phantom</UIString>
+  <UIString ID="MSDCE_BOMType_01">Phantom-Assembly</UIString>
+  <UIString ID="MSDCE_BOMType_02">Phantom-Part</UIString>
+  <UIString ID="MSDCE_BOMType_03">Reference</UIString>
+  <UIString ID="MSDCE_BOMType_04">Framegenerator-Skeleton-Reference</UIString>
+  <UIString ID="MSDCE_FrameMember_01">Profile Bar</UIString>
+  <UIString ID="MSDCE_TubePipe_01">Tube and Pipe</UIString>
+  <!--VDS Sample Functional Dialogs (FG, DA, TP, CH) end-->
+
+  <!--Sample Vault 'Quickstart'  Custom Object Names-->
+  <UIString ID="MSDCE_CO01">Organisation</UIString>
+  <UIString ID="MSDCE_CO02">Person</UIString>
+  <UIString ID="MSDCE_CO03">Task</UIString>
+  <UIString ID="MSDCE_CO04">Transmittal</UIString>
+  <!--Sample Vault 'Quickstart'  Custom Object Context Menu Items-->
+  <UIString ID="MSDCE_MNU01">New Task...</UIString>
+  <UIString ID="MSDCE_MNU02">Create New Task</UIString>
+  <UIString ID="MSDCE_MNU04">Edit Task...</UIString>
+  <UIString ID="MSDCE_MNU05">Edit Existing Task</UIString>
+  <!--Organisation-->
+  <UIString ID="MSDCE_MNU07">New Organisation...</UIString>
+  <UIString ID="MSDCE_MNU08">Create New Organisation</UIString>
+  <UIString ID="MSDCE_MNU09">Edit Organisation...</UIString>
+  <UIString ID="MSDCE_MNU10">Edit Existing Organisation</UIString>
+  <!--Person-->
+  <UIString ID="MSDCE_MNU11">New Person...</UIString>
+  <UIString ID="MSDCE_MNU12">Create New Person</UIString>
+  <UIString ID="MSDCE_MNU13">Edit Person...</UIString>
+  <UIString ID="MSDCE_MNU14">Edit Existing Person</UIString>
+  <!--Transmittal-->
+  <UIString ID="MSDCE_MNU15">New Transmittal...</UIString>
+  <UIString ID="MSDCE_MNU16">Create New Transmittal</UIString>
+  <UIString ID="MSDCE_MNU17">Edit Transmittal...</UIString>
+  <UIString ID="MSDCE_MNU18">Edit Existing Transmittal</UIString>
+
+  <!--VDS Sample Help And Documentation start-->
+  <UIString ID="MSDCE_BTN1">Help</UIString>
+  <UIString ID="MSDCE_MNU19">VDS Sample Documentation</UIString>
+  <UIString ID="MSDCE_MSG02">Help page not found!</UIString>
+  <UIString ID="ADSK.QS.MSG.00">VDS Sample Client Configuration</UIString>
+  <UIString ID="ADSK.QS.MSG.01">Did you log off intending to log in to another Vault or Server? If so, restart the client instead before logging on again.</UIString>
+  <!--VDS Sample Help And Documentation end-->
+
+  <!--VDS Sample ShortCut Pane-->
+  <UIString ID="MSDCE_LBL88">Shortcuts</UIString>
+  <UIString ID="MSDCE_BTN2">Activate</UIString>
+  <UIString ID="MSDCE_BTN3">Delete</UIString>
+  <UIString ID="MSDCE_TT20">Create Shortcut</UIString>
+  <UIString ID="MSDCE_TT23">Click to activate / Rightclick to delete</UIString>
+  <!--VDS Sample ShortCut Pane end-->
+
+  <!--VDS Sample Vault Folder Browser-->
+  <UIString ID="ADSK.VLT.FLD.BRWSR_TT">Open Vault Folder Browser for Tree Selection... </UIString>
+  <!--VDS Sample Vault Folder Browser End-->
+
+  <!--VDS Sample Multitab Dialogs-->
+  <UIString ID="MSDCE_MultiTab_01">Properties</UIString>
+  <!--VDS Sample Multitab Dialogs end-->
+
+  <!--VDS Sample Multilang Strings End-->
+
+  <!--Reserve Numbers Snippet-->
+  <UIString ID="ADSK-RSRVNUMBERS_MNU20">Reserve Numbers...</UIString>
+  <UIString ID="ADSK-RSRVNUMBERS_LBL105">Range to Reserve</UIString>
+  <UIString ID="ADSK-RSRVNUMBERS_LBL106">Generated Numbers</UIString>
+  <UIString ID="ADSK-RSRVNUMBERS_LBL107">File</UIString>
+  <UIString ID="ADSK-RSRVNUMBERS_LBL108">Item</UIString>
+  <UIString ID="ADSK-RSRVNUMBERS_LBL109">Change Order</UIString>
+  <UIString ID="ADSK-RSRVNUMBERS_LBL110">Scheme Type</UIString>
+  <UIString ID="ADSK-RSRVNUMBERS_MSG03">How to use this tool?</UIString>
+  <UIString ID="ADSK-RSRVNUMBERS_MSG04">Select Numbering Type and Scheme.</UIString>
+  <UIString ID="ADSK-RSRVNUMBERS_MSG05">Set the quantity of numbers required.</UIString>
+  <UIString ID="ADSK-RSRVNUMBERS_MSG06">Execute.</UIString>
+  <UIString ID="ADSK-RSRVNUMBERS_MSG07">All numbers generated are pushed to windows clipboard automatically. Grab from there with CTRL-V to insert.</UIString>
+  <UIString ID="ADSK-RSRVNUMBERS_MSG08">Reserve Item Numbers will create empty items to consume the reserved numbers.</UIString>
+  <UIString ID="ADSK-RSRVNUMBERS_MSG09">Press OK to continue creating items.</UIString>
+  <UIString ID="ADSK-RSRVNUMBERS_TT32">Insert Result at target location using CTRL-V.</UIString>
+  <UIString ID="ADSK-RSRVNUMBERS_TT33">Generates Numbers and adds these to ClipBoard.</UIString>
+  <UIString ID="ADSK-RSRVNUMBERS_BTN7">Run</UIString>
+  <UIString ID="ADSK-RSRVNUMBERS_BTN8">Close</UIString>
+  <!--Reserve Numbers Snippet-->
+
+  <!--Activate Scheduled Task-->
+  <UIString ID="ADSK-ActivateSchedTask-00">Activate Scheduled Task</UIString>
+  <UIString ID="ADSK-ActivateSchedTask-01">(Multi-)Select all tasks to activate as job.</UIString>
+  <UIString ID="ADSK-ActivateSchedTask-02">Press the 'Activate' button</UIString>
+  <UIString ID="ADSK-ActivateSchedTask-03">Activate Selected</UIString>
+  <UIString ID="ADSK-ActivateSchedTask-04">Close</UIString>
+  <UIString ID="ADSK-ActivateSchedTask-05">Put selected Server Task to Job Queue</UIString>
+  <!--Activate Scheduled Task-->
+
+  <!--QuickstartExtensions functions library-->
+  <UIString ID="ADSK-MsgBoxTitle">"VDS Sample Client"</UIString>
+  <UIString ID="ADSK-GroupMemberOf-00">Logged in user is not allowed to run this command</UIString>
+  <!--QuickstartExtensions functions library End-->
+
+  <!--GoToSourceFile-GoToReplacement Snippet Start-->
+  <UIString ID="ADSK-GoToNavigation_MNU00">File-Navigation</UIString>
+  <UIString ID="ADSK-GoToNavigation_MNU01">Go to source</UIString>
+  <UIString ID="ADSK-GoToNavigation_MNU02">Go to replacement</UIString>
+  <UIString ID="ADSK-GoToNavigation_MNU03">Go to selection (structure tab)</UIString>
+  <UIString ID="ADSK-GoToNavigation_Prop01">Source File</UIString>
+  <UIString ID="ADSK-GoToNavigation_Prop02">Replacement for</UIString>
+  <UIString ID="ADSK-GoToNavigation_MSG00">Property '{0}' is empty or doesn't exist.</UIString>
+  <UIString ID="ADSK-GoToNavigation_MSG01">Designated file '{0}' in property '{1}' not found.</UIString>
+  <!--GoToSourceFile-GoToReplacement Snippet Start-->
+
+  <!--GoToInvSibling-->
+  <UIString ID="ADSK-GoToInvSibl_LBL00">Search Inventor Sibling </UIString>
+  <UIString ID="ADSK-GoToInvSibl_BTN00">Go To</UIString>
+  <UIString ID="ADSK-GoToInvSibl_MNU00">Search Sibling (Inventor)</UIString>
+  <UIString ID="ADSK-GoToInvSibl_MSG00">Search result is limited to page size {0}; Total number of files found: {1}</UIString>
+  <UIString ID="ADSK-GoToInvSibl_MSG01">No Sibling Found!</UIString>
+  <!--GoToInvSibling End-->
+
+  <!--Derivation Tree-->
+  <UIString ID="DerivationTree_00">Derivation Tree</UIString>
+  <UIString ID="DerivationTree_01">Source File Versions/Revisions</UIString>
+  <UIString ID="DerivationTree_02">Lists all file versions/revisions of the copied source</UIString>
+  <UIString ID="DerivationTree_03">Parallel-File(s) - All Versions/Revisions</UIString>
+  <UIString ID="DerivationTree_04">Lists all file versions/revisions also copied from the same source file</UIString>
+  <UIString ID="DerivationTree_05">Derivation(s) - All Versions/Revisions</UIString>
+  <UIString ID="DerivationTree_06">Lists all file versions/revisions copied from the selected file</UIString>
+  <UIString ID="DerivationTree_07">State (Historical)</UIString>
+  <UIString ID="DerivationTree_08">Original Create Date</UIString>
+  <UIString ID="DerivationTree_09">Latest Version</UIString>
+  <UIString ID="DerivationTree_10">Latest Released Revision</UIString>
+  <UIString ID="DerivationTree_11">Version Comment</UIString>
+  <UIString ID="DerivationTree_12">Copy File Name to Clipboard</UIString>
+  <UIString ID="DerivationTree_13">Could not find source file</UIString>
+  <UIString ID="DerivationTree_14">Could not find parallel copied files</UIString>
+  <UIString ID="DerivationTree_15">Could not find any copy of the selected file</UIString>
+  <UIString ID="DerivationTree_16">Search result is limited to page size {0}; Total number of files found: {1}</UIString>
+  <UIString ID="DerivationTree_17">Update View</UIString>
+  <UIString ID="DerivationTree_18">Auto Update View</UIString>
+  <UIString ID="DerivationTree_19">Run all searches to fill each branch</UIString>
+  <UIString ID="DerivationTree_20">Updates view on selection changed. Note - Delayed response depending on vault and paging size!</UIString>
+  <!--Derivation Tree end-->
+
+  <!--Insert CAD Copy-->
+  <UIString ID="ADSK-InsertInvCopy_00">Insert CAD: Component Copy</UIString>
+  <!--Insert CAD Copy-->
+  
+  <!--Cascading Organisation/Person selection & link creation-->
+  <UIString ID="Adsk.Org.Pers.Link_00">Contact</UIString>
+  <UIString ID="Adsk.Org.Pers.Link_01">Contacts</UIString>
+  <UIString ID="Adsk.Org.Pers.Link_02">Primary</UIString>
+  <UIString ID="Adsk.Org.Pers.Link_03">Create Link</UIString>
+  <UIString ID="Adsk.Org.Pers.Link_04">Enable to create links to any selected item on project creation.</UIString>
+  <UIString ID="Adsk.Org.Pers.Link_05">Select customer name from "Organisation" Workspace. Optionally select contact name also. Only persona linked to organisations are listed as contact name.</UIString>
+  <UIString ID="Adsk.Org.Pers.Link_06">Select Customer and Contact from "Organisations" Workspace</UIString>
+  <UIString ID="Adsk.Org.Pers.Link_07">Assign Person to existing Organisation</UIString>
+  <!--Cascading Organisation/Person selection & link creation END-->
+  
+</UIStrings>

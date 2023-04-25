@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            x:Name="MainWindow"
+            xmlns:behaviours="clr-namespace:Common.Wpf;assembly=Common"
+            xmlns:wpfUtilities="clr-namespace:Autodesk.DataManagement.Client.Framework.Forms.Controls.WPF.Utilities;assembly=Autodesk.DataManagement.Client.Framework.Forms"
+            xmlns:winFormTheme="clr-namespace:Autodesk.DataManagement.Client.Framework.Forms.SkinUtils;assembly=Autodesk.DataManagement.Client.Framework.Forms"
+            behaviours:TabTitleBehavior.TabTitle="$UIString[LBL36]">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Autodesk.DataManagement.Client.Framework.Forms;component/Controls/WPF/ControlTemplates/MergedResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <!--#region themed styles for VE datasheet standard controls-->
+            <Style x:Key="DataStandardLabelStyle" TargetType="{x:Type Label}" BasedOn="{StaticResource ThemedLabelStyle}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Content, RelativeSource={RelativeSource Self}}" Value="{x:Null}">
+                        <Setter Property="BorderThickness" Value="1" />
+                        <Setter Property="BorderBrush" Value="#ff0000" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="{x:Type Label}" BasedOn="{StaticResource DataStandardLabelStyle}"/>
+            <Style x:Key="DataStandardTextBoxStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource ThemedTextBoxStyle}">
+		<Setter Property="IsReadOnly" Value="True"/>
+                <Setter Property="Height" Value="24" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="Padding" Value="4,0,0,0"/>
+            </Style>
+            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource DataStandardTextBoxStyle}"/>
+            <Style x:Key="DataStandardComboBoxStyle" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource ThemedComboBoxStyle}"/>
+            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource DataStandardComboBoxStyle}"/>
+            <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource ThemedComboBoxItemStyle}"/>
+            <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource ThemedDatePickerStyle}"/>
+            <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource ThemedBaseControlStyle}"/>
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ThemedButtonStyle}" />
+            <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource ThemedCheckBoxStyle}"/>
+            <Style TargetType="{x:Type ContextMenu}" BasedOn="{StaticResource ThemedContextMenu}"/>
+            <Style TargetType="{x:Type DataGrid}" BasedOn="{StaticResource ThemedDataGridStyle}"/>
+            <Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource ThemedGroupBoxStyle}"/>
+            <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource ThemedExpanderStyle}" />
+            <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource ThemedRadioButtonBaseStyle}"/>
+            <Style TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource ThemedScrollViewerStyle}" />
+            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource ThemedTextBlockStyle}"/>
+            <Style TargetType="{x:Type TabControl}" BasedOn="{StaticResource ThemedTabControlStyle}"/>
+            <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource ThemedListBoxStyle }" />
+            <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource ThemedListBoxItemStyle}"/>
+            <Style TargetType="{x:Type TreeView}" BasedOn="{StaticResource ThemedBaseControlStyle}"/>
+            <Style TargetType="{x:Type Border}" BasedOn="{StaticResource ThemedBorderStyle}"/>
+            <!--#endregion themed styles for VE datasheet standard controls-->
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid x:Name="grdMain" Margin="5" MinWidth="420">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" MinWidth="140" />
+                <ColumnDefinition Width="2*" MinWidth="280" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0">
+                <Label.Content>
+                    <AccessText TextWrapping="Wrap" Text="{Binding UIString[LBL20], FallbackValue=Number}"/>
+                </Label.Content>
+            </Label>
+            <TextBox Text="{Binding Prop[_XLTN_NUMBER].Value}" Grid.Row="0" Grid.Column="1" Margin="0,1" ></TextBox>
+            <Label Content="{Binding UIString[LBL4], FallbackValue=State}" Grid.Column="0" Grid.Row="1" />
+            <TextBox Text="{Binding Prop[_XLTN_STATE].Value}" Grid.Column="1" Grid.Row="1" Margin="0,1" />
+            <Label Content="{Binding UIString[LBL21],FallbackValue=Due Date}" Grid.Row="2" Grid.Column="0" />
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Prop[_XLTN_DUE DATE].Value}" Margin="0,1" />
+            <Label Grid.Column="0" Grid.Row="3" >
+                <Label.Content>
+                    <AccessText TextWrapping="Wrap" Text="{Binding UIString[LBL22],FallbackValue=Title}"/>
+                </Label.Content>
+            </Label>
+            <TextBox Text="{Binding PsVal[ItemTitle], Mode=OneWay}" Grid.Column="1" Grid.Row="3" Margin="0,1" />
+            <Label Grid.Column="0" Grid.Row="4">
+                <Label.Content>
+                    <AccessText TextWrapping="Wrap" Text="{Binding UIString[LBL32],FallbackValue=Description}"/>
+                </Label.Content>
+            </Label>
+            <TextBox Text="{Binding PsVal[ItemDescription], Mode=OneWay}" Grid.Column="1" Grid.Row="4" Name="Description" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,1"/>
+            <Label Content="{Binding UIString[LBL7],FallbackValue=Comment}" Grid.Column="0" Grid.Row="5" BorderThickness="1" Height="Auto" />
+            <TextBox Grid.Row="5" Text="{Binding Prop[_XLTN_COMMENT].Value}" VerticalAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="1" MinHeight="50" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,1" />
+        </Grid>
+    </ScrollViewer>
+</UserControl>

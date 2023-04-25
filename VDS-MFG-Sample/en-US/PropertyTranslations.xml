@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PropertyTranslations LanguageCode="en-US">
+  <PropertyTranslation Name="NAME">Name</PropertyTranslation>
+  <PropertyTranslation Name="TITLE">Title</PropertyTranslation>
+  <PropertyTranslation Name="DESCRIPTION">Description</PropertyTranslation>
+  <PropertyTranslation Name="STATE">State</PropertyTranslation>
+  <PropertyTranslation Name="COMMENTS">Comments</PropertyTranslation>
+  <PropertyTranslation Name="COMMENT">Comment</PropertyTranslation>
+  <PropertyTranslation Name="NUMBER">Number</PropertyTranslation>
+  <PropertyTranslation Name="THUMBNAIL">Thumbnail</PropertyTranslation>
+  <PropertyTranslation Name="CATEGORY NAME">Category Name</PropertyTranslation>
+  <PropertyTranslation Name="FILE NAME">File Name</PropertyTranslation>
+  <PropertyTranslation Name="DUE DATE">Due Date</PropertyTranslation>
+  <PropertyTranslation Name="TITLE_ITEM_CO">Title (Item,CO)</PropertyTranslation>
+  <PropertyTranslation Name="DESCRIPTION_ITEM_CO">Description (Item,CO)</PropertyTranslation>
+  <PropertyTranslation Name="CREATE DATE">Create Date</PropertyTranslation>
+  <PropertyTranslation Name="CREATED BY">Created By</PropertyTranslation>
+  <PropertyTranslation Name="DATE VERSION CREATED">Date Version Created</PropertyTranslation>
+
+  <!--VDS Sample start-->
+  <PropertyTranslation Name="SUBJECT">Subject</PropertyTranslation>
+  <PropertyTranslation Name="AUTHOR">Author</PropertyTranslation>
+  <PropertyTranslation Name="PARTNUMBER">Part Number</PropertyTranslation>
+  <PropertyTranslation Name="SEMIFINISHED">Semi-finished</PropertyTranslation>
+  <PropertyTranslation Name="SPAREPART">Spare/Wear Part</PropertyTranslation>
+  <PropertyTranslation Name="STOCKNUMBER">Stock Number</PropertyTranslation>
+  <PropertyTranslation Name="MATERIAL">Material</PropertyTranslation>
+  <PropertyTranslation Name="MASS">Weight</PropertyTranslation>
+  <PropertyTranslation Name="DIMENSIONS">Dimensions/Size</PropertyTranslation>
+  <PropertyTranslation Name="SHEET">Sheet</PropertyTranslation>
+  <PropertyTranslation Name="FORMAT">Format</PropertyTranslation>
+  <PropertyTranslation Name="SCALE">Scale</PropertyTranslation>
+  <PropertyTranslation Name="LENGTH">Length</PropertyTranslation>
+  <PropertyTranslation Name="IDENTNUMBER">Ident Number</PropertyTranslation>
+  <PropertyTranslation Name="PROJECT">Project</PropertyTranslation>
+  <PropertyTranslation Name="PROJECTNUMBER">Project Number</PropertyTranslation>
+  <PropertyTranslation Name="CUSTOMER">Customer</PropertyTranslation>
+  <PropertyTranslation Name="DATESTART">Date Start</PropertyTranslation>
+  <PropertyTranslation Name="PROJECTEND">Date End</PropertyTranslation>
+  <PropertyTranslation Name="EMAILRECIPIENT">Email Recipient</PropertyTranslation>
+  <PropertyTranslation Name="EMAILCONVERSATION">Email Conversation</PropertyTranslation>
+  <PropertyTranslation Name="EMAILSENTDATE">Email Versanddatum</PropertyTranslation>
+  <PropertyTranslation Name="EMAILATTACHM">Email Attachment</PropertyTranslation>
+  <PropertyTranslation Name="FIRSTNAME">First Name</PropertyTranslation>
+  <PropertyTranslation Name="LASTNAME">Last Name</PropertyTranslation>
+  <PropertyTranslation Name="CONTACTNAME">Contact Person</PropertyTranslation>
+  <PropertyTranslation Name="THUMBNAIL">Thumbnail</PropertyTranslation>
+  <PropertyTranslation Name="REVISION">Revision</PropertyTranslation>
+  <!--VDS Sample end-->
+
+</PropertyTranslations>
+

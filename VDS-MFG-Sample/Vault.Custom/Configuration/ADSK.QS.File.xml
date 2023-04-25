@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DocTypeData xmlns="">
+  <DocTypeInfo>
+    <DocName>Inventor</DocName>
+    <Path>$/Templates/Inventor</Path>
+  </DocTypeInfo>
+  <DocTypeInfo>
+    <DocName>AutoCAD</DocName>
+    <Path>$/Templates/AutoCAD</Path>
+  </DocTypeInfo>
+  <DocTypeInfo>
+    <DocName>iLogic Rule</DocName>
+    <Path>$/Templates/Inventor iLogic</Path>
+  </DocTypeInfo>
+  <DocTypeInfo>
+    <DocName>Office</DocName>
+    <Path>$/Templates/Office</Path>
+  </DocTypeInfo>
+  <DocTypeInfo>
+    <DocName>Electrical Drawing</DocName>
+    <Path>$/Templates/Electrical</Path>
+  </DocTypeInfo>
+  <DocTypeInfo>
+    <DocName>Electrical Project</DocName>
+    <Path>$/Templates/Electrical/WDP</Path>
+  </DocTypeInfo>
+</DocTypeData>

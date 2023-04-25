@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PropertyTranslations LanguageCode="de-DE">
+  <PropertyTranslation Name="AUTHOR">Autor</PropertyTranslation>
+  <PropertyTranslation Name="NAME">Name</PropertyTranslation>
+  <PropertyTranslation Name="TITLE">Titel</PropertyTranslation>
+  <PropertyTranslation Name="DESCRIPTION">Beschreibung</PropertyTranslation>
+  <PropertyTranslation Name="STATE">Status</PropertyTranslation>
+  <PropertyTranslation Name="COMMENTS">Kommentare</PropertyTranslation>
+  <PropertyTranslation Name="COMMENT">Kommentar</PropertyTranslation>
+  <PropertyTranslation Name="NUMBER">Nummer</PropertyTranslation>
+  <PropertyTranslation Name="THUMBNAIL">Miniaturansicht</PropertyTranslation>
+  <PropertyTranslation Name="CATEGORY NAME">Kategoriename</PropertyTranslation>
+  <PropertyTranslation Name="FILE NAME">Dateiname</PropertyTranslation>
+  <PropertyTranslation Name="DUE DATE">Fälligkeitsdatum</PropertyTranslation>
+  <PropertyTranslation Name="TITLE_ITEM_CO">Titel (Artikel, F)</PropertyTranslation>
+  <PropertyTranslation Name="DESCRIPTION_ITEM_CO">Beschreibung (Artikel, F)</PropertyTranslation>
+  <PropertyTranslation Name="CREATE DATE">Erstellungsdatum</PropertyTranslation>
+  <PropertyTranslation Name="CREATED BY">Erstellt von</PropertyTranslation>
+  <PropertyTranslation Name="DATE VERSION CREATED">Version erstellt </PropertyTranslation>
+
+  <!--VDS Sample-->
+  <PropertyTranslation Name="SUBJECT">Thema</PropertyTranslation>
+  <!--<PropertyTranslation Name="AUTHOR">Verfasser</PropertyTranslation>-->
+  <PropertyTranslation Name="PARTNUMBER">Teilenummer</PropertyTranslation>
+  <PropertyTranslation Name="SEMIFINISHED">Halbzeug</PropertyTranslation>
+  <PropertyTranslation Name="SPAREPART">EV-Kennung</PropertyTranslation>
+  <PropertyTranslation Name="STOCKNUMBER">Halbzeugnummer</PropertyTranslation>
+  <PropertyTranslation Name="MATERIAL">Material</PropertyTranslation>
+  <PropertyTranslation Name="MASS">Gewicht</PropertyTranslation>
+  <PropertyTranslation Name="DIMENSIONS">Abmessung (Rohteil/Umgriff)</PropertyTranslation>
+  <PropertyTranslation Name="SHEET">Blatt</PropertyTranslation>
+  <PropertyTranslation Name="FORMAT">Format</PropertyTranslation>
+  <PropertyTranslation Name="SCALE">Maßstab</PropertyTranslation>
+  <PropertyTranslation Name="LENGTH">Länge</PropertyTranslation>
+  <PropertyTranslation Name="IDENTNUMBER">Identnummer</PropertyTranslation>
+  <PropertyTranslation Name="PROJECT">Projekt</PropertyTranslation>
+  <PropertyTranslation Name="PROJECTNUMBER">Projekt Nummer</PropertyTranslation>
+  <PropertyTranslation Name="CUSTOMER">Kunde</PropertyTranslation>
+  <PropertyTranslation Name="DATESTART">Datum Start</PropertyTranslation>
+  <PropertyTranslation Name="PROJECTEND">Datum Ende</PropertyTranslation>
+  <PropertyTranslation Name="EMAILRECIPIENT">Email Empfänger</PropertyTranslation>
+  <PropertyTranslation Name="EMAILCONVERSATION">Email Konversation</PropertyTranslation>
+  <PropertyTranslation Name="EMAILSENTDATE">Email Sent Date</PropertyTranslation>
+  <PropertyTranslation Name="EMAILATTACHM">Email Anhang</PropertyTranslation>
+  <PropertyTranslation Name="FIRSTNAME">Vorname</PropertyTranslation>
+  <PropertyTranslation Name="LASTNAME">Nachname</PropertyTranslation>
+  <PropertyTranslation Name="THUMBNAIL">Miniaturansicht</PropertyTranslation>
+  <PropertyTranslation Name="REVISION">Revision</PropertyTranslation>
+  <!--VDS Sample end-->
+  
+</PropertyTranslations>
+

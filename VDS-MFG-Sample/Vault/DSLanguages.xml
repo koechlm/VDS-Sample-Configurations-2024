@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DSLanguages>
+	<!-- The following two lines allow you to change the language (e.g. de-DE for German) for the UI and the Vault DB separately -->
+	<!-- If no language code is specified the Vault Explorer language is used for the UI and the Vault DB -->
+    <Language_Code ID="DB"></Language_Code>
+    <Language_Code ID="UI"></Language_Code>
+</DSLanguages>
