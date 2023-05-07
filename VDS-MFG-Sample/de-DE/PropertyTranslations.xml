@@ -20,7 +20,8 @@
 
   <!--VDS Sample-->
   <PropertyTranslation Name="SUBJECT">Thema</PropertyTranslation>
-  <!--<PropertyTranslation Name="AUTHOR">Verfasser</PropertyTranslation>-->
+  <!--Note de-DE lists Author in the default section-->
+  <PropertyTranslation Name="DESIGNER">Konstrukteur</PropertyTranslation>
   <PropertyTranslation Name="PARTNUMBER">Teilenummer</PropertyTranslation>
   <PropertyTranslation Name="SEMIFINISHED">Halbzeug</PropertyTranslation>
   <PropertyTranslation Name="SPAREPART">EV-Kennung</PropertyTranslation>

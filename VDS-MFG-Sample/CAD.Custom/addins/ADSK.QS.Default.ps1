@@ -24,6 +24,10 @@ function InitializeWindow {
 
 			InitializeBreadCrumb
 
+			#set the active user as Inventor Designer
+			$mUser = $vault.AdminService.Session.User
+			$Prop["Designer"].Value = $mUser.Name
+
 			#	there are some custom functions to enhance functionality; 2024 version added webservice and explorer extensions to be installed optionally
 			$mVdsUtilities = "$($env:programdata)\Autodesk\Vault 2024\Extensions\Autodesk.VdsSampleUtilities\VdsSampleUtilities.dll"
 			if (! (Test-Path $mVdsUtilities)) {
@@ -236,6 +240,17 @@ function InitializeWindow {
 			switch ($Prop["_CreateMode"].Value) {
 				$true {
 					#$dsDiag.Trace(">> CreateMode Section executes...")
+
+					#set the active user as Designer for file property mapping or mechanical title attribute mapping
+					$mUser = $vault.AdminService.Session.User
+					if ($Prop["GEN-TITLE-NAME"]) { #if($Prop["Designer"])
+						$Prop["GEN-TITLE-NAME"].Value = $mUser.Name #	$Prop["Designer"].Value = $mUser.Name
+					}
+					#set the current date as orig. Create Date
+					if ($Prop["GEN-TITLE-DAT"]){
+						$Prop["GEN-TITLE-DAT"].Value = (Get-Date).ToString('yyyy-MM-dd')
+					}
+
 					# set the category: VDS MFG Sample = "AutoCAD Drawing"
 					$mCatName = GetCategories | Where { $_.Name -eq $UIString["MSDCE_CAT01"] }
 					IF ($mCatName) { $Prop["_Category"].Value = $UIString["MSDCE_CAT01"] }

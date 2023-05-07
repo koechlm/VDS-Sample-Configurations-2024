@@ -11,11 +11,15 @@
     <DynamicProperty Hidden="True">Material</DynamicProperty>
     <DynamicProperty>Dimensions/Size</DynamicProperty>
     <DynamicProperty>Diam./Thickn.</DynamicProperty>
+    <DynamicProperty>Diameter</DynamicProperty>
     <DynamicProperty>Length (Cut)</DynamicProperty>
+    <DynamicProperty>Stock Qty</DynamicProperty>
     <DynamicProperty>Mass</DynamicProperty>
     <DynamicProperty>Spare-Wear Part</DynamicProperty>
-    <DynamicProperty>Stock Number</DynamicProperty>
+
     <DynamicProperty>Semi-finished</DynamicProperty>
+    <DynamicProperty>Stock Description</DynamicProperty>
+    <DynamicProperty>Stock Number</DynamicProperty>
     <DynamicProperty>Project Number</DynamicProperty>
     <DynamicProperty>Project</DynamicProperty>
     <DynamicProperty>Designer</DynamicProperty>
@@ -33,6 +37,7 @@
     <DynamicProperty Hidden="True">Key Parameters</DynamicProperty>
     <DynamicProperty Hidden="True">Comments</DynamicProperty>
     <DynamicProperty Hidden="True">Application Version</DynamicProperty>
+    <DynamicProperty>Replaced By</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Sheet Metal Part" Type="File">
     <DynamicProperty>Title</DynamicProperty>
@@ -354,6 +359,9 @@
     <DynamicProperty Hidden="True">Customer Approval Required</DynamicProperty>
     <DynamicProperty Hidden="True">Customer Approved By</DynamicProperty>
     <DynamicProperty Hidden="True">Customer Approved Date</DynamicProperty>
+    <DynamicProperty>Replaced By</DynamicProperty>
+    <DynamicProperty>Title DE</DynamicProperty>
+    <DynamicProperty>Document Class</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Folder" Type="Folder">
     <DynamicProperty>Title</DynamicProperty>

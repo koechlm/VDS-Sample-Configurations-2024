@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/VDS-MFG-Sample/DataStandard.7z
+/VDS-MFG-Sample/VDS-MFG-Sample-2024.0.0.zip

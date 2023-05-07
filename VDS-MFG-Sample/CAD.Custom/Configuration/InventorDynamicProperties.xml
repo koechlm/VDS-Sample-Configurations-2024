@@ -120,7 +120,8 @@
     <DynamicProperty>Material</DynamicProperty>
     <DynamicProperty>Dimensions</DynamicProperty>
     <DynamicProperty>Cut Length</DynamicProperty>
-    <DynamicProperty>Semi finished</DynamicProperty>
+
+    <DynamicProperty>Stock Description</DynamicProperty>
     <DynamicProperty>Stock Number</DynamicProperty>
     <DynamicProperty>Spare-Wear Part</DynamicProperty>
     <DynamicProperty>Mass</DynamicProperty>
@@ -133,8 +134,10 @@
     <DynamicProperty Hidden="True">BOMType</DynamicProperty>
     <DynamicProperty Hidden="True">Key Parameters</DynamicProperty>
     <DynamicProperty Hidden="True">LastUpdatedWith</DynamicProperty>
+    <DynamicProperty Hidden="True">Last Update with</DynamicProperty>
     <DynamicProperty Hidden="True">InternalName</DynamicProperty>
     <DynamicProperty>G_L</DynamicProperty>
+    <DynamicProperty>G_D</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Purchased">
     <DynamicProperty>Title</DynamicProperty>
@@ -168,13 +171,14 @@
     <DynamicProperty>Type</DynamicProperty>
     <DynamicProperty>Drawing Type</DynamicProperty>
     <DynamicProperty>Designer</DynamicProperty>
-    <DynamicProperty>Checked by</DynamicProperty>
-    <DynamicProperty>Date Checked</DynamicProperty>
+    <DynamicProperty>Checked Date</DynamicProperty>
+    <DynamicProperty>Checked By</DynamicProperty>
     <DynamicProperty>Engr Approved by</DynamicProperty>
     <DynamicProperty>Date Eng Approved</DynamicProperty>
     <DynamicProperty>Change Descr</DynamicProperty>
     <DynamicProperty Hidden="True">Document Check Required</DynamicProperty>
     <DynamicProperty Hidden="True">Customer Approval Required</DynamicProperty>
+    <DynamicProperty Hidden="True">Last Update with</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Bauteil">
     <DynamicProperty>Titel</DynamicProperty>

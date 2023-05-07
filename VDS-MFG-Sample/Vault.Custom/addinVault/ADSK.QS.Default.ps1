@@ -60,6 +60,7 @@ function ValidateFileName
 	{
 		return $true;
 	}
+	$dsDiag.Inspect()
 	return $false;
 }
 
@@ -100,10 +101,25 @@ function InitializeWindow
 	{
 		"FileWindow"
 		{
-			$dsWindow.FindName("TemplateCB").add_SelectionChanged({
-				#update the category = selected template's category
-				m_TemplateChanged
-			})	
+			if($Prop["_CreateMode"].Value -eq $true) {
+			
+				$dsWindow.FindName("TemplateCB").add_SelectionChanged({
+					#update the category = selected template's category
+					m_TemplateChanged
+				})
+			
+				#preset the author or designer with the current user
+				$mUser = $vault.AdminService.Session.User
+				if($Prop["_XLTN_DESIGNER"]){
+					$Prop["XLTN_DESIGNER"].Value = $mUser.Name
+				}
+				if($Prop["_XLTN_AUTHOR"]){
+					$Prop["_XLTN_AUTHOR"].Value = $mUser.Name
+				}
+		
+			}
+
+			
 		}
 		"FolderWindow"
 		{
