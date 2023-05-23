@@ -1,0 +1,67 @@
+/* Cascading Style Sheet for HTML export */
+/* MODULE: DYNAMIC OUTLINE */
+
+/* This stylesheet expects the following HTML structure
+		  
+  left column in page body
+		  #pageBody .left
+		  
+		  td.outlineColumn
+		     div.dynamicOutline
+			     div.tree
+				     div.mout
+					  div.mover
+*/
+
+
+/* visual highlight the sidebar navigation */
+.outlineColumn {
+	vertical-align: top;	
+	border: 1px solid #808080;
+	background-color: #F4F4F4;
+	margin: 0px;
+	padding-top: 10px;
+	padding-bottom: 20px;
+}
+
+.dynamicOutline {
+}
+
+/* tree is the same as dynamicOutline, just nested */
+.tree {
+}
+
+.tree a:link {
+	color: Black;
+	text-decoration: none;
+}
+
+.tree a:active {
+	color: #FF3300;
+	text-decoration: none;
+}
+
+.tree a:visited {
+	color: Black;
+	text-decoration: none;
+}
+
+.tree a:hover {
+   color: #FF3300;
+	text-decoration: none;
+}
+
+.tree .mout {
+	text-decoration: none;
+	width: 100%;
+	padding: 0px;
+	font-size: 8pt;
+}
+
+.tree .mover {
+	text-decoration: none;
+	width: 100%;
+	padding: 0px;
+	color: #FF3300;
+	font-size: 8pt;
+}

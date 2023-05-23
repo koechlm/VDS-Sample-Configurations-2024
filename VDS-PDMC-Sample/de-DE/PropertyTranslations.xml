@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PropertyTranslations LanguageCode="de-DE">
+  <PropertyTranslation Name="NAME">Name</PropertyTranslation>
+  <PropertyTranslation Name="TITLE">Titel</PropertyTranslation>
+  <PropertyTranslation Name="DESCRIPTION">Beschreibung</PropertyTranslation>
+  <PropertyTranslation Name="STATE">Status</PropertyTranslation>
+  <PropertyTranslation Name="COMMENTS">Kommentare</PropertyTranslation>
+  <PropertyTranslation Name="COMMENT">Kommentar</PropertyTranslation>
+  <PropertyTranslation Name="NUMBER">Nummer</PropertyTranslation>
+  <PropertyTranslation Name="THUMBNAIL">Miniaturansicht</PropertyTranslation>
+  <PropertyTranslation Name="CATEGORY NAME">Kategoriename</PropertyTranslation>
+  <PropertyTranslation Name="FILE NAME">Dateiname</PropertyTranslation>
+  <PropertyTranslation Name="DUE DATE">Fälligkeitsdatum</PropertyTranslation>
+  <PropertyTranslation Name="TITLE_ITEM_CO">Titel (Artikel, ECO)</PropertyTranslation>
+  <PropertyTranslation Name="DESCRIPTION_ITEM_CO">Beschreibung (Artikel, F)</PropertyTranslation>
+  <PropertyTranslation Name="CREATE DATE">Erstellungsdatum</PropertyTranslation>
+  <PropertyTranslation Name="CREATED BY">Erstellt von</PropertyTranslation>
+  <PropertyTranslation Name="DATE VERSION CREATED">Version erstellt </PropertyTranslation>
+
+  <!--VDS-PDMC-Sample 2019-->
+  <PropertyTranslation Name="SUBJECT">Thema</PropertyTranslation>
+  <PropertyTranslation Name="AUTHOR">Verfasser</PropertyTranslation>
+  <PropertyTranslation Name="PARTNUMBER">Teilenummer</PropertyTranslation>
+  <PropertyTranslation Name="SEMIFINISHED">Halbzeug</PropertyTranslation>
+  <PropertyTranslation Name="SPAREPART">EV-Kennung</PropertyTranslation>
+  <PropertyTranslation Name="STOCKNUMBER">Halbzeugnummer</PropertyTranslation>
+  <PropertyTranslation Name="MATERIAL">Material</PropertyTranslation>
+  <PropertyTranslation Name="MASS">Gewicht</PropertyTranslation>
+  <PropertyTranslation Name="DIMENSIONS">Abmessung (Rohteil/Umgriff)</PropertyTranslation>
+  <PropertyTranslation Name="SHEET">Blatt</PropertyTranslation>
+  <PropertyTranslation Name="FORMAT">Format</PropertyTranslation>
+  <PropertyTranslation Name="SCALE">Maßstab</PropertyTranslation>
+  <PropertyTranslation Name="LENGTH">Länge</PropertyTranslation>
+  <PropertyTranslation Name="IDENTNUMBER">Identnummer</PropertyTranslation>
+  <PropertyTranslation Name="PROJECT">Projekt</PropertyTranslation>
+  <PropertyTranslation Name="PROJECTNUMBER">Projekt Nummer</PropertyTranslation>
+  <PropertyTranslation Name="CUSTOMER">Kunde</PropertyTranslation>
+  <PropertyTranslation Name="DATESTART">Datum Start</PropertyTranslation>
+  <PropertyTranslation Name="PROJECTEND">Datum Ende</PropertyTranslation>
+  <PropertyTranslation Name="EMAILRECIPIENT">Email Empfänger</PropertyTranslation>
+  <PropertyTranslation Name="EMAILCONVERSATION">Email Konversation</PropertyTranslation>
+  <PropertyTranslation Name="EMAILSENTDATE">Email Sent Date</PropertyTranslation>
+  <PropertyTranslation Name="EMAILATTACHM">Email Anhang</PropertyTranslation>
+  <PropertyTranslation Name="FIRSTNAME">Vorname</PropertyTranslation>
+  <PropertyTranslation Name="LASTNAME">Nachname</PropertyTranslation>
+  <PropertyTranslation Name="CONTACTNAME">Kontakt Person</PropertyTranslation>
+  <!--VDS-PDMC-Sample 2019 end-->
+
+  <!--VDS-PDMC-Sample 2020.25.1.2-->
+  <PropertyTranslation Name="REVISION">Revision</PropertyTranslation>
+  <!--VDS-PDMC-Sample 2020.25.1.2-->
+
+  <!--VDS-PDMC-Sample Extension Organisation-Person-Link start-->
+  <PropertyTranslation Name ="ORGANISATION">Organisation</PropertyTranslation>
+  <PropertyTranslation Name="COMPANY">Firma</PropertyTranslation>
+  <!--VDS-PDMC-Sample Extensions end-->
+
+  <!--VDS-PDMC-Sample Extension Classification start-->
+  <PropertyTranslation Name="SEGMENT">Sachgebiet</PropertyTranslation>
+  <PropertyTranslation Name="MAINGROUP">Hauptgruppe</PropertyTranslation>
+  <PropertyTranslation Name="GROUP">Gruppe</PropertyTranslation>
+  <PropertyTranslation Name="SUBGROUP">Untergruppe</PropertyTranslation>
+  <PropertyTranslation Name="CLASS">Klasse</PropertyTranslation>
+  <!--VDS-PDMC-Sample Extension Classification end-->
+
+  <!--CatalogTermsTranslations-->
+  <!--Note the default "Term" is used as object name and varies according the language-->
+  <PropertyTranslation Name="TERM">Begriff DE</PropertyTranslation>
+  <PropertyTranslation Name="TERM-DE">Begriff DE</PropertyTranslation>
+  <PropertyTranslation Name="TERM-EN">Begriff EN</PropertyTranslation>
+  <PropertyTranslation Name="TERM-FR">Begriff FR</PropertyTranslation>
+  <PropertyTranslation Name="TERM-IT">Begriff IT</PropertyTranslation>
+  <!--Note the default "Term" is used as object name and varies according the language-->
+  <PropertyTranslation Name="TITLE-DE">Titel</PropertyTranslation>
+  <PropertyTranslation Name="TITLE-EN">Titel EN</PropertyTranslation>
+  <PropertyTranslation Name="TITLE-FR">Titel FR</PropertyTranslation>
+  <PropertyTranslation Name="TITLE-IT">Titel IT</PropertyTranslation>
+  <!--Classification & Terms-->
+
+  <!--Revision Property Tab start-->
+  <PropertyTranslation Name="LIFECLCDEF">Lebenzyklus Definition</PropertyTranslation>
+  <PropertyTranslation Name="DESIGNER">Konstrukteur</PropertyTranslation>
+  <PropertyTranslation Name="CHECKEDBY">Geprüft von</PropertyTranslation>
+  <PropertyTranslation Name="CHECKEDDATE">Geprüft am</PropertyTranslation>
+  <PropertyTranslation Name="ENGAPPRVDBY">Konstr Genehmigt von</PropertyTranslation>
+  <PropertyTranslation Name="ENGAPPRVDDATE">Konstr Genehmigt am</PropertyTranslation>
+  <PropertyTranslation Name="CHANGEDESCR">Änderungstext</PropertyTranslation>
+  <PropertyTranslation Name="CUSTAPPRVLREQ">Genehmigung Kunde erforderlich</PropertyTranslation>
+  <PropertyTranslation Name="CUSTAPPRVDBY">Kundenseits genehmigt von</PropertyTranslation>
+  <PropertyTranslation Name="CUSTAPPRVDDATE">Kundenseits genehmigt am</PropertyTranslation>
+  <PropertyTranslation Name="DOCCHCKREQ">Dokumentprüfung erforderlich</PropertyTranslation>
+  <PropertyTranslation Name="ORIGINATOR">Originator</PropertyTranslation>
+  <PropertyTranslation Name="ORIGCREATEDATE">Original Create Date</PropertyTranslation>
+  <PropertyTranslation Name="INITIALAPPROVER">Initial Approver</PropertyTranslation>
+  <PropertyTranslation Name="INITRELEASEDATE">Initial Release Date</PropertyTranslation>
+  <PropertyTranslation Name="LATESTAPPROVER">Latest Approver</PropertyTranslation>
+  <PropertyTranslation Name="LATESTRELEASEDATE">Latest Released Date</PropertyTranslation>
+  <!--Revision Property Tab end-->
+  
+</PropertyTranslations>
+

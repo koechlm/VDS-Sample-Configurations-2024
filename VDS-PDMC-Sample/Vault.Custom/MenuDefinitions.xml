@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Label: Label string for the command, must be quoted
+Description: Description text for the menucommand. Must be quoted
+Hint: Hint string, must be quoted
+PSFile: Name of the *ps1 file that contains the powershell script to execute when the menu command is invoked, value must be quoted.
+Image: Name of a bitmap file that contains the image for the menu command. Image should be 16x16 or 32x32, value must be quoted.
+ToolbarPaintStyle: Controls how the item is drawn on toolbars, values are Text, Glyph, TextAndGlyph
+NavigationTypes: comma separated list of entities for which this command should be active. Values are Bom, ChangeOrder, File, FileVersion, Folder, Item, Other
+MultiSelectEnabled: If true, command is active for multiple selections, can be true or false
+-->
+<mymenu>
+  <MenuItem>
+    <!--ADSK create task linked to change order; CO selection context-->
+    <NewCoTask Label = "New Change Order Task" Description ="Create Task linked to ECO" Hint ="New ECO Task"
+                   PSFile ="ADSK.QS.CreateTaskForECO.ps1" Image="Task-add.ico" ToolbarPaintStyle ="TextAndGlyph" MultiSelectEnabled="false"/>
+    <!--ADSK Create ECO linked to project end-->
+
+    <!--ADSK create task linked to change order; CO selection context-->
+    <EditCoTask Label = "Edit Selected Task" Description ="Edit Task linked to ECO" Hint ="Edit ECO Task"
+                   PSFile ="ADSK.QS.EditTaskForECO.ps1" Image="Task-edit.ico" ToolbarPaintStyle ="TextAndGlyph" MultiSelectEnabled="false"/>
+    <!--ADSK Create ECO linked to project end-->
+
+    <!--ADSK Create ECO linked to project, Folder selection context-->
+    <NewProjectECO Label = "New Project Change Order" Description ="Create ECO linked to Project" Hint ="New ECO"
+                   PSFile ="ADSK.QS.CreateECO.ps1" Image="ECO.ico" ToolbarPaintStyle ="TextAndGlyph" MultiSelectEnabled="false"/>
+    <!--ADSK Create ECO linked to project end-->
+
+    <!--ADSK Create ECO with linked files, File selection context-->
+    <NewProjectECOwFiles Label = "Add File(s) to New Project-ECO" Description ="Create ECO linked to Project and add file records" Hint ="Add Files to new ECO"
+                   PSFile ="ADSK.QS.CreateECOandAddFiles.ps1" Image="ECO.ico" ToolbarPaintStyle ="TextAndGlyph" MultiSelectEnabled="true"/>
+    <!--ADSK Create ECO linked to project end-->
+    
+    <!--ADSK-File Property Provider-->
+    <ADSKFileProp Label = "$UIString[ADSKFile-MetaReader-00]" Description = "$UIString[ADSKFile-MetaReader-01]" Hint = "$UIString[ADSKFile-MetaReader-02]"
+      PSFile = "ADSK.QS.AdskFilePropProvider.ps1" Image="ADSKMetaImport.ico" ToolbarPaintStyle = "TextAndGlyph"
+      MultiSelectEnabled = "true"/>
+    <!--ADSK-File Property Provider-->
+
+    <!--CatalogTermsTranslations-->
+    <newTermObject Label = "$UIString[ClassTerms_MNU10]" Description = "$UIString[ClassTerms_MNU11]" Hint = "$UIString[ClassTerms_MNU11]"
+          PSFile = "ADSK.QS.CreateCustomObjectClassified.ps1" Image="Term-add.ico" ToolbarPaintStyle = "TextAndGlyph"
+          NavigationTypes ="Term" MultiSelectEnabled = "false" />
+    <editTermObject Label = "$UIString[ClassTerms_MNU12]" Description = "$UIString[ClassTerms_MNU13]" Hint = "$UIString[ClassTerms_MNU13]"
+      PSFile = "ADSK.QS.EditCustomObjectClassified.ps1" Image="Term-edit.ico" ToolbarPaintStyle = "TextAndGlyph"
+      NavigationTypes ="Term" MultiSelectEnabled = "false"/>
+    <!--CatalogTermsTranslations End-->
+
+    <!--Classification Menu Items Start-->
+    <newClassObject Label = "$UIString[Adsk.Qs.ClassMnu_20]" Description = "$UIString[Adsk.Qs.ClassMnu_21]" Hint = "$UIString[Adsk.Qs.ClassMnu_21]"
+        PSFile = "ADSK.QS.CreateCustomObjectClassified.ps1" Image="class-add.ico" ToolbarPaintStyle = "TextAndGlyph"
+        NavigationTypes ="Class" MultiSelectEnabled = "false" />
+    <editClassObject Label = "$UIString[Adsk.Qs.ClassMnu_22]" Description = "$UIString[Adsk.Qs.ClassMnu_23]" Hint = "$UIString[Adsk.Qs.ClassMnu_23]"
+        PSFile = "ADSK.QS.EditCustomObjectClassified.ps1" Image="class-edit.ico" ToolbarPaintStyle = "TextAndGlyph"
+        NavigationTypes ="Class" MultiSelectEnabled = "false"/>
+
+    <newSegmentObject Label = "$UIString[Adsk.Qs.ClassMnu_24]" Description = "$UIString[Adsk.Qs.ClassMnu_25]" Hint = "$UIString[Adsk.Qs.ClassMnu_25]"
+        PSFile = "ADSK.QS.CreateCustomObject.ps1" Image="CustomObject-Add.ico" ToolbarPaintStyle = "TextAndGlyph"
+        NavigationTypes ="Segment" MultiSelectEnabled = "false" />
+    <editSegmentObject Label = "$UIString[Adsk.Qs.ClassMnu_26]" Description = "$UIString[Adsk.Qs.ClassMnu_27]" Hint = "$UIString[Adsk.Qs.ClassMnu_27]"
+        PSFile = "ADSK.QS.EditCustomObject.ps1" Image="CustomObject-Edit.ico" ToolbarPaintStyle = "TextAndGlyph"
+        NavigationTypes ="Segment" MultiSelectEnabled = "false"/>
+
+    <newMainGroupObject Label = "$UIString[Adsk.Qs.ClassMnu_28]" Description = "$UIString[Adsk.Qs.ClassMnu_29]" Hint = "$UIString[Adsk.Qs.ClassMnu_29]"
+        PSFile = "ADSK.QS.CreateCustomObjectClassified.ps1" Image="CustomObject-Add.ico" ToolbarPaintStyle = "TextAndGlyph"
+        NavigationTypes ="Main Group" MultiSelectEnabled = "false" />
+    <editMainGroupObject Label = "$UIString[Adsk.Qs.ClassMnu_30]" Description = "$UIString[Adsk.Qs.ClassMnu_31]" Hint = "$UIString[Adsk.Qs.ClassMnu_31]"
+        PSFile = "ADSK.QS.EditCustomObjectClassified.ps1" Image="CustomObject-Edit.ico" ToolbarPaintStyle = "TextAndGlyph"
+        NavigationTypes ="Main Group" MultiSelectEnabled = "false"/>
+
+    <newGroupObject Label = "$UIString[Adsk.Qs.ClassMnu_32]" Description = "$UIString[Adsk.Qs.ClassMnu_33]" Hint = "$UIString[Adsk.Qs.ClassMnu_33]"
+        PSFile = "ADSK.QS.CreateCustomObjectClassified.ps1" Image="CustomObject-Add.ico" ToolbarPaintStyle = "TextAndGlyph"
+        NavigationTypes ="Group" MultiSelectEnabled = "false" />
+    <editGroupObject Label = "$UIString[Adsk.Qs.ClassMnu_34]" Description = "$UIString[Adsk.Qs.ClassMnu_35]" Hint = "$UIString[Adsk.Qs.ClassMnu_35]"
+        PSFile = "ADSK.QS.EditCustomObjectClassified.ps1" Image="CustomObject-Edit.ico" ToolbarPaintStyle = "TextAndGlyph"
+        NavigationTypes ="Group" MultiSelectEnabled = "false"/>
+
+    <newSubGroupObject Label = "$UIString[Adsk.Qs.ClassMnu_36]" Description = "$UIString[Adsk.Qs.ClassMnu_37]" Hint = "$UIString[Adsk.Qs.ClassMnu_37]"
+        PSFile = "ADSK.QS.CreateCustomObjectClassified.ps1" Image="CustomObject-Add.ico" ToolbarPaintStyle = "TextAndGlyph"
+        NavigationTypes ="Sub Group" MultiSelectEnabled = "false" />
+    <editSubGroupObject Label = "$UIString[Adsk.Qs.ClassMnu_38]" Description = "$UIString[Adsk.Qs.ClassMnu_39]" Hint = "$UIString[Adsk.Qs.ClassMnu_39]"
+        PSFile = "ADSK.QS.EditCustomObjectClassified.ps1" Image="CustomObject-Edit.ico" ToolbarPaintStyle = "TextAndGlyph"
+        NavigationTypes ="Sub Group" MultiSelectEnabled = "false"/>
+    <!--Classifcation Menu Items END-->
+
+    <!--GoToNavigation MenuItem Start-->
+    <GoToSourceFile Label = "$UIString[ADSK-GoToNavigation_MNU01]" Description = "$UIString[ADSK-GoToNavigation_MNU01]" Hint = "$UIString[ADSK-GoToNavigation_MNU01]"
+      PSFile = "ADSK.QS.GoToSourceFile.ps1" Image="GoToSource.ico" ToolbarPaintStyle = "TextAndGlyph"
+      MultiSelectEnabled = "false" NavigationTypes="File"/>
+    <GoToReplacedBy Label = "$UIString[ADSK-GoToNavigation_MNU02]" Description = "$UIString[ADSK-GoToNavigation_MNU02]" Hint = "$UIString[ADSK-GoToNavigation_MNU02]"
+      PSFile = "ADSK.QS.GoToReplacedBy.ps1" Image="GoToReplacedBy.ico" ToolbarPaintStyle = "TextAndGlyph"
+      MultiSelectEnabled = "false" NavigationTypes="File"/>
+    <GoToSelectedFile Label = "$UIString[ADSK-GoToNavigation_MNU03]" Description = "$UIString[ADSK-GoToNavigation_MNU03]" Hint = "$UIString[ADSK-GoToNavigation_MNU03]"
+      PSFile = "ADSK.QS.GoToSelectedFile.ps1" Image="GoToSelectedFile.ico" ToolbarPaintStyle = "TextAndGlyph"
+      MultiSelectEnabled = "false" NavigationTypes="File"/>
+    <GoToInvSibling Label = "$UIString[ADSK-GoToInvSibl_MNU00]" Description = "$UIString[ADSK-GoToInvSibl_MNU00]" Hint = "$UIString[ADSK-GoToInvSibl_MNU00]"
+          PSFile = "ADSK.QS.GoToInvSibling.ps1" Image="Search.ico" ToolbarPaintStyle = "TextAndGlyph" NavigationTypes="File"
+          MultiSelectEnabled = "false" />
+    <GoToSelectedTask Label = "Go to Selected Task" Description = "Navigate to selected Task of ECO" Hint = "Go To Selected Task"
+      PSFile = "ADSK.QS.GoToTaskFromEco.ps1" Image="Task-GoTo.ico" ToolbarPaintStyle = "TextAndGlyph"
+      MultiSelectEnabled = "false" NavigationTypes="ChangeOrder" />
+    <GoToLinkedEco Label = "Go to linked ECO" Description = "Select ECO in its Workspace" Hint = "Go To ECO"
+      PSFile = "ADSK.QS.GoToEcoFromTask.ps1" Image="ECO-GoTo.ico" ToolbarPaintStyle = "TextAndGlyph"
+      MultiSelectEnabled = "false" NavigationTypes="Task"/>
+    <GoToEcoParentFldr Label ="Go to Parent Project" Description ="Navigate to this ECO's parent project" Hint ="Go to ECO parent project"
+      PSFile ="Adsk.QS.GoToFolderFromEco.ps1" Image ="GlobalFolder_GoTo_16.ico" ToolbarPaintStyle ="TextAndGlyph"
+      MultiSelectEnabeld =" false" NavigationTypes ="ChangeOrder"/>
+    <!--GoToNavigation MenuItem End-->
+
+    <!--Activate Scheduled Task-->
+    <ActivateSchedTask Label = "$UIString[ADSK-ActivateSchedTask-00]" Description = "$UIString[ADSK-ActivateSchedTask-00]" Hint = "$UIString[ADSK-ActivateSchedTask-00]"
+     PSFile = "ADSK.QS.ActivateSchedTask.ps1" Image="Service-add.ico" ToolbarPaintStyle = "TextAndGlyph"
+     MultiSelectEnabled = "false"/>
+    <!--Activate Scheduled Task-->
+
+    <!--ReserveNumbers Menu item start-->
+    <ReserveNumbers Label = "$UIString[ADSK-RSRVNUMBERS_MNU20]" Description = "$UIString[ADSK-RSRVNUMBERS_MNU20]" Hint = "$UIString[ADSK-RSRVNUMBERS_MNU20]"
+      PSFile = "ADSK.QS.ReserveNumbers.ps1" Image="ReserveNumbers.ico" ToolbarPaintStyle = "TextAndGlyph"
+      MultiSelectEnabled = "false"/>
+    <!--ReserveNumbers Menu item end-->
+
+    <!--VDS-PDMC-Sample Menu items start-->
+    <showCustomHelp Label = "$UIString[MSDCE_MNU19]" Description = "$UIString[MSDCE_MNU19]" Hint = "$UIString[MSDCE_MNU19]"
+      PSFile = "showCustomHelp.ps1" Image="CustomHelpDoc.ico" ToolbarPaintStyle = "TextAndGlyph"
+      MultiSelectEnabled = "false" />
+
+    <NewTask Label="$UIString[MSDCE_MNU01]" Description="$UIString[MSDCE_MNU01]" Hint="$UIString[MSDCE_MNU02]" PSFile="ADSK.QS.CreateCustomObject.ps1"
+      Image="Task-add.ico" ToolbarPaintStyle="TextAndGlyph" NavigationTypes="Task" MultiSelectEnabled="False" />
+    <EditTask Label="$UIString[MSDCE_MNU04]" Description="$UIString[MSDCE_MNU04]" Hint="$UIString[MSDCE_MNU05]" PSFile="ADSK.QS.EditCustomObject.ps1"
+      Image="Task-edit.ico" ToolbarPaintStyle="TextAndGlyph" NavigationTypes="Task" MultiSelectEnabled="False" />
+
+    <newOrganisationObject Label = "$UIString[MSDCE_MNU08]" Description = "$UIString[MSDCE_MNU07]" Hint = "$UIString[MSDCE_MNU08]" PSFile = "ADSK.QS.CreateCustomObject.ps1"
+      Image="factory-add.ico" ToolbarPaintStyle = "TextAndGlyph" NavigationTypes ="Organisation" MultiSelectEnabled = "false"/>
+    <editOrganisationObject Label = "$UIString[MSDCE_MNU10]" Description = "$UIString[MSDCE_MNU09]" Hint = "$UIString[MSDCE_MNU10]" PSFile = "ADSK.QS.EditCustomObject.ps1"
+      Image="factory-edit.ico" ToolbarPaintStyle = "TextAndGlyph" NavigationTypes ="Organisation" MultiSelectEnabled = "false"/>
+
+    <newPersonObject Label = "$UIString[MSDCE_MNU12]" Description = "$UIString[MSDCE_MNU11]" Hint = "$UIString[MSDCE_MNU12]" PSFile = "ADSK.QS.CreateCustomObject.ps1"
+      Image="user-w-add.ico" ToolbarPaintStyle = "TextAndGlyph" NavigationTypes ="Person" MultiSelectEnabled = "false"/>
+    <editPersonObject Label = "$UIString[MSDCE_MNU14]" Description = "$UIString[MSDCE_MNU13]" Hint = "$UIString[MSDCE_MNU14]" PSFile = "ADSK.QS.EditCustomObject.ps1"
+      Image="user-w-edit.ico" ToolbarPaintStyle = "TextAndGlyph" NavigationTypes ="Person" MultiSelectEnabled = "false"/>
+
+    <!--VDS-PDMC-Sample Menu items end-->
+
+    <NewFile Label="$UIString[MNU1]" Description="$UIString[MNU11]" Hint="$UIString[MNU7]" PSFile="ADSK.QS.CreateFile.ps1"
+             Image="NewStandardFile.ico" ToolbarPaintStyle="TextAndGlyph" NavigationTypes="File,Folder"
+             MultiSelectEnabled="False" />
+    <EditFile Label="$UIString[MNU2]" Description="$UIString[MNU12]" Hint="$UIString[MNU8]" PSFile="ADSK.QS.EditFile.ps1"
+              Image="EditFileDatasheet.ico" ToolbarPaintStyle="TextAndGlyph" NavigationTypes="File"
+              MultiSelectEnabled="False" />
+    <NewFolder Label="$UIString[MNU3]" Description="$UIString[MNU13]" Hint="$UIString[MNU9]" PSFile="ADSK.QS.CreateFolder.ps1"
+               Image="NewStandardFolder.ico" ToolbarPaintStyle="TextAndGlyph" NavigationTypes="Folder"
+               MultiSelectEnabled="False" />
+    <EditFolder Label="$UIString[MNU4]" Description="$UIString[MNU14]" Hint="$UIString[MNU10]" PSFile="ADSK.QS.EditFolder.ps1"
+                Image="EditFolderDatasheet.ico" ToolbarPaintStyle="TextAndGlyph" NavigationTypes="Folder"
+                MultiSelectEnabled="False" />
+    <ShowLog Label="$UIString[MNU5]" Description="$UIString[MNU15]" Hint="$UIString[MNU5]" PSFile="ShowLog.ps1"
+             Image="Log.ico" ToolbarPaintStyle="TextAndGlyph" MultiSelectEnabled="False" />
+    <AboutDialog Label="$UIString[MNU6]" Description="$UIString[MNU16]" Hint="$UIString[MNU6]"
+                 PSFile="ShowAboutDialog.ps1" Image="About.ico" ToolbarPaintStyle="TextAndGlyph"
+                 MultiSelectEnabled="False" />
+  </MenuItem>
+
+  <!--
+  Label:  String displayed as the label, e.g. for submenus, quoted
+  DeployAsPulldown: If true, used as submenu, values are true or false
+  Location: Specifies the location of the command site within the Vault CLient UI, values are
+  StandardToolbar, AdvancedToolbar, BehaviorsToolbar, ItemBomToolbar,
+  FileMenu, EditMenu, ActionsMenu, ToolsMenu, HelpMenu, FileContextMenu, FolderContextMenu, ChangeOrderContextMenu, ItemContextMenu
+  Items: list with MenuItems. Name should be same as the element name defined in the MenuItem.
+  -->
+  <CommandSite>
+    <FileContext Label="Navigation" DeployAsPullDown="True" Location="FileContextMenu">
+      <Item Name="GoToReplacedBy"></Item>
+      <Item Name="GoToSourceFile"></Item>
+      <Item Name="GoToSelectedFile"></Item>
+      <Item Name="GoToInvSibling"></Item>
+    </FileContext>
+    <FileContext Label="Navigation" DeployAsPullDown="True" Location="StandardToolbar">
+      <Item Name="GoToReplacedBy"></Item>
+      <Item Name="GoToSourceFile"></Item>
+      <Item Name="GoToSelectedFile"></Item>
+      <Item Name="GoToInvSibling"></Item>
+      <Item Name ="GoToSelectedTask"></Item>
+      <Item Name="GoToLinkedEco"></Item>
+    </FileContext>
+    <FileContext Label="myMenu" DeployAsPullDown="False" Location="FileContextMenu">
+      <Item Name="NewFile"></Item>
+      <Item Name="EditFile"></Item>
+      <Item Name="NewProjectECOwFiles"></Item>
+      <Item Name="mInsertInvCompCopy"></Item>
+    </FileContext>
+    <FolderContex Label="myMenu" DeployAsPullDown="False" Location="FolderContextMenu">
+      <Item Name="NewFile"></Item>
+      <Item Name="NewFolder"></Item>
+      <Item Name="EditFolder"></Item>
+      <Item Name="NewProjectECO"></Item>
+    </FolderContex>
+    <ChangeOrderContext Label="ECO-Task" DeployAsPullDown="True" Location="ChangeOrderContextMenu">
+      <Item Name="NewCoTask"></Item>
+      <Item Name="EditCoTask"></Item>
+      <Item Name ="GoToSelectedTask"></Item>
+    </ChangeOrderContext>
+    <StandardToolbar Label="myMenu" DeployAsPullDown="False" Location="StandardToolbar">
+      <Item Name="NewFile"></Item>
+      <Item Name="EditFile"></Item>
+    </StandardToolbar>
+    <ToolsMenu Label="myMenu" DeployAsPullDown="False" Location="ToolsMenu">
+      <Item Name="ShowLog"></Item>
+      <Item Name="ReserveNumbers"></Item>
+    </ToolsMenu>
+    <ActionsMenu Label="myMenu" DeployAsPullDown="False" Location="ActionsMenu">
+      <Item Name="ActivateSchedTask"></Item>
+      <Item Name="AddPdfDsgnRepToQu"></Item>
+      <Item Name="ADSKFileProp"></Item>
+    </ActionsMenu>
+    <HelpMenu Label="myMenu" DeployAsPullDown="False" Location="HelpMenu">
+      <Item Name="AboutDialog"></Item>
+      <Item Name="showCustomHelp"></Item>
+    </HelpMenu>
+    <CustomObject Label="$UIString[MSDCE_CO01]" DeployAsPullDown="False" Location="Organisation">
+      <Item Name="newOrganisationObject"></Item>
+      <Item Name="editOrganisationObject"></Item>
+    </CustomObject>
+    <CustomObject Label="$UIString[MSDCE_CO02]" DeployAsPullDown="False" Location="Person">
+      <Item Name="newPersonObject"></Item>
+      <Item Name="editPersonObject"></Item>
+    </CustomObject>
+    <CustomObject Label="$UIString[MSDCE_CO03]" DeployAsPullDown="False" Location="Task">
+      <Item Name="NewTask"></Item>
+      <Item Name="EditTask"></Item>
+      <Item Name="GoToLinkedEco"></Item>
+    </CustomObject>
+    <CustomObject Label="$UIString[ClassTerms_00]" DeployAsPullDown="False" Location="Term">
+      <Item Name="newTermObject"></Item>
+      <Item Name="editTermObject"></Item>
+    </CustomObject>
+    <CustomObject Label="$UIString[Adsk.QS.Classification_00]" DeployAsPullDown="False" Location="Class">
+      <Item Name="newClassObject"></Item>
+      <Item Name="editClassObject"></Item>
+    </CustomObject>
+    <CustomObject Label="$UIString[Adsk.QS.ClassLevel_00]" DeployAsPullDown="False" Location="Segment">
+      <Item Name="newSegmentObject"></Item>
+      <Item Name="editSegmentObject"></Item>
+    </CustomObject>
+    <CustomObject Label="$UIString[Adsk.QS.ClassLevel_01]" DeployAsPullDown="False" Location="Main Group">
+      <Item Name="newMainGroupObject"></Item>
+      <Item Name="editMainGroupObject"></Item>
+    </CustomObject>
+    <CustomObject Label="$UIString[Adsk.QS.ClassLevel_02]" DeployAsPullDown="False" Location="Group">
+      <Item Name="newGroupObject"></Item>
+      <Item Name="editGroupObject"></Item>
+    </CustomObject>
+    <CustomObject Label="$UIString[Adsk.QS.ClassLevel_03]" DeployAsPullDown="False" Location="Sub Group">
+      <Item Name="newSubGroupObject"></Item>
+      <Item Name="editSubGroupObject"></Item>
+    </CustomObject>
+    <ChangeOrder Label="Go To Parent Fldr" DeployAsPullDown="False" Location="ChangeOrderContextMenu">
+      <Item Name ="GoToEcoParentFldr"></Item>
+    </ChangeOrder>
+  </CommandSite>
+
+  <!--
+  Comma separated list
+  To suppress the command "New Library Folder" add the following two commands to the list below:
+    NewLibraryFolder,NewLibraryFolderForContextMenus
+  To suppress "Rename" for folder add this line:
+    Folder.Rename
+  -->
+  <SuppressMenuItems>
+    NewFolder,NewFolderGroupMenu,NewFolderGroupButton,NewFolderForContextMenus
+  </SuppressMenuItems>
+</mymenu>

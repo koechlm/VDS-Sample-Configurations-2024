@@ -1,0 +1,278 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:behaviours="clr-namespace:Common.Wpf;assembly=Common"
+        xmlns:wpfUtilities="clr-namespace:Autodesk.DataManagement.Client.Framework.Forms.Controls.WPF.Utilities;assembly=Autodesk.DataManagement.Client.Framework.Forms"
+        xmlns:winFormTheme="clr-namespace:Autodesk.DataManagement.Client.Framework.Forms.SkinUtils;assembly=Autodesk.DataManagement.Client.Framework.Forms"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+        xmlns:WPF="clr-namespace:CreateObject.WPF;assembly=CreateObject"       
+        x:Name="MainWindow" behaviours:TabTitleBehavior.TabTitle="$UIString[Adsk.QS.ItemSearch_28]">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Autodesk.DataManagement.Client.Framework.Forms;component/Controls/WPF/ControlTemplates/MergedResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="DynamicDataGridCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource ThemedDataGridCellStyle}">
+                <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
+                <Setter Property="Height" Value="24"></Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                    </Trigger>
+                    <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static DataGrid.FocusBorderBrushKey}}"/>
+                    </Trigger>
+                    <DataTrigger Binding="{Binding Typ}" Value="String">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <TextBox Text="{WPF:ValidatedBinding Value}" 
+                                         VerticalContentAlignment="Center" BorderThickness="0"/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Typ}" Value="DateTime">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <DatePicker SelectedDate="{WPF:ValidatedBinding Value}" SelectedDateFormat="Short" IsHitTestVisible="False" IsTabStop="False" 
+                                                Width="Auto" HorizontalAlignment="Left" BorderThickness="0" />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Typ}" Value="Numeric">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <TextBox Text="{WPF:ValidatedBinding Value, StringFormat=N}" BorderThickness="0" Height="25" />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Typ}" Value="Bool">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <TextBox Text="{WPF:ValidatedBinding Value}" 
+                                         VerticalContentAlignment="Center" BorderThickness="0"/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="DynamicDataGridLabelStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource ThemedDataGridCellStyle}">
+                <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
+                <Setter Property="IsHitTestVisible" Value="False" />
+            </Style>
+            <!--#region themed styles for VE datasheet standard controls-->
+            <Style x:Key="DataStandardLabelStyle" TargetType="{x:Type Label}" BasedOn="{StaticResource ThemedLabelStyle}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Content, RelativeSource={RelativeSource Self}}" Value="{x:Null}">
+                        <Setter Property="BorderThickness" Value="1" />
+                        <Setter Property="BorderBrush" Value="#ff0000" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="{x:Type Label}" BasedOn="{StaticResource DataStandardLabelStyle}"/>
+            <Style x:Key="DataStandardTextBoxStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource ThemedTextBoxStyle}">
+                <Setter Property="IsReadOnly" Value="True"/>
+                <Setter Property="Height" Value="24" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="Padding" Value="4,0,0,0"/>
+            </Style>
+            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource DataStandardTextBoxStyle}"/>
+            <Style x:Key="DataStandardComboBoxStyle" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource ThemedComboBoxStyle}"/>
+            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource DataStandardComboBoxStyle}"/>
+            <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource ThemedComboBoxItemStyle}"/>
+            <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource ThemedDatePickerStyle}"/>
+            <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource ThemedBaseControlStyle}"/>
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ThemedButtonStyle}" />
+            <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource ThemedCheckBoxStyle}"/>
+            <Style TargetType="{x:Type ContextMenu}" BasedOn="{StaticResource ThemedContextMenu}"/>
+            <Style TargetType="{x:Type DataGrid}" BasedOn="{StaticResource ThemedDataGridStyle}"/>
+            <Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource ThemedGroupBoxStyle}"/>
+            <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource ThemedExpanderStyle}" />
+            <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource ThemedRadioButtonBaseStyle}"/>
+            <Style TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource ThemedScrollViewerStyle}" />
+            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource ThemedTextBlockStyle}"/>
+            <Style TargetType="{x:Type TabControl}" BasedOn="{StaticResource ThemedTabControlStyle}"/>
+            <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource ThemedListBoxStyle }" />
+            <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource ThemedListBoxItemStyle}"/>
+            <Style TargetType="{x:Type TreeView}" BasedOn="{StaticResource ThemedBaseControlStyle}"/>
+            <Style TargetType="{x:Type Border}" BasedOn="{StaticResource ThemedBorderStyle}"/>
+            <!--#endregion themed styles for VE datasheet standard controls-->
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid x:Name="grdAssignedItemMain" Height="{Binding ActualHeight, ElementName=grdMain, Mode=OneWay}" MinWidth="694" Width="{Binding ActualWidth, ElementName=grdMain, Mode=OneWay}" Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition MinHeight="100"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="grdStatus">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnAssignedItemRefresh" Command="{Binding PsCmd[mGetItemByFileFromVault]}">
+                <Image StretchDirection="DownOnly">
+                    <Image.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=CurrentTheme, Source={x:Static wpfUtilities:ActiveThemeProvider.Instance}}" Value="{x:Static winFormTheme:Theme.Dark}">
+                                    <Setter Property="Image.Source" Value="C:\ProgramData\Autodesk\Vault 2023\Extensions\DataStandard\Vault.Custom\IconsDark\Refresh_16.png" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=CurrentTheme, Source={x:Static wpfUtilities:ActiveThemeProvider.Instance}}" Value="{x:Static winFormTheme:Theme.Light}">
+                                    <Setter Property="Image.Source" Value="C:\ProgramData\Autodesk\Vault 2023\Extensions\DataStandard\Vault.Custom\IconsLight\Refresh_16.png" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
+            <TextBox x:Name="txtAssignedItemStatus" Grid.Column="1" Height="Auto" TextWrapping="Wrap" Background="#FFFFFFE1" Foreground="Black" BorderThickness="1" Padding="5,0,0,0" MinHeight="24"/>
+        </Grid>
+        <Grid x:Name="grdItemSysProps" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="130"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="130"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="lblItemRevision" Content="{Binding UIString[LBL12], FallbackValue=Revision}"/>
+            <TextBox x:Name="txtItemRevision" Grid.Column="1" IsReadOnly="True" Margin="0,1" BorderThickness="1" />
+            <Label x:Name="lblItemNumber" Content="{Binding UIString[LBL31], FallbackValue=Number}" Grid.Row="1"/>
+            <TextBox x:Name="txtItemTitle1" Grid.Column="1" Grid.Row="2" IsReadOnly="True" Margin="0,1" />
+            <TextBox x:Name="txtItemDescription1" Grid.Column="1" Grid.Row="3" IsReadOnly="True" Margin="0,1" />
+            <TextBox x:Name="txtItemUnits1" Grid.Column="1" Grid.Row="4" IsReadOnly="True" Margin="0,1" />
+            <TextBox x:Name="txtItemNumber" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" IsReadOnly="True" Margin="0,1" />
+            <Label x:Name="lblItemTitle" Content="{Binding UIString[Adsk.QS.ItemSearch_02], FallbackValue=Title}" Grid.Row="2"/>
+            <TextBox x:Name="txtItemTitle" Grid.Column="1" Grid.Row="2" IsReadOnly="True" Margin="0,1" />
+            <Label x:Name="lblItemDescription" Content="{Binding UIString[Adsk.QS.ItemSearch_03], FallbackValue=Description}" Grid.Row="3"/>
+            <TextBox x:Name="txtItemDescription" Grid.Column="1" Grid.Row="3" IsReadOnly="True" Margin="0,1" />
+            <Label x:Name="lblItemUnits" Content="{Binding UIString[Adsk.QS.ItemSearch_23], FallbackValue=Units}"  Grid.Row="4" BorderThickness="1"/>
+            <TextBox x:Name="txtItemUnits" Grid.Column="1" Grid.Row="4" IsReadOnly="True" Margin="0,1" />
+            <Border x:Name="brdItemThumbnail" Grid.Column="2" Grid.RowSpan="4" BorderThickness="1" Margin="5,0" Height="96" Width="{Binding ActualHeight, Mode=OneWay, RelativeSource={RelativeSource Self}}">
+                <Image x:Name="ItemThumbnail"/>
+            </Border>
+            <Label x:Name="lblItemCategory" Content="{Binding UIString[Adsk.QS.ItemSearch_05], FallbackValue=Category Name}" BorderThickness="1,1,1,0" Grid.Column="3"/>
+            <TextBox x:Name="txtItemCategory" Grid.Column="4" IsReadOnly="True" Margin="0,1" />
+            <Label x:Name="lblItemLfcState" Content="{Binding UIString[LBL14], FallbackValue=Lifecycle State}" Grid.Column="3" Grid.Row="1"/>
+            <TextBox x:Name="txtItemLfcState" Grid.Column="4" Grid.Row="1" IsReadOnly="True" Margin="0,1" />
+            <Label x:Name="lblItemLastUpdatedBy" Content="{Binding UIString[Adsk.QS.ItemSearch_24], FallbackValue=Last Updated By}" Grid.Column="3" Grid.Row="2"/>
+            <TextBox x:Name="txtItemLastUpdatedBy" Grid.Column="4" Grid.Row="2" IsReadOnly="True" Margin="0,1" />
+            <Label x:Name="lblItemLastUpdatedDate" Content="{Binding UIString[Adsk.QS.ItemSearch_25], FallbackValue='Last Updated Date                             '}" Grid.Column="3" Grid.Row="3" BorderThickness="1"/>
+            <TextBox x:Name="txtItemLastUpdatedDate" Grid.Column="4" Grid.Row="3" IsReadOnly="True" Margin="0,1" />
+        </Grid>
+        <Grid Margin="0,10,0,0" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Content="{Binding UIString[Adsk.QS.ItemSearch_30], FallbackValue=AssociatedFiles}" Height="Auto" BorderThickness="0"/>
+            <DataGrid x:Name="AssociatedFiles" AutoGenerateColumns="False" IsReadOnly="True" ColumnWidth="Auto" MinRowHeight="24" Grid.Row="1" CanUserResizeRows="False" RowHeight="24" SelectionUnit="Cell" SelectionMode="Single" CanUserReorderColumns="False" CanUserSortColumns="False" ColumnHeaderHeight="26" HeadersVisibility="Column" >
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="..." MinWidth="25" MaxWidth="25">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Width="16" Source="{Binding link}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="..." MinWidth="25" MaxWidth="25">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Width="16" Source="{Binding key}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="..." MinWidth="25" MaxWidth="25" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Width="16" Source="{Binding componenttype}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn x:Name="dgtc_FileName" Binding="{Binding filename}" Width="Auto">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DataContext.UIString[LBL6], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="dgtc_FileTitle" Binding="{Binding title}" Width="Auto">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DataContext.UIString[LBL2], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="dgtc_FileDescription" Binding="{Binding description}" Width="*">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DataContext.UIString[LBL3], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="dgtc_FilePartNumber" Binding="{Binding partnumber}" Width="Auto">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DataContext.UIString[LBL16], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="dgtc_FileRevision" Binding="{Binding revision}" Width="Auto" >
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DataContext.UIString[LBL12], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="dgtc_FileVersion" Binding="{Binding version}" Width="Auto">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DataContext.UIString[LBL13], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Label Content="{Binding UIString[Adsk.QS.ItemSearch_29], FallbackValue=Properties}" Height="Auto" BorderThickness="0" Grid.Column="3"/>
+            <DataGrid x:Name="dtgrdItemProps" IsReadOnly="True" AutoGenerateColumns="False" CanUserReorderColumns="False" RowHeight="24" SelectionMode="Single" SelectionUnit="Cell" Grid.Column="3" Grid.Row="1" CanUserResizeRows="False" ColumnHeaderHeight="26" HeadersVisibility="Column" CanUserSortColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="ItemPropName" Binding="{Binding Key}" Width="Auto">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding UIString[Adsk.QS.ItemSearch_26], FallbackValue=Property Name}" FontWeight="Bold"/>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="ItemPropValue" Binding="{Binding Value}" Width="*">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding UIString[Adsk.QS.ItemSearch_27], FallbackValue=Property Value}" FontWeight="Bold"/>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+
+    </Grid>
+</UserControl>

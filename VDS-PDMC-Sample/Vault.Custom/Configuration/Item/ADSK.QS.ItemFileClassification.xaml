@@ -1,0 +1,226 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviours="clr-namespace:Common.Wpf;assembly=Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+    xmlns:WPF="clr-namespace:CreateObject.WPF;assembly=CreateObject"
+    x:Name="MainWindow"
+    behaviours:TabTitleBehavior.TabTitle="$UIString[Adsk.QS.Classification_03]" d:DesignWidth="602.303" d:DesignHeight="229.643" HorizontalAlignment="Left">
+    <UserControl.Resources>
+        <Style x:Key="DynamicDataGridCellStyle" TargetType="{x:Type DataGridCell}">
+            <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static DataGrid.FocusBorderBrushKey}}"/>
+                </Trigger>
+                <DataTrigger Binding="{Binding Typ}" Value="String">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <TextBox Text="{WPF:ValidatedBinding Value}" 
+                                         VerticalContentAlignment="Center" BorderThickness="0"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Typ}" Value="DateTime">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <DatePicker SelectedDate="{WPF:ValidatedBinding Value}" SelectedDateFormat="Short" IsHitTestVisible="False" IsTabStop="False" Width="Auto" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Typ}" Value="Numeric">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <TextBox Text="{WPF:ValidatedBinding Value, StringFormat=N}" BorderThickness="0"
+                                         Height="25" />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Type}" Value="Bool">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <ComboBox Text="{WPF:ValidatedBinding Value}" IsEditable="True">
+                                    <ComboBoxItem Content="True"/>
+                                    <ComboBoxItem Content="False"/>
+                                </ComboBox>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="DynamicDataGridLabelStyle" TargetType="{x:Type DataGridCell}">
+            <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
+            <Setter Property="Height" Value="23"/>
+            <Setter Property="Margin" Value="0,4,0,0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="IsHitTestVisible" Value="False" />
+        </Style>
+        <Style TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
+            <Setter Property="Margin" Value="0,0,0,0" />
+            <Setter Property="Height" Value="24" />
+            <Setter Property="Padding" Value="5,3,3,2"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="BorderBrush" Value="#FFABADB3"/>
+            <Setter Property="BorderThickness" Value="1,1,1,0"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Content, RelativeSource={RelativeSource Self}}" Value="{x:Null}">
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="BorderBrush" Value="#ff0000"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+            <Setter Property="Height" Value="24" />
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="5,0"/>
+            <Setter Property="BorderBrush" Value="#FFABADB3"/>
+            <Setter Property="BorderThickness" Value="0,1,1,0"/>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type DatePicker}">
+            <Setter Property="Height" Value="25.5" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"
+                            Value="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={x:Static RelativeSource.Self}}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ClassificationDataGridCellStyle" TargetType="{x:Type DataGridCell}">
+            <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <TextBox 
+                            Text="{WPF:ValidatedBinding Value, StringFormat=N}"
+                            BorderThickness="0" />
+                    </ControlTemplate>
+                    <!--<ControlTemplate>
+                        <ComboBox ItemsSource="{Binding ListValues}"
+                                  Text="{WPF:ValidatedBinding Value, StringFormat=N}" IsEditable="True"
+                                  BorderThickness="0" />
+                    </ControlTemplate>-->
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                    <Setter Property="Foreground"
+                        Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                </Trigger>
+                <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static DataGrid.FocusBorderBrushKey}}" />
+                </Trigger>
+                <DataTrigger Binding="{Binding EnforceListValues}" Value="True">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <ComboBox ItemsSource="{Binding ListValues}" Text="{WPF:ValidatedBinding Value}"
+                                    IsEditable="False" BorderThickness="0"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ListValues.Count}" Value="0">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <TextBox Text="{Binding Value, StringFormat=N}" BorderThickness="0" />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Typ}" Value="DateTime">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <DatePicker SelectedDate="{WPF:ValidatedBinding Value}" SelectedDateFormat="Short"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Typ}" Value="Bool">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <ComboBox Text="{WPF:ValidatedBinding Value}" IsEditable="True">
+                                    <ComboBoxItem Content="True" />
+                                    <ComboBoxItem Content="False" />
+                                </ComboBox>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ButtonGridStyle" TargetType="{x:Type Grid}">
+            <Setter Property="Margin" Value="0,15,2,5" />
+        </Style>
+    </UserControl.Resources>
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="grdClassification" Grid.ColumnSpan="1" MaxWidth="600">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="21"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="lblActiveClass" Content="{Binding UIString[Adsk.QS.Classification_06], FallbackValue=Active Classification}" Height="24" Grid.Row="2" BorderThickness="1,1,0,0"/>
+            <TextBox x:Name="txtActiveClass" IsHitTestVisible="False" Height="24" Text="{Binding Prop[_XLTN_CLASS].Value}" Grid.Row="2" Grid.Column="1" BorderThickness="1,1,1,0"/>
+            <Label x:Name="lblClassProps" Content="{Binding UIString[Adsk.QS.Classification_07], FallbackValue=Class Properties}" Grid.Row="3" Height="Auto" BorderThickness="1,1,0,1"/>
+            <DataGrid x:Name="dtgrdClassProps" Grid.Row="3" AutoGenerateColumns="False" Grid.Column="1" SelectionUnit="Cell" HorizontalGridLinesBrush="#FFEEEEF2" VerticalGridLinesBrush="#FFE7E8EC" BorderThickness="1" Grid.ColumnSpan="3" BorderBrush="#FFABADB3">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="ClassPropName" Binding="{Binding Key, Mode=OneWay}" CellStyle="{StaticResource DynamicDataGridLabelStyle}" Width="1*" MinWidth="100">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DataContext.UIString[Adsk.QS.Classification_01], FallbackValue=Property Name, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="ClassPropValue" Binding="{Binding Value, Mode=OneWay}" CellStyle="{StaticResource ClassificationDataGridCellStyle}"  Width="2*" MinWidth="140" MaxWidth="250
+                                        ">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DataContext.UIString[Adsk.QS.Classification_02], FallbackValue=Property Value, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Label Content="{Binding UIString[Adsk.QS.Classification_14], FallbackValue='Classification of Primary File'}" BorderThickness="0" Grid.ColumnSpan="2" Height="Auto"/>
+            <TextBox x:Name="txtClassificationStatus" Height="Auto" TextWrapping="Wrap" Background="#FFFFFFE1" BorderThickness="1,1,1,0" Padding="5,0,0,0" MinHeight="24" Grid.Row="1" Grid.ColumnSpan="2"/>
+        </Grid>
+    </Grid>
+</UserControl>

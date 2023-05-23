@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DynamicProperties>
+  <DynamicPropertiesCategory Category="Part" Type="File">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Title DE</DynamicProperty>
+    <DynamicProperty>Titel DE</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Beschreibung</DynamicProperty>
+    <DynamicProperty>Description 2</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Teilenummer</DynamicProperty>
+    <DynamicProperty>Part Family</DynamicProperty>
+    <DynamicProperty>Make or Buy</DynamicProperty>
+    <DynamicProperty Hidden="True">Material</DynamicProperty>
+    <DynamicProperty>Dimensions/Size</DynamicProperty>
+    <DynamicProperty>Diam./Thickn.</DynamicProperty>
+    <DynamicProperty>Length (Cut)</DynamicProperty>
+    <DynamicProperty>Mass</DynamicProperty>
+    <DynamicProperty>Spare-Wear Part</DynamicProperty>
+    <DynamicProperty>Stock Number</DynamicProperty>
+    <DynamicProperty>Bestandsnummer</DynamicProperty>
+    <DynamicProperty>Semi-finished</DynamicProperty>
+    <DynamicProperty>Project Number</DynamicProperty>
+    <DynamicProperty>Project</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Konstrukteur</DynamicProperty>
+    <DynamicProperty>Engineer</DynamicProperty>
+    <DynamicProperty>Manager</DynamicProperty>
+    <DynamicProperty>Checked By</DynamicProperty>
+    <DynamicProperty>Checked Date</DynamicProperty>
+    <DynamicProperty>Engr Approved By</DynamicProperty>
+    <DynamicProperty>Engr Approved Date</DynamicProperty>
+    <DynamicProperty>Source File</DynamicProperty>
+    <DynamicProperty>Replaced By</DynamicProperty>
+    <DynamicProperty Hidden="True">MBD</DynamicProperty>
+    <DynamicProperty Hidden="True">BOM Type</DynamicProperty>
+    <DynamicProperty Hidden="True">FDS Key</DynamicProperty>
+    <DynamicProperty Hidden="True">Sub-Type</DynamicProperty>
+    <DynamicProperty Hidden="True">Key Parameters</DynamicProperty>
+    <DynamicProperty Hidden="True">Comments</DynamicProperty>
+    <DynamicProperty Hidden="True">Application Version</DynamicProperty>
+    <DynamicProperty Hidden="True">Anwendungsversion</DynamicProperty>
+    <DynamicProperty>FX-TITLE</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Sheet Metal Part" Type="File">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Title DE</DynamicProperty>
+    <DynamicProperty>Titel DE</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Beschreibung</DynamicProperty>
+    <DynamicProperty>Description 2</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Teilenummer</DynamicProperty>
+    <DynamicProperty>Part Family</DynamicProperty>
+    <DynamicProperty>Make or Buy</DynamicProperty>
+    <DynamicProperty Hidden="True">Material</DynamicProperty>
+    <DynamicProperty>Dimensions/Size</DynamicProperty>
+    <DynamicProperty>Diam./Thickn.</DynamicProperty>
+    <DynamicProperty>Length (Cut)</DynamicProperty>
+    <DynamicProperty>Mass</DynamicProperty>
+    <DynamicProperty>Spare-Wear Part</DynamicProperty>
+    <DynamicProperty>Stock Number</DynamicProperty>
+    <DynamicProperty>Semi-finished</DynamicProperty>
+    <DynamicProperty>Project Number</DynamicProperty>
+    <DynamicProperty>Project</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Konstrukteur</DynamicProperty>
+    <DynamicProperty>Engineer</DynamicProperty>
+    <DynamicProperty>Manager</DynamicProperty>
+    <DynamicProperty>Checked By</DynamicProperty>
+    <DynamicProperty>Checked Date</DynamicProperty>
+    <DynamicProperty>Engr Approved By</DynamicProperty>
+    <DynamicProperty>Engr Approved Date</DynamicProperty>
+    <DynamicProperty>Source File</DynamicProperty>
+    <DynamicProperty Hidden="True">MBD</DynamicProperty>
+    <DynamicProperty Hidden="True">BOM Type</DynamicProperty>
+    <DynamicProperty Hidden="True">FDS Key</DynamicProperty>
+    <DynamicProperty Hidden="True">Sub-Type</DynamicProperty>
+    <DynamicProperty Hidden="True">Key Parameters</DynamicProperty>
+    <DynamicProperty Hidden="True">Comments</DynamicProperty>
+    <DynamicProperty Hidden="True">Application Version</DynamicProperty>
+    <DynamicProperty Hidden="True">Anwendungsversion</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Frame Member" Type="File">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Title DE</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Description 2</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Part Family</DynamicProperty>
+    <DynamicProperty>Make or Buy</DynamicProperty>
+    <DynamicProperty>Material</DynamicProperty>
+    <DynamicProperty>Dimensions/Size</DynamicProperty>
+    <DynamicProperty>Diam./Thickn.</DynamicProperty>
+    <DynamicProperty>Length (Cut)</DynamicProperty>
+    <DynamicProperty>Mass</DynamicProperty>
+    <DynamicProperty>Spare-Wear Part</DynamicProperty>
+    <DynamicProperty>Stock Number</DynamicProperty>
+    <DynamicProperty>Semi-finished</DynamicProperty>
+    <DynamicProperty>Project Number</DynamicProperty>
+    <DynamicProperty>Project</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Engineer</DynamicProperty>
+    <DynamicProperty>Manager</DynamicProperty>
+    <DynamicProperty>Checked By</DynamicProperty>
+    <DynamicProperty>Checked Date</DynamicProperty>
+    <DynamicProperty>Engr Approved By</DynamicProperty>
+    <DynamicProperty>Engr Approved Date</DynamicProperty>
+    <DynamicProperty>Source File</DynamicProperty>
+    <DynamicProperty Hidden="True">MBD</DynamicProperty>
+    <DynamicProperty Hidden="True">BOM Type</DynamicProperty>
+    <DynamicProperty Hidden="True">FDS Key</DynamicProperty>
+    <DynamicProperty Hidden="True">Sub-Type</DynamicProperty>
+    <DynamicProperty Hidden="True">Key Parameters</DynamicProperty>
+    <DynamicProperty Hidden="True">Comments</DynamicProperty>
+    <DynamicProperty Hidden="True">Application Version</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Purchased" Type="File">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Title DE</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Description 2</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Part Family</DynamicProperty>
+    <DynamicProperty>Make or Buy</DynamicProperty>
+    <DynamicProperty>Material</DynamicProperty>
+    <DynamicProperty>Dimensions/Size</DynamicProperty>
+    <DynamicProperty>Diam./Thickn.</DynamicProperty>
+    <DynamicProperty>Length (Cut)</DynamicProperty>
+    <DynamicProperty>Mass</DynamicProperty>
+    <DynamicProperty>Spare-Wear Part</DynamicProperty>
+    <DynamicProperty>Stock Number</DynamicProperty>
+    <DynamicProperty>Semi-finished</DynamicProperty>
+    <DynamicProperty>Project Number</DynamicProperty>
+    <DynamicProperty>Project</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Engineer</DynamicProperty>
+    <DynamicProperty>Manager</DynamicProperty>
+    <DynamicProperty>Checked By</DynamicProperty>
+    <DynamicProperty>Checked Date</DynamicProperty>
+    <DynamicProperty>Engr Approved By</DynamicProperty>
+    <DynamicProperty>Engr Approved Date</DynamicProperty>
+    <DynamicProperty>Source File</DynamicProperty>
+    <DynamicProperty Hidden="True">MBD</DynamicProperty>
+    <DynamicProperty Hidden="True">BOM Type</DynamicProperty>
+    <DynamicProperty Hidden="True">FDS Key</DynamicProperty>
+    <DynamicProperty Hidden="True">Sub-Type</DynamicProperty>
+    <DynamicProperty Hidden="True">Key Parameters</DynamicProperty>
+    <DynamicProperty Hidden="True">Comments</DynamicProperty>
+    <DynamicProperty Hidden="True">Application Version</DynamicProperty>
+    <DynamicProperty>Replaced By</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Purchased" Type="File">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Material</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Application Version</DynamicProperty>
+    <DynamicProperty>Mass</DynamicProperty>
+    <DynamicProperty>BOM Type</DynamicProperty>
+    <DynamicProperty>Title DE</DynamicProperty>
+    <DynamicProperty>Stock Number</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Reference" Type="FILE">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Application Version</DynamicProperty>
+    <DynamicProperty>Dimensions/Size</DynamicProperty>
+    <DynamicProperty>Source File</DynamicProperty>
+    <DynamicProperty Hidden="True">BOM Type</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Assembly" Type="File">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Title DE</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Description 2</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Part Family</DynamicProperty>
+    <DynamicProperty>Make or Buy</DynamicProperty>
+    <DynamicProperty>Material</DynamicProperty>
+    <DynamicProperty>Dimensions/Size</DynamicProperty>
+    <DynamicProperty>Diam./Thickn.</DynamicProperty>
+    <DynamicProperty>Length (Cut)</DynamicProperty>
+    <DynamicProperty>Mass</DynamicProperty>
+    <DynamicProperty>Spare-Wear Part</DynamicProperty>
+    <DynamicProperty>Stock Number</DynamicProperty>
+    <DynamicProperty>Semi-finished</DynamicProperty>
+    <DynamicProperty>Project Number</DynamicProperty>
+    <DynamicProperty>Project</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Engineer</DynamicProperty>
+    <DynamicProperty>Manager</DynamicProperty>
+    <DynamicProperty>Checked By</DynamicProperty>
+    <DynamicProperty>Checked Date</DynamicProperty>
+    <DynamicProperty>Engr Approved By</DynamicProperty>
+    <DynamicProperty>Engr Approved Date</DynamicProperty>
+    <DynamicProperty>Source File</DynamicProperty>
+    <DynamicProperty Hidden="True">MBD</DynamicProperty>
+    <DynamicProperty Hidden="True">BOM Type</DynamicProperty>
+    <DynamicProperty Hidden="True">FDS Key</DynamicProperty>
+    <DynamicProperty Hidden="True">Sub-Type</DynamicProperty>
+    <DynamicProperty Hidden="True">Key Parameters</DynamicProperty>
+    <DynamicProperty Hidden="True">Comments</DynamicProperty>
+    <DynamicProperty Hidden="True">Application Version</DynamicProperty>
+    <DynamicProperty>Replaced By</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Weldment Assembly" Type="File">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Title DE</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Description 2</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Part Family</DynamicProperty>
+    <DynamicProperty>Make or Buy</DynamicProperty>
+    <DynamicProperty Hidden="True">Material</DynamicProperty>
+    <DynamicProperty>Dimensions/Size</DynamicProperty>
+    <DynamicProperty>Diam./Thickn.</DynamicProperty>
+    <DynamicProperty>Length (Cut)</DynamicProperty>
+    <DynamicProperty>Mass</DynamicProperty>
+    <DynamicProperty>Spare-Wear Part</DynamicProperty>
+    <DynamicProperty>Stock Number</DynamicProperty>
+    <DynamicProperty>Semi-finished</DynamicProperty>
+    <DynamicProperty>Project Number</DynamicProperty>
+    <DynamicProperty>Project</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Engineer</DynamicProperty>
+    <DynamicProperty>Manager</DynamicProperty>
+    <DynamicProperty>Checked By</DynamicProperty>
+    <DynamicProperty>Checked Date</DynamicProperty>
+    <DynamicProperty>Engr Approved By</DynamicProperty>
+    <DynamicProperty>Engr Approved Date</DynamicProperty>
+    <DynamicProperty>Source File</DynamicProperty>
+    <DynamicProperty Hidden="True">MBD</DynamicProperty>
+    <DynamicProperty Hidden="True">BOM Type</DynamicProperty>
+    <DynamicProperty Hidden="True">FDS Key</DynamicProperty>
+    <DynamicProperty Hidden="True">Sub-Type</DynamicProperty>
+    <DynamicProperty Hidden="True">Key Parameters</DynamicProperty>
+    <DynamicProperty Hidden="True">Comments</DynamicProperty>
+    <DynamicProperty Hidden="True">Application Version</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Office" Type="File">
+    <DynamicProperty>Object Designation</DynamicProperty>
+    <DynamicProperty>Classification Code</DynamicProperty>
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Subject</DynamicProperty>
+    <DynamicProperty>Document ID</DynamicProperty>
+    <DynamicProperty>Author</DynamicProperty>
+    <DynamicProperty Hidden="True">Comments</DynamicProperty>
+    <DynamicProperty>Engr Approved By</DynamicProperty>
+    <DynamicProperty>Keywords</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Base" Type="File">
+    <DynamicProperty>Author</DynamicProperty>
+    <DynamicProperty>Manager</DynamicProperty>
+    <DynamicProperty>Engr Approved By</DynamicProperty>
+    <DynamicProperty>Engineer</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Stock Number</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Mfg Approved By</DynamicProperty>
+    <DynamicProperty>Material</DynamicProperty>
+    <DynamicProperty>Cost</DynamicProperty>
+    <DynamicProperty>Company</DynamicProperty>
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Subject</DynamicProperty>
+    <DynamicProperty>Keywords</DynamicProperty>
+    <DynamicProperty>Comments</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Project</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Engineering" Type="File">
+    <DynamicProperty>Author</DynamicProperty>
+    <DynamicProperty>Manager</DynamicProperty>
+    <DynamicProperty>Engr Approved By</DynamicProperty>
+    <DynamicProperty>Engineer</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Stock Number</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Material</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Cost</DynamicProperty>
+    <DynamicProperty>Checked By</DynamicProperty>
+    <DynamicProperty>Company</DynamicProperty>
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Subject</DynamicProperty>
+    <DynamicProperty>Keywords</DynamicProperty>
+    <DynamicProperty>Comments</DynamicProperty>
+    <DynamicProperty>Mfg Approved By</DynamicProperty>
+    <DynamicProperty>Project</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Standard" Type="File">
+    <DynamicProperty>Author</DynamicProperty>
+    <DynamicProperty>Manager</DynamicProperty>
+    <DynamicProperty>Engr Approved By</DynamicProperty>
+    <DynamicProperty>Engineer</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Stock Number</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Mfg Approved By</DynamicProperty>
+    <DynamicProperty>Material</DynamicProperty>
+    <DynamicProperty>Cost</DynamicProperty>
+    <DynamicProperty>Company</DynamicProperty>
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Subject</DynamicProperty>
+    <DynamicProperty>Keywords</DynamicProperty>
+    <DynamicProperty>Comments</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Project</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Organisation" Type="CustomObject">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Ident Number</DynamicProperty>
+    <DynamicProperty>Company</DynamicProperty>
+    <DynamicProperty>Street address</DynamicProperty>
+    <DynamicProperty>Web link</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Person" Type="CustomObject">
+    <DynamicProperty>First Name</DynamicProperty>
+    <DynamicProperty>Last Name</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Email Recipient</DynamicProperty>
+    <DynamicProperty>Company</DynamicProperty>
+    <DynamicProperty>Ident Number</DynamicProperty>
+    <DynamicProperty>Organisation</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Project" Type="Folder">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Beschreibung</DynamicProperty>
+    <DynamicProperty>Date Start</DynamicProperty>
+    <DynamicProperty>Date End</DynamicProperty>
+    <DynamicProperty>Customer</DynamicProperty>
+    <DynamicProperty Hidden="True">Ident Number</DynamicProperty>
+    <DynamicProperty>Project Number</DynamicProperty>
+    <DynamicProperty>Project Title</DynamicProperty>
+    <DynamicProperty>Project</DynamicProperty>
+    <DynamicProperty>FLCdmsID</DynamicProperty>
+    <DynamicProperty>FLCwsID</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Drawing AutoCAD" Type="FILE">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Title DE</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Document ID</DynamicProperty>
+    <DynamicProperty>Material</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Project</DynamicProperty>
+    <DynamicProperty>Format</DynamicProperty>
+    <DynamicProperty>Dimensions/Size</DynamicProperty>
+    <DynamicProperty>Mass</DynamicProperty>
+    <DynamicProperty>Scale</DynamicProperty>
+    <DynamicProperty>Sheet</DynamicProperty>
+    <DynamicProperty Hidden="True">DWG Type</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Document Type</DynamicProperty>
+    <DynamicProperty Hidden="True">Change Description</DynamicProperty>
+    <DynamicProperty Hidden="True">Make or Buy</DynamicProperty>
+    <DynamicProperty Hidden="True">Document Check Required</DynamicProperty>
+    <DynamicProperty Hidden="True">Checked By</DynamicProperty>
+    <DynamicProperty Hidden="True">Checked Date</DynamicProperty>
+    <DynamicProperty Hidden="True">Engr Approved By</DynamicProperty>
+    <DynamicProperty Hidden="True">Engr Approved Date</DynamicProperty>
+    <DynamicProperty Hidden="True">Customer Approval Required</DynamicProperty>
+    <DynamicProperty Hidden="True">Customer Approved By</DynamicProperty>
+    <DynamicProperty Hidden="True">Customer Approved Date</DynamicProperty>
+    <DynamicProperty>Source File</DynamicProperty>
+    <DynamicProperty>Replaced By</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Folder" Type="Folder">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>FLCwsID</DynamicProperty>
+    <DynamicProperty>FLCdmsID</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Task" Type="CustomObject">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Ident Number</DynamicProperty>
+    <DynamicProperty>Date Start</DynamicProperty>
+    <DynamicProperty>Date End</DynamicProperty>
+    <DynamicProperty>Owner</DynamicProperty>
+    <DynamicProperty>Priority</DynamicProperty>
+    <DynamicProperty>Sub-Type</DynamicProperty>
+    <DynamicProperty>Comments</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Drawing Inventor" Type="FILE">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Title DE</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Document Type</DynamicProperty>
+    <DynamicProperty>Format</DynamicProperty>
+    <DynamicProperty>Scale</DynamicProperty>
+    <DynamicProperty>Sheet</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty Hidden="True">Document Check Required</DynamicProperty>
+    <DynamicProperty Hidden="True">Checked By</DynamicProperty>
+    <DynamicProperty Hidden="True">Checked Date</DynamicProperty>
+    <DynamicProperty Hidden="True">Engr Approved By</DynamicProperty>
+    <DynamicProperty Hidden="True">Engr Approved Date</DynamicProperty>
+    <DynamicProperty Hidden="True">Change Description</DynamicProperty>
+    <DynamicProperty Hidden="True">Customer Approval Required</DynamicProperty>
+    <DynamicProperty Hidden="True">Customer Approved By</DynamicProperty>
+    <DynamicProperty Hidden="True">Customer Approved Date</DynamicProperty>
+    <DynamicProperty>Source File</DynamicProperty>
+    <DynamicProperty Hidden="True">DWG Type</DynamicProperty>
+    <DynamicProperty Hidden="True">Application Version</DynamicProperty>
+    <DynamicProperty>Replaced By</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Managed Asset" Type="File">
+    <DynamicProperty>Author</DynamicProperty>
+    <DynamicProperty>AKN Date Removed</DynamicProperty>
+    <DynamicProperty>A-Drive Date Removed</DynamicProperty>
+    <DynamicProperty>A-Drive Date Published</DynamicProperty>
+    <DynamicProperty>Channel Tech Date Removed</DynamicProperty>
+    <DynamicProperty>A-Drive Link</DynamicProperty>
+    <DynamicProperty>OTS Link</DynamicProperty>
+    <DynamicProperty>Comments</DynamicProperty>
+    <DynamicProperty>VStudio GitHub</DynamicProperty>
+    <DynamicProperty>Thin Client Link</DynamicProperty>
+    <DynamicProperty>VStudio Project</DynamicProperty>
+    <DynamicProperty>AKN Date Published</DynamicProperty>
+    <DynamicProperty>Channel Tech Date Published</DynamicProperty>
+    <DynamicProperty>OTS Date Published</DynamicProperty>
+    <DynamicProperty>OTS Date Expiration</DynamicProperty>
+    <DynamicProperty>Channel Tech Link</DynamicProperty>
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Subject</DynamicProperty>
+    <DynamicProperty>Keywords</DynamicProperty>
+    <DynamicProperty>AKN Link</DynamicProperty>
+    <DynamicProperty>OTS File Name</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Plant" Type="Folder">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Site" Type="CustomObject">
+    <DynamicProperty>Company</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Street address</DynamicProperty>
+    <DynamicProperty>Web link</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Class" Type="CustomObject">
+    <DynamicProperty>Segment</DynamicProperty>
+    <DynamicProperty>Main Group</DynamicProperty>
+    <DynamicProperty>Group</DynamicProperty>
+    <DynamicProperty>Sub Group</DynamicProperty>
+    <DynamicProperty>Class</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Sub Group" Type="CustomObject">
+    <DynamicProperty>Segment</DynamicProperty>
+    <DynamicProperty>Main Group</DynamicProperty>
+    <DynamicProperty>Group</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Term" Type="CustomObject">
+    <DynamicProperty>Segment</DynamicProperty>
+    <DynamicProperty>Main Group</DynamicProperty>
+    <DynamicProperty>Group</DynamicProperty>
+    <DynamicProperty>Sub Group</DynamicProperty>
+    <DynamicProperty>Term EN</DynamicProperty>
+    <DynamicProperty>Term DE</DynamicProperty>
+    <DynamicProperty>Term FR</DynamicProperty>
+    <DynamicProperty>Term IT</DynamicProperty>
+    <DynamicProperty>Ident Number</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Main Group" Type="CustomObject">
+    <DynamicProperty>Segment</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Group" Type="CustomObject">
+    <DynamicProperty>Segment</DynamicProperty>
+    <DynamicProperty>Main Group</DynamicProperty>
+  </DynamicPropertiesCategory>
+</DynamicProperties>

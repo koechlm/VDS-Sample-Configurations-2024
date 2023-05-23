@@ -108,17 +108,880 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="..\VDS-MFG-Sample\CAD\addins\breadCrumb.ps1">
+      <Link>CAD\addins\breadCrumb.ps1</Link>
+    </None>
+    <None Include="..\VDS-MFG-Sample\CAD\addins\Default.ps1">
+      <Link>CAD\addins\Default.ps1</Link>
+    </None>
+    <None Include="..\VDS-MFG-Sample\CAD\addins\FileNameValidation.ps1">
+      <Link>CAD\addins\FileNameValidation.ps1</Link>
+    </None>
+    <None Include="..\VDS-MFG-Sample\CAD\Configuration\AutoCAD.cfg">
+      <Link>CAD\Configuration\AutoCAD.cfg</Link>
+    </None>
+    <None Include="..\VDS-MFG-Sample\CAD\Configuration\Inventor.cfg">
+      <Link>CAD\Configuration\Inventor.cfg</Link>
+    </None>
+    <None Include="..\VDS-MFG-Sample\Vault\addinVault\AssociatedFiles.ps1">
+      <Link>Vault\addinVault\AssociatedFiles.ps1</Link>
+    </None>
+    <None Include="..\VDS-MFG-Sample\Vault\addinVault\Default.ps1">
+      <Link>Vault\addinVault\Default.ps1</Link>
+    </None>
+    <None Include="..\VDS-MFG-Sample\Vault\addinVault\FileBOM.ps1">
+      <Link>Vault\addinVault\FileBOM.ps1</Link>
+    </None>
+    <None Include="..\VDS-MFG-Sample\Vault\addinVault\Menus\CreateCustomObject.ps1">
+      <Link>Vault\addinVault\Menus\CreateCustomObject.ps1</Link>
+    </None>
+    <None Include="..\VDS-MFG-Sample\Vault\addinVault\Menus\CreateFile.ps1">
+      <Link>Vault\addinVault\Menus\CreateFile.ps1</Link>
+    </None>
+    <None Include="..\VDS-MFG-Sample\Vault\addinVault\Menus\CreateFolder.ps1">
+      <Link>Vault\addinVault\Menus\CreateFolder.ps1</Link>
+    </None>
+    <None Include="..\VDS-MFG-Sample\Vault\addinVault\Menus\EditCustomObject.ps1">
+      <Link>Vault\addinVault\Menus\EditCustomObject.ps1</Link>
+    </None>
+    <None Include="..\VDS-MFG-Sample\Vault\addinVault\Menus\EditFile.ps1">
+      <Link>Vault\addinVault\Menus\EditFile.ps1</Link>
+    </None>
+    <None Include="..\VDS-MFG-Sample\Vault\addinVault\Menus\EditFolder.ps1">
+      <Link>Vault\addinVault\Menus\EditFolder.ps1</Link>
+    </None>
+    <None Include="..\VDS-MFG-Sample\Vault\addinVault\Menus\sample1.ps1">
+      <Link>Vault\addinVault\Menus\sample1.ps1</Link>
+    </None>
+    <None Include="..\VDS-MFG-Sample\Vault\addinVault\Menus\Select Folder.ps1">
+      <Link>Vault\addinVault\Menus\Select Folder.ps1</Link>
+    </None>
+    <None Include="..\VDS-MFG-Sample\Vault\addinVault\Menus\ShowAboutDialog.ps1">
+      <Link>Vault\addinVault\Menus\ShowAboutDialog.ps1</Link>
+    </None>
+    <None Include="..\VDS-MFG-Sample\Vault\addinVault\Menus\ShowLog.ps1">
+      <Link>Vault\addinVault\Menus\ShowLog.ps1</Link>
+    </None>
+    <None Include="CAD.Custom\addins\ADSK.QS.breadCrumb.ps1" />
+    <None Include="CAD.Custom\addins\ADSK.QS.CAD.Library.ps1" />
+    <None Include="CAD.Custom\addins\ADSK.QS.Default.ps1" />
+    <None Include="CAD.Custom\addins\ADSK.QS.FileNameValidation.ps1" />
+    <None Include="CAD.Custom\addins\ADSK.QS.ItemLookup.ps1" />
+    <None Include="CAD.Custom\addins\ADSK.QS.RevisionMgmt.ps1" />
+    <None Include="CAD.Custom\Configuration\AutoCAD.cfg" />
+    <None Include="CAD.Custom\Configuration\Inventor.cfg" />
+    <None Include="HelpFiles\debug.log" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Vault.Custom\addinVault\ADSK.QS.ActivateSchedTaskAsJob.ps1" />
+    <None Include="Vault.Custom\addinVault\ADSK.QS.Classification.ps1" />
+    <None Include="Vault.Custom\addinVault\ADSK.QS.CustomObjectsClassified.psm1" />
+    <None Include="Vault.Custom\addinVault\ADSK.QS.Default.ps1" />
+    <None Include="Vault.Custom\addinVault\ADSK.QS.DerivationTree.ps1" />
+    <None Include="Vault.Custom\addinVault\ADSK.QS.ECOTaskLink.ps1" />
+    <None Include="Vault.Custom\addinVault\ADSK.QS.FileBOM.ps1" />
+    <None Include="Vault.Custom\addinVault\ADSK.QS.FileDocStructure.ps1" />
+    <None Include="Vault.Custom\addinVault\ADSK.QS.IEC61355.psm1" />
+    <None Include="Vault.Custom\addinVault\ADSK.QS.ItemLookup.ps1" />
+    <None Include="Vault.Custom\addinVault\ADSK.QS.NameValidationCustent.ps1" />
+    <None Include="Vault.Custom\addinVault\ADSK.QS.NameValidationFile.ps1" />
+    <None Include="Vault.Custom\addinVault\ADSK.QS.NameValidationFolder.ps1" />
+    <None Include="Vault.Custom\addinVault\ADSK.QS.Org.Pers.Link.ps1" />
+    <None Include="Vault.Custom\addinVault\ADSK.QS.ReserveFileNumber.ps1" />
+    <None Include="Vault.Custom\addinVault\ADSK.QS.RevisionMgmt.ps1" />
+    <None Include="Vault.Custom\addinVault\ADSK.QS.VLT.Library.ps1" />
+    <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.ActivateSchedTask.ps1" />
+    <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.AdskFilePropProvider.ps1" />
+    <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.CreateCustomObject.ps1" />
+    <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.CreateCustomObjectClassified.ps1" />
+    <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.CreateECO.ps1" />
+    <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.CreateECOandAddFiles.ps1" />
+    <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.CreateFile.ps1" />
+    <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.CreateFolder.ps1" />
+    <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.CreateTaskForECO.ps1" />
+    <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.EditCustomObject.ps1" />
+    <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.EditCustomObjectClassified.ps1" />
+    <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.EditFile.ps1" />
+    <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.EditFolder.ps1" />
+    <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.EditTaskForECO.ps1" />
+    <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.GoToEcoFromTask.ps1" />
+    <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.GoToFolderFromEco.ps1" />
+    <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.GoToInvSibling.ps1" />
+    <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.GoToReplacedBy.ps1" />
+    <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.GoToSelectedFile.ps1" />
+    <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.GoToSourceFile.ps1" />
+    <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.GoToTaskFromEco.ps1" />
+    <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.ImportFiles.ps1" />
+    <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.ReserveNumbers.ps1" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="CAD.Custom\Configuration\AutoCadDynamicProperties.xml" />
+    <Resource Include="CAD.Custom\Configuration\InventorDynamicProperties.xml" />
+    <Resource Include="de-DE\PropertyTranslations.xml" />
+    <Resource Include="de-DE\UIStrings.xml" />
+    <Resource Include="en-US\PropertyTranslations.xml" />
+    <Resource Include="en-US\UIStrings.xml" />
+    <Resource Include="..\VDS-MFG-Sample\Vault\Configuration\Item\Icons\attachment.png">
+      <Link>Vault\Configuration\Item\Icons\attachment.png</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\Configuration\Item\Icons\docx.png">
+      <Link>Vault\Configuration\Item\Icons\docx.png</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\Configuration\Item\Icons\dwg.png">
+      <Link>Vault\Configuration\Item\Icons\dwg.png</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\Configuration\Item\Icons\iam.png">
+      <Link>Vault\Configuration\Item\Icons\iam.png</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\Configuration\Item\Icons\idw.png">
+      <Link>Vault\Configuration\Item\Icons\idw.png</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\Configuration\Item\Icons\ipn.png">
+      <Link>Vault\Configuration\Item\Icons\ipn.png</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\Configuration\Item\Icons\ipt.png">
+      <Link>Vault\Configuration\Item\Icons\ipt.png</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\Configuration\Item\Icons\linkedfile.png">
+      <Link>Vault\Configuration\Item\Icons\linkedfile.png</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\Configuration\Item\Icons\mdb.png">
+      <Link>Vault\Configuration\Item\Icons\mdb.png</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\Configuration\Item\Icons\pdf.png">
+      <Link>Vault\Configuration\Item\Icons\pdf.png</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\Configuration\Item\Icons\pptx.png">
+      <Link>Vault\Configuration\Item\Icons\pptx.png</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\Configuration\Item\Icons\Primary.png">
+      <Link>Vault\Configuration\Item\Icons\Primary.png</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\Configuration\Item\Icons\PrimarySub.png">
+      <Link>Vault\Configuration\Item\Icons\PrimarySub.png</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\Configuration\Item\Icons\Secondary.png">
+      <Link>Vault\Configuration\Item\Icons\Secondary.png</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\Configuration\Item\Icons\SecondarySub.png">
+      <Link>Vault\Configuration\Item\Icons\SecondarySub.png</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\Configuration\Item\Icons\StandardComponent.png">
+      <Link>Vault\Configuration\Item\Icons\StandardComponent.png</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\Configuration\Item\Icons\unknown.png">
+      <Link>Vault\Configuration\Item\Icons\unknown.png</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\Configuration\Item\Icons\xlsx.png">
+      <Link>Vault\Configuration\Item\Icons\xlsx.png</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\Configuration\File.xml">
+      <Link>Vault\Configuration\File.xml</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\Configuration\FileOffice.xml">
+      <Link>Vault\Configuration\FileOffice.xml</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\About.ico">
+      <Link>Vault\About.ico</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\DSLanguages.xml">
+      <Link>Vault\DSLanguages.xml</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\EditFileDatasheet.ico">
+      <Link>Vault\EditFileDatasheet.ico</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\EditFolderDatasheet.ico">
+      <Link>Vault\EditFolderDatasheet.ico</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\Log.ico">
+      <Link>Vault\Log.ico</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\MenuDefinitions.xml">
+      <Link>Vault\MenuDefinitions.xml</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\NewStandardFile.ico">
+      <Link>Vault\NewStandardFile.ico</Link>
+    </Resource>
+    <Resource Include="..\VDS-MFG-Sample\Vault\NewStandardFolder.ico">
+      <Link>Vault\NewStandardFolder.ico</Link>
+    </Resource>
+    <Content Include="HelpFiles\C.1GeneralInformation.html" />
+    <Content Include="HelpFiles\C.2.10Legacydata.html" />
+    <Content Include="HelpFiles\C.2.11FrameGenerator.html" />
+    <Content Include="HelpFiles\C.2.12TubeandPipe.html" />
+    <Content Include="HelpFiles\C.2.13DesignAccelerator.html" />
+    <Content Include="HelpFiles\C.2.14CableandHarness.html" />
+    <Content Include="HelpFiles\C.2.15Navigation.html" />
+    <Content Include="HelpFiles\C.2.1LogintoVault.html" />
+    <Content Include="HelpFiles\C.2.2NewComponents.html" />
+    <Content Include="HelpFiles\C.2.3SaveCopyAs.3DComponent.html" />
+    <Content Include="HelpFiles\C.2.4Copy3DComponent.html" />
+    <Content Include="HelpFiles\C.2.5NewPresentationFile.html" />
+    <Content Include="HelpFiles\C.2.6NewDrawing.html" />
+    <Content Include="HelpFiles\C.2.7SaveCopyAs.Drawing.html" />
+    <Content Include="HelpFiles\C.2.8Replacewithcopyincl.Documentation.html" />
+    <Content Include="HelpFiles\C.2.9EditDatasheet.html" />
+    <Content Include="HelpFiles\C.2Inventor.html" />
+    <Content Include="HelpFiles\C.3.1LogintoVault.html" />
+    <Content Include="HelpFiles\C.3.2NewDrawing.html" />
+    <Content Include="HelpFiles\C.3.3EditDatasheet.Titleblock.html" />
+    <Content Include="HelpFiles\C.3.4Legacydata.html" />
+    <Content Include="HelpFiles\C.3.5Navigation.html" />
+    <Content Include="HelpFiles\C.3AutoCAD.html" />
+    <Content Include="HelpFiles\CAD.html" />
+    <Content Include="HelpFiles\contents.htm" />
+    <Content Include="HelpFiles\G.1.1MultiLanguage.html" />
+    <Content Include="HelpFiles\G.1.2ObjectNumbering%28Since2015R2%29.html" />
+    <Content Include="HelpFiles\G.1.3FileNumbering%28Since2015R2%29.html" />
+    <Content Include="HelpFiles\G.1.4FileTemplates.html" />
+    <Content Include="HelpFiles\G.1Administration.html" />
+    <Content Include="HelpFiles\G.2.1CustomCommand.GoToSource.Replacemen.html" />
+    <Content Include="HelpFiles\G.2.2FileTab.Jobs.html" />
+    <Content Include="HelpFiles\G.2.3ERPTab.html" />
+    <Content Include="HelpFiles\G.2.4CAD-BOMExport.html" />
+    <Content Include="HelpFiles\G.2.5CreateThinClientLinks.html" />
+    <Content Include="HelpFiles\G.2.6DocumentStructureTab.html" />
+    <Content Include="HelpFiles\G.2.7CreateProject.Subfolders&amp;Properties.html" />
+    <Content Include="HelpFiles\G.2.8Projectbasedfilenumbering.html" />
+    <Content Include="HelpFiles\G.2.9Inheritprojectmetadatatofiles.html" />
+    <Content Include="HelpFiles\G.2Extensions.html" />
+    <Content Include="HelpFiles\G.3Support.html" />
+    <Content Include="HelpFiles\General.html" />
+    <Content Include="HelpFiles\index.html" />
+    <Resource Include="HelpFiles\MapMarkers\TaskCompleteIcon-7.gif" />
+    <Resource Include="HelpFiles\MapMarkers\TaskCompleteIcon-8.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic10NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic10NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic11NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic11NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic12NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic12NotesImage11.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic12NotesImage12.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic12NotesImage15.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic12NotesImage4.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic12NotesImage6.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic13NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic13NotesImage12.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic13NotesImage13.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic13NotesImage16.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic13NotesImage4.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic13NotesImage6.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic14NotesImage1.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic14NotesImage10.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic14NotesImage3.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic14NotesImage4.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic14NotesImage9.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic15NotesImage5.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic16NotesImage1.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic17NotesImage3.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic18NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic18NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic18NotesImage4.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic18NotesImage6.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic19NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic19NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic19NotesImage4.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic19NotesImage6.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic20NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic20NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic20NotesImage4.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic20NotesImage6.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic21NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic21NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic21NotesImage5.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic23NotesImage14.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic24NotesImage1.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic24NotesImage3.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic25NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic25NotesImage12.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic25NotesImage13.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic25NotesImage14.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic25NotesImage15.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic25NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic25NotesImage6.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic25NotesImage7.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic25NotesImage8.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic26NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic26NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic26NotesImage4.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic27NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic27NotesImage11.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic27NotesImage3.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic27NotesImage4.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic27NotesImage5.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic27NotesImage9.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic29NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic29NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic29NotesImage3.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic29NotesImage5.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic29NotesImage7.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic33NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic33NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic33NotesImage3.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic34NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic35NotesImage3.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic35NotesImage4.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic36NotesImage6.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic36NotesImage7.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic37NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic37NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic38NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic38NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic39NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic39NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic39NotesImage4.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic39NotesImage7.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic39NotesImage8.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic40NotesImage3.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic40NotesImage4.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic41NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic41NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic41NotesImage3.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic41NotesImage4.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic41NotesImage8.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic42NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic42NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic44NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic45NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic45NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic46NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic46NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic46NotesImage5.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic47NotesImage1.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic47NotesImage2.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic47NotesImage3.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic47NotesImage4.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic47NotesImage9.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic48NotesImage1.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic48NotesImage2.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic50NotesImage1.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic51NotesImage1.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic51NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic51NotesImage3.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic51NotesImage5.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic51NotesImage7.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic52NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic52NotesImage3.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic52NotesImage4.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic52NotesImage5.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic53NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic53NotesImage3.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic53NotesImage4.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic53NotesImage5.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic54NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic54NotesImage3.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic54NotesImage4.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic54NotesImage5.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic55NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic55NotesImage3.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic55NotesImage4.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic55NotesImage5.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic57NotesImage3.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic58NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic59NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic5NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic5NotesImage3.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic60NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic61NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic62NotesImage2.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic67NotesImage1.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic67NotesImage2.gif" />
+    <Resource Include="HelpFiles\NotesImages\Topic8NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic8NotesImage3.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic9NotesImage1.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic9NotesImage13.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic9NotesImage14.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic9NotesImage2.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic9NotesImage3.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic9NotesImage7.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic9NotesImage8.jpg" />
+    <Resource Include="HelpFiles\NotesImages\Topic9NotesImage9.jpg" />
+    <Content Include="HelpFiles\Res\code\boxController.js" />
+    <Content Include="HelpFiles\Res\code\boxSettings.js" />
+    <Content Include="HelpFiles\Res\code\mapController.js" />
+    <Content Include="HelpFiles\Res\code\shared.js" />
+    <Resource Include="HelpFiles\Res\images\arrow.gif" />
+    <Resource Include="HelpFiles\Res\images\box_collapse_button.gif" />
+    <Resource Include="HelpFiles\Res\images\box_expand_button.gif" />
+    <Resource Include="HelpFiles\Res\images\bullet_blue.gif" />
+    <Resource Include="HelpFiles\Res\images\empty.gif" />
+    <Resource Include="HelpFiles\Res\images\header_background.gif" />
+    <Resource Include="HelpFiles\Res\images\logo.gif" />
+    <Resource Include="HelpFiles\Res\images\next_button.gif" />
+    <Resource Include="HelpFiles\Res\images\previous_button.gif" />
+    <Resource Include="HelpFiles\Res\images\spacer.gif" />
+    <Resource Include="HelpFiles\Res\images\top_button.gif" />
+    <Content Include="HelpFiles\Res\styles\DynamicOutline.css" />
+    <Content Include="HelpFiles\Res\styles\shared.css" />
+    <Resource Include="HelpFiles\Res\tree\base.gif" />
+    <Resource Include="HelpFiles\Res\tree\empty.gif" />
+    <Resource Include="HelpFiles\Res\tree\folder.gif" />
+    <Resource Include="HelpFiles\Res\tree\folderopen.gif" />
+    <Resource Include="HelpFiles\Res\tree\join.gif" />
+    <Resource Include="HelpFiles\Res\tree\joinbottom.gif" />
+    <Resource Include="HelpFiles\Res\tree\leaf.gif" />
+    <Resource Include="HelpFiles\Res\tree\line.gif" />
+    <Resource Include="HelpFiles\Res\tree\minus.gif" />
+    <Resource Include="HelpFiles\Res\tree\minusbottom.gif" />
+    <Resource Include="HelpFiles\Res\tree\null.gif" />
+    <Resource Include="HelpFiles\Res\tree\page.gif" />
+    <Resource Include="HelpFiles\Res\tree\pagesel.gif" />
+    <Resource Include="HelpFiles\Res\tree\plus.gif" />
+    <Resource Include="HelpFiles\Res\tree\plusbottom.gif" />
+    <Resource Include="HelpFiles\Res\tree\topic.gif" />
+    <Content Include="HelpFiles\Res\tree\tree.js" />
+    <Content Include="HelpFiles\Res\tree\tree_items.js" />
+    <Content Include="HelpFiles\Res\tree\tree_tpl.js" />
+    <Content Include="HelpFiles\V.1.1CreateFolder.project....html" />
+    <Content Include="HelpFiles\V.1.2Numbering.html" />
+    <Content Include="HelpFiles\V.1.3EditFolderdatasheet.html" />
+    <Content Include="HelpFiles\V.1Folder.html" />
+    <Content Include="HelpFiles\V.2.1CreateFiles....html" />
+    <Content Include="HelpFiles\V.2.2RequiredFields.html" />
+    <Content Include="HelpFiles\V.2.3Navigation.html" />
+    <Content Include="HelpFiles\V.2.4Numbering.html" />
+    <Content Include="HelpFiles\V.2.5EditFileDatasheet.html" />
+    <Content Include="HelpFiles\V.2File.html" />
+    <Content Include="HelpFiles\V.3.1CreateFiles....html" />
+    <Content Include="HelpFiles\V.3.2RequiredFields.html" />
+    <Content Include="HelpFiles\V.3.3Navigation.html" />
+    <Content Include="HelpFiles\V.3.4Numbering.html" />
+    <Content Include="HelpFiles\V.3.5EditFileDatasheet.html" />
+    <Content Include="HelpFiles\V.3OfficeFile.html" />
+    <Content Include="HelpFiles\V.4Datasheet.html" />
+    <Content Include="HelpFiles\V.5CADBOM.html" />
+    <Content Include="HelpFiles\V.6.1Create.EditTasks.html" />
+    <Content Include="HelpFiles\V.6.2Create.EditOrganisations.html" />
+    <Content Include="HelpFiles\V.6.3Create.EditPersons.html" />
+    <Content Include="HelpFiles\V.6.4Create.EditTransmittals.html" />
+    <Content Include="HelpFiles\V.6CustomObject.html" />
+    <Content Include="HelpFiles\V.7ReserveNumbers.html" />
+    <Content Include="HelpFiles\Vault.html" />
     <Content Include="SDK Refs\Autodesk.Connectivity.WebServices.dll" />
     <Content Include="SDK Refs\Autodesk.DataManagement.Client.Framework.Forms.dll" />
     <Content Include="SDK Refs\Common.dll" />
     <Content Include="SDK Refs\CreateObject.dll" />
     <Content Include="SDK Refs\dataStandard.UI.dll" />
+    <Resource Include="Vault.Custom\About.ico" />
+    <Content Include="Vault.Custom\addinVault\UsesWhereUsed.dll" />
+    <Content Include="Vault.Custom\addinVault\VdsSampleUtilities.dll" />
+    <Resource Include="Vault.Custom\addinVault\VdsSampleUtilities.xml" />
+    <Resource Include="Vault.Custom\ADSKMetaImport.ico" />
+    <Resource Include="Vault.Custom\cancel.ico" />
+    <Resource Include="Vault.Custom\Claim-add.ico" />
+    <Resource Include="Vault.Custom\Claim-edit.ico" />
+    <Resource Include="Vault.Custom\Claim-info.ico" />
+    <Resource Include="Vault.Custom\Claim-settings.ico" />
+    <Resource Include="Vault.Custom\class-add.ico" />
+    <Resource Include="Vault.Custom\class-edit.ico" />
+    <Resource Include="Vault.Custom\class-info.ico" />
+    <Resource Include="Vault.Custom\class.ico" />
+    <Resource Include="Vault.Custom\Configuration\ADSK.QS.File.xml" />
+    <Resource Include="Vault.Custom\Configuration\Eco\Icons\GlobalFolderView_32.png" />
+    <Resource Include="Vault.Custom\Configuration\Eco\Icons\task.ico" />
+    <Resource Include="Vault.Custom\Configuration\File\Icons\attachment.png" />
+    <Resource Include="Vault.Custom\Configuration\File\Icons\docx.png" />
+    <Resource Include="Vault.Custom\Configuration\File\Icons\dwg.png" />
+    <Resource Include="Vault.Custom\Configuration\File\Icons\iam.png" />
+    <Resource Include="Vault.Custom\Configuration\File\Icons\idw.png" />
+    <Resource Include="Vault.Custom\Configuration\File\Icons\ipn.png" />
+    <Resource Include="Vault.Custom\Configuration\File\Icons\ipt.png" />
+    <Resource Include="Vault.Custom\Configuration\File\Icons\linkedfile.png" />
+    <Resource Include="Vault.Custom\Configuration\File\Icons\mdb.png" />
+    <Resource Include="Vault.Custom\Configuration\File\Icons\pdf.png" />
+    <Resource Include="Vault.Custom\Configuration\File\Icons\pptx.png" />
+    <Resource Include="Vault.Custom\Configuration\File\Icons\Primary.png" />
+    <Resource Include="Vault.Custom\Configuration\File\Icons\PrimarySub.png" />
+    <Resource Include="Vault.Custom\Configuration\File\Icons\Secondary.png" />
+    <Resource Include="Vault.Custom\Configuration\File\Icons\SecondarySub.png" />
+    <Resource Include="Vault.Custom\Configuration\File\Icons\sldasm.png" />
+    <Resource Include="Vault.Custom\Configuration\File\Icons\slddrw.png" />
+    <Resource Include="Vault.Custom\Configuration\File\Icons\sldprt.png" />
+    <Resource Include="Vault.Custom\Configuration\File\Icons\StandardComponent.png" />
+    <Resource Include="Vault.Custom\Configuration\File\Icons\unknown.png" />
+    <Resource Include="Vault.Custom\Configuration\File\Icons\xlsx.png" />
+    <Resource Include="Vault.Custom\Configuration\VaultDynamicProperties.xml" />
+    <Resource Include="Vault.Custom\CopyIcon.ico" />
+    <Resource Include="Vault.Custom\CustomHelpDoc.ico" />
+    <Resource Include="Vault.Custom\CustomObject-Add.ico" />
+    <Resource Include="Vault.Custom\CustomObject-Edit.ico" />
+    <Resource Include="Vault.Custom\doc-box-add.ico" />
+    <Resource Include="Vault.Custom\doc-box-edit.ico" />
+    <Resource Include="Vault.Custom\doc-box-info.ico" />
+    <Resource Include="Vault.Custom\doc-box.ico" />
+    <Resource Include="Vault.Custom\DragFilesActive.png" />
+    <Resource Include="Vault.Custom\DragFilesLocked.png" />
+    <Resource Include="Vault.Custom\ECO-GoTo.ico" />
+    <Resource Include="Vault.Custom\ECO.ico" />
+    <Resource Include="Vault.Custom\ECR-add.ico" />
+    <Resource Include="Vault.Custom\ECR-edit.ico" />
+    <Resource Include="Vault.Custom\ECR-info.ico" />
+    <Resource Include="Vault.Custom\ECR.ico" />
+    <Resource Include="Vault.Custom\EditCO.ico" />
+    <Resource Include="Vault.Custom\EditCustomObject.ico" />
+    <Resource Include="Vault.Custom\EditFileDatasheet.ico" />
+    <Resource Include="Vault.Custom\EditFolderDatasheet.ico" />
+    <Resource Include="Vault.Custom\factory-add.ico" />
+    <Resource Include="Vault.Custom\factory-edit.ico" />
+    <Resource Include="Vault.Custom\factory-info.ico" />
+    <Resource Include="Vault.Custom\factory.ico" />
+    <Resource Include="Vault.Custom\filter-delete.ico" />
+    <Resource Include="Vault.Custom\filter-ok.ico" />
+    <Resource Include="Vault.Custom\Folder2023.xml" />
+    <Resource Include="Vault.Custom\GlobalFolderView_16.ico" />
+    <Resource Include="Vault.Custom\GlobalFolder_GoTo_16.ico" />
+    <Resource Include="Vault.Custom\GoToReplacedBy.ico" />
+    <Resource Include="Vault.Custom\GoToSelectedFile.ico" />
+    <Resource Include="Vault.Custom\GoToSource.ico" />
+    <Resource Include="Vault.Custom\IconsDark\BasicSearchNotSearched_16.png" />
+    <Resource Include="Vault.Custom\IconsDark\BasicSearchNotSearched_32.png" />
+    <Resource Include="Vault.Custom\IconsDark\BasicSearchSearched_16.png" />
+    <Resource Include="Vault.Custom\IconsDark\BasicSearchSearched_32.png" />
+    <Resource Include="Vault.Custom\IconsDark\CopyDesign_16.png" />
+    <Resource Include="Vault.Custom\IconsDark\CopyDesign_32.png" />
+    <Resource Include="Vault.Custom\IconsDark\Create_16.png" />
+    <Resource Include="Vault.Custom\IconsDark\Create_32.png" />
+    <Resource Include="Vault.Custom\IconsDark\Delete_16.png" />
+    <Resource Include="Vault.Custom\IconsDark\Delete_32.png" />
+    <Resource Include="Vault.Custom\IconsDark\Edit_16.png" />
+    <Resource Include="Vault.Custom\IconsDark\Edit_32.png" />
+    <Resource Include="Vault.Custom\IconsDark\ERP_Export_16.png" />
+    <Resource Include="Vault.Custom\IconsDark\ERP_Export_32.png" />
+    <Resource Include="Vault.Custom\IconsDark\ERP_Import_16.png" />
+    <Resource Include="Vault.Custom\IconsDark\ERP_Import_32.png" />
+    <Resource Include="Vault.Custom\IconsDark\FolderView_16.png" />
+    <Resource Include="Vault.Custom\IconsDark\FolderView_32.ico" />
+    <Resource Include="Vault.Custom\IconsDark\FolderView_32.png" />
+    <Resource Include="Vault.Custom\IconsDark\ItemMaster_16.png" />
+    <Resource Include="Vault.Custom\IconsDark\ItemMaster_32.png" />
+    <Resource Include="Vault.Custom\IconsDark\ItemSave_16.png" />
+    <Resource Include="Vault.Custom\IconsDark\ItemSave_32.png" />
+    <Resource Include="Vault.Custom\IconsDark\Item_16.png" />
+    <Resource Include="Vault.Custom\IconsDark\PackAndGo_16.png" />
+    <Resource Include="Vault.Custom\IconsDark\PackAndGo_32.png" />
+    <Resource Include="Vault.Custom\IconsDark\QuickFind_Search_16.png" />
+    <Resource Include="Vault.Custom\IconsDark\QuickFind_Search_32.png" />
+    <Resource Include="Vault.Custom\IconsDark\Refresh_16.png" />
+    <Resource Include="Vault.Custom\IconsDark\Refresh_32.png" />
+    <Resource Include="Vault.Custom\IconsDark\RemoveAction_16.png" />
+    <Resource Include="Vault.Custom\IconsDark\RemoveAction_32.png" />
+    <Resource Include="Vault.Custom\IconsDark\VirtualComp_16.png" />
+    <Resource Include="Vault.Custom\IconsDark\VirtualComp_32.png" />
+    <Resource Include="Vault.Custom\IconsLight\BasicSearchNotSearched_16.png" />
+    <Resource Include="Vault.Custom\IconsLight\BasicSearchNotSearched_32.png" />
+    <Resource Include="Vault.Custom\IconsLight\BasicSearchSearched_16.png" />
+    <Resource Include="Vault.Custom\IconsLight\BasicSearchSearched_32.png" />
+    <Resource Include="Vault.Custom\IconsLight\ChangeOrder_List_16.png" />
+    <Resource Include="Vault.Custom\IconsLight\ChangeOrder_List_32.png" />
+    <Resource Include="Vault.Custom\IconsLight\CopyDesign_16.png" />
+    <Resource Include="Vault.Custom\IconsLight\CopyDesign_32.png" />
+    <Resource Include="Vault.Custom\IconsLight\Create_16.png" />
+    <Resource Include="Vault.Custom\IconsLight\Create_32.png" />
+    <Resource Include="Vault.Custom\IconsLight\Delete_16.png" />
+    <Resource Include="Vault.Custom\IconsLight\Delete_32.png" />
+    <Resource Include="Vault.Custom\IconsLight\Edit_16.png" />
+    <Resource Include="Vault.Custom\IconsLight\Edit_32.png" />
+    <Resource Include="Vault.Custom\IconsLight\ERP_Export_16.png" />
+    <Resource Include="Vault.Custom\IconsLight\ERP_Export_32.png" />
+    <Resource Include="Vault.Custom\IconsLight\ERP_Import_16.png" />
+    <Resource Include="Vault.Custom\IconsLight\ERP_Import_32.png" />
+    <Resource Include="Vault.Custom\IconsLight\FolderView_16.png" />
+    <Resource Include="Vault.Custom\IconsLight\FolderView_32.ico" />
+    <Resource Include="Vault.Custom\IconsLight\FolderView_32.png" />
+    <Resource Include="Vault.Custom\IconsLight\ItemMaster_16.png" />
+    <Resource Include="Vault.Custom\IconsLight\ItemMaster_32.png" />
+    <Resource Include="Vault.Custom\IconsLight\ItemSave_16.png" />
+    <Resource Include="Vault.Custom\IconsLight\ItemSave_32.png" />
+    <Resource Include="Vault.Custom\IconsLight\Item_16.png" />
+    <Resource Include="Vault.Custom\IconsLight\PackAndGo_16.png" />
+    <Resource Include="Vault.Custom\IconsLight\PackAndGo_32.png" />
+    <Resource Include="Vault.Custom\IconsLight\Refresh_16.png" />
+    <Resource Include="Vault.Custom\IconsLight\Refresh_32.png" />
+    <Resource Include="Vault.Custom\IconsLight\RemoveAction_16.png" />
+    <Resource Include="Vault.Custom\IconsLight\RemoveAction_32.png" />
+    <Resource Include="Vault.Custom\IconsLight\VirtualComp_16.png" />
+    <Resource Include="Vault.Custom\IconsLight\VirtualComp_32.png" />
+    <Resource Include="Vault.Custom\ItemMaster.ico" />
+    <Resource Include="Vault.Custom\ItemMaster.png" />
+    <Resource Include="Vault.Custom\Lock.ico" />
+    <Resource Include="Vault.Custom\Log.ico" />
+    <Resource Include="Vault.Custom\MenuDefinitions.xml" />
+    <Resource Include="Vault.Custom\Milestone-add.ico" />
+    <Resource Include="Vault.Custom\Milestone-edit.ico" />
+    <Resource Include="Vault.Custom\Milestone-info.ico" />
+    <Resource Include="Vault.Custom\Milestone-ok.ico" />
+    <Resource Include="Vault.Custom\NewStandardFile.ico" />
+    <Resource Include="Vault.Custom\NewStandardFolder.ico" />
+    <Resource Include="Vault.Custom\ok.ico" />
+    <Resource Include="Vault.Custom\PDF.ico" />
+    <Resource Include="Vault.Custom\PlaceFromVault.ico" />
+    <Resource Include="Vault.Custom\plus.ico" />
+    <Resource Include="Vault.Custom\plus_disabled.ico" />
+    <Resource Include="Vault.Custom\QR-add.ico" />
+    <Resource Include="Vault.Custom\QR-edit.ico" />
+    <Resource Include="Vault.Custom\QR-info.ico" />
+    <Resource Include="Vault.Custom\QR.ico" />
+    <Resource Include="Vault.Custom\Refresh_16.ico" />
+    <Resource Include="Vault.Custom\Refresh_32.ico" />
+    <Resource Include="Vault.Custom\ReservedNumExport.ico" />
+    <Resource Include="Vault.Custom\ReserveNumbers.ico" />
+    <Resource Include="Vault.Custom\search.ico" />
+    <Resource Include="Vault.Custom\Service-add.ico" />
+    <Resource Include="Vault.Custom\Service-edit.ico" />
+    <Resource Include="Vault.Custom\Service-info.ico" />
+    <Resource Include="Vault.Custom\Service.ico" />
+    <Resource Include="Vault.Custom\task-add.ico" />
+    <Resource Include="Vault.Custom\task-edit.ico" />
+    <Resource Include="Vault.Custom\task-GoTo.ico" />
+    <Resource Include="Vault.Custom\task-info.ico" />
+    <Resource Include="Vault.Custom\task.ico" />
+    <Resource Include="Vault.Custom\Term-add.ico" />
+    <Resource Include="Vault.Custom\Term-edit.ico" />
+    <Resource Include="Vault.Custom\Term-info.ico" />
+    <Resource Include="Vault.Custom\Term-ok.ico" />
+    <Resource Include="Vault.Custom\TimOff-add.ico" />
+    <Resource Include="Vault.Custom\TimOff-edit.ico" />
+    <Resource Include="Vault.Custom\TimOff-info.ico" />
+    <Resource Include="Vault.Custom\TimOff.ico" />
+    <Resource Include="Vault.Custom\Transmittal-add.ico" />
+    <Resource Include="Vault.Custom\Transmittal-edit.ico" />
+    <Resource Include="Vault.Custom\Transmittal-info.ico" />
+    <Resource Include="Vault.Custom\Transmittal.ico" />
+    <Resource Include="Vault.Custom\user-w-add.ico" />
+    <Resource Include="Vault.Custom\user-w-edit.ico" />
+    <Resource Include="Vault.Custom\user-w-info.ico" />
+    <Resource Include="Vault.Custom\user-w.ico" />
+    <Resource Include="Vault.Custom\Vault.ico" />
+    <Resource Include="Vault.Custom\VaultRefreshFromVault.ico" />
+    <Resource Include="Vault.Custom\VaultSearchClear.ico" />
+    <Resource Include="Vault.Custom\VaultSearchExec.ico" />
+    <Resource Include="Vault.Custom\VaultSearchRun.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="..\VDS-MFG-Sample\CAD\Configuration\AutoCAD.xaml">
+      <Link>CAD\Configuration\AutoCAD.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\VDS-MFG-Sample\CAD\Configuration\CableAndHarness.xaml">
+      <Link>CAD\Configuration\CableAndHarness.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\VDS-MFG-Sample\CAD\Configuration\DesignAccelerator.xaml">
+      <Link>CAD\Configuration\DesignAccelerator.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\VDS-MFG-Sample\CAD\Configuration\FrameGenerator.xaml">
+      <Link>CAD\Configuration\FrameGenerator.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\VDS-MFG-Sample\CAD\Configuration\Inventor.xaml">
+      <Link>CAD\Configuration\Inventor.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\VDS-MFG-Sample\CAD\Configuration\SaveCopyAs.xaml">
+      <Link>CAD\Configuration\SaveCopyAs.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\VDS-MFG-Sample\CAD\Configuration\TubeAndPipe.xaml">
+      <Link>CAD\Configuration\TubeAndPipe.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\VDS-MFG-Sample\Vault\Configuration\CustomObject.xaml">
+      <Link>Vault\Configuration\CustomObject.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\VDS-MFG-Sample\Vault\Configuration\Eco\Datasheet.xaml">
+      <Link>Vault\Configuration\Eco\Datasheet.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\VDS-MFG-Sample\Vault\Configuration\File.xaml">
+      <Link>Vault\Configuration\File.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\VDS-MFG-Sample\Vault\Configuration\FileOffice.xaml">
+      <Link>Vault\Configuration\FileOffice.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\VDS-MFG-Sample\Vault\Configuration\File\CAD BOM.xaml">
+      <Link>Vault\Configuration\File\CAD BOM.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\VDS-MFG-Sample\Vault\Configuration\File\Datasheet.xaml">
+      <Link>Vault\Configuration\File\Datasheet.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\VDS-MFG-Sample\Vault\Configuration\Folder.xaml">
+      <Link>Vault\Configuration\Folder.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\VDS-MFG-Sample\Vault\Configuration\Folder\Datasheet.xaml">
+      <Link>Vault\Configuration\Folder\Datasheet.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\VDS-MFG-Sample\Vault\Configuration\Item\Associated Files.xaml">
+      <Link>Vault\Configuration\Item\Associated Files.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\VDS-MFG-Sample\Vault\Configuration\Item\Datasheet.xaml">
+      <Link>Vault\Configuration\Item\Datasheet.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\VDS-MFG-Sample\Vault\Configuration\Task\Datasheet.xaml">
+      <Link>Vault\Configuration\Task\Datasheet.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CAD.Custom\Configuration\AutoCAD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CAD.Custom\Configuration\CableAndHarness.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CAD.Custom\Configuration\DesignAccelerator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CAD.Custom\Configuration\FrameGenerator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CAD.Custom\Configuration\Inventor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CAD.Custom\Configuration\SaveCopyAs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CAD.Custom\Configuration\TubeAndPipe.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\ADSK.QS.ActivateSchedTask.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\ADSK.QS.CustomObject.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\ADSK.QS.CustomObjectClassified.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\ADSK.QS.File old.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\ADSK.QS.File.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\ADSK.QS.Folder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\ADSK.QS.InvSiblings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\ADSK.QS.ReserveNumbers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\ADSK.QS.SelectClassification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\Class\Adsk.QS.ClassifiedObject.DataSheet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\Eco\ADSK.QS.EcoParentFolder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\Eco\ADSK.QS.TaskLinks.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\File\ADSK.QS.CAD BOM.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\File\ADSK.QS.FileDataSheet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\File\ADSK.QS.FileDocStructure.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\File\ADSK.QS.FileItemDataSheet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\Folder\ADSK.QS.FolderDataSheet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\Group\Adsk.QS.Group.DataSheet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\Item\ADSK.QS.ItemFileClassification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\Main Group\Adsk.QS.MainGroup.DataSheet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\Organisation\ADSK.QS.CUSTENT.Datasheet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\Person\ADSK.QS.CUSTENT.Datasheet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\Segment\ADSK.QS.CUSTENT.Datasheet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\Sub Group\Adsk.QS.SubGroup.DataSheet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\Task\ADSK.QS.CUSTENT.Datasheet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\Term\Adsk.QS.ClassifiedObject.DataSheet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
