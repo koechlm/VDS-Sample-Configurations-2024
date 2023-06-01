@@ -222,7 +222,6 @@
                                                     <Condition Binding="{Binding CreateMode}" Value="True" />
                                                 </MultiDataTrigger.Conditions>
                                                 <Setter Property="Visibility" Value="Visible" />
-                                                <Setter Property="Background" Value="#F0F0F0" />
                                             </MultiDataTrigger>
                                         </Style.Triggers>
                                     </Style>
