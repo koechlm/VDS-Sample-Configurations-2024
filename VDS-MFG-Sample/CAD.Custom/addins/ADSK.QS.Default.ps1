@@ -619,7 +619,7 @@ function mReadShortCuts {
 		#$dsDiag.Trace(">> Looking for Shortcuts...")
 		$m_Server = ($VaultConnection.Server).Replace(":", "_").Replace("/", "_")
 		$m_Vault = $VaultConnection.Vault
-		$m_Path = "$($env:appdata)\Autodesk\VaultCommon\Servers\Services_Security_12_16_2021\$($m_Server)\Vaults\$($m_Vault)\Objects\"
+		$m_Path = "$($env:appdata)\Autodesk\VaultCommon\Servers\Services_Security_01_10_2023\$($m_Server)\Vaults\$($m_Vault)\Objects\"
 		$global:mScFile = $m_Path + "Shortcuts.xml"
 		if (Test-Path $global:mScFile) {
 			#$dsDiag.Trace(">> Start reading Shortcuts...")
