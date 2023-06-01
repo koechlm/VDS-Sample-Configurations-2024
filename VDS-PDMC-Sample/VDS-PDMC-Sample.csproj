@@ -890,10 +890,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Vault.Custom\Configuration\ADSK.QS.File old.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Vault.Custom\Configuration\ADSK.QS.File.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

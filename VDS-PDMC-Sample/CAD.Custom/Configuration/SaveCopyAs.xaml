@@ -283,10 +283,10 @@
                 </Style.Triggers>
             </Style>
             <Style x:Key="btnScImage" TargetType="{x:Type Image}">
-                <Setter Property="Source" Value="C:\ProgramData\Autodesk\Vault 2023\Extensions\DataStandard\Vault.Custom\Plus_disabled.ico"/>
+                <Setter Property="Source" Value="C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Plus_disabled.ico"/>
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding IsEnabled, ElementName=btnNewSc}" Value="True">
-                        <Setter Property="Source" Value="C:\ProgramData\Autodesk\Vault 2023\Extensions\DataStandard\Vault.Custom\Plus.ico"/>
+                        <Setter Property="Source" Value="C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Plus.ico"/>
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
@@ -294,15 +294,15 @@
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding Path=CurrentTheme, 
                         Source={x:Static wpfUtilities:ActiveThemeProvider.Instance}}" Value="{x:Static winFormTheme:Theme.Default}">
-                        <Setter Property="Source" Value="C:\ProgramData\Autodesk\Vault 2023\Extensions\DataStandard\Vault.Custom\IconsLight\FolderView_32.ico"/>
+                        <Setter Property="Source" Value="C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\IconsLight\FolderView_32.ico"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Path=CurrentTheme,
                         Source={x:Static wpfUtilities:ActiveThemeProvider.Instance}}" Value="{x:Static winFormTheme:Theme.Dark}">
-                        <Setter Property="Source" Value="C:\ProgramData\Autodesk\Vault 2023\Extensions\DataStandard\Vault.Custom\IconsDark\FolderView_32.ico"/>
+                        <Setter Property="Source" Value="C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\IconsDark\FolderView_32.ico"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Path=CurrentTheme, 
                         Source={x:Static wpfUtilities:ActiveThemeProvider.Instance}}" Value="{x:Static winFormTheme:Theme.Light}">
-                        <Setter Property="Source" Value="C:\ProgramData\Autodesk\Vault 2023\Extensions\DataStandard\Vault.Custom\IconsLight\FolderView_32.png"/>
+                        <Setter Property="Source" Value="C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\IconsLight\FolderView_32.png"/>
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
@@ -545,7 +545,7 @@
                             <ContextMenu>
                                 <MenuItem Header="{Binding UIString[MSDCE_BTN3], FallbackValue=Activate}" Command="{Binding PsCmd[mRemoveSc]}">
                                     <MenuItem.Icon>
-                                        <Image Source="C:\ProgramData\Autodesk\Vault 2023\Extensions\DataStandard\Vault.Custom\cancel.ico" />
+                                        <Image Source="C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\cancel.ico" />
                                     </MenuItem.Icon>
                                 </MenuItem>
                             </ContextMenu>

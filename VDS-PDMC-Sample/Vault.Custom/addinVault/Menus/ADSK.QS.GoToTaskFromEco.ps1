@@ -11,7 +11,7 @@
 #endregion
 
 #an ECO likely links multiple tasks; the user needs to select one from the list; the selection writes the txt file
-$mTargetObject = Get-Content "$($env:appdata)\Autodesk\DataStandard 2023\mECOTabClick.txt"
+$mTargetObject = Get-Content "$($env:appdata)\Autodesk\DataStandard 2024\mECOTabClick.txt"
 if (-not $mTargetObject) {
     $result = [Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowError("No Tasks is selected in the ECO-Task Tab. Select a Task first and try again.", "ECO-Tasks")
 }
@@ -33,5 +33,5 @@ else {
 $mSelItem = $null
 $mOutFile = "mECOTabClick.txt"
 
-$mSelItem | Out-File "$($env:appdata)\Autodesk\DataStandard 2023\$($mOutFile)"
+$mSelItem | Out-File "$($env:appdata)\Autodesk\DataStandard 2024\$($mOutFile)"
 	

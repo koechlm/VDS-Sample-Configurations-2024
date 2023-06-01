@@ -60,14 +60,14 @@ function InitializeWindow {
 			}
 
 			#	there are some custom functions to enhance functionality; 2023 version added webservice and explorer extensions to be installed optionally
-			$mVdsUtilities = "$($env:programdata)\Autodesk\Vault 2023\Extensions\Autodesk.VdsSampleUtilities\VdsSampleUtilities.dll"
+			$mVdsUtilities = "$($env:programdata)\Autodesk\Vault 2024\Extensions\Autodesk.VdsSampleUtilities\VdsSampleUtilities.dll"
 			if (! (Test-Path $mVdsUtilities)) {
 				#the basic utility installation only
-				[System.Reflection.Assembly]::LoadFrom($Env:ProgramData + '\Autodesk\Vault 2023\Extensions\DataStandard\Vault.Custom\addinVault\VdsSampleUtilities.dll')
+				[System.Reflection.Assembly]::LoadFrom($Env:ProgramData + '\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\addinVault\VdsSampleUtilities.dll')
 			}
 			Else {
 				#the extended utility activation
-				[System.Reflection.Assembly]::LoadFrom($Env:ProgramData + '\Autodesk\Vault 2023\Extensions\Autodesk.VdsSampleUtilities\VdsSampleUtilities.dll')
+				[System.Reflection.Assembly]::LoadFrom($Env:ProgramData + '\Autodesk\Vault 2024\Extensions\Autodesk.VdsSampleUtilities\VdsSampleUtilities.dll')
 			}
 			$_mInvHelpers = New-Object VdsSampleUtilities.InvHelpers 
 
@@ -317,14 +317,14 @@ function InitializeWindow {
 					$_FdsUsrData = $Document.UserData #Items FACT_* are added by FDU
 					
 					#	there are some custom functions to enhance functionality; 2023 version added webservice and explorer extensions to be installed optionally
-					$mVdsUtilities = "$($env:programdata)\Autodesk\Vault 2023\Extensions\Autodesk.VdsSampleUtilities\VdsSampleUtilities.dll"
+					$mVdsUtilities = "$($env:programdata)\Autodesk\Vault 2024\Extensions\Autodesk.VdsSampleUtilities\VdsSampleUtilities.dll"
 					if (! (Test-Path $mVdsUtilities)) {
 						#the basic utility installation only
-						[System.Reflection.Assembly]::LoadFrom($Env:ProgramData + '\Autodesk\Vault 2023\Extensions\DataStandard\Vault.Custom\addinVault\VdsSampleUtilities.dll')
+						[System.Reflection.Assembly]::LoadFrom($Env:ProgramData + '\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\addinVault\VdsSampleUtilities.dll')
 					}
 					Else {
 						#the extended utility activation
-						[System.Reflection.Assembly]::LoadFrom($Env:ProgramData + '\Autodesk\Vault 2023\Extensions\Autodesk.VdsSampleUtilities\VdsSampleUtilities.dll')
+						[System.Reflection.Assembly]::LoadFrom($Env:ProgramData + '\Autodesk\Vault 2024\Extensions\Autodesk.VdsSampleUtilities\VdsSampleUtilities.dll')
 					}
 
 					$_mAcadHelpers = New-Object VdsSampleUtilities.AcadHelpers
@@ -366,7 +366,7 @@ function InitializeWindow {
 	#region CatalogTerm
 	If ($dsWindow.FindName("expTermSearch")) {			
 		Try {
-			Import-Module -FullyQualifiedName "C:\ProgramData\Autodesk\Vault 2023\Extensions\DataStandard\Vault.Custom\addinVault\ADSK.QS.CustomObjectsClassified.psm1"
+			Import-Module -FullyQualifiedName "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\addinVault\ADSK.QS.CustomObjectsClassified.psm1"
 		}
 		catch {}
 	}
@@ -375,7 +375,7 @@ function InitializeWindow {
 	#region IEC61355
 	If ($dsWindow.FindName("expIEC61355")) {			
 		Try {
-			Import-Module -FullyQualifiedName "C:\ProgramData\Autodesk\Vault 2023\Extensions\DataStandard\Vault.Custom\addinVault\ADSK.QS.IEC61355.psm1"
+			Import-Module -FullyQualifiedName "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\addinVault\ADSK.QS.IEC61355.psm1"
 		}
 		catch {}
 	}
@@ -388,9 +388,9 @@ function InitializeWindow {
 
 function AddinLoaded {
 	#activate or create the user's VDS profile
-	$m_File = "$($env:appdata)\Autodesk\DataStandard 2023\Folder2023.xml"
+	$m_File = "$($env:appdata)\Autodesk\DataStandard 2024\Folder2024.xml"
 	if (!(Test-Path $m_File)) {
-		$source = "$($Env:ProgramData)\Autodesk\Vault 2023\Extensions\DataStandard\Vault.Custom\Folder2023.xml"
+		$source = "$($Env:ProgramData)\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Folder2024.xml"
 		Copy-Item $source $m_File
 	}
 }
@@ -692,7 +692,7 @@ function mHelp ([Int] $mHContext) {
 				$mHPage = "Index.html";
 			}
 		}
-		$mHelpTarget = $Env:ProgramData + "\Autodesk\Vault 2023\Extensions\DataStandard\HelpFiles\" + $mHPage
+		$mHelpTarget = $Env:ProgramData + "\Autodesk\Vault 2024\Extensions\DataStandard\HelpFiles\" + $mHPage
 		$mhelpfile = Invoke-Item $mHelpTarget 
 	}
 	catch {
@@ -705,7 +705,7 @@ function mReadShortCuts {
 		#$dsDiag.Trace(">> Looking for Shortcuts...")
 		$m_Server = ($VaultConnection.Server).Replace(":", "_").Replace("/", "_")
 		$m_Vault = $VaultConnection.Vault
-		$m_Path = "$($env:appdata)\Autodesk\VaultCommon\Servers\Services_Security_12_16_2021\$($m_Server)\Vaults\$($m_Vault)\Objects\"
+		$m_Path = "$($env:appdata)\Autodesk\VaultCommon\Servers\Services_Security_01_10_2023\$($m_Server)\Vaults\$($m_Vault)\Objects\"
 		$global:mScFile = $m_Path + "Shortcuts.xml"
 		if (Test-Path $global:mScFile) {
 			#$dsDiag.Trace(">> Start reading Shortcuts...")
@@ -795,11 +795,11 @@ function mAddShortCutByName([STRING] $mScName)
 	{
 		#$dsDiag.Trace(">> Continue to add ShortCut, creating new from template...")	
 		#read from template
-		$m_File = "$($env:appdata)\Autodesk\DataStandard 2023\Folder2023.xml"
+		$m_File = "$($env:appdata)\Autodesk\DataStandard 2024\Folder2024.xml"
 
 		if (Test-Path $m_File)
 		{
-			#$dsDiag.Trace(">>-- Started to read Folder2023.xml...")
+			#$dsDiag.Trace(">>-- Started to read Folder2024.xml...")
 			$global:m_XML = New-Object XML
 			$global:m_XML.Load($m_File)
 		}

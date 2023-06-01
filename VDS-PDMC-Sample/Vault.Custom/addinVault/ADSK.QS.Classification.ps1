@@ -289,7 +289,7 @@ function mSelectClassification()
 	$dsWindow.FindName("btnSelectClass").IsEnabled = $true
 
 	$value = $AssignClsWindow.FindName("cmbAvailableClasses").SelectedItem.Id
-	$value | Out-File "$($env:appdata)\Autodesk\DataStandard 2023\mFileClassId.txt"
+	$value | Out-File "$($env:appdata)\Autodesk\DataStandard 2024\mFileClassId.txt"
 
 	$dsWindow.FindName("dtgrdClassProps").ItemsSource = $AssignClsWindow.FindName("dtgrdClassProps").ItemsSource
 	
@@ -367,7 +367,7 @@ function mRemoveClassification() #applies to $dsWindow
 	
 	#write the highest level Custent Id to a text file for post-close event
 	$value = -1
-	$value | Out-File "$($env:appdata)\Autodesk\DataStandard 2023\mFileClassId.txt"
+	$value | Out-File "$($env:appdata)\Autodesk\DataStandard 2024\mFileClassId.txt"
 
 	$dsWindow.CloseWindowCommand.Execute($this)
 	#$dsDiag.Trace("...remove classification finished.")
@@ -571,7 +571,7 @@ function mAvlblClsReset
 
 function mInitializeClsSelection
 {
-	[xml]$AssignClsXaml = Get-Content "C:\ProgramData\Autodesk\Vault 2023\Extensions\DataStandard\Vault.Custom\Configuration\ADSK.QS.SelectClassification.xaml"
+	[xml]$AssignClsXaml = Get-Content "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Configuration\ADSK.QS.SelectClassification.xaml"
 	$reader = New-Object System.Xml.XmlNodeReader $AssignClsXaml
 	$global:AssignClsWindow = [Windows.Markup.XamlReader]::Load($reader)
 	$AssignClsWindow.DataContext = $dsWindow.DataContext

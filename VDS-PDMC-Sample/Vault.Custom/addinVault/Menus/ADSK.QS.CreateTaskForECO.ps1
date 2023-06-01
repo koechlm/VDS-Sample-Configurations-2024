@@ -35,14 +35,14 @@ else {
 $link = $vault.DocumentService.AddLink($task.Id, "CO", $mCoId, "Parent->Child")
 
 $dialog = $dsCommands.GetEditCustomObjectDialog($task.id)
-$XamlFile = New-Object CreateObject.WPF.XamlFile "ADSK.QS.CustomObject.xaml", "C:\ProgramData\Autodesk\Vault 2023\Extensions\DataStandard\Vault.Custom\Configuration\ADSK.QS.CustomObject.xaml"
+$XamlFile = New-Object CreateObject.WPF.XamlFile "ADSK.QS.CustomObject.xaml", "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Configuration\ADSK.QS.CustomObject.xaml"
 $dialog.XamlFile = $XamlFile
 
 #show the custom object edit dialog
 $result = $dialog.Execute()
 if ($result) {
 	try {
-		$contactID = Get-Content "$($env:appdata)\Autodesk\DataStandard 2023\mPersonId.txt"
+		$contactID = Get-Content "$($env:appdata)\Autodesk\DataStandard 2024\mPersonId.txt"
 		if ($contactID -ne $null) { $link3 = $vault.DocumentService.AddLink($dialog.CurrentEntity.Id, "CUSTENT", $contactID, "Task->Person") }
 	}
 	catch {
@@ -51,8 +51,8 @@ if ($result) {
 }
 
 #in case cancel / close Window (Window button X), remove last entries as well...
-$null | Out-File "$($env:appdata)\Autodesk\DataStandard 2023\mOrganisationId.txt"
-$null | Out-File "$($env:appdata)\Autodesk\DataStandard 2023\mPersonId.txt"
+$null | Out-File "$($env:appdata)\Autodesk\DataStandard 2024\mOrganisationId.txt"
+$null | Out-File "$($env:appdata)\Autodesk\DataStandard 2024\mPersonId.txt"
 
 
 

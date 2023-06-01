@@ -180,7 +180,7 @@ function mGetFolderNumber($_FileNumber, $_nChar)
 # VDS MenuCommand scripts don't read as a default; call this function in case $UIString[] key value pairs are needed
 function mGetUIOverride
 {
-	[xml]$mDSLangFile = Get-Content "C:\ProgramData\Autodesk\Vault 2023\Extensions\DataStandard\Vault\DSLanguages.xml"
+	[xml]$mDSLangFile = Get-Content "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault\DSLanguages.xml"
 	$mUICodes = $mDSLangFile.SelectNodes("/DSLanguages/Language_Code")
 	$mLCode = @{}
 	Foreach ($xmlAttr in $mUICodes)
@@ -193,7 +193,7 @@ function mGetUIOverride
 }
 function mGetDBOverride
 {
-	[xml]$mDSLangFile = Get-Content "C:\ProgramData\Autodesk\Vault 2023\Extensions\DataStandard\Vault\DSLanguages.xml"
+	[xml]$mDSLangFile = Get-Content "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault\DSLanguages.xml"
 	$mUICodes = $mDSLangFile.SelectNodes("/DSLanguages/Language_Code")
 	$mLCode = @{}
 	Foreach ($xmlAttr in $mUICodes)
@@ -215,7 +215,7 @@ function mGetUIStrings
 		$mVdsUi = $mLCode["UI"]
 	} 
 	Else{$mVdsUi=$PSUICulture}
-	[xml]$mUIStrFile = get-content ("C:\ProgramData\Autodesk\Vault 2023\Extensions\DataStandard\" + $mVdsUi + "\UIStrings.xml")
+	[xml]$mUIStrFile = get-content ("C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\" + $mVdsUi + "\UIStrings.xml")
 	$UIString = @{}
 	$xmlUIStrs = $mUIStrFile.SelectNodes("/UIStrings/UIString")
 	Foreach ($xmlAttr in $xmlUIStrs) {
@@ -240,7 +240,7 @@ function mGetPropTranslations
 	Else{
 		$mVdsDb=$PSUICulture
 	}
-	[xml]$mPrpTrnsltnFile = get-content ("C:\ProgramData\Autodesk\Vault 2023\Extensions\DataStandard\" + $mVdsDb + "\PropertyTranslations.xml")
+	[xml]$mPrpTrnsltnFile = get-content ("C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\" + $mVdsDb + "\PropertyTranslations.xml")
 	$mPrpTrnsltns = @{}
 	$xmlPrpTrnsltns = $mPrpTrnsltnFile.SelectNodes("/PropertyTranslations/PropertyTranslation")
 	Foreach ($xmlAttr in $xmlPrpTrnsltns) {

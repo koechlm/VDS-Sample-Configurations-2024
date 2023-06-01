@@ -10,7 +10,7 @@
 #=============================================================================
 #endregion
 
-$mTargetFile = Get-Content "$($env:appdata)\Autodesk\DataStandard 2023\mStrTabClick.txt"
+$mTargetFile = Get-Content "$($env:appdata)\Autodesk\DataStandard 2024\mStrTabClick.txt"
 
 $srchConds = New-Object autodesk.Connectivity.WebServices.SrchCond[] 1
 	$srchCond = New-Object autodesk.Connectivity.WebServices.SrchCond

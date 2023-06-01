@@ -10,10 +10,10 @@
 
 $vaultContext.ForceRefresh = $true
 
-$taskId = Get-Content "$($env:appdata)\Autodesk\DataStandard 2023\mECOTabClick.txt" #the clicked task
+$taskId = Get-Content "$($env:appdata)\Autodesk\DataStandard 2024\mECOTabClick.txt" #the clicked task
 
 $dialog = $dsCommands.GetEditCustomObjectDialog($taskId)
-$XamlFile = New-Object CreateObject.WPF.XamlFile "ADSK.QS.CustomObject.xaml", "C:\ProgramData\Autodesk\Vault 2023\Extensions\DataStandard\Vault.Custom\Configuration\ADSK.QS.CustomObject.xaml"
+$XamlFile = New-Object CreateObject.WPF.XamlFile "ADSK.QS.CustomObject.xaml", "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Configuration\ADSK.QS.CustomObject.xaml"
 $dialog.XamlFile = $XamlFile
 
 #show the custom object edit dialog
@@ -21,7 +21,7 @@ $result = $dialog.Execute()
 
 if ($result) {
 	$ParentId = $dialog.CurrentEntity.Id
-	$ChildId = Get-Content "$($env:appdata)\Autodesk\DataStandard 2023\mPersonId.txt"
+	$ChildId = Get-Content "$($env:appdata)\Autodesk\DataStandard 2024\mPersonId.txt"
 	[Autodesk.Connectivity.Webservices.Lnk()]$existingChldLnks = @()
 	$existingChldLnks = $vault.DocumentService.GetLinksByParentIds(@($ParentId), "CUSTENT")
 	if ($null -ne $ChildId) {
@@ -57,5 +57,5 @@ if ($result) {
 }
 
 #reset the dialog's possible selections, as it would persist sessions
-$null | Out-File "$($env:appdata)\Autodesk\DataStandard 2023\mECOTabClick.txt"
-$null | Out-File "$($env:appdata)\Autodesk\DataStandard 2023\mPersonId.txt"
+$null | Out-File "$($env:appdata)\Autodesk\DataStandard 2024\mECOTabClick.txt"
+$null | Out-File "$($env:appdata)\Autodesk\DataStandard 2024\mPersonId.txt"

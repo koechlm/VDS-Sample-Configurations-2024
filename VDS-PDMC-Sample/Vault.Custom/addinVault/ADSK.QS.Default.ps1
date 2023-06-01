@@ -331,7 +331,7 @@ function InitializeWindow
 		{
 			$_t = $Prop["Internal ID"].Value
 
-			$mTargetFile = Get-Content "$($env:appdata)\Autodesk\DataStandard 2023\mStrTabClick.txt"
+			$mTargetFile = Get-Content "$($env:appdata)\Autodesk\DataStandard 2024\mStrTabClick.txt"
 
 			#create search conditions for 
 			$srchConds = New-Object autodesk.Connectivity.WebServices.SrchCond[] 1
@@ -512,14 +512,14 @@ function OnTabContextChanged
 			$mFldrProps = New-Object 'system.collections.generic.dictionary[[string],[object]]'
 			
 			#	there are some custom functions to enhance functionality; 2023 version added webservice and explorer extensions to be installed optionally
-			$mVdsUtilities = "$($env:programdata)\Autodesk\Vault 2023\Extensions\Autodesk.VdsSampleUtilities\VdsSampleUtilities.dll"
+			$mVdsUtilities = "$($env:programdata)\Autodesk\Vault 2024\Extensions\Autodesk.VdsSampleUtilities\VdsSampleUtilities.dll"
 			if (! (Test-Path $mVdsUtilities)) {
 				#the basic utility installation only
-				[System.Reflection.Assembly]::LoadFrom($Env:ProgramData + '\Autodesk\Vault 2023\Extensions\DataStandard\Vault.Custom\addinVault\VdsSampleUtilities.dll')
+				[System.Reflection.Assembly]::LoadFrom($Env:ProgramData + '\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\addinVault\VdsSampleUtilities.dll')
 			}
 			Else {
 				#the extended utility activation
-				[System.Reflection.Assembly]::LoadFrom($Env:ProgramData + '\Autodesk\Vault 2023\Extensions\Autodesk.VdsSampleUtilities\VdsSampleUtilities.dll')
+				[System.Reflection.Assembly]::LoadFrom($Env:ProgramData + '\Autodesk\Vault 2024\Extensions\Autodesk.VdsSampleUtilities\VdsSampleUtilities.dll')
 			}
 
 			$_mVltHelpers = New-Object VdsSampleUtilities.VltHelpers
@@ -582,7 +582,7 @@ function OnTabContextChanged
 	#region Documentstructure Extension
 		if ($VaultContext.SelectedObject.TypeId.SelectionContext -eq "FileMaster" -and $xamlFile -eq "ADSK.QS.FileDocStructure.xaml")
 		{
-			Add-Type -Path 'C:\ProgramData\Autodesk\Vault 2023\Extensions\DataStandard\Vault.Custom\addinVault\UsesWhereUsed.dll'
+			Add-Type -Path 'C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\addinVault\UsesWhereUsed.dll'
 			$file = $vault.DocumentService.GetLatestFileByMasterId($vaultContext.SelectedObject.Id)
 			$treeNode = New-Object UsesWhereUsed.TreeNode($file, $vaultConnection)
 			$dsWindow.FindName("Uses").ItemsSource = @($treeNode)
@@ -1010,7 +1010,7 @@ function mHelp ([Int] $mHContext) {
 				$mHPage = "Index.html";
 			}
 		}
-		$mHelpTarget = "C:\ProgramData\Autodesk\Vault 2023\Extensions\DataStandard\HelpFiles\"+$mHPage
+		$mHelpTarget = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\HelpFiles\"+$mHPage
 		$mhelpfile = Invoke-Item $mHelpTarget 
 	}
 	Catch
@@ -1076,10 +1076,10 @@ function mFindFolder($FolderName, $rootFolder)
 #added by 2022 Update 1 - to resolve issue with cloaked template folders for users, Update 2 added support for Vault Office
 function GetTemplateFolders
 {
-	$xmlpath = "$env:programdata\Autodesk\Vault 2023\Extensions\DataStandard\Vault.Custom\Configuration\ADSK.QS.File.xml"
+	$xmlpath = "$env:programdata\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Configuration\ADSK.QS.File.xml"
 
 	if ($_IsOfficeClient) {
-		$xmlpath = "$env:programdata\Autodesk\Vault 2023\Extensions\DataStandard\Vault.Custom\Configuration\ADSK.QS.FileOffice.xml"
+		$xmlpath = "$env:programdata\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Configuration\ADSK.QS.FileOffice.xml"
 	}
 
 	$xmldata = [xml](Get-Content $xmlpath)

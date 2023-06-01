@@ -270,10 +270,10 @@
                                             <Style>
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding Path=CurrentTheme, Source={x:Static wpfUtilities:ActiveThemeProvider.Instance}}" Value="{x:Static winFormTheme:Theme.Dark}">
-                                                        <Setter Property="Image.Source" Value="C:\ProgramData\Autodesk\Vault 2023\Extensions\DataStandard\Vault.Custom\IconsDark\RemoveAction_32.png" />
+                                                        <Setter Property="Image.Source" Value="C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\IconsDark\RemoveAction_32.png" />
                                                     </DataTrigger>
                                                     <DataTrigger Binding="{Binding Path=CurrentTheme, Source={x:Static wpfUtilities:ActiveThemeProvider.Instance}}" Value="{x:Static winFormTheme:Theme.Light}">
-                                                        <Setter Property="Image.Source" Value="C:\ProgramData\Autodesk\Vault 2023\Extensions\DataStandard\Vault.Custom\IconsLight\RemoveAction_32.png" />
+                                                        <Setter Property="Image.Source" Value="C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\IconsLight\RemoveAction_32.png" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
