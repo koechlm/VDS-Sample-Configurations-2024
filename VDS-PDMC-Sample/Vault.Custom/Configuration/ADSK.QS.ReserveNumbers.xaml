@@ -6,7 +6,7 @@
         xmlns:View="clr-namespace:dataStandard.UI.View;assembly=dataStandard.UI" 
         xmlns:glob="clr-namespace:System.Globalization;assembly=mscorlib"
         Style="{DynamicResource ThemedWindowStyle}"
-        x:Name="ReserveNumberWindow" Title="{Binding UIString[ADSK-RSRVNUMBERS_MNU20], FallbackValue='Reserve Numbers'}" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+        x:Name="ReserveNumberWindow" Title="{Binding UIString[ADSK-RSRVNUMBERS_MNU20], FallbackValue='Reserve Numbers'}" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStyle="None">
     <WPF:MainWindow.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
