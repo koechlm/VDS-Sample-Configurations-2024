@@ -70,11 +70,17 @@ function ValidateFileName
 
 function ValidateFolderName
 {
-	if($Prop["_FolderName"].Value -or !$dsWindow.FindName("DSNumSchmsCtrl").NumSchmFieldsEmpty)
+	if($Prop["_CreateMode"].Value)
 	{
-		return mValidateUniqueFldrName
+		if($Prop["_FolderName"].Value -or !$dsWindow.FindName("DSNumSchmsCtrl").NumSchmFieldsEmpty)
+		{
+			return mValidateUniqueFldrName
+		}
+		return $false;
 	}
-	return $false;
+	else{
+		return $true
+	}	
 }
 
 function ValidateCustomObjectName

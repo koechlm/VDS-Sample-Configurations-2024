@@ -1,6 +1,6 @@
 function InitializeFolderNameValidation
 {
-    $Prop["_FolderName"].CustomValidation = { mValidateUniqueFldrName }
+    $Prop["_FolderName"].CustomValidation = { mValidateUniqueFldrName } 
 }
 
 function mValidateUniqueFldrName 
@@ -15,25 +15,27 @@ function mValidateUniqueFldrName
     if($Prop["_FolderName"].Value)
 	{
         #the search should start in the current folder location
-        $rootFolder = $vault.DocumentService.GetFolderRoot()
+        $rootFolder = $vault.DocumentService.GetFolderByPath($Prop["_FolderPath"].Value)
 
         #separate the search into a distinct function "mFindFolder"
 		$mFldExist = mFindFolder $Prop["_FolderName"].Value $rootFolder
 
         if($mFldExist)
 		{
-			$Prop["_FolderName"].CustomValidationErrorMessage = "Folder name exists anywhere else, select a new unique one."
             $dsWindow.FindName("FOLDERNAME").BorderBrush = "Red"
+            $dsWindow.FindName("FOLDERNAME").ToolTip = "Folder name already exists in this tree, select a new unique one."
 			return $false
 		}
-        $Prop["_FolderName"].CustomValidationErrorMessage = $null
-        $dsWindow.FindName("FOLDERNAME").BorderBrush = $null
-		return $true
+        Else{
+            $dsWindow.FindName("FOLDERNAME").BorderBrush = $null
+            $dsWindow.FindName("FOLDERNAME").ToolTip = $null
+            return $true
+        }
 	}
 	else
 	{
-		$Prop["_FolderName"].CustomValidationErrorMessage = "Folder name must not be empty."
         $dsWindow.FindName("FOLDERNAME").BorderBrush = "Red"
+        $dsWindow.FindName("FOLDERNAME").ToolTip = "Folder name must not be empty."
 		return $false
 	}
 }
