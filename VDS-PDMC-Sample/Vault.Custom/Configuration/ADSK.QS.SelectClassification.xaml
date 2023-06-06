@@ -6,7 +6,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Style="{DynamicResource ThemedWindowStyle}"
         x:Name="AssignClsWindow"
-        Title="VDS-PDMC-Sample | Select Classification . . ." Topmost="True" WindowStartupLocation="CenterOwner" SizeToContent="WidthAndHeight" WindowStyle="None" Background="White" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" ResizeMode="NoResize">
+        Title="VDS-PDMC-Sample | Select Classification . . ." Topmost="True" WindowStartupLocation="CenterOwner" SizeToContent="WidthAndHeight"  VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" ResizeMode="NoResize">
     <WPF:MainWindow.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

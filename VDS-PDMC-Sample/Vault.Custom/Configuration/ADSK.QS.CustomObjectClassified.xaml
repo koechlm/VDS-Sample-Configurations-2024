@@ -8,7 +8,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
         xmlns:glob="clr-namespace:System.Globalization;assembly=mscorlib"
         Style="{DynamicResource ThemedWindowStyle}"
-        x:Name="CustomObjectClassifiedWindow" SizeToContent="WidthAndHeight" ResizeMode="NoResize"  WindowStyle="None" >
+        x:Name="CustomObjectClassifiedWindow" SizeToContent="WidthAndHeight" ResizeMode="NoResize" >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

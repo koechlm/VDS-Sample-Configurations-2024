@@ -12,7 +12,7 @@
     Style="{DynamicResource ThemedWindowStyle}"
     Name="InventorPipingWindow"
     Title="{Binding UIString[LBL39]}"
-    ResizeMode="NoResize" SizeToContent="WidthAndHeight" WindowStyle="None" >
+    ResizeMode="NoResize" SizeToContent="WidthAndHeight" >
     <WPF:DSWindow.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

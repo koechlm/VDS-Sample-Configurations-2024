@@ -8,7 +8,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
         Style="{DynamicResource ThemedWindowStyle}"
-        x:Name="FolderWindow" SizeToContent="WidthAndHeight" ResizeMode="NoResize" d:DesignWidth="900"   WindowStyle="None" >
+        x:Name="FolderWindow" SizeToContent="WidthAndHeight" ResizeMode="NoResize" d:DesignWidth="900" >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

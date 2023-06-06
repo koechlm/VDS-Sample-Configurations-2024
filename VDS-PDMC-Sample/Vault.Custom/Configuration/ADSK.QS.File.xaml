@@ -7,7 +7,7 @@
     xmlns:winFormTheme="clr-namespace:Autodesk.DataManagement.Client.Framework.Forms.SkinUtils;assembly=Autodesk.DataManagement.Client.Framework.Forms"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
-    xmlns:glob="clr-namespace:System.Globalization;assembly=mscorlib" Style="{DynamicResource ThemedWindowStyle}" x:Name="FileWindow" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStyle="None">
+    xmlns:glob="clr-namespace:System.Globalization;assembly=mscorlib" Style="{DynamicResource ThemedWindowStyle}" x:Name="FileWindow" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -339,7 +339,7 @@
                         <ColumnDefinition Width="3*" />
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Grid x:Name="grdGeneralProps" Margin="0" ToolTip="{Binding UIString[LBL73], FallbackValue=General Properties}" Width="Auto">
+                    <Grid x:Name="grdGeneralProps" Margin="0" Width="Auto">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto" />
                             <RowDefinition Height="auto" />

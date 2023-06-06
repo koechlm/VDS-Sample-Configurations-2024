@@ -7,7 +7,7 @@
         xmlns:glob="clr-namespace:System.Globalization;assembly=mscorlib"
         Style="{DynamicResource ThemedWindowStyle}"
         x:Name="ActivateSchedTaskWindow" Title="{Binding UIString[ADSK-ActivateSchedTask-00], FallbackValue='Activate Scheduled Task'}" 
-                SizeToContent="WidthAndHeight" ResizeMode="NoResize"  WindowStyle="None" >
+        SizeToContent="WidthAndHeight" ResizeMode="NoResize" >
     <WPF:MainWindow.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

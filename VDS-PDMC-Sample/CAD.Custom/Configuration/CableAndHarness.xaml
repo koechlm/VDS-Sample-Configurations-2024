@@ -12,7 +12,7 @@
     Style="{DynamicResource ThemedWindowStyle}"
     Name="InventorHarnessWindow"
     Title="{Binding UIString[LBL44]}"
-    ResizeMode="NoResize" SizeToContent="WidthAndHeight" WindowStyle="None">
+    ResizeMode="NoResize" SizeToContent="WidthAndHeight" >
     <WPF:DSWindow.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
