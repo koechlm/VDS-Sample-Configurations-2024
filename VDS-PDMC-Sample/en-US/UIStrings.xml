@@ -399,7 +399,7 @@
   <UIString ID="Adsk.QS.ItemSearch_10">Expand Item Query Builder for item lookup and data copy.</UIString>
   <UIString ID="Adsk.QS.ItemSearch_11">Copy Item Data</UIString>
   <UIString ID="Adsk.QS.ItemSearch_12">Copy meta data to file properties</UIString>
-  <UIString ID="Adsk.QS.ItemSearch_13">Semi finished</UIString>
+  <UIString ID="Adsk.QS.ItemSearch_13">Stock Description</UIString>
   <UIString ID="Adsk.QS.ItemSearch_14">Purchased</UIString>
   <UIString ID="Adsk.QS.ItemSearch_15">The current file exists in Vault but is not accessible for the current login user.</UIString>
   <UIString ID="Adsk.QS.ItemSearch_16">The item assigned to the opened file exists in Vault but is not accessible for the current login user. Hit Refresh, if the status of the item changed.</UIString>

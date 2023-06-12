@@ -397,7 +397,7 @@
   <UIString ID="Adsk.QS.ItemSearch_10">Erweitern für Suchabfragen</UIString>
   <UIString ID="Adsk.QS.ItemSearch_11">Artikeldaten Kopieren</UIString>
   <UIString ID="Adsk.QS.ItemSearch_12">Kopierte Artikeldaten zu Dateieigenschaften</UIString>
-  <UIString ID="Adsk.QS.ItemSearch_13">Halbzeug</UIString>
+  <UIString ID="Adsk.QS.ItemSearch_13">Halbzeugbezeichnung</UIString>
   <UIString ID="Adsk.QS.ItemSearch_14">Gekauft</UIString>
   <UIString ID="Adsk.QS.ItemSearch_15">Die aktuelle Datei existiert in Vault, ist aber für den angemeldeten Benutzer nicht zugänglich.</UIString>
   <UIString ID="Adsk.QS.ItemSearch_16">Der dieser Datei zugewiesene Artikel existiert in Vault ist aber für den angemeldeten Benutzer nicht zugänglich. Verwenden Sie 'Aktualisieren', falls sich der Status des Artikels inzwischen geändert hat.</UIString>

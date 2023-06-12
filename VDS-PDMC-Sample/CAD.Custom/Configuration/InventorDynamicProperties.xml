@@ -77,7 +77,7 @@
     <DynamicProperty>Thickness</DynamicProperty>
     <DynamicProperty Hidden="True">Diameter</DynamicProperty>
     <DynamicProperty>Length (Cut)</DynamicProperty>
-    <DynamicProperty>Semi finished</DynamicProperty>
+    <DynamicProperty>Stock Description</DynamicProperty>
     <DynamicProperty>Stock Number</DynamicProperty>
     <DynamicProperty>Spare-Wear Part</DynamicProperty>
     <DynamicProperty>Mass</DynamicProperty>
@@ -142,7 +142,7 @@
     <DynamicProperty>Dimensions</DynamicProperty>
     <DynamicProperty>Diameter</DynamicProperty>
     <DynamicProperty>Length (Cut)</DynamicProperty>
-    <DynamicProperty>Semi finished</DynamicProperty>
+    <DynamicProperty>Stock Description</DynamicProperty>
     <DynamicProperty>Stock Number</DynamicProperty>
     <DynamicProperty>Spare-Wear Part</DynamicProperty>
     <DynamicProperty>Mass</DynamicProperty>
