@@ -6,124 +6,110 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
         xmlns:glob="clr-namespace:System.Globalization;assembly=mscorlib"
         xmlns:WPF="clr-namespace:CreateObject.WPF;assembly=CreateObject"
-        x:Name="MainWindow"
-        behaviours:TabTitleBehavior.TabTitle="$UIString[LBL36]">
+             x:Name="MainWindow"
+             behaviours:TabTitleBehavior.TabTitle="$UIString[LBL36]">
     <UserControl.Resources>
-        <Style x:Key="DynamicDataGridCellStyle" TargetType="{x:Type DataGridCell}">
-            <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
-            <Style.Triggers>
-                <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
-                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                </Trigger>
-                <Trigger Property="IsKeyboardFocusWithin" Value="True">
-                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static DataGrid.FocusBorderBrushKey}}"/>
-                </Trigger>
-                <DataTrigger Binding="{Binding Typ}" Value="String">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <TextBox Text="{WPF:ValidatedBinding Value}" 
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Autodesk.DataManagement.Client.Framework.Forms;component/Controls/WPF/ControlTemplates/MergedResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <WPF:InverseBoolConverter x:Key="BoolConvert"/>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <Style x:Key="DynamicDataGridCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource ThemedDataGridCellStyle}">
+                <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
+                <Setter Property="Height" Value="24"></Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                    </Trigger>
+                    <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static DataGrid.FocusBorderBrushKey}}"/>
+                    </Trigger>
+                    <DataTrigger Binding="{Binding Typ}" Value="String">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <TextBox Text="{WPF:ValidatedBinding Value}" 
+                                         VerticalContentAlignment="Center" BorderThickness="0" />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Typ}" Value="DateTime">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <DatePicker SelectedDate="{WPF:ValidatedBinding Value}" SelectedDateFormat="Short" IsHitTestVisible="False" IsTabStop="False" 
+                                                Width="Auto" HorizontalAlignment="Left" BorderThickness="0" />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Typ}" Value="Numeric">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <TextBox Text="{WPF:ValidatedBinding Value, StringFormat=N}" BorderThickness="0" Height="25" />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Typ}" Value="Bool">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <TextBox Text="{WPF:ValidatedBinding Value}" 
                                          VerticalContentAlignment="Center" BorderThickness="0"/>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Typ}" Value="DateTime">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <DatePicker SelectedDate="{WPF:ValidatedBinding Value}" SelectedDateFormat="Short" IsHitTestVisible="False" IsTabStop="False" Width="Auto" HorizontalAlignment="Left" Margin="5,0,0,0"/>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Typ}" Value="Numeric">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <TextBox Text="{WPF:ValidatedBinding Value, StringFormat=N}" BorderThickness="0"
-                                         Height="25" />
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Typ}" Value="Bool">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <ComboBox Text="{WPF:ValidatedBinding Value}" IsEditable="True">
-                                    <ComboBoxItem Content="True"/>
-                                    <ComboBoxItem Content="False"/>
-                                </ComboBox>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-        <Style x:Key="DynamicDataGridLabelStyle" TargetType="{x:Type DataGridCell}">
-            <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
-            <Setter Property="Height" Value="23"/>
-            <Setter Property="Margin" Value="0,4,0,0"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="IsHitTestVisible" Value="False" />
-        </Style>
-        <Style TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
-            <Setter Property="Margin" Value="0,0,0,0" />
-            <Setter Property="VerticalAlignment" Value="Stretch"/>
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding Content, RelativeSource={RelativeSource Self}}" Value="{x:Null}">
-                    <Setter Property="BorderThickness" Value="1"/>
-                    <Setter Property="BorderBrush" Value="#ff0000"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
-            <Setter Property="IsReadOnly" Value="True"/>
-            <Setter Property="Margin" Value="0,0,0,0"/>
-            <Setter Property="Height" Value="26"/>
-            <Setter Property="VerticalAlignment" Value="Stretch"/>
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Style.Triggers>
-                <Trigger Property="Validation.HasError" Value="true">
-                    <Setter Property="ToolTip" Value="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={x:Static RelativeSource.Self}}"/>
-                </Trigger>
-                <DataTrigger Binding="{Binding IsReadOnly, RelativeSource={RelativeSource Self}}" Value="True">
-                    <Setter Property="Background" Value="White"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-        <Style x:Key="Required" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource Self}}" Value="">
-                    <Setter Property="BorderBrush" Value="Red"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-        <Style TargetType="{x:Type DatePicker}">
-            <Setter Property="Height" Value="25.5" />
-            <Setter Property="BorderThickness" Value="0" />
-            <Style.Triggers>
-                <Trigger Property="Validation.HasError" Value="true">
-                    <Setter Property="ToolTip"
-                            Value="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={x:Static RelativeSource.Self}}" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        <Style x:Key="treeViewItemStyle" TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource {x:Type TreeViewItem}}">
-            <Setter Property="Visibility" Value="Visible"/>
-            <Setter Property="IsExpanded" Value="True"/>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding Header, RelativeSource={RelativeSource Self}}" Value="{x:Null}">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                    <Setter Property="IsExpanded" Value="False"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="DynamicDataGridLabelStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource ThemedDataGridCellStyle}">
+                <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
+                <Setter Property="IsHitTestVisible" Value="False" />
+            </Style>
+            <!--#region themed styles for VE datasheet standard controls-->
+            <Style x:Key="DataStandardLabelStyle" TargetType="{x:Type Label}" BasedOn="{StaticResource ThemedLabelStyle}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Content, RelativeSource={RelativeSource Self}}" Value="{x:Null}">
+                        <Setter Property="BorderThickness" Value="1" />
+                        <Setter Property="BorderBrush" Value="#ff0000" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="{x:Type Label}" BasedOn="{StaticResource DataStandardLabelStyle}"/>
+            <Style x:Key="DataStandardTextBoxStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource ThemedTextBoxStyle}">
+                <Setter Property="IsReadOnly" Value="True"/>
+                <Setter Property="Height" Value="24" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="Padding" Value="4,0,0,0"/>
+            </Style>
+            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource DataStandardTextBoxStyle}"/>
+            <Style x:Key="DataStandardComboBoxStyle" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource ThemedComboBoxStyle}"/>
+            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource DataStandardComboBoxStyle}"/>
+            <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource ThemedComboBoxItemStyle}"/>
+            <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource ThemedDatePickerStyle}"/>
+            <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource ThemedBaseControlStyle}"/>
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ThemedButtonStyle}" />
+            <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource ThemedCheckBoxStyle}"/>
+            <Style TargetType="{x:Type ContextMenu}" BasedOn="{StaticResource ThemedContextMenu}"/>
+            <Style TargetType="{x:Type DataGrid}" BasedOn="{StaticResource ThemedDataGridStyle}"/>
+            <Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource ThemedGroupBoxStyle}"/>
+            <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource ThemedExpanderStyle}" />
+            <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource ThemedRadioButtonBaseStyle}"/>
+            <Style TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource ThemedScrollViewerStyle}" />
+            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource ThemedTextBlockStyle}"/>
+            <Style TargetType="{x:Type TabControl}" BasedOn="{StaticResource ThemedTabControlStyle}"/>
+            <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource ThemedListBoxStyle }" />
+            <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource ThemedListBoxItemStyle}"/>
+            <Style TargetType="{x:Type TreeView}" BasedOn="{StaticResource ThemedBaseControlStyle}"/>
+            <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource ThemedBaseControlStyle}" />
+            <Style TargetType="{x:Type Border}" BasedOn="{StaticResource ThemedBorderStyle}"/>
+
+            <!--#endregion themed styles for VE datasheet standard controls-->
+        </ResourceDictionary>
     </UserControl.Resources>
     <Grid Margin="0,5,0,0">
         <Grid.RowDefinitions>
@@ -135,14 +121,20 @@
             <ColumnDefinition Width="3*" MinWidth="200"/>
         </Grid.ColumnDefinitions>
         <DockPanel Margin="5,0" LastChildFill="False">
-            <TreeView VerticalContentAlignment="Center" VerticalAlignment="Top" Width="{Binding ActualWidth, ElementName=grdSysProps, Mode=OneWay}" IsEnabled="False" BorderBrush="#FFABADB3" >
-                <TreeViewItem x:Name="treeViewItemSegment" Header="{Binding Prop[_XLTN_SEGMENT].Value, FallbackValue=Segment}" Style="{StaticResource treeViewItemStyle}">
-                    <TreeViewItem x:Name="treeViewItemMainGroup" Header="{Binding Prop[_XLTN_MAINGROUP].Value, FallbackValue=MainGroup}" Style="{StaticResource treeViewItemStyle}">
-                        <TreeViewItem x:Name="treeViewItemGroup" Header="{Binding Prop[_XLTN_GROUP].Value, FallbackValue=Group}" Style="{StaticResource treeViewItemStyle}">
-                            <TreeViewItem x:Name="treeViewItemSubgroup" Header="{Binding Prop[_XLTN_SUBGROUP].Value, FallbackValue=SubGroup}" Style="{StaticResource treeViewItemStyle}"/>
+            <TreeView VerticalContentAlignment="Center" VerticalAlignment="Top" Width="{Binding ActualWidth, ElementName=grdSysProps, Mode=OneWay}" IsHitTestVisible="False" IsTabStop="False" >
+                <TreeViewItem x:Name="treeViewItemSegment" Header="{Binding Prop[_XLTN_SEGMENT].Value, FallbackValue=Segment}" 
+                    IsExpanded="{Binding Items.IsEmpty, ElementName=treeViewItemMainGroup, Mode=OneWay, Converter={StaticResource BoolConvert}}">
+                    <TreeViewItem x:Name="treeViewItemMainGroup" Header="{Binding Prop[_XLTN_MAINGROUP].Value, FallbackValue=MainGroup}" 
+                        IsExpanded="{Binding Items.IsEmpty, ElementName=treeViewItemGroup, Mode=OneWay, Converter={StaticResource BoolConvert}}">
+                        <TreeViewItem x:Name="treeViewItemGroup" Header="{Binding Prop[_XLTN_GROUP].Value, FallbackValue=Group}" 
+                            IsExpanded="{Binding Items.IsEmpty, ElementName=treeViewItemSubgroup, Mode=OneWay, Converter={StaticResource BoolConvert}}">
+                            <TreeViewItem x:Name="treeViewItemSubgroup" Header="{Binding Prop[_XLTN_SUBGROUP].Value, FallbackValue=SubGroup}" 
+                                IsExpanded="True" >
+                                <TreeViewItem x:Name="ThisObject" Header="{Binding Prop[Name].Value, FallbackValue='Object Name'}"/>
+                            </TreeViewItem>
                         </TreeViewItem>
                     </TreeViewItem>
-                </TreeViewItem>
+                </TreeViewItem>                
             </TreeView>
         </DockPanel>
         <DockPanel ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Grid.Row="1" Margin="5">
@@ -158,16 +150,16 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="2*" />
                 </Grid.ColumnDefinitions>
-                <Label Content="{Binding UIString[LBL19], FallbackValue=Name}" Grid.Column="0" Grid.Row="1" BorderThickness="1,1,0,0" BorderBrush="#FFABADB3" Height="26" />
-                <TextBox Text="{Binding Prop[_XLTN_NAME].Value}" Grid.Column="1" Grid.Row="1" BorderThickness="1,1,1,0" Background="White" />
-                <Label Content="{Binding UIString[LBL8], FallbackValue=Category}" Grid.Column="0" BorderThickness="1,1,0,0" BorderBrush="#FFABADB3" Height="26"/>
-                <TextBox Text="{Binding Prop[_XLTN_CATEGORY NAME].Value}" x:Name="Cat" Grid.Column="1" VerticalAlignment="Stretch" BorderThickness="1,1,1,0" Background="White" />
-                <Label Content="{Binding UIString[LBL4], FallbackValue=State}" Grid.Column="0" Grid.Row="2" BorderThickness="1,1,0,0" BorderBrush="#FFABADB3" Height="26" />
-                <TextBox Text="{Binding Prop[_XLTN_STATE].Value}" Grid.Column="1" Grid.Row="2" BorderThickness="1,1,1,0" Background="White" />
-                <Label Content="{Binding UIString[LBL33], FallbackValue=Date Created}" Grid.Column="0" Grid.Row="3" BorderThickness="1,1,0,0" BorderBrush="#FFABADB3" Height="26" />
-                <TextBox Text="{Binding Prop[_XLTN_CREATE DATE].Value}" Grid.Column="1" Grid.Row="3" BorderThickness="1,1,1,0" Background="White" />
-                <Label Content="{Binding UIString[LBL34], FallbackValue=Created By}" Grid.Column="0" Grid.Row="4" BorderThickness="1,1,0,1" BorderBrush="#FFABADB3" Height="26" />
-                <TextBox Text="{Binding Prop[_XLTN_CREATED BY].Value}" Grid.Column="1" Grid.Row="4" Background="White" />
+                <Label Content="{Binding UIString[LBL19], FallbackValue=Name}" Grid.Column="0" Grid.Row="1" Height="26" />
+                <TextBox Text="{Binding Prop[_XLTN_NAME].Value}" Grid.Column="1" Grid.Row="1" Margin="0,1" />
+                <Label Content="{Binding UIString[LBL8], FallbackValue=Category}" Grid.Column="0" Height="26"/>
+                <TextBox Text="{Binding Prop[_XLTN_CATEGORY NAME].Value}" x:Name="Cat" Grid.Column="1" VerticalAlignment="Stretch" Margin="0,1" />
+                <Label Content="{Binding UIString[LBL4], FallbackValue=State}" Grid.Column="0" Grid.Row="2" Height="26" />
+                <TextBox Text="{Binding Prop[_XLTN_STATE].Value}" Grid.Column="1" Grid.Row="2" Margin="0,1" />
+                <Label Content="{Binding UIString[LBL33], FallbackValue=Date Created}" Grid.Column="0" Grid.Row="3" Height="26" />
+                <TextBox Text="{Binding Prop[_XLTN_CREATE DATE].Value}" Grid.Column="1" Grid.Row="3" Margin="0,1" />
+                <Label Content="{Binding UIString[LBL34], FallbackValue=Created By}" Grid.Column="0" Grid.Row="4" Height="26" />
+                <TextBox Text="{Binding Prop[_XLTN_CREATED BY].Value}" Grid.Column="1" Grid.Row="4" Margin="0,1" />
             </Grid>
         </DockPanel>
         <DockPanel Margin="5,0,5,5" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" LastChildFill="False" Grid.RowSpan="2" Grid.Column="1">
@@ -176,20 +168,19 @@
         		AutoGenerateColumns="False" 
         		HeadersVisibility="Column" 
         		ScrollViewer.CanContentScroll="True" 
-        		HorizontalGridLinesBrush="WhiteSmoke" 
-        		VerticalGridLinesBrush="WhiteSmoke" DockPanel.Dock="Top" BorderBrush="#FFABADB3" Margin="0">
+        		DockPanel.Dock="Top" Margin="0">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Name}" Width="1*" MinWidth="140" IsReadOnly="True">
                         <DataGridTextColumn.HeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding DataContext.UIString[LBL64], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Background="White"/>
+                                <TextBlock Text="{Binding DataContext.UIString[LBL64], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" FontWeight="Bold" />
                             </DataTemplate>
                         </DataGridTextColumn.HeaderTemplate>
                     </DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding Value}"  Width="2*" MinWidth="200" CellStyle="{StaticResource DynamicDataGridCellStyle}" >
                         <DataGridTextColumn.HeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding DataContext.UIString[LBL65], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Background="White"/>
+                                <TextBlock Text="{Binding DataContext.UIString[LBL65], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" FontWeight="Bold" />
                             </DataTemplate>
                         </DataGridTextColumn.HeaderTemplate>
                     </DataGridTextColumn>
