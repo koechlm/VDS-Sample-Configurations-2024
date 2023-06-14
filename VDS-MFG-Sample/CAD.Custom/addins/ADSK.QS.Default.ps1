@@ -415,7 +415,7 @@ function InitializeInventorCategory {
 			If ($mDocSubType -eq "{28EC8354-9024-440F-A8A2-0E0E55D635B0}") { #weldment assembly
 				$mCatName = GetCategories | Where { $_.Name -eq $UIString["MSDCE_CAT11"] } # weldment assembly
 				IF ($mCatName) { 
-					$Prop["_Category"].Value = $UIString["MSDCE_CAT10"]
+					$Prop["_Category"].Value = $UIString["MSDCE_CAT11"]
 				}
 			} 
 		}
