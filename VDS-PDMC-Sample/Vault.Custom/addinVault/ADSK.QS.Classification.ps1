@@ -307,9 +307,14 @@ function mApplyClassification()
 		$mActiveClass += mFindCustent -CustentName $dsWindow.FindName("txtActiveClass").Text -Category "Class" #custom object names should be unique per category
 		If($mActiveClass.Count -eq 1)
 		{
+			$mClsLevelProps = ("Segment", "Main Group", "Group","Sub Group" ,"Class", "Standard", "Term DE", "Code", "Comments", "Comments DE")
 			$mClsPrpNames = mGetClsPrpNames -ClassId $mActiveClass.Id
-			$mPropsAdd = @()
-			$mPropsAdd += $mClsPrpNames.Keys
+            $mPropsAdd = @()
+            Foreach($mClsProp in $mClsPrpNames.GetEnumerator())
+            {
+                #filter the all classification level properties but add all class' properties
+                if($mClsProp.Value -notin $mClsLevelProps) { $mPropsAdd += $mClsProp.Key}
+            }
 		}
 		else
 		{
