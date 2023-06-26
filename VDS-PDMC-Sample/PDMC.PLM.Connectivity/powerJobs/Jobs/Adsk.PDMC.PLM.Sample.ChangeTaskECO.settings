@@ -1,0 +1,9 @@
+{
+ "Trigger":
+  {
+    "TimeBased":	"0 0/1 * 1/1 * ? *",
+    "Vault":		"PDMC-Sample",
+    "Priority":		101,
+    "Description":	"Queries PLM for new/updated Change Tasks"
+  }
+}

@@ -171,6 +171,12 @@
     <None Include="CAD.Custom\Configuration\AutoCAD.cfg" />
     <None Include="CAD.Custom\Configuration\Inventor.cfg" />
     <None Include="HelpFiles\debug.log" />
+    <None Include="PDMC.PLM.Connectivity\powerEvents\Events\Adsk.PDMC.PLM.Sample.ps1" />
+    <None Include="PDMC.PLM.Connectivity\powerJobs\Jobs\Adsk.PDMC.PLM.Sample.ChangeTaskECO.json" />
+    <None Include="PDMC.PLM.Connectivity\powerJobs\Jobs\Adsk.PDMC.PLM.Sample.ChangeTaskECO.ps1" />
+    <None Include="PDMC.PLM.Connectivity\powerJobs\Jobs\Adsk.PDMC.PLM.Sample.ChangeTaskECO.settings" />
+    <None Include="PDMC.PLM.Connectivity\powerJobs\Jobs\Adsk.PDMC.PLM.Sample.UploadItem.json" />
+    <None Include="PDMC.PLM.Connectivity\powerJobs\Jobs\Adsk.PDMC.PLM.Sample.UploadItem.ps1" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -192,6 +198,7 @@
     <None Include="Vault.Custom\addinVault\ADSK.QS.ReserveFileNumber.ps1" />
     <None Include="Vault.Custom\addinVault\ADSK.QS.RevisionMgmt.ps1" />
     <None Include="Vault.Custom\addinVault\ADSK.QS.VLT.Library.ps1" />
+    <None Include="Vault.Custom\addinVault\ADSK.TS.powerPLM.ps1" />
     <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.ActivateSchedTask.ps1" />
     <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.AdskFilePropProvider.ps1" />
     <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.CreateCustomObject.ps1" />
@@ -922,6 +929,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Vault.Custom\Configuration\Eco\ADSK.TS.ECO.powerPLM.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Vault.Custom\Configuration\File\ADSK.QS.CAD BOM.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -938,6 +949,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Vault.Custom\Configuration\File\ADSK.TS.ECO.powerPLM.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Vault.Custom\Configuration\Folder\ADSK.QS.FolderDataSheet.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -947,6 +962,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Vault.Custom\Configuration\Item\ADSK.QS.ItemFileClassification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault.Custom\Configuration\Item\ADSK.TS.powerPLM.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -979,5 +998,6 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
