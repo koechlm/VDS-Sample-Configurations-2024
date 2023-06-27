@@ -566,6 +566,7 @@
     <Content Include="HelpFiles\V.6CustomObject.html" />
     <Content Include="HelpFiles\V.7ReserveNumbers.html" />
     <Content Include="HelpFiles\Vault.html" />
+    <Resource Include="PDMC.PLM.Connectivity\ReadMe.txt" />
     <Content Include="SDK Refs\Autodesk.Connectivity.WebServices.dll" />
     <Content Include="SDK Refs\Autodesk.DataManagement.Client.Framework.Forms.dll" />
     <Content Include="SDK Refs\Common.dll" />
