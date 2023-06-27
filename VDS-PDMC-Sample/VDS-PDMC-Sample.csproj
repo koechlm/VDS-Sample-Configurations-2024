@@ -949,7 +949,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Vault.Custom\Configuration\File\ADSK.TS.ECO.powerPLM.xaml">
+    <Page Include="Vault.Custom\Configuration\File\ADSK.TS.FILE.powerPLM.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -965,7 +965,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Vault.Custom\Configuration\Item\ADSK.TS.powerPLM.xaml">
+    <Page Include="Vault.Custom\Configuration\Item\ADSK.TS.ITEM.powerPLM.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

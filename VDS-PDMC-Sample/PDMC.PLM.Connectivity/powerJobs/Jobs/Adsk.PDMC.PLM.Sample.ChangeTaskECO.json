@@ -14,7 +14,7 @@
     {
       "Name": "Vault Attachments Folder",
       "Type": "Vault Folder",
-      "Value": "$/Designs/CARTHAGO/Change Order Attachments",
+      "Value": "$/Designs/PLM.CO.Attachments",
       "IsSystem": false
     },
     {
