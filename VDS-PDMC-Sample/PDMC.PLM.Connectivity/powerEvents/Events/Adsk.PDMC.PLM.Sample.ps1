@@ -24,67 +24,73 @@ function PostUpdateFileStates($files, $successful) {
 		$mPromoteFailed = $false
 		$mAssignAll = [Autodesk.Connectivity.WebServices.ItemAssignAll]::No
 		$mFileIdsToPromote = @()
+		$mFileExtToPromote = @("iam", "ipt")
+		$mFileCatsToPromote = @("Assembly", "Part", "Sheet Metal Part")
 		foreach ($file in $files) {
-			$mFileIdsToPromote += $file.Id
+			if ($file._Extension -in ($mFileExtToPromote) -and $file._CategoryName -in $mFileCatsToPromote) {
+				$mFileIdsToPromote += $file.Id
+			}
 		}
-		try {
-			$ItemSvc.AddFilesToPromote($mFileIdsToPromote, $mAssignAll, $true)
-			[datetime]$mTimeStamp = Get-Date
-
-			[Autodesk.Connectivity.WebServices.GetPromoteOrderResults]$mPromoteOrder = $ItemSvc.GetPromoteComponentOrder([ref]$mTimeStamp)
-			if ($mPromoteOrder.PrimaryArray -ne $null -and $mPromoteOrder.PrimaryArray.Length -ne $null) {
-				try {
-					$ItemSvc.PromoteComponents($mTimeStamp, $mPromoteOrder.PrimaryArray)
-				}
-				catch {
-					$mPromoteFailed = $true
-				}
-			}
-			if ($mPromoteOrder.NonPrimaryArray -ne $null -and $mPromoteOrder.NonPrimaryArray.Length -ne $null) {
-				try {
-					$ItemSvc.PromoteComponents($mTimeStamp, $mPromoteOrder.NonPrimaryArray)
-				}
-				catch {
-					$mPromoteFailed = $true
-				}
-			}
+		if ($mFileIdsToPromote.Count -ne 0) {
 			try {
-				if ($mPromoteFailed -ne $true) {
-					$mPromoteResult = $ItemSvc.GetPromoteComponentsResults($mTimeStamp)
-					if ($mPromoteResult.ItemRevArray[0].Locked -ne $true) {
-						$updatedItems = $mPromoteResult.ItemRevArray
-						$mCurrentItem = $mPromoteResult.ItemRevArray[0]
-						$mItemToUpdateCommit = @()
-						$mItemToUpdateCommit += $mCurrentItem;
-						#commit the changes for the root element only; the reason is as stated before for ItemAssignAll = No
-						$ItemSvc.UpdateAndCommitItems($mItemToUpdateCommit);
+				$ItemSvc.AddFilesToPromote($mFileIdsToPromote, $mAssignAll, $true)
+				[datetime]$mTimeStamp = Get-Date
+	
+				[Autodesk.Connectivity.WebServices.GetPromoteOrderResults]$mPromoteOrder = $ItemSvc.GetPromoteComponentOrder([ref]$mTimeStamp)
+				if ($mPromoteOrder.PrimaryArray -ne $null -and $mPromoteOrder.PrimaryArray.Length -ne $null) {
+					try {
+						$ItemSvc.PromoteComponents($mTimeStamp, $mPromoteOrder.PrimaryArray)
 					}
-					else {
-						# feedback that the current item assignable already exists and is locked by another process
+					catch {
+						$mPromoteFailed = $true
 					}
+				}
+				if ($mPromoteOrder.NonPrimaryArray -ne $null -and $mPromoteOrder.NonPrimaryArray.Length -ne $null) {
+					try {
+						$ItemSvc.PromoteComponents($mTimeStamp, $mPromoteOrder.NonPrimaryArray)
+					}
+					catch {
+						$mPromoteFailed = $true
+					}
+				}
+				try {
+					if ($mPromoteFailed -ne $true) {
+						$mPromoteResult = $ItemSvc.GetPromoteComponentsResults($mTimeStamp)
+						if ($mPromoteResult.ItemRevArray[0].Locked -ne $true) {
+							$updatedItems = $mPromoteResult.ItemRevArray
+							$mCurrentItem = $mPromoteResult.ItemRevArray[0]
+							$mItemToUpdateCommit = @()
+							$mItemToUpdateCommit += $mCurrentItem;
+							#commit the changes for the root element only; the reason is as stated before for ItemAssignAll = No
+							$ItemSvc.UpdateAndCommitItems($mItemToUpdateCommit);
+						}
+						else {
+							# feedback that the current item assignable already exists and is locked by another process
+						}
+					}
+				}
+				catch {
+					# is something unhandled left?
 				}
 			}
 			catch {
-				# is something unhandled left?
-			}
-		}
-		catch {
-			if ($updatedItems -ne $null -and $updatedItems.Length > 0) {
-				$itemIds = @()
-				for ($i = 0; $i -lt $updatedItems.Length; $i++) {
-					$itemIds += $updatedItems[$i].Id
+				if ($updatedItems -ne $null -and $updatedItems.Length > 0) {
+					$itemIds = @()
+					for ($i = 0; $i -lt $updatedItems.Length; $i++) {
+						$itemIds += $updatedItems[$i].Id
+					}
+					$ItemSvc.UndoEditItems($itemIds)
 				}
-				$ItemSvc.UndoEditItems($itemIds)
 			}
-		}
-		finally {
-			if ($mPromoteResult -eq $null -and $mPromoteFailed -ne $true) {
-				# clear out the promoted item
-				$ItemSvc.DeleteUnusedItemNumbers(@($mPromoteResult.ItemRevArray[0].MasterId))
-				$ItemSvc.UndoEditItems(@($mPromoteResult.ItemRevArray[0].MasterId))
-			}
-			if ($mPromoteFailed -eq $true) {
-				# feedback that current item might be in edit by another process/user
+			finally {
+				if ($mPromoteResult -eq $null -and $mPromoteFailed -ne $true -and $mPromoteResult.ItemRevArray -ne $null) {
+					# clear out the promoted item
+					$ItemSvc.DeleteUnusedItemNumbers(@($mPromoteResult.ItemRevArray[0].MasterId))
+					$ItemSvc.UndoEditItems(@($mPromoteResult.ItemRevArray[0].MasterId))
+				}
+				if ($mPromoteFailed -eq $true) {
+					# feedback that current item might be in edit by another process/user
+				}
 			}
 		}
 	}
