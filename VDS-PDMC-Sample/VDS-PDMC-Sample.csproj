@@ -224,6 +224,7 @@
     <None Include="Vault.Custom\addinVault\Menus\ADSK.QS.ReserveNumbers.ps1" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Vault.Custom\Folder2024.xml" />
     <Resource Include="CAD.Custom\Configuration\AutoCadDynamicProperties.xml" />
     <Resource Include="CAD.Custom\Configuration\InventorDynamicProperties.xml" />
     <Resource Include="de-DE\PropertyTranslations.xml" />
@@ -637,7 +638,6 @@
     <Resource Include="Vault.Custom\factory.ico" />
     <Resource Include="Vault.Custom\filter-delete.ico" />
     <Resource Include="Vault.Custom\filter-ok.ico" />
-    <Resource Include="Vault.Custom\Folder2023.xml" />
     <Resource Include="Vault.Custom\GlobalFolderView_16.ico" />
     <Resource Include="Vault.Custom\GlobalFolder_GoTo_16.ico" />
     <Resource Include="Vault.Custom\GoToReplacedBy.ico" />
