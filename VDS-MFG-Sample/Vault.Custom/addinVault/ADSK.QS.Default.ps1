@@ -442,9 +442,12 @@ function GetNewFileName
 		#$dsDiag.Trace("-> GenerateNumber")
 		$fileName = $Prop["_GeneratedNumber"].Value
 		#$dsDiag.Trace("fileName = $fileName")
-		#VDS MFG Sample
-			If($Prop["_XLTN_PARTNUMBER"]) { $Prop["_XLTN_PARTNUMBER"].Value = $Prop["_GeneratedNumber"].Value }
-		#VDS MFG Sample
+		#VDS-MFG-Sample: write new number or keep user override
+			If($Prop["_XLTN_PARTNUMBER"] -and -not ([string]::IsNullOrEmpty($Prop["_XLTN_PARTNUMBER"].Value)) 
+			{ 
+				$Prop["_XLTN_PARTNUMBER"].Value = $Prop["_GeneratedNumber"].Value
+			}
+		#VDS-MFG-Sample
 	}
 	$newfileName = $fileName + $Prop["_FileExt"].Value
 	#$dsDiag.Trace("<< GetNewFileName $newfileName")
