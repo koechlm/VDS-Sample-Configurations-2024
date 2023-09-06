@@ -248,8 +248,7 @@ function mGetCustentiesByName([String]$Name)
 		}
 		catch
 		{
-			$dsWindow.FindName("txtClassificationStatus").Text = $UIString["Adsk.QS.Classification_12"]
-			$dsWindow.FindName("txtClassificationStatus").Visibility = "Visible"
+				[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowError("Unhandled Exception in function mGetCustentiesByName", "VDS Sample -- Classification")
 		}
 		If ($searchStatus.IndxStatus -ne "IndexingComplete" -or $searchStatus -eq "IndexingContent")
 		{
@@ -490,7 +489,8 @@ function mGetCustentClsLevelList ([String] $ClassLevelName) {
 			If ($searchStatus.IndxStatus -ne "IndexingComplete" -or $searchStatus -eq "IndexingContent")
 			{
 				#check the indexing status; you might return a warning that the result bases on an incomplete index, or even return with a stop/error message, that we need to have a complete index first
-				[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowError($UIString["Adsk.QS.Classification_12"], "VDS Sample -- Classification")
+				$dsWindow.FindName("txtClassificationStatus").Text = $UIString["Adsk.QS.Classification_12"]
+				$dsWindow.FindName("txtClassificationStatus").Visibility = "Visible"
 			}
 			If($mResultPage.Count -ne 0)
 			{
@@ -498,14 +498,14 @@ function mGetCustentClsLevelList ([String] $ClassLevelName) {
 			}
 			else 
 			{ 
-				$MsgResult = [Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowWarning("Could not find any " + $ClassLevelName, "VDS Sample -- Classification", "OK")
-				#break;
+				#$MsgResult = [Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowWarning("Could not find any " + $ClassLevelName, "VDS Sample -- Classification", "OK")
+				break;
 			}
 		}
 		return $mResultAll
 	}
 	catch {
-		[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowError("Unhandled Exception in ", "VDS Sample -- Classification")
+		[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowError("Unhandled Exception in function mGetCustentClsLevelList", "VDS Sample -- Classification")
 	}
 }
 
