@@ -481,13 +481,30 @@ function mGetCustentClsLevelList ([String] $ClassLevelName) {
 		$srchSort = New-Object autodesk.Connectivity.WebServices.SrchSort
 		$searchStatus = New-Object autodesk.Connectivity.WebServices.SrchStatus
 		$bookmark = ""
-		$_CustomEnts = $vault.CustomEntityService.FindCustomEntitiesBySearchConditions($srchConds,$null,[ref]$bookmark,[ref]$searchStatus)
-		#$dsDiag.Trace(".. mGetCustentClsLevelList finished - returns $_CustomEnts <<")
+		$mResultAll = New-Object 'System.Collections.Generic.List[Autodesk.Connectivity.WebServices.CustEnt]'
 
-		return $_CustomEnts
+		while(($searchStatus.TotalHits -eq 0) -or ($mResultAll.Count -lt $searchStatus.TotalHits))
+		{
+			$mResultPage = $vault.CustomEntityService.FindCustomEntitiesBySearchConditions($srchConds,@($srchSort),[ref]$bookmark,[ref]$searchStatus)
+			If ($searchStatus.IndxStatus -ne "IndexingComplete" -or $searchStatus -eq "IndexingContent")
+			{
+				#check the indexing status; you might return a warning that the result bases on an incomplete index, or even return with a stop/error message, that we need to have a complete index first
+				[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowError($UIString["Adsk.QS.Classification_12"], "VDS Sample -- Classification")
+			}
+			If($mResultPage.Count -ne 0)
+			{
+				$mResultAll.AddRange($mResultPage)
+			}
+			else 
+			{ 
+				$MsgResult = [Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowWarning("Could not find any " + $ClassLevelName, "VDS Sample -- Classification", "OK")
+				break;
+			}
+			return $mResultAll
+		}
 	}
 	catch {
-		$dsDiag.Trace("!! Error in mGetCustentClsLevelList")
+		[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowError("Unhandled Exception in ", "VDS Sample -- Classification")
 	}
 }
 
