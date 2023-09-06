@@ -263,9 +263,10 @@ function mGetCustentiesByName([String]$Name)
 		}
 		else { break;}
 		$dsWindow.FindName("txtClassificationStatus").Visibility = "Collapsed"
-		return $mResultAll
-		break; #limit the search result to the first result page; page scrolling not implemented in this snippet release
+		
+		#break; #limit the search result to the first result page; page scrolling not implemented in this snippet release
 	}
+	return $mResultAll
 }
 
 function mGetFileObject()
@@ -498,10 +499,10 @@ function mGetCustentClsLevelList ([String] $ClassLevelName) {
 			else 
 			{ 
 				$MsgResult = [Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowWarning("Could not find any " + $ClassLevelName, "VDS Sample -- Classification", "OK")
-				break;
+				#break;
 			}
-			return $mResultAll
 		}
+		return $mResultAll
 	}
 	catch {
 		[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowError("Unhandled Exception in ", "VDS Sample -- Classification")
