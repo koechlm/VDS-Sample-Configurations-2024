@@ -123,6 +123,7 @@
     <None Include="PDMC.PLM.Connectivity\powerJobs\Jobs\Adsk.PDMC.PLM.Sample.ChangeTaskECO.settings" />
     <None Include="PDMC.PLM.Connectivity\powerJobs\Jobs\Adsk.PDMC.PLM.Sample.UploadItem.json" />
     <None Include="PDMC.PLM.Connectivity\powerJobs\Jobs\Adsk.PDMC.PLM.Sample.UploadItem.ps1" />
+    <None Include="PDMC.PLM.Connectivity\powerJobs\Modules\coolOrange.powerFLC.Workflows.MappingFunctions.psm1" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
