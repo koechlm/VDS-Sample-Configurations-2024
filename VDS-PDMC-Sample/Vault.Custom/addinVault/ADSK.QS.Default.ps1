@@ -471,6 +471,7 @@ function OnTabContextChanged
 		$file = $vault.DocumentService.GetLatestFileByMasterId($fileMasterId)
 		$bom = @(GetFileBOM($file.id))
 		$dsWindow.FindName("bomList").ItemsSource = $bom
+		return
 	}
 	if ($VaultContext.SelectedObject.TypeId.SelectionContext -eq "ItemMaster" -and $xamlFile -eq "Associated Files.xaml")
 	{
@@ -479,12 +480,14 @@ function OnTabContextChanged
 		$itemids = @($item.Id)
 		$assocFiles = @(GetAssociatedFiles $itemids $([System.IO.Path]::GetDirectoryName($VaultContext.UserControl.XamlFile)))
 		$dsWindow.FindName("AssoicatedFiles").ItemsSource = $assocFiles
+		return
 	}
 	if ($VaultContext.SelectedObject.TypeId.SelectionContext -eq "FileMaster" -and $xamlFile -eq "ADSK.QS.FileDataSheet.xaml")
 	{
 		$fileMasterId = $vaultContext.SelectedObject.Id
 		$file = $vault.DocumentService.GetLatestFileByMasterId($fileMasterId)
 		mInitializeClassificationTab -ParentType $null -file $file
+		return
 	}
 
 	if ($VaultContext.SelectedObject.TypeId.SelectionContext -eq "ItemMaster" -and $xamlFile -eq "ADSK.QS.ItemFileClassification.xaml")
@@ -495,6 +498,7 @@ function OnTabContextChanged
 		$fileAssoc = $vault.ItemService.GetItemFileAssociationsByItemIds($itemids, "Primary")
 		$file = $vault.DocumentService.GetFileById($fileAssoc[0].CldFileId)
 		mInitializeClassificationTab -ParentType $null -file $file
+		return
 	}
 
 	if ($VaultContext.SelectedObject.TypeId.SelectionContext -eq "ChangeOrder" -and $xamlFile -eq "ADSK.QS.EcoParentFolder.xaml") {
@@ -538,6 +542,7 @@ function OnTabContextChanged
 			$dsWindow.FindName("txtCreatedBy").Text = $mFldrProps["Created By"]
 			$dsWindow.FindName("txtComments").Text = $mFldrProps["Comments"]
 		}
+		return
 	}
 		
 	if ($VaultContext.SelectedObject.TypeId.SelectionContext -eq "ChangeOrder" -and $xamlFile -eq "ADSK.QS.TaskLinks.xaml")
@@ -569,6 +574,7 @@ function OnTabContextChanged
 			$dsWindow.FindName("txtComments").Text = $dsWindow.FindName("dataGrdLinks").SelectedItem.Comments
 			mTaskClick
 		})
+		return
 	}
 
 	if ($VaultContext.SelectedObject.TypeId.SelectionContext -eq "FileMaster" -and $xamlFile -eq "ADSK.QS.FileItemDataSheet.xaml")
@@ -583,6 +589,7 @@ function OnTabContextChanged
 		$itemids = @($item.Id)
 		$assocFiles = @(mFileItemTabGetAssocFiles $itemids $([System.IO.Path]::GetDirectoryName($VaultContext.UserControl.XamlFile)))
 		$dsWindow.FindName("AssociatedFiles").ItemsSource = $assocFiles
+		return
 	}
 
 	#region Documentstructure Extension
@@ -601,10 +608,12 @@ function OnTabContextChanged
 				mUwUsdPrntClick
 				#$dsDiag.Trace("Child selected")
 			})
-
+			return
 		}
 	#endregion documentstructure
-
+	
+	#powerPLM Tabs run separated script
+	OnTabContextChanged_Fusion360Manage
 }
 
 function GetNewCustomObjectName
@@ -668,13 +677,11 @@ function GetNewFileName
 	else{
 		#$dsDiag.Trace("-> GenerateNumber")
 		$fileName = $Prop["_GeneratedNumber"].Value
-		#$dsDiag.Trace("fileName = $fileName")		
-		#VDS-MFG-Sample: write new number or keep user override
-			If($Prop["_XLTN_PARTNUMBER"] -and ([string]::IsNullOrEmpty($Prop["_XLTN_PARTNUMBER"].Value)) 
-			{ 
-				$Prop["_XLTN_PARTNUMBER"].Value = $Prop["_GeneratedNumber"].Value
-			}
-		#VDS-MFG-Sample
+		#$dsDiag.Trace("fileName = $fileName")
+		
+		#VDS-PDMC-Sample
+			If($Prop["_XLTN_PARTNUMBER"]) { $Prop["_XLTN_PARTNUMBER"].Value = $Prop["_GeneratedNumber"].Value }
+		#VDS-PDMC-Sample
 	}
 	$newfileName = $fileName + $Prop["_FileExt"].Value
 	#$dsDiag.Trace("<< GetNewFileName $newfileName")

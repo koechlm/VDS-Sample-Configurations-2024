@@ -66,7 +66,7 @@
                 <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
                 <Setter Property="IsHitTestVisible" Value="False" />
             </Style>
-	    <!--#region themed styles for VE datasheet standard controls-->
+            <!--#region themed styles for VE datasheet standard controls-->
             <Style x:Key="DataStandardLabelStyle" TargetType="{x:Type Label}" BasedOn="{StaticResource ThemedLabelStyle}">
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding Content, RelativeSource={RelativeSource Self}}" Value="{x:Null}">
@@ -110,14 +110,15 @@
 
     <Grid Height="auto">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="46"/>
             <RowDefinition Height="1" />
             <RowDefinition Height="*"/>
             <RowDefinition Height="1"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-
-        <Grid Grid.Row="0" Grid.Column="0" >
+        <TextBox x:Name="txtPowerPlmStatusMsg" Grid.Column="1" Height="Auto" TextWrapping="Wrap" Background="#FFFFFFE1" Foreground="Black" Padding="5,0,0,0" MinHeight="24" />
+        <Grid Grid.Row="1" Grid.Column="0" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="180" />
@@ -126,9 +127,9 @@
             <Button Grid.Column="1" Content="Go To Fusion 360 Manage..." Command="{Binding PsCmd[GoToFlc]}" Height="24" DataContext="{Binding DataContext, ElementName=MainWindow}" Margin="0,5,14,0" />
         </Grid>
 
-        <Border Grid.Row="1"/>            
+        <Border Grid.Row="2"/>
 
-        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
             <Grid x:Name="View" Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -204,9 +205,9 @@
             </Grid>
         </ScrollViewer>
 
-        <Border Grid.Row="3" />
+        <Border Grid.Row="4" />
 
-        <Grid Grid.Row="4" >
+        <Grid Grid.Row="5" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*"/>
