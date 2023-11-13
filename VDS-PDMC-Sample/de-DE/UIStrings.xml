@@ -462,7 +462,7 @@
   <UIString ID="Adsk.QS.Classification_09">Klasse entfernen</UIString>
   <UIString ID="Adsk.QS.Classification_10">Die Klasse ist entweder nicht vorhanden oder nicht ein-eindeutig. Nur eindeutige Klassennamen werden verarbeitet.</UIString>
   <UIString ID="Adsk.QS.Classification_11">Entfernen einer Klassifizierung löscht alle Merkmale und Werte der Klasse! {0}Möchten Sie wirklich die Klassifizierung aufheben?</UIString>
-  <UIString ID="Adsk.QS.Classification_12">Achtung: Das Ergebnis beruht auf einem unvollständigen Suchindex. Wenden Sie sich an den Administrator, wenn diese Meldung immer erscheint.</UIString>
+  <UIString ID="Adsk.QS.Classification_12">Achtung: Das Ergebnis beruht auf einem unvollständigen Suchindex. Wenden Sie sich an den Administrator, wenn diese Meldung weiterhin erscheint.</UIString>
   <UIString ID="Adsk.QS.Classification_13">Der Benutzerdefinierte Arbeitsbereich 'Klassen' steht nicht zur Verfügung. Wenden Sie sich an ihren Administrator.</UIString>
   <UIString ID="Adsk.QS.Classification_14">Klassifizierung d. primär verknüpften Datei</UIString>
   <UIString ID="Adsk.QS.Classification_15">Schreibgeschützt: Wert wird aus Hierarchiepfad übernommen</UIString>
@@ -504,6 +504,7 @@
   <UIString ID="ClassTerms_MSG01">Sie setzen gerade die Klassifizierung zurück, wollen Sie fortfahren?"</UIString>
   <UIString ID="ClassTerms_MSG02">Anzeige auf Seitengröße {0} von {1} möglichen begrenzt; grenzen Sie die Suche ein.</UIString>
   <UIString ID="ClassTerms_MSG03">Keine übereinstimmenden Begriffe gefunden</UIString>
+  <UIString ID="ClassTerms_MSG04">Achtung: Das Ergebnis beruht auf einem unvollständigen Suchindex. Wenden Sie sich an den Administrator, wenn diese Meldung weiterhin erscheint.</UIString>
   <!--CatalogTermsTranslations End-->
 
   <!--IEC61355 document classification start-->
