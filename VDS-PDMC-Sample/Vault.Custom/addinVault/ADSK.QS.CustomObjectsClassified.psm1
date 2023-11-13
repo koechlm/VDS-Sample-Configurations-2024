@@ -194,11 +194,6 @@ function mSearchTerms
 				$dsWindow.FindName("txtTermStatusMsg").Visibility = "Visible"
 				break;
 			}
-
-			#limit the search result to the first result page;
-			$dsWindow.FindName("txtTermStatusMsg").Text = $UIString["ClassTerms_MSG02"]
-			$dsWindow.FindName("txtTermStatusMsg").Visibility = "Visible"
-			break; #limit the search result to the first result page; page scrolling not implemented in this snippet release
 		}
 
 		$global:_SearchResult = $mResultAll	
