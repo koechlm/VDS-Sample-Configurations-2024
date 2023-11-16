@@ -19,6 +19,9 @@ function InitializeWindow {
 	#InitializeNumSchm #VDS-PDMC-Sample differentiates for Inventor and AutoCAD
 	#InitializeBreadCrumb #VDS-PDMC-Sample differentiates Inventor, Inventor C&H, T&P, FG, DA dialogs
 
+	# leverage the current theme variable in theme dependent path names etc.
+	$Global:currentTheme = [Autodesk.DataManagement.Client.Framework.Forms.SkinUtils.WinFormsTheme]::Instance.CurrentTheme
+
 	#Copy Parent Project Number to file property "Project Number" if exists; be careful, not all dialogs might have the textbox, e.g. DA, FG,...
 	If ($Prop["Project"]) {
 		$Global:mPropTrans = mGetPropTranslations
@@ -1009,7 +1012,7 @@ function mFillMyScTree {
 	$treeView = $dsWindow.FindName("ScTree")
 
 	# Create a treeRoot node for the treeView
-	$IconSource = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\IconsLight\User_CO_16.png"
+	$IconSource = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\User_CO_16.png"
 	$treeRoot = [TreeNode]::new("UserRoot", "")
 	$MyScRoot = [TreeNode]::New("My Shortcuts", $IconSource)
 
@@ -1028,9 +1031,9 @@ function mFillMyScTree {
 	$treeRoot.AddChild($MyScRoot)
 
 	# Get the tree for distributed shortcuts
-	$IconSource = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\IconsLight\User_Admin_16.png"
+	$IconSource = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\User_Admin_16.png"
 	$DstrbScRoot = [TreeNode]::new("Distributed Shortcuts", $IconSource)
-	
+	$dsDiag.Inspect("IconSource")
 	#read the distributed shortcuts stored in the Vault
 	$mAdminScXML = [XML]$vault.KnowledgeVaultService.GetVaultOption("AdminShortcuts")
 	if ($null -ne $mAdminScXML) {
@@ -1064,7 +1067,7 @@ function mAddTreeNode($XmlNode, $TreeLevel) {
 		}
 	}
 	if ($XmlNode.LocalName -eq "ShortcutGroup") {
-		$IconSource = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\IconsLight\FolderClosedMask_16.png"
+		$IconSource = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\FolderClosedMask_16.png"
 		if ($XmlNode.HasChildNodes -eq $true) {
 			$NextLevel = [TreeNode]::new($XmlNode.Name, $IconSource)
 			$XmlNode.ChildNodes | ForEach-Object {
