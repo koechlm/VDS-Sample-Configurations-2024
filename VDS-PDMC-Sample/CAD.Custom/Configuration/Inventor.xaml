@@ -265,7 +265,7 @@
             <Style TargetType="{x:Type TabControl}" BasedOn="{StaticResource ThemedTabControlStyle}"/>
             <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource ThemedListBoxStyle }" />
             <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource ThemedListBoxItemStyle}"/>
-            <Style TargetType="{x:Type TreeView}" BasedOn="{StaticResource ThemedBaseControlStyle}"/>
+            <Style TargetType="{x:Type TreeView}" BasedOn="{StaticResource ThemedBaseControlStyle}"/>            
             <Style TargetType="{x:Type Border}" BasedOn="{StaticResource ThemedBorderStyle}"/>
             <!--#endregion themed styles for CAD dialog standard controls-->
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -332,6 +332,9 @@
                         <Setter Property="Visibility" Value="Collapsed"/>
                     </MultiDataTrigger>
                 </Style.Triggers>
+            </Style>
+            <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource ThemedBaseControlStyle}">
+                <Setter Property="IsExpanded" Value="True" />
             </Style>
         </ResourceDictionary>
     </WPF:DSWindow.Resources>
@@ -703,8 +706,7 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
-                        <RowDefinition/>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <TextBox x:Name="txtNewShortCut" Grid.Row="0" ToolTip="{Binding UIString[MSDCE_TT20]}" BorderThickness="1" />
                     <Button x:Name="btnNewSc" Grid.Column="1" Grid.Row="0" Width="24" Height="24" FontFamily="Wingdings"
@@ -715,7 +717,7 @@
                         <Image x:Name="btnNewScImg" Style="{StaticResource btnScImage}"/>
                     </Button>
                     <ListBox x:Name="lstBoxShortCuts" Grid.Row="1" MinWidth="180" Margin="0" ItemsSource="{Binding PsVal[mReadShortCuts]}" ToolTip="{Binding UIString[MSDCE_TT23]}"  
-                        MaxWidth="300" Grid.ColumnSpan="2" DisplayMemberPath="Key" SelectedValuePath="Key" IsSynchronizedWithCurrentItem="False" >
+                        MaxWidth="300" Grid.ColumnSpan="2" DisplayMemberPath="Key" SelectedValuePath="Key" IsSynchronizedWithCurrentItem="False" d:IsHidden="True" >
                         <ListBox.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="{Binding UIString[MSDCE_BTN3], FallbackValue=Activate}" Command="{Binding PsCmd[mRemoveSc]}">
@@ -726,6 +728,16 @@
                             </ContextMenu>
                         </ListBox.ContextMenu>
                     </ListBox>
+                    <TreeView x:Name="ScTree" Grid.Row="1" MinWidth="180" Grid.ColumnSpan="2" >
+                        <TreeView.ItemTemplate>
+                            <HierarchicalDataTemplate x:Name="UserRoot" ItemsSource="{Binding Children}" >
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <Image HorizontalAlignment="Left" Width="16" Height="16" Source="{Binding IconSource}" />
+                                    <TextBlock Text="{Binding Name}" Margin="5,0,0,0" />
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                        </TreeView.ItemTemplate>
+                    </TreeView>
                 </Grid>
             </GroupBox>
         </Grid>

@@ -128,6 +128,9 @@ function InitializeWindow {
 							})
 					}
 
+					#Initialize Shortcuts
+					mFillMyScTree
+
 					#region FDU Support --------------------------------------------------------------------------
 					
 					# Read FDS related internal meta data; required to manage particular workflows
@@ -981,3 +984,98 @@ function mInitializeCHContext {
 	}
 }
 #endregion functional dialogs
+
+
+function mFillMyScTree {
+
+	# Define a custom class to represent the tree nodes
+	class TreeNode {
+		[string]$Name
+		[string]$IconSource
+		[System.Collections.ArrayList]$Children
+
+		TreeNode([string]$name, [string]$IconSource) {
+			$this.Name = $name
+			$this.IconSource = $IconSource
+			$this.Children = [System.Collections.ArrayList]::new()
+		}
+
+		[void]AddChild([TreeNode]$child) {
+			$this.Children.Add($child)
+		}
+	}	
+	
+	# Get the treeView element from the window
+	$treeView = $dsWindow.FindName("ScTree")
+
+	# Create a treeRoot node for the treeView
+	$IconSource = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\IconsLight\User_CO_16.png"
+	$treeRoot = [TreeNode]::new("UserRoot", "")
+	$MyScRoot = [TreeNode]::New("My Shortcuts", $IconSource)
+
+	$items = @{}
+	$items = mReadShortCuts
+
+	# Loop through the items and create child nodes for the treeRoot node
+	$global:m_ScCAD.Keys | ForEach-Object{
+		$child = [TreeNode]::new($_, "")
+		
+		# Add the child node to the treeRoot node
+		$MyScRoot.AddChild($child)
+	}
+
+	# add the user shortcuts to the tree's root
+	$treeRoot.AddChild($MyScRoot)
+
+	# Get the tree for distributed shortcuts
+	$IconSource = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\IconsLight\User_Admin_16.png"
+	$DstrbScRoot = [TreeNode]::new("Distributed Shortcuts", $IconSource)
+	
+	#read the distributed shortcuts stored in the Vault
+	$mAdminScXML = [XML]$vault.KnowledgeVaultService.GetVaultOption("AdminShortcuts")
+	if ($null -ne $mAdminScXML) {
+		$Global:m_AdmSc = @{}
+		
+		if ($mAdminScXML.AdminShortcuts.ChildNodes.Count -gt 0) {
+
+			foreach ($Node in $mAdminScXML.AdminShortcuts.ChildNodes) {
+				mAddTreeNode $Node $DstrbScRoot
+			}			 
+		}		
+	}
+	
+	#add the distributed shortcuts to the tree's root
+	$treeRoot.AddChild($DstrbScRoot)
+	
+	#bind the tree items to the treeview
+	$treeView.ItemsSource = $treeRoot.Children
+	
+}
+
+function mAddTreeNode($XmlNode, $TreeLevel) {
+	if ($XmlNode.LocalName -eq "Shortcut") {
+		if (($XmlNode.NavigationContextType -eq "Connectivity.Explorer.Document.DocFolder") -and ($XmlNode.NavigationContext.URI -like "*"+$global:CAx_Root + "/*")) {
+			#add the shortcut to the dictionary for instant read on selection change
+			$Global:m_AdmSc.Add($XmlNode.Name, $XmlNode.NavigationContext.URI)				
+			#create a tree node
+			$IconSource = "" #toDo fill with image
+			$child = [TreeNode]::new($XmlNode.Name, $IconSource)
+			$TreeLevel.AddChild($child)
+		}
+	}
+	if ($XmlNode.LocalName -eq "ShortcutGroup") {
+		$IconSource = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\IconsLight\FolderClosedMask_16.png"
+		if ($XmlNode.HasChildNodes -eq $true) {
+			$NextLevel = [TreeNode]::new($XmlNode.Name, $IconSource)
+			$XmlNode.ChildNodes | ForEach-Object {
+				mAddTreeNode -XmlNode $_ -TreeLevel $NextLevel
+			}
+			$child = $NextLevel
+		}
+		else{
+			$child = [TreeNode]::new($XmlNode.Name, $IconSource)
+		}
+		#add the group to the tree		
+		$TreeLevel.AddChild($child)
+	}
+}
