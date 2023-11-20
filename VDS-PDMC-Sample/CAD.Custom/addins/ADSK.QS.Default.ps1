@@ -740,6 +740,19 @@ function mReadShortCuts {
 	}
 }
 
+function mReadUserShortcuts {
+	$m_Server = ($VaultConnection.Server).Replace(":", "_").Replace("/", "_")
+	$m_Vault = $VaultConnection.Vault
+	$m_Path = "$($env:appdata)\Autodesk\VaultCommon\Servers\Services_Security_01_10_2023\$($m_Server)\Vaults\$($m_Vault)\Objects\"
+	$global:mScFile = $m_Path + "Shortcuts.xml"
+	if (Test-Path $global:mScFile) {
+		#$dsDiag.Trace(">> Start reading Shortcuts...")
+		$global:m_ScXML = New-Object XML 
+		$global:m_ScXML.Load($mScFile)
+	}
+	return $global:m_ScXML
+}
+
 function mScClick {
 	try {
 		$_key = $dsWindow.FindName("lstBoxShortCuts").SelectedValue
@@ -769,8 +782,8 @@ function mScClick {
 function  mClickScTreeItem {
 	try {
 		$_key = $dsWindow.FindName("ScTree").SelectedItem.Name
-		if ($Global:m_AdmSc.ContainsKey($_key)) {
-			$_Val = $Global:m_AdmSc.get_item($_key)
+		if ($Global:m_ScDict.ContainsKey($_key)) {
+			$_Val = $Global:m_ScDict.get_item($_key)
 			$_SPath = @()
 			$_SPath = $_Val.Split("/")
 	
@@ -798,6 +811,7 @@ function mAddSc {
 		$mNewScName = $dsWindow.FindName("txtNewShortCut").Text
 		mAddShortCutByName ($mNewScName)
 		$dsWindow.FindName("lstBoxShortCuts").ItemsSource = mReadShortCuts
+		mFillMyScTree
 	}
 	catch {}
 }
@@ -807,6 +821,7 @@ function mRemoveSc {
 		$_key = $dsWindow.FindName("lstBoxShortCuts").SelectedValue
 		mRemoveShortCutByName $_key
 		$dsWindow.FindName("lstBoxShortCuts").ItemsSource = mReadShortCuts
+		mFillMyScTree
 	}
 	catch { }
 }
@@ -1036,6 +1051,9 @@ function mFillMyScTree {
 		}
 	}	
 	
+	#create a dictionary saving shortcut name and URI
+	$Global:m_ScDict = @{}
+
 	# Get the treeView element from the window
 	$treeView = $dsWindow.FindName("ScTree")
 
@@ -1044,15 +1062,14 @@ function mFillMyScTree {
 	$treeRoot = [TreeNode]::new("UserRoot", "")
 	$MyScRoot = [TreeNode]::New("My Shortcuts", $IconSource)
 
-	$items = @{}
-	$items = mReadShortCuts
-
-	# Loop through the items and create child nodes for the treeRoot node
-	$global:m_ScCAD.Keys | ForEach-Object{
-		$child = [TreeNode]::new($_, "")
-		
-		# Add the child node to the treeRoot node
-		$MyScRoot.AddChild($child)
+	#read the user shortcuts stored in appdata
+	[XML]$mUserScXML = mReadUserShortcuts
+	if ($null -ne $mUserScXML) {
+		if ($mUserScXML.Shortcuts.ChildNodes.Count -gt 0) {
+			foreach ($Node in $mUserScXML.Shortcuts.ChildNodes) {
+				mAddTreeNode $Node $MyScRoot
+			}
+		}
 	}
 
 	# add the user shortcuts to the tree's root
@@ -1064,9 +1081,7 @@ function mFillMyScTree {
 
 	#read the distributed shortcuts stored in the Vault
 	$mAdminScXML = [XML]$vault.KnowledgeVaultService.GetVaultOption("AdminShortcuts")
-	if ($null -ne $mAdminScXML) {
-		$Global:m_AdmSc = @{}
-		
+	if ($null -ne $mAdminScXML) {		
 		if ($mAdminScXML.AdminShortcuts.ChildNodes.Count -gt 0) {
 
 			foreach ($Node in $mAdminScXML.AdminShortcuts.ChildNodes) {
@@ -1092,7 +1107,7 @@ function mAddTreeNode($XmlNode, $TreeLevel) {
 	if ($XmlNode.LocalName -eq "Shortcut") {
 		if (($XmlNode.NavigationContextType -eq "Connectivity.Explorer.Document.DocFolder") -and ($XmlNode.NavigationContext.URI -like "*"+$global:CAx_Root + "/*")) {
 			#add the shortcut to the dictionary for instant read on selection change
-			$Global:m_AdmSc.Add($XmlNode.Name, $XmlNode.NavigationContext.URI)				
+			$Global:m_ScDict.Add($XmlNode.Name, $XmlNode.NavigationContext.URI)				
 			#create a tree node
 			$IconSource = mGetIconSource($XmlNode.ImageMetaData)
 			$child = [TreeNode]::new($XmlNode.Name, $IconSource)
