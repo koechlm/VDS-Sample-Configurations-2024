@@ -125,6 +125,7 @@ function InitializeWindow {
 					}
 					InitializeInventorCategory
 					InitializeInventorNumSchm
+					
 					If ($dsWindow.FindName("lstBoxShortCuts")) {
 						$dsWindow.FindName("lstBoxShortCuts").add_SelectionChanged({
 								mScClick
@@ -765,6 +766,33 @@ function mScClick {
 	
 }
 
+function  mClickScTreeItem {
+	try {
+		$_key = $dsWindow.FindName("ScTree").SelectedItem.Name
+		if ($Global:m_AdmSc.ContainsKey($_key)) {
+			$_Val = $Global:m_AdmSc.get_item($_key)
+			$_SPath = @()
+			$_SPath = $_Val.Split("/")
+	
+			$m_DesignPathNames = $null
+			[System.Collections.ArrayList]$m_DesignPathNames = @()
+			#differentiate AutoCAD and Inventor: AutoCAD is able to start in $, but Inventor starts in it's mandatory Workspace folder (IPJ)
+			IF ($dsWindow.Name -eq "InventorWindow") { $indexStart = 2 }
+			If ($dsWindow.Name -eq "AutoCADWindow") { $indexStart = 1 }
+			for ($index = $indexStart; $index -lt $_SPath.Count; $index++) {
+				$m_DesignPathNames += $_SPath[$index]
+			}
+			if ($m_DesignPathNames.Count -eq 1) { $m_DesignPathNames += "." }
+			mActivateBreadCrumbCmbs $m_DesignPathNames
+			$global:expandBreadCrumb = $true
+		}
+	}
+	catch {
+		$dsDiag.Trace("mScClick function - error reading selected value")
+	}
+	
+}
+
 function mAddSc {
 	try {
 		$mNewScName = $dsWindow.FindName("txtNewShortCut").Text
@@ -1033,7 +1061,7 @@ function mFillMyScTree {
 	# Get the tree for distributed shortcuts
 	$IconSource = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\User_Admin_16.png"
 	$DstrbScRoot = [TreeNode]::new("Distributed Shortcuts", $IconSource)
-	$dsDiag.Inspect("IconSource")
+
 	#read the distributed shortcuts stored in the Vault
 	$mAdminScXML = [XML]$vault.KnowledgeVaultService.GetVaultOption("AdminShortcuts")
 	if ($null -ne $mAdminScXML) {
@@ -1052,6 +1080,11 @@ function mFillMyScTree {
 	
 	#bind the tree items to the treeview
 	$treeView.ItemsSource = $treeRoot.Children
+
+	#enable the click event on tree items
+	$dsWindow.FindName("ScTree").add_SelectedItemChanged({
+		mClickScTreeItem
+	})
 	
 }
 
@@ -1061,7 +1094,7 @@ function mAddTreeNode($XmlNode, $TreeLevel) {
 			#add the shortcut to the dictionary for instant read on selection change
 			$Global:m_AdmSc.Add($XmlNode.Name, $XmlNode.NavigationContext.URI)				
 			#create a tree node
-			$IconSource = "" #toDo fill with image
+			$IconSource = mGetIconSource($XmlNode.ImageMetaData)
 			$child = [TreeNode]::new($XmlNode.Name, $IconSource)
 			$TreeLevel.AddChild($child)
 		}
@@ -1082,3 +1115,84 @@ function mAddTreeNode($XmlNode, $TreeLevel) {
 		$TreeLevel.AddChild($child)
 	}
 }
+
+function mGetIconSource {
+	param (
+		$ImageMetaData
+	)
+
+	[string]$ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\Unknown_16x16.png"
+
+	if ($ImageMetaData -like "*.iam?*") {
+		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\IAM_16x16.png" 
+	}
+	if ($ImageMetaData -like'*.ipt?*') {
+		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\IPT_16x16.png"
+	}
+	if ($ImageMetaData -like'*.ipn?*') {
+		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\IPN_16x16.png"
+	}
+	if ($ImageMetaData -like "*.idw?*") {
+		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\IDW_16x16.png"
+	}
+	if ($ImageMetaData -like'*.dwg?*') {
+		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\DWG_16x16.png"
+	}
+	if ($ImageMetaData -like '*TAG=Folder*') {
+		$FolderTemplate = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\FolderToRecolor_16.png"
+		#extract ARGB part of ImageMetaData
+		$ARGB = [Regex]::Matches($ImageMetaData, "\[A\=\d{1,3}, R\=\d{1,3}, G\=\d{1,3}, B\=\d{1,3}\]")[0].Value.TrimStart("[").TrimEnd(']')
+		#create string array for ARGB values
+		$ARGBValues = [Regex]::Matches($ARGB, "\d{1,3}")
+		#build file name for recolored image
+		$FlrdArgbName = "$($env:appdata)\Autodesk\DataStandard 2024\FolderColored-$($ARGBValues[0].Value)-$($ARGBValues[1].Value)-$($ARGBValues[2].Value)-$($ARGBValues[3].Value)_16.png"		
+		#check if file exists and create it if it doesn't
+		if (Test-Path $FlrdArgbName)
+		{
+			return $ImagePath = $FlrdArgbName
+		}
+		else {
+			#create a folder image with the ARGB values applied
+			$ImageRecolored = mReplaceColor -ImagePath $FolderTemplate -OldColor ([System.Drawing.Color]::FromArgb(255,255,0,0)) -NewColor ([System.Drawing.Color]::FromArgb($ARGBValues[0].Value, $ARGBValues[1].Value, $ARGBValues[2].Value, $ARGBValues[3].Value))
+			#save the recolored image the the user's temp folder
+			$ImageRecolored.Save($FlrdArgbName)
+			$ImageRecolored.Dispose()
+			return $FlrdArgbName
+		}	}	
+	
+	return $ImagePath
+}
+
+function mReplaceColor {
+    param (
+      [string]$ImagePath,
+      [System.Drawing.Color]$OldColor,
+      [System.Drawing.Color]$NewColor
+    )
+  
+    # Load the image from the file
+    $Image = [System.Drawing.Image]::FromFile($ImagePath)
+  
+    # Create a new bitmap object with the same size as the image
+    $Bitmap = New-Object System.Drawing.Bitmap($Image.Width, $Image.Height)
+  
+    # Loop through each pixel of the image
+    for ($x = 0; $x -lt $Image.Width; $x++) {
+      for ($y = 0; $y -lt $Image.Height; $y++) {
+  
+        # Check if the color matches the old color and replace in case
+        $PixelColor = $Image.GetPixel($x, $y)
+        if ($PixelColor.Name -eq $OldColor.Name) {  
+          $Bitmap.SetPixel($x, $y, $NewColor)
+        }
+        else {  
+          # keep the original color
+          $Bitmap.SetPixel($x, $y, $PixelColor)
+        }
+      }
+    }
+  
+    # Dispose the image object and return the new bitmap
+    $Image.Dispose()
+    return $Bitmap
+  }
