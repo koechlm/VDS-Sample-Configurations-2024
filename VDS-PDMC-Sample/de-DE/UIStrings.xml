@@ -298,7 +298,7 @@
   <UIString ID="MSDCE_LBL88">Verknüpfungen</UIString>
   <UIString ID="MSDCE_BTN2">Aktivieren</UIString>
   <UIString ID="MSDCE_BTN3">Löschen</UIString>
-  <UIString ID="MSDCE_TT20">Verknüpfung erstellen</UIString>
+  <UIString ID="MSDCE_TT20">Verknüpfung erstellen (Meine...)</UIString>
   <UIString ID="MSDCE_TT23">Klicken zum Aktivieren / Löschen über Kontextmenü</UIString>
   <!--VDS-PDMC-Sample ShortCut Pane end-->
 

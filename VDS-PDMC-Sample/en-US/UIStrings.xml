@@ -300,7 +300,7 @@
   <UIString ID="MSDCE_LBL88">Shortcuts</UIString>
   <UIString ID="MSDCE_BTN2">Activate</UIString>
   <UIString ID="MSDCE_BTN3">Delete</UIString>
-  <UIString ID="MSDCE_TT20">Create Shortcut</UIString>
+  <UIString ID="MSDCE_TT20">Create User Shortcut (My...)</UIString>
   <UIString ID="MSDCE_TT23">Click to activate / Rightclick to delete</UIString>
   <!--VDS-PDMC-Sample ShortCut Pane end-->
 
