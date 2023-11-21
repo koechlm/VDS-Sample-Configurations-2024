@@ -335,6 +335,7 @@
             </Style>
             <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource ThemedBaseControlStyle}">
                 <Setter Property="IsExpanded" Value="True" />
+                <Setter Property="Margin" Value="0,2" />
             </Style>
         </ResourceDictionary>
     </WPF:DSWindow.Resources>
@@ -716,24 +717,13 @@
                         Command="{Binding PsCmd[mAddSc]}">
                         <Image x:Name="btnNewScImg" Style="{StaticResource btnScImage}"/>
                     </Button>
-                    <ListBox x:Name="lstBoxShortCuts" Grid.Row="1" MinWidth="180" Margin="0" ItemsSource="{Binding PsVal[mReadShortCuts]}" ToolTip="{Binding UIString[MSDCE_TT23]}"  
-                        MaxWidth="300" Grid.ColumnSpan="2" DisplayMemberPath="Key" SelectedValuePath="Key" IsSynchronizedWithCurrentItem="False" d:IsHidden="True" >
-                        <ListBox.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Header="{Binding UIString[MSDCE_BTN3], FallbackValue=Activate}" Command="{Binding PsCmd[mRemoveSc]}">
-                                    <MenuItem.Icon>
-                                        <Image Source="C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\cancel.ico" />
-                                    </MenuItem.Icon>
-                                </MenuItem>
-                            </ContextMenu>
-                        </ListBox.ContextMenu>
-                    </ListBox>
                     <TreeView x:Name="ScTree" Grid.Row="1" MinWidth="180" Grid.ColumnSpan="2" SelectedValuePath="Key">
                         <TreeView.ItemTemplate>
                             <HierarchicalDataTemplate x:Name="UserRoot" ItemsSource="{Binding Children}" >
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                    <Image HorizontalAlignment="Left" Width="16" Height="16" Source="{Binding IconSource}" Stretch="UniformToFill" />
-                                    <TextBlock Text="{Binding Name}" Margin="5,0,0,0" />
+                                    <Image HorizontalAlignment="Left" Width="16" Height="16" Source="{Binding IconSource}" />
+                                    <TextBlock Text="{Binding Name}" Margin="5,0,0,0" >
+                                    </TextBlock>
                                 </StackPanel>
                             </HierarchicalDataTemplate>
                         </TreeView.ItemTemplate>

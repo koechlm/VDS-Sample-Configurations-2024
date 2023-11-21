@@ -125,13 +125,6 @@ function InitializeWindow {
 					}
 					InitializeInventorCategory
 					InitializeInventorNumSchm
-					
-					If ($dsWindow.FindName("lstBoxShortCuts")) {
-						$dsWindow.FindName("lstBoxShortCuts").add_SelectionChanged({
-								mScClick
-							})
-					}
-
 					#Initialize Shortcuts
 					mFillMyScTree
 
@@ -342,11 +335,6 @@ function InitializeWindow {
 					}
 					#endregion FDU Support ---------------
 
-					If ($dsWindow.FindName("lstBoxShortCuts")) {
-						$dsWindow.FindName("lstBoxShortCuts").add_SelectionChanged({
-								mScClick
-							})
-					}
 
 					If ($Prop["_CopyMode"].value -eq $true) {
 						#add property reset or other action that apply for AutoCAD only here; there is a _CopyMode section before the switch for Windows.
@@ -753,31 +741,6 @@ function mReadUserShortcuts {
 	return $global:m_ScXML
 }
 
-function mScClick {
-	try {
-		$_key = $dsWindow.FindName("lstBoxShortCuts").SelectedValue
-		$_Val = $global:m_ScCAD.get_item($_key)
-		$_SPath = @()
-		$_SPath = $_Val.Split("/")
-
-		$m_DesignPathNames = $null
-		[System.Collections.ArrayList]$m_DesignPathNames = @()
-		#differentiate AutoCAD and Inventor: AutoCAD is able to start in $, but Inventor starts in it's mandatory Workspace folder (IPJ)
-		IF ($dsWindow.Name -eq "InventorWindow") { $indexStart = 2 }
-		If ($dsWindow.Name -eq "AutoCADWindow") { $indexStart = 1 }
-		for ($index = $indexStart; $index -lt $_SPath.Count; $index++) {
-			$m_DesignPathNames += $_SPath[$index]
-		}
-		if ($m_DesignPathNames.Count -eq 1) { $m_DesignPathNames += "." }
-		mActivateBreadCrumbCmbs $m_DesignPathNames
-		$global:expandBreadCrumb = $true
-		#$dsWindow.FindName("lstBoxShortCuts").SelectedItem = $null
-	}
-	catch {
-		$dsDiag.Trace("mScClick function - error reading selected value")
-	}
-	
-}
 
 function  mClickScTreeItem {
 	try {
@@ -801,7 +764,7 @@ function  mClickScTreeItem {
 		}
 	}
 	catch {
-		$dsDiag.Trace("mScClick function - error reading selected value")
+		$dsDiag.Trace("mClickScTreeItem function - error reading selected value")
 	}
 	
 }
@@ -809,8 +772,8 @@ function  mClickScTreeItem {
 function mAddSc {
 	try {
 		$mNewScName = $dsWindow.FindName("txtNewShortCut").Text
-		mAddShortCutByName ($mNewScName)
-		$dsWindow.FindName("lstBoxShortCuts").ItemsSource = mReadShortCuts
+		mAddShortCutByName ($mNewScName)		
+		#rebuild the tree view to include the new shortcut
 		mFillMyScTree
 	}
 	catch {}
@@ -820,7 +783,7 @@ function mRemoveSc {
 	try {
 		$_key = $dsWindow.FindName("lstBoxShortCuts").SelectedValue
 		mRemoveShortCutByName $_key
-		$dsWindow.FindName("lstBoxShortCuts").ItemsSource = mReadShortCuts
+		#rebuild the tree view to include the new shortcut
 		mFillMyScTree
 	}
 	catch { }
@@ -1136,31 +1099,31 @@ function mGetIconSource {
 		$ImageMetaData
 	)
 
-	[string]$ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\Unknown_16x16.png"
+	[string]$ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\Unknown_Sc_16x16.png"
 
 	if ($ImageMetaData -like "*.iam?*") {
-		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\IAM_16x16.png" 
+		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\IAM_Sc_16x16.png" 
 	}
 	if ($ImageMetaData -like'*.ipt?*') {
-		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\IPT_16x16.png"
+		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\IPT_Sc_16x16.png"
 	}
 	if ($ImageMetaData -like'*.ipn?*') {
-		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\IPN_16x16.png"
+		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\IPN_Sc_16x16.png"
 	}
 	if ($ImageMetaData -like "*.idw?*") {
-		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\IDW_16x16.png"
+		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\IDW_Sc_16x16.png"
 	}
 	if ($ImageMetaData -like'*.dwg?*') {
-		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\DWG_16x16.png"
+		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\DWG_Sc_16x16.png"
 	}
 	if ($ImageMetaData -like '*TAG=Folder*') {
-		$FolderTemplate = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\FolderToRecolor_16.png"
+		$FolderTemplate = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\FolderScToRecolor_16.png"
 		#extract ARGB part of ImageMetaData
 		$ARGB = [Regex]::Matches($ImageMetaData, "\[A\=\d{1,3}, R\=\d{1,3}, G\=\d{1,3}, B\=\d{1,3}\]")[0].Value.TrimStart("[").TrimEnd(']')
 		#create string array for ARGB values
 		$ARGBValues = [Regex]::Matches($ARGB, "\d{1,3}")
 		#build file name for recolored image
-		$FlrdArgbName = "$($env:appdata)\Autodesk\DataStandard 2024\FolderColored-$($ARGBValues[0].Value)-$($ARGBValues[1].Value)-$($ARGBValues[2].Value)-$($ARGBValues[3].Value)_16.png"		
+		$FlrdArgbName = "$($env:appdata)\Autodesk\DataStandard 2024\FolderScColored-$($ARGBValues[0].Value)-$($ARGBValues[1].Value)-$($ARGBValues[2].Value)-$($ARGBValues[3].Value)_16.png"		
 		#check if file exists and create it if it doesn't
 		if (Test-Path $FlrdArgbName)
 		{
