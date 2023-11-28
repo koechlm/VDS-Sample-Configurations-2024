@@ -300,6 +300,7 @@
   <UIString ID="MSDCE_BTN3">Löschen</UIString>
   <UIString ID="MSDCE_TT20">Verknüpfung erstellen (Meine...)</UIString>
   <UIString ID="MSDCE_TT23">Klicken zum Aktivieren / Löschen über Kontextmenü</UIString>
+  <UIString ID="ADSK.TS.SC.MSG01">Möchten Sie diese Verknüpfung wirklich löschen?</UIString>
   <!--VDS-PDMC-Sample ShortCut Pane end-->
 
   <!--VDS-PDMC-Sample Multitab Dialogs-->

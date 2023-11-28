@@ -277,13 +277,14 @@
   <UIString ID="ADSK.QS.MSG.01">Haben Sie sich abgemeldet, um an anderen Vault und/oder Server an zu melden? Wenn ja, starten sie Vault Explorer statt dessen neu und melden sich anschliessend an!</UIString>
   <!--VDS Sample Help And Documentation end-->
 
-  <!--VDS Sample ShortCut Pane-->
+  <!--VDS-PDMC-Sample ShortCut Pane-->
   <UIString ID="MSDCE_LBL88">Verknüpfungen</UIString>
   <UIString ID="MSDCE_BTN2">Aktivieren</UIString>
   <UIString ID="MSDCE_BTN3">Löschen</UIString>
-  <UIString ID="MSDCE_TT20">Verknüpfung erstellen</UIString>
+  <UIString ID="MSDCE_TT20">Verknüpfung erstellen (Meine...)</UIString>
   <UIString ID="MSDCE_TT23">Klicken zum Aktivieren / Löschen über Kontextmenü</UIString>
-  <!--VDS Sample ShortCut Pane end-->
+  <UIString ID="ADSK.TS.SC.MSG01">Möchten Sie diese Verknüpfung wirklich löschen?</UIString>
+  <!--VDS-PDMC-Sample ShortCut Pane end-->
 
   <!--VDS Sample Vault Folder Browser-->
   <UIString ID="ADSK.VLT.FLD.BRWSR_TT">Vault Ordner Browser zur Auswahl in Baumstruktur ... </UIString>
