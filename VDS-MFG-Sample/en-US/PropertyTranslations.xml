@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PropertyTranslations LanguageCode="en-US">
+  <PropertyTranslation Name="AUTHOR">Author</PropertyTranslation>
   <PropertyTranslation Name="NAME">Name</PropertyTranslation>
   <PropertyTranslation Name="TITLE">Title</PropertyTranslation>
   <PropertyTranslation Name="DESCRIPTION">Description</PropertyTranslation>
@@ -18,8 +19,8 @@
   <PropertyTranslation Name="DATE VERSION CREATED">Date Version Created</PropertyTranslation>
 
   <!--VDS Sample start-->
-  <PropertyTranslation Name="SUBJECT">Subject</PropertyTranslation>
-  <PropertyTranslation Name="AUTHOR">Author</PropertyTranslation>
+  <PropertyTranslation Name="DESIGNER">Designer</PropertyTranslation>
+  <PropertyTranslation Name="SUBJECT">Subject</PropertyTranslation>  
   <PropertyTranslation Name="PARTNUMBER">Part Number</PropertyTranslation>
   <PropertyTranslation Name="SEMIFINISHED">Semi-finished</PropertyTranslation>
   <PropertyTranslation Name="SPAREPART">Spare/Wear Part</PropertyTranslation>

@@ -138,15 +138,13 @@ function InitializeWindow
 				}
 			}
 
-			#region VDS-PDMC-Sample to get category from selected template
-			#$dsWindow.FindName("DocTypeCombo").add_SelectionChanged({
-			#		mResetTemplates #no longer required starting 2022.1?
-			#	})
-
 			$dsWindow.FindName("TemplateCB").add_SelectionChanged({
 				#update the category = selected template's category
 				m_TemplateChanged
 			})
+
+			
+			#region VDS-PDMC-Sample
 
 			if($dsWindow.FindName("tabItemProperties")) { mInitializeTabItemProps}
 
@@ -894,19 +892,15 @@ function ItemDescription
 
  
 function m_TemplateChanged {
-	#$dsDiag.Trace(">> Template Changed ...")
 	
 	#check if cmbTemplates is empty
 	if ($dsWindow.FindName("TemplateCB").ItemsSource.Count -lt 1)
 	{
-		#$dsDiag.Trace("Template changed exits due to missing templates")
 		return
 	}
-
 	$mContext = $dsWindow.DataContext
 	$mTemplatePath = $mContext.TemplatePath
 	$mTemplateFile = $mContext.SelectedTemplate.Name
-	$mTemplate = $mTemplatePath + "/" + $mTemplateFile
 	$mFolder = $vault.DocumentService.GetFolderByPath($mTemplatePath)
 	$mFiles = $vault.DocumentService.GetLatestFilesByFolderId($mFolder.Id,$false)
 	$mTemplateFile = $mFiles | Where-Object { $_.Name -eq $mTemplateFile }
@@ -936,9 +930,11 @@ function m_CategoryChanged
 	{
 		"FileWindow"
 		{
+			#VDS-PDMC-Sample uses the default numbering scheme for files; GoTo GetNumSchms function to disable this filter incase you'd like to apply numbering per category for files as well
+
+			# write current user name to designer/author fields depending on the category
 			$DesignCats = @("Drawing Inventor", "Drawing AutoCAD", "Part", "Assembly", "Weldment Assembly", "Sheet Metal Part")
 			$OfficeCats = @("Office")
-			#VDS-PDMC-Sample uses the default numbering scheme for files; GoTo GetNumSchms function to disable this filter incase you'd like to apply numbering per category for files as well
 			If($DesignCats -contains $Prop["_Category"].Value)
 			{
 				If ($Prop['_XLTN_DESIGNER'].Value -eq $null) 
