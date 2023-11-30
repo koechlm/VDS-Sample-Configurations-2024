@@ -79,7 +79,7 @@ function FileNameCustomValidation {
 
 function FindFile($fileName) {
     $filePropDefs = $vault.PropertyService.GetPropertyDefinitionsByEntityClassId("FILE")
-    $fileNamePropDef = $filePropDefs | where { $_.SysName -eq "ClientFileName" }
+    $fileNamePropDef = $filePropDefs | Where-Object { $_.SysName -eq "ClientFileName" }
     $srchCond = New-Object 'Autodesk.Connectivity.WebServices.SrchCond'
     $srchCond.PropDefId = $fileNamePropDef.Id
     $srchCond.PropTyp = "SingleProperty"
@@ -90,10 +90,10 @@ function FindFile($fileName) {
     $bookmark = ""
     $status = $null
     $totalResults = @()
-    while ($status -eq $null -or $totalResults.Count -lt $status.TotalHits) {
+    while ($null -eq $status -or $totalResults.Count -lt $status.TotalHits) {
         $results = $vault.DocumentService.FindFilesBySearchConditions(@($srchCond), $null, $null, $false, $true, [ref]$bookmark, [ref]$status)
 
-        if ($results -ne $null) {
+        if ($null -ne $results) {
             $totalResults += $results
         }
         else { break }

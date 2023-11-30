@@ -34,17 +34,17 @@ function Validate
 	{
 		"FileWindow"
 		{
-			foreach ($func in dir function:ValidateFile*) { if(!(&$func)) { return $false } }
+			foreach ($func in Get-ChildItem function:ValidateFile*) { if(!(&$func)) { return $false } }
 			return $true
 		}
 		"FolderWindow"
 		{
-			foreach ($func in dir function:ValidateFolder*) { if(!(&$func)) { return $false } }
+			foreach ($func in Get-ChildItem function:ValidateFolder*) { if(!(&$func)) { return $false } }
 			return $true
 		}
 		"CustomObjectWindow"
 		{
-			foreach ($func in dir function:ValidateCustomObject*) { if(!(&$func)) { return $false } }
+			foreach ($func in Get-ChildItem function:ValidateCustomObject*) { if(!(&$func)) { return $false } }
 			return $true
 		}
 		default { return $true }
@@ -126,7 +126,7 @@ function InitializeWindow
 			#region VDS MFG Sample - for imported folders easily set title to folder name on edit
 			If ($Prop["_EditMode"].Value) {
 				If ($Prop["_XLTN_TITLE"]){
-					IF ($Prop["_XLTN_TITLE"].Value -eq $null) {
+					IF ($null -eq $Prop["_XLTN_TITLE"].Value) {
 						$Prop["_XLTN_TITLE"].Value = $Prop["Name"].Value
 					}
 				}
@@ -231,7 +231,7 @@ function InitializeNumSchm()
     $Prop["_Category"].add_PropertyChanged({
         if ($_.PropertyName -eq "Value")
         {
-            $numSchm = $numSchems | where {$_.Name -eq $Prop["_Category"].Value}
+            $numSchm = $numSchems | Where-Object {$_.Name -eq $Prop["_Category"].Value}
             if($numSchm)
 			{
                 $Prop["_NumSchm"].Value = $numSchm.Name
@@ -360,35 +360,7 @@ function OnTabContextChanged
 		$assocFiles = @(GetAssociatedFiles $itemids $([System.IO.Path]::GetDirectoryName($VaultContext.UserControl.XamlFile)))
 		$dsWindow.FindName("AssoicatedFiles").ItemsSource = $assocFiles
 	}
-	if ($VaultContext.SelectedObject.TypeId.SelectionContext -eq "ItemMaster" -and $xamlFile -eq "ADSK.QS.ItemEdit.xaml")
-	{
-		$items = $vault.ItemService.GetItemsByIds(@($vaultContext.SelectedObject.Id))
-		$item = $items[0]
-		$itemids = @($item.Id)
-		$mItemEditable = mItemEditable($itemids) #note - checks the current state to activate buttons, but this might change over time; therefore the state is local
-	}
-	
-	if ($VaultContext.SelectedObject.TypeId.SelectionContext -eq "ChangeOrder" -and $xamlFile -eq "ADSK.QS.EcoEdit.xaml")
-	{
-		$number=$vaultContext.SelectedObject.Label
-		$mECO = $vault.ChangeOrderService.GetChangeOrderByNumber($number)
-		$mEcoEditable = mEcoEditable($mECO.Id) #note - checks the current state to activate buttons, but this might change over time; therefore the state is local
-	}
 
-	#region derivation tree
-	if ($VaultContext.SelectedObject.TypeId.SelectionContext -eq "FileMaster" -and $xamlFile -eq "ADSK.QS.DerivationTree.xaml")
-	{
-		if($dsWindow.FindName("chkAutoUpdate").IsChecked)
-		{
-			mDerivationTreeUpdateView #$vaultContext.SelectedObject.Id
-			$dsWindow.FindName("btnUpdate").IsEnabled = $false
-		}
-		if($dsWindow.FindName("chkAutoUpdate").IsChecked -eq $false)
-		{ 
-			mDerivationTreeResetView
-		}
-	}
-	#endregion derivation tree
 }
 
 function GetNewCustomObjectName
@@ -443,7 +415,7 @@ function GetNewFileName
 		$fileName = $Prop["_GeneratedNumber"].Value
 		#$dsDiag.Trace("fileName = $fileName")
 		#VDS-MFG-Sample: write new number or keep user override
-			If($Prop["_XLTN_PARTNUMBER"] -and ([string]::IsNullOrEmpty($Prop["_XLTN_PARTNUMBER"].Value)) 
+			If($Prop["_XLTN_PARTNUMBER"] -and ([string]::IsNullOrEmpty($Prop["_XLTN_PARTNUMBER"].Value)))
 			{ 
 				$Prop["_XLTN_PARTNUMBER"].Value = $Prop["_GeneratedNumber"].Value
 			}
@@ -515,7 +487,7 @@ function GetNumSchms
 				$mWindowName = $dsWindow.Name
 				switch ($mWindowName) {
 					"FileWindow" {
-						$_FilteredNumSchems = $numSchems | Where { $_.IsDflt -eq $true }
+						$_FilteredNumSchems = $numSchems | Where-Object { $_.IsDflt -eq $true }
 						$Prop["_NumSchm"].Value = $_FilteredNumSchems[0].Name
 						$dsWindow.FindName("NumSchms").IsEnabled = $false
 						return $_FilteredNumSchems
@@ -527,7 +499,7 @@ function GetNumSchms
 						$_FolderCats = $vault.CategoryService.GetCategoriesByEntityClassId("FLDR", $true)
 						$_FilteredNumSchems = @()
 						Foreach ($item in $_FolderCats) {
-							$_temp = $numSchems | Where { $_.Name -eq $item.Name }
+							$_temp = $numSchems | Where-Object { $_.Name -eq $item.Name }
 							$_FilteredNumSchems += ($_temp)
 						}
 						#we need an option to unselect a previosly selected numbering; to achieve that we add a virtual one, named "None"
@@ -539,7 +511,7 @@ function GetNumSchms
 					}
 
 					"CustomObjectWindow" {
-						$_FilteredNumSchems = $numSchems | Where { $_.Name -eq $Prop["_Category"].Value }
+						$_FilteredNumSchems = $numSchems | Where-Object { $_.Name -eq $Prop["_Category"].Value }
 						return $_FilteredNumSchems
 					}
 
@@ -736,7 +708,10 @@ function mHelp ([Int] $mHContext) {
 			}
 		}
 		$mHelpTarget = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\HelpFiles\"+$mHPage
-		$mhelpfile = Invoke-Item $mHelpTarget 
+		$mhelpfile = Invoke-Item $mHelpTarget
+		if (-not $mhelpfile) {
+			[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowError("Help Target not found", "VDS MFG Sample Client")
+		}
 	}
 	Catch
 	{
@@ -774,7 +749,7 @@ function mFldrNameValidation
 function mFindFolder($FolderName, $rootFolder)
 {
 	$FolderPropDefs = $vault.PropertyService.GetPropertyDefinitionsByEntityClassId("FLDR")
-    $FolderNamePropDef = $FolderPropDefs | where {$_.SysName -eq "Name"}
+    $FolderNamePropDef = $FolderPropDefs | Where-Object {$_.SysName -eq "Name"}
     $srchCond = New-Object 'Autodesk.Connectivity.WebServices.SrchCond'
     $srchCond.PropDefId = $FolderNamePropDef.Id
     $srchCond.PropTyp = "SingleProperty"
@@ -785,11 +760,11 @@ function mFindFolder($FolderName, $rootFolder)
     $bookmark = ""
     $status = $null
     $totalResults = @()
-    while ($status -eq $null -or $totalResults.Count -lt $status.TotalHits)
+    while ($null -eq $status -or $totalResults.Count -lt $status.TotalHits)
     {
         $results = $vault.DocumentService.FindFoldersBySearchConditions(@($srchCond),$null, @($rootFolder.Id), $false, [ref]$bookmark, [ref]$status)
 
-        if ($results -ne $null)
+        if ($null -ne $results)
         {
             $totalResults += $results
         }
@@ -808,13 +783,13 @@ function GetTemplateFolders
 
 	$xmldata = [xml](Get-Content $xmlpath)
 
-	[string[]] $folderPath = $xmldata.DocTypeData.DocTypeInfo | foreach { $_.Path }
+	[string[]] $folderPath = $xmldata.DocTypeData.DocTypeInfo | ForEach-Object { $_.Path }
 	$folders = $vault.DocumentService.FindFoldersByPaths($folderPath)
 
-	return $xmldata.DocTypeData.DocTypeInfo | foreach {
+	return $xmldata.DocTypeData.DocTypeInfo | ForEach-Object {
 		$path = $_.Path
-		$folder = $folders | where { $_.FullName -eq $path } | Select -index 0
-		if($folder -eq $null)
+		$folder = $folders | Where-Object { $_.FullName -eq $path } | Select-Object -index 0
+		if($null -eq $folder)
 		{
 			return
 		}
