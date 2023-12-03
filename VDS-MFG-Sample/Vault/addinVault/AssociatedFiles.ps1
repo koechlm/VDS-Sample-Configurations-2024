@@ -24,26 +24,35 @@ function GetAssociatedFiles($itemids, $iconLocation)
 	$secondarysub = [Autodesk.Connectivity.Webservices.ItemFileLnkTypOpt]::SecondarySub
 	$assocFiles = $vault.ItemService.GetItemFileAssociationsByItemIds($itemids, $primary -bor $secondary -bor $tertiary -bor $standard -bor $primarysub -bor $secondarysub)
 	$PropDefs = $vault.PropertyService.GetPropertyDefinitionsByEntityClassId("FILE")
-	$propDefIds = @()
-	$PropDefs | ForEach-Object {
-		$propDefIds += $_.Id
+	$descriptiondef = $PropDefs | Where-Object { $_.SysName -eq "description"}
+	$titledef = $PropDefs | Where-Object { $_.SysName -eq "title"}
+	$propDefIds = $descriptiondef.Id, $titledef.Id
+	$assocFileIds = @()
+	$assocFiles | ForEach-Object{
+		$assocFileIds += $_.CldFileId
 	}
 	$myAssocFiles = @()
+	$files = @()
+	if ($assocFileIds.Count -gt 0 )
+	{
+		$files = $vault.DocumentService.GetFilesByIds($assocFileIds)
+	}
+	[System.Collections.Generic.Dictionary[Int,Object]]$fileDic = @{}
+	$files | ForEach-Object{
+		$fileDic[$_.Id] = $_
+	}
+	$props = $vault.PropertyService.GetProperties("FILE",$assocFileIds,$propDefIds)
 	$assocFiles | ForEach-Object { 
-		$file = $vault.DocumentService.GetFileById($_.CldFileId)
+		$file = $fileDic[$_.CldFileId]
 		$fileext = $([System.IO.Path]::GetExtension($file.Name)).Substring(1)
-		$props = $vault.PropertyService.GetProperties("FILE",@($file.Id),$propDefIds)
 		$myFile = New-Object myAssocFile
 		$myFile.filename = $file.Name
 		$myFile.version = $file.VerNum
 		$myFile.revision = $file.FileRev.Label
-		$titledef = $PropDefs | Where-Object { $_.SysName -eq "title"}
-		$titleprop = $props | Where-Object { $_.PropDefId -eq $titledef.Id}
+		$titleprop = $props | Where-Object { ($file.Id -eq $_.EntityId) -and ($_.PropDefId -eq $titledef.Id)}
 		$myFile.title = $titleprop.Val
-		$descriptiondef = $PropDefs | Where-Object { $_.SysName -eq "description"}
-		$descriptionprop = $props | Where-Object { $_.PropDefId -eq $descriptiondef.Id}
+		$descriptionprop = $props | Where-Object { ($file.Id -eq $_.EntityId) -and ($_.PropDefId -eq $descriptiondef.Id)}
 		$myFile.description = $descriptionprop.Val
-		
 		$path = GetPath $iconLocation $fileext
 		$exists = Test-Path $path
 		if (-not $exists)
@@ -57,7 +66,7 @@ function GetAssociatedFiles($itemids, $iconLocation)
 		$myFile.link = $linkpath
 		$myAssocFiles += $myFile
 	}
-
+	
 	$assocAttachments = $vault.ItemService.GetAttachmentsByItemIds($itemids)
 	$attfileIds =@()
 	$assocAttachments | ForEach-Object {
@@ -67,19 +76,18 @@ function GetAssociatedFiles($itemids, $iconLocation)
 	}
 	if ($attfileIds.Count -gt 0 )
 	{
-		$files = $vault.DocumentService.GetFilesByIds($attfileIds)
-		$files | ForEach-Object {
+		$attFiles = $vault.DocumentService.GetFilesByIds($attfileIds)
+		$attProps = $vault.PropertyService.GetProperties("FILE",$attfileIds,$propDefIds)
+		$attFiles | ForEach-Object {
 			$fileext = $([System.IO.Path]::GetExtension($_.Name)).Substring(1)
-			$props = $vault.PropertyService.GetProperties("FILE",@($_.Id),$propDefIds)
 			$myAttFile = New-Object myAssocFile
 			$myAttFile.filename = $_.Name
 			$myAttFile.version = $_.VerNum
 			$myAttFile.revision = $_.FileRev.Label
-			$titledef = $PropDefs | Where-Object { $_.SysName -eq "title"}
-			$titleprop = $props | Where-Object { $_.PropDefId -eq $titledef.Id}
+			$fileId = $_.Id
+			$titleprop = $attProps | Where-Object { ($fileId -eq $_.EntityId) -and ($_.PropDefId -eq $titledef.Id)}
 			$myAttFile.title = $titleprop.Val
-			$descriptiondef = $PropDefs | Where-Object { $_.SysName -eq "description"}
-			$descriptionprop = $props | Where-Object { $_.PropDefId -eq $descriptiondef.Id}
+			$descriptionprop = $attProps | Where-Object { ($fileId -eq $_.EntityId) -and ($_.PropDefId -eq $descriptiondef.Id)}
 			$myAttFile.description = $descriptionprop.Val
 
 			$path = GetPath $iconLocation $fileext

@@ -82,15 +82,19 @@ function FileNameCustomValidation
         }
         return $true
     }
-    if ($vault.DocumentService.GetUniqueFileNameRequired())
-    {    
-        $result = FindFile -fileName $Prop["_FileName"].Value
-        if ($result)
-        {
-            $Prop["$($propertyName)"].CustomValidationErrorMessage = "$($UIString["VAL13"])"
-            return $false
-        }
-    }
+    #Commented this code to remove unique file name validation from VDS side.
+	#Note: Uncomment of this code could lead to unexpected behavior in scope of File Uniqueness.
+	#Since it looks only for global settings but not for specific like allowed folders/extensions to store/be duplicates.
+	
+    #if ($vault.DocumentService.GetUniqueFileNameRequired())
+    #{    
+    #    $result = FindFile -fileName $Prop["_FileName"].Value
+    #    if ($result)
+    #    {
+    #        $Prop["$($propertyName)"].CustomValidationErrorMessage = "$($UIString["VAL13"])"
+    #        return $false
+    #    }
+    #}
     return $true
 }
 
