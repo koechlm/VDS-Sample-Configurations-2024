@@ -300,8 +300,9 @@
   <UIString ID="MSDCE_LBL88">Shortcuts</UIString>
   <UIString ID="MSDCE_BTN2">Activate</UIString>
   <UIString ID="MSDCE_BTN3">Delete</UIString>
-  <UIString ID="MSDCE_TT20">Create Shortcut</UIString>
+  <UIString ID="MSDCE_TT20">Create User Shortcut (My...)</UIString>
   <UIString ID="MSDCE_TT23">Click to activate / Rightclick to delete</UIString>
+  <UIString ID="ADSK.TS.SC.MSG01">Are you sure you want to delete this shortcut?</UIString>
   <!--VDS-PDMC-Sample ShortCut Pane end-->
 
   <!--VDS-PDMC-Sample Multitab Dialogs-->
@@ -506,6 +507,7 @@
   <UIString ID="ClassTerms_MSG01">You are going to change the selected classification, are you sure?"</UIString>
   <UIString ID="ClassTerms_MSG02">Search result displays {0} out of {1}; refine your search.</UIString>
   <UIString ID="ClassTerms_MSG03">No matching terms found</UIString>
+  <UIString ID="ClassTerms_MSG04">Attention: The result is based on an incomplete index! Contact your Administrator, if you continue seeing this message.</UIString>
   <!--CatalogTermsTranslations End-->
   
   <!--IEC61355 document classification start-->

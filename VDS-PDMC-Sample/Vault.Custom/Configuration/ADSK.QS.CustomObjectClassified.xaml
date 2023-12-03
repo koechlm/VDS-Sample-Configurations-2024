@@ -58,7 +58,7 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate>
-                                    <ComboBox Text="{WPF:ValidatedBinding Value}" IsEditable="True" Margin="4,0,0,0" BorderThickness="0">
+                                    <ComboBox Text="{WPF:ValidatedBinding Value}" BorderThickness="0">
                                         <ComboBoxItem Content="True" />
                                         <ComboBoxItem Content="False" />
                                     </ComboBox>
@@ -320,13 +320,14 @@
                     IsTabStop="False"
                     IsEnabled="{Binding HasItems, RelativeSource={RelativeSource Self}}"
                     Visibility="{Binding NotEditMode, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,1" />
-                <Label x:Name="lblProjectNumber" Grid.Column="0" Content="{Binding UIString[LBL31], FallbackValue=Number}"
+                <Label x:Name="lblNumber" Grid.Column="0" Content="{Binding UIString[LBL31], FallbackValue=Number}"
                    Grid.Row="2" Visibility="{Binding Visibility, ElementName=DSNumSchmsCtrl}" Height="Auto" />
                 <WPF:DSNumSchemeCtrl x:Name="DSNumSchmsCtrl" 
                     IsEnabled="{Binding IsEnabled, ElementName=NumSchms}"
                     Scheme="{Binding SelectedItem, ElementName=NumSchms}"                                 
                     IsTabStop="False"
-                    GeneratedNumberProperty="_GeneratedNumber" Grid.Row="2" Grid.Column="1" Height="Auto" Margin="0,1" />
+                    GeneratedNumberProperty="_GeneratedNumber" Grid.Row="2" Grid.Column="1" Height="Auto" Margin="0,1" 
+                    Visibility="{Binding HasItems, ElementName=NumSchms, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 <Label Content="{Binding UIString[LBL19], FallbackValue=Name}" Grid.Column="0" Grid.Row="3"
                     Visibility="{Binding Visibility, ElementName=CUSTOMOBJECTNAME}" />
                 <TextBox x:Name="CUSTOMOBJECTNAME" Text="{WPF:ValidatedBinding Prop[_CustomObjectName].Value}" Grid.Column="1" Grid.Row="3"

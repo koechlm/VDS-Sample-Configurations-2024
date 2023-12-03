@@ -1,47 +1,68 @@
 # needs to be called from withing Default.ps1 - OnTabContextChanged
 function OnTabContextChanged_Fusion360Manage
 {
-	if ($VaultContext.SelectedObject.TypeId.SelectionContext -eq "ItemMaster" -and $xamlFile -eq "ADSK.TS.ITEM.powerPLM.xaml")
-	{
-		$items = $vault.ItemService.GetItemsByIds(@($vaultContext.SelectedObject.Id))
-		$entity = Get-VaultItem -Number $items[0].ItemNum
-		$flcItem = GetFlcItem "Items" "NUMBER" $entity._Number
-		$dsWindow.FindName("F360MData").DataContext = $flcItem
-		$dsWindow.FindName("VaultData").DataContext = $entity
-
-		if (-not $flcItem) {
-			$dsWindow.FindName("View").Visibility = "Hidden"
-		} else {
-			$dsWindow.FindName("View").Visibility = "Visible"
+	if ($dsWindow.FindName("txtPowerPlmStatusMsg")) {
+			$dsWindow.FindName("txtPowerPlmStatusMsg").Visibility = "Collapsed"
 		}
-	}
-	if ($VaultContext.SelectedObject.TypeId.SelectionContext -eq "FileMaster" -and $xamlFile -eq "ADSK.TS.FILE.powerPLM.xaml")
-	{
-		$fileMasterId = $vaultContext.SelectedObject.Id
-		$entity = Get-VaultFile -FileId $fileMasterId
-		$flcItem = GetFlcItem "Items" "NUMBER" $entity._PartNumber
-		$dsWindow.FindName("F360MData").DataContext = $flcItem
-		$dsWindow.FindName("VaultData").DataContext = $entity
-
-		if (-not $flcItem) {
-			$dsWindow.FindName("View").Visibility = "Hidden"
-		} else {
-			$dsWindow.FindName("View").Visibility = "Visible"
-		}
-	}
-	if ($VaultContext.SelectedObject.TypeId.SelectionContext -eq "ChangeOrder" -and $xamlFile -eq "ADSK.TS.ECO.powerPLM.xaml")
-	{
-		$entity = Get-VaultChangeOrder -ChangeOrderId $vaultContext.SelectedObject.Id
-		$flcItem = GetFlcItem "Change Tasks" "NUMBER" $entity._Number
-		$dsWindow.FindName("F360MData").DataContext = $flcItem
-		$dsWindow.FindName("F360MAffectedItems").ItemsSource = ($flcItem  | Get-FLCItemAssociations -AffectedItems)
 		
-		if (-not $flcItem) {
-			$dsWindow.FindName("View").Visibility = "Hidden"
-		} else {
-			$dsWindow.FindName("View").Visibility = "Visible"
+	Try
+	{
+		if ($VaultContext.SelectedObject.TypeId.SelectionContext -eq "ItemMaster" -and $xamlFile -eq "ADSK.TS.ITEM.powerPLM.xaml")
+		{
+			$items = $vault.ItemService.GetItemsByIds(@($vaultContext.SelectedObject.Id))
+			$entity = Get-VaultItem -Number $items[0].ItemNum
+			$flcItem = GetFlcItem "Items" "NUMBER" $entity._Number
+			$dsWindow.FindName("F360MData").DataContext = $flcItem
+			$dsWindow.FindName("VaultData").DataContext = $entity
+
+			if (-not $flcItem) {
+				$dsWindow.FindName("View").Visibility = "Hidden"
+			} else {
+				$dsWindow.FindName("View").Visibility = "Visible"
+			}
+			return
 		}
+		if ($VaultContext.SelectedObject.TypeId.SelectionContext -eq "FileMaster" -and $xamlFile -eq "ADSK.TS.FILE.powerPLM.xaml")
+		{
+			$fileMasterId = $vaultContext.SelectedObject.Id
+			$entity = Get-VaultFile -FileId $fileMasterId
+			$flcItem = GetFlcItem "Items" "NUMBER" $entity._PartNumber
+			$dsWindow.FindName("F360MData").DataContext = $flcItem
+			$dsWindow.FindName("VaultData").DataContext = $entity
+
+			if (-not $flcItem) {
+				$dsWindow.FindName("View").Visibility = "Hidden"
+			} else {
+				$dsWindow.FindName("View").Visibility = "Visible"
+			}
+			return
+		}
+		if ($VaultContext.SelectedObject.TypeId.SelectionContext -eq "ChangeOrder" -and $xamlFile -eq "ADSK.TS.ECO.powerPLM.xaml")
+		{
+			$entity = Get-VaultChangeOrder -ChangeOrderId $vaultContext.SelectedObject.Id
+			$flcItem = GetFlcItem "Change Tasks" "NUMBER" $entity._Number
+			$dsWindow.FindName("F360MData").DataContext = $flcItem
+			$dsWindow.FindName("F360MAffectedItems").ItemsSource = ($flcItem  | Get-FLCItemAssociations -AffectedItems)
+		
+			if (-not $flcItem) {
+				$dsWindow.FindName("View").Visibility = "Hidden"
+			} else {
+				$dsWindow.FindName("View").Visibility = "Visible"
+			}
+			return
+		}
+	} #end try
+	Catch
+	{
+		if ($dsWindow.FindName("txtPowerPlmStatusMsg")) {
+			$dsWindow.FindName("txtPowerPlmStatusMsg").Text = "Error retrieving PLM data; check that powerPLM client is installed and configured."
+			$dsWindow.FindName("txtPowerPlmStatusMsg").Visibility = "Visible"
+		}
+		else {
+			[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowError("Error retrieving PLM data; check that powerPLM client is installed and configured.", "VDS Sample Configuration")
+		}	
 	}
+	
 }
 
 function GetFlcItem($workspace, $fieldName, $number)

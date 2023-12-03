@@ -49,7 +49,7 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate>
-                                    <ComboBox Text="{WPF:ValidatedBinding Value}" IsEditable="True" BorderThickness="0">
+                                    <ComboBox Text="{WPF:ValidatedBinding Value}" BorderThickness="0">
                                         <ComboBoxItem Content="True" />
                                         <ComboBoxItem Content="False" />
                                     </ComboBox>
@@ -303,6 +303,10 @@
                         <Setter Property="Visibility" Value="Collapsed"/>
                     </MultiDataTrigger>
                 </Style.Triggers>
+            </Style>
+            <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource ThemedBaseControlStyle}">
+                <Setter Property="IsExpanded" Value="True" />
+                <Setter Property="Margin" Value="0,2" />
             </Style>
         </ResourceDictionary>
     </WPF:DSWindow.Resources>
@@ -664,7 +668,7 @@
         </Grid>
         <Grid x:Name="grdShortCutPane" Grid.RowSpan="5" ToolTip="{Binding UIString[MSDCE_TT24]}" Style="{StaticResource grdShortCutPaneStyle}" >
             <GroupBox x:Name="GroupShortcuts" Header="{Binding UIString[MSDCE_LBL88], FallbackValue=Shortcuts}" BorderThickness="0" Padding="0,0,0,-6" Margin="-5,0,10,0">
-                <Grid Width="180">
+                <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition Width="Auto"/>
@@ -682,18 +686,38 @@
                         Command="{Binding PsCmd[mAddSc]}">
                         <Image x:Name="btnNewScImg" Style="{StaticResource btnScImage}"/>
                     </Button>
-                    <ListBox x:Name="lstBoxShortCuts" Grid.Row="1" MinWidth="180" Margin="0" ItemsSource="{Binding PsVal[mReadShortCuts]}" ToolTip="{Binding UIString[MSDCE_TT23]}"  
-                        MaxWidth="300" Grid.ColumnSpan="2" DisplayMemberPath="Key" SelectedValuePath="Key" IsSynchronizedWithCurrentItem="False" >
-                        <ListBox.ContextMenu>
+                    <TreeView x:Name="ScTree" Grid.Row="1" MinWidth="180" Grid.ColumnSpan="2" SelectedValuePath="Key">
+                        <TreeView.ContextMenu>
                             <ContextMenu>
-                                <MenuItem Header="{Binding UIString[MSDCE_BTN3], FallbackValue=Activate}" Command="{Binding PsCmd[mRemoveSc]}">
+                                <MenuItem Header="Remove" Command="{Binding PsCmd[mRemoveSc]}">
                                     <MenuItem.Icon>
-                                        <Image Source="C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\cancel.ico" />
+                                        <Image Width="16" Height="16" StretchDirection="DownOnly">
+                                            <Image.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding CurrentTheme, Source={x:Static wpfUtilities:ActiveThemeProvider.Instance}}" Value="{x:Static winFormTheme:Theme.Dark}">
+                                                            <Setter Property="Image.Source" Value="C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\IconsDark\Delete_16.png" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding CurrentTheme, Source={x:Static wpfUtilities:ActiveThemeProvider.Instance}}" Value="{x:Static winFormTheme:Theme.Light}">
+                                                            <Setter Property="Image.Source" Value="C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\IconsLight\Delete_16.png" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
                                     </MenuItem.Icon>
                                 </MenuItem>
                             </ContextMenu>
-                        </ListBox.ContextMenu>
-                    </ListBox>
+                        </TreeView.ContextMenu>
+                        <TreeView.ItemTemplate>
+                            <HierarchicalDataTemplate x:Name="UserRoot" ItemsSource="{Binding Children}" >
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <Image HorizontalAlignment="Left" Width="16" Height="16" Source="{Binding IconSource}" />
+                                    <TextBlock Text="{Binding Name}" Margin="5,0" />
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                        </TreeView.ItemTemplate>
+                    </TreeView>
                 </Grid>
             </GroupBox>
         </Grid>

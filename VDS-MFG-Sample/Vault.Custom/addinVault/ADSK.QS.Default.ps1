@@ -731,7 +731,10 @@ function mHelp ([Int] $mHContext) {
 			}
 		}
 		$mHelpTarget = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\HelpFiles\"+$mHPage
-		Invoke-Item $mHelpTarget 
+		$mhelpfile = Invoke-Item $mHelpTarget
+		if (-not $mhelpfile) {
+			[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowError("Help Target not found", "VDS MFG Sample Client")
+		}
 	}
 	Catch
 	{

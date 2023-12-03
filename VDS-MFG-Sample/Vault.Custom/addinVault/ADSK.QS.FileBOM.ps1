@@ -61,7 +61,7 @@ function GetFileBOM($fileID)
 				}
 				$UniqueId = $comp.UniqueId
 				#find component in current file bom only
-				$cldComp = $cldBom.CompArray | Where-Object { $_.UniqueId -eq $UniqueId -and $_.XRefId -eq -1} | Select -First 1
+				$cldComp = $cldBom.CompArray | Where-Object { $_.UniqueId -eq $UniqueId -and $_.XRefId -eq -1} | Select-Object -First 1
 				if(-not $cldComp){
 					$cldComp = $cldBom.CompArray[0]
 				}
@@ -72,7 +72,7 @@ function GetFileBOM($fileID)
 					$cldCompAttrArray = $cldBom.CompAttrArray
 				}
 				$PropPartNumber = $cldBom.PropArray | Where-Object { $_.dispName -eq "Part Number"}
-				$prop = ($cldCompAttrArray | Where-Object { $_.PropId -eq $PropPartNumber.Id}) | Select -First 1
+				$prop = ($cldCompAttrArray | Where-Object { $_.PropId -eq $PropPartNumber.Id}) | Select-Object -First 1
 				$bomItem.PartNumber = $prop.Val
 				$bomItems += $bomItem
 
@@ -80,13 +80,13 @@ function GetFileBOM($fileID)
 				$thumbnailProp = $vault.PropertyService.GetProperties('FILE', @($cldIds[$cldBomCounter - 1]), @($thumbnailPropDef.Id))[0]
 				$bomItem.Thumbnail = $thumbnailProp.Val
 				$m_Prop = $cldBom.PropArray | Where-Object { $_.dispName -eq "Title"}
-				$prop = $cldCompAttrArray | Where-Object { $_.PropId -eq $m_Prop.Id} | Select -First 1
+				$prop = $cldCompAttrArray | Where-Object { $_.PropId -eq $m_Prop.Id} | Select-Object -First 1
 				$bomItem.Title = $prop.Val
 				$m_Prop = $cldBom.PropArray | Where-Object { $_.dispName -eq "Description"}
-				$prop = $cldCompAttrArray | Where-Object { $_.PropId -eq $m_Prop.Id} | Select -First 1
+				$prop = $cldCompAttrArray | Where-Object { $_.PropId -eq $m_Prop.Id} | Select-Object -First 1
 				$bomItem.Description = $prop.Val
 				$m_Prop = $cldBom.PropArray | Where-Object { $_.dispName -eq "Material"}
-				$prop = $cldCompAttrArray | Where-Object { $_.PropId -eq $m_Prop.Id} | Select -First 1
+				$prop = $cldCompAttrArray | Where-Object { $_.PropId -eq $m_Prop.Id} | Select-Object -First 1
 				$bomItem.Material = $prop.Val
 			}
 		}

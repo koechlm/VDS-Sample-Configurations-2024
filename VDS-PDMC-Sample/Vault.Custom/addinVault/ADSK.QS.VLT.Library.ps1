@@ -440,6 +440,9 @@ function mRecursivelyCreateFolders($sourceFolder, $targetFolder, $inclACL)
 			{
 				$mCopiedACL = mCopyEntACL -SourceEnt  $folder -TargetEnt  $newTargetSubFolder
 			}
+			if ($null -eq $mCopiedACL) {
+				<# Action to perform if the condition is true #>
+			}
 			#recursively iterate
 			mrecursivelyCreateFolders -targetFolder $newTargetSubFolder -sourceFolder $folder -inclACL $inclACL
 

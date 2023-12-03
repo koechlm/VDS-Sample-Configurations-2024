@@ -194,11 +194,6 @@ function mSearchTerms
 				$dsWindow.FindName("txtTermStatusMsg").Visibility = "Visible"
 				break;
 			}
-
-			#limit the search result to the first result page;
-			$dsWindow.FindName("txtTermStatusMsg").Text = $UIString["ClassTerms_MSG02"]
-			$dsWindow.FindName("txtTermStatusMsg").Visibility = "Visible"
-			break; #limit the search result to the first result page; page scrolling not implemented in this snippet release
 		}
 
 		$global:_SearchResult = $mResultAll	
@@ -597,9 +592,28 @@ function mgetCustomEntityList ([String] $_CoName) {
 		$srchSort = New-Object autodesk.Connectivity.WebServices.SrchSort
 		$searchStatus = New-Object autodesk.Connectivity.WebServices.SrchStatus
 		$bookmark = ""
-		$_CustomEnts = $vault.CustomEntityService.FindCustomEntitiesBySearchConditions($srchConds,$null,[ref]$bookmark,[ref]$searchStatus)
-		$dsDiag.Trace(".. mgetCustomEntityList finished - returns $_CustomEnts <<")
-		return $_CustomEnts
+		$mResultAll = New-Object 'System.Collections.Generic.List[Autodesk.Connectivity.WebServices.CustEnt]'
+
+		while(($searchStatus.TotalHits -eq 0) -or ($mResultAll.Count -lt $searchStatus.TotalHits))
+		{
+			$mResultPage = $vault.CustomEntityService.FindCustomEntitiesBySearchConditions($srchConds,@($srchSort),[ref]$bookmark,[ref]$searchStatus)
+			If ($searchStatus.IndxStatus -ne "IndexingComplete" -or $searchStatus -eq "IndexingContent")
+			{
+				#check the indexing status; you might return a warning that the result bases on an incomplete index, or even return with a stop/error message, that we need to have a complete index first
+				$dsWindow.FindName("txtTermStatusMsg").Text = $UIString["ClassTerms_MSG04"]
+				$dsWindow.FindName("txtTermStatusMsg").Visibility = "Visible"
+			}
+			If($mResultPage.Count -ne 0)
+			{
+				$mResultAll.AddRange($mResultPage)
+			}
+			else 
+			{ 
+				#$MsgResult = [Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowWarning("Could not find any " + $_CoName, "VDS Sample -- Classified Objects", "OK")
+				break;
+			}
+		}
+		return $mResultAll
 	}
 	catch { 
 		$dsDiag.Trace("!! Error in mgetCustomEntityList")

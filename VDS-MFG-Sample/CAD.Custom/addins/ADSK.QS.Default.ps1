@@ -12,9 +12,11 @@
 
 function InitializeWindow {
 
-	#region rules applying commonly
 	$dsWindow.Title = SetWindowTitle
-	#endregion rules applying commonly
+	$Global:mCategories = GetCategories
+
+	# leverage the current theme variable in theme dependent path names etc.
+	$Global:currentTheme = [Autodesk.DataManagement.Client.Framework.Forms.SkinUtils.WinFormsTheme]::Instance.CurrentTheme
 
 	$mWindowName = $dsWindow.Name
 	switch ($mWindowName) {
@@ -23,10 +25,6 @@ function InitializeWindow {
 			$global:mShrnkWrp = $false
 
 			InitializeBreadCrumb
-
-			#set the active user as Inventor Designer
-			$mUser = $vault.AdminService.Session.User
-			$Prop["Designer"].Value = $mUser.Name
 
 			#	there are some custom functions to enhance functionality; 2024 version added webservice and explorer extensions to be installed optionally
 			$mVdsUtilities = "$($env:programdata)\Autodesk\Vault 2024\Extensions\Autodesk.VdsSampleUtilities\VdsSampleUtilities.dll"
@@ -88,23 +86,26 @@ function InitializeWindow {
 					}
 					InitializeInventorCategory
 					InitializeInventorNumSchm
-					If ($dsWindow.FindName("lstBoxShortCuts")) {
-						$dsWindow.FindName("lstBoxShortCuts").add_SelectionChanged({
-								mScClick
-							})
+					#Initialize Shortcuts
+					mFillMyScTree
+
+					#set the active user as Inventor Designer
+					$mUser = $vault.AdminService.Session.User
+					if ($mUser.Name -ne $Prop["Designer"].Value) {
+						$Prop["Designer"].Value = $mUser.Name
 					}
 
 					#region FDU Support --------------------------------------------------------------------------
 					
 					# Read FDS related internal meta data; required to manage particular workflows
 					If ($_mInvHelpers.m_FDUActive($Application) -ne $false) {
-						#[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowMessage("Active FDU-AddIn detected","VDS MFG Sample", "OK")
 						$_mFdsKeys = $_mInvHelpers.m_GetFdsKeys($Application, @{})
 
 						# some FDS workflows require VDS cancellation; add the conditions to the event handler _Loaded below
 						$dsWindow.add_Loaded({
 								IF ($mSkipVDS -eq $true) {
-									$dsWindow.CancelWindowCommand.Execute($this)	
+									$dsWindow.CancelWindowCommand.Execute($this)
+									#$dsDiag.Trace("FDU-VDS EventHandler: Skip Dialog executed")	
 								}
 							})
 
@@ -122,28 +123,33 @@ function InitializeWindow {
 							# for new assets we suggest to use the source file folder name, nothing else
 							If ($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Asset") {
 								# only the MSDCE FDS configuration template provides a category for assets, check for this otherwise continue with the selection done before
-								$mCatName = GetCategories | Where { $_.Name -eq "Factory Asset" }
+								$mCatName = $Global:mCategories | Where-Object { $_.Name -eq "Factory Asset" }
 								IF ($mCatName) { $Prop["_Category"].Value = "Factory Asset" }
 							}
 							# skip for publishing the 3D temporary file save event for VDS
 							If ($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Asset" -and $Application.SilentOperation -eq $true) { 
+								#$dsDiag.Trace(" FDS publishing 3D - using temporary assembly silent mode: need to skip VDS!")
 								$global:mSkipVDS = $true
 							}
 							If ($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Asset" -and $Document.InternalName -ne $Application.ActiveDocument.InternalName) {
+								#$dsDiag.Trace(" FDS publishing 3D: ActiveDoc.InternalName different from VDSDoc.Internalname: Verbose VDS")
 								$global:mSkipVDS = $true
 							}
 
 							# 
 							If ($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Layout" -and $_mFdsKeys.Count -eq 1) {
+								#$dsDiag.Trace("3DLayout, not synced")
 								# only the MSDCE FDS configuration template provides a category for layouts, check for this otherwise continue with the selection done before
-								$mCatName = GetCategories | Where { $_.Name -eq "Factory Layout" }
+								$mCatName = $Global:mCategories | Where-Object { $_.Name -eq "Factory Layout" }
 								IF ($mCatName) { $Prop["_Category"].Value = "Factory Layout" }
 							}
 
 							# FDU 2019.22.0.2 and later allow to skip dynamically, instead of skipping in general by the SkipVDSon1stSave.IAM template
 							If ($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Layout" -and $_mFdsKeys.Count -gt 1 -and $Document.FileSaveCounter -eq 0) {
+								#$dsDiag.Trace("3DLayout not saved yet, but already synced")
 								$dsWindow.add_Loaded({
-										$dsWindow.CancelWindowCommand.Execute($this)	
+										$dsWindow.CancelWindowCommand.Execute($this)
+										#$dsDiag.Trace("FDU-VDS EventHandler: Skip Dialog executed")	
 									})
 							}
 						}
@@ -199,20 +205,22 @@ function InitializeWindow {
 					}
 					
 				}
-				$false { # EditMode = True
+				$false { 
+					# EditMode = True
 					if ((Get-Item $document.FullFileName).IsReadOnly) {
+						#disable the OK button
 						$dsWindow.FindName("btnOK").IsEnabled = $false
 					}
-
-					#VDS MFG Sample - handle weldbead material" 
-					$mCat = $Global:mCategories | Where { $_.Name -eq $UIString["MSDCE_CAT11"] } # weldment assembly
-					IF ($Prop["_Category"].Value -eq $mCat.Name) { 
-						try {
-							$Prop["Material"].Value = $Document.ComponentDefinition.WeldBeadMaterial.DisplayName
-						}
-						catch {
-							$mErrorMsg = "Failed reading weld bead material; most likely the assembly subtype is not an weldment."
-							[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowError($mErrorMsg, "VDS Sample Configuration")
+					else {	
+						#VDS MFG Sample - handle weldbead material" 
+						$mCat = $Global:mCategories | Where-Object { $_.Name -eq $UIString["MSDCE_CAT11"] } # weldment assembly
+						IF ($Prop["_Category"].Value -eq $mCat.Name) { 
+							try {
+								$Prop["Material"].Value = $Document.ComponentDefinition.WeldBeadMaterial.DisplayName
+							}
+							catch {
+								$dsDiag.Trace("Failed reading weld bead material; most likely the assembly subtype is not an weldment.")
+							}
 						}
 					}
 
@@ -243,7 +251,7 @@ function InitializeWindow {
 
 					#set the active user as Designer for file property mapping or mechanical title attribute mapping
 					$mUser = $vault.AdminService.Session.User
-					if ($Prop["GEN-TITLE-NAME"]) { #if($Prop["Designer"])
+					if ($mUser.Name -ne $Prop["GEN-TITLE-NAME"].Value) { #if($Prop["Designer"])
 						$Prop["GEN-TITLE-NAME"].Value = $mUser.Name #	$Prop["Designer"].Value = $mUser.Name
 					}
 					#set the current date as orig. Create Date
@@ -252,18 +260,18 @@ function InitializeWindow {
 					}
 
 					# set the category: VDS MFG Sample = "AutoCAD Drawing"
-					$mCatName = GetCategories | Where { $_.Name -eq $UIString["MSDCE_CAT01"] }
+					$mCatName = $Global:mCategories | Where-Object { $_.Name -eq $UIString["MSDCE_CAT01"] }
 					IF ($mCatName) { $Prop["_Category"].Value = $UIString["MSDCE_CAT01"] }
 					# in case the current vault is not quickstart, but a plain MFG default configuration
 					Else {
-						$mCatName = GetCategories | Where { $_.Name -eq $UIString["CAT1"] } #"Engineering"
+						$mCatName = $Global:mCategories | Where-Object { $_.Name -eq $UIString["CAT1"] } #"Engineering"
 						IF ($mCatName) { $Prop["_Category"].Value = $UIString["CAT1"] }
 					}
 
 					#region FDU Support ------------------
 					$_FdsUsrData = $Document.UserData #Items FACT_* are added by FDU
 
-					#	there are some custom functions to enhance functionality; 2024 version added webservice and explorer extensions to be installed optionally
+					#	there are some custom functions to enhance functionality; 2023 version added webservice and explorer extensions to be installed optionally
 					$mVdsUtilities = "$($env:programdata)\Autodesk\Vault 2024\Extensions\Autodesk.VdsSampleUtilities\VdsSampleUtilities.dll"
 					if (! (Test-Path $mVdsUtilities)) {
 						#the basic utility installation only
@@ -282,11 +290,13 @@ function InitializeWindow {
 					}
 					#endregion FDU Support ---------------
 
-					If ($dsWindow.FindName("lstBoxShortCuts")) {
-						$dsWindow.FindName("lstBoxShortCuts").add_SelectionChanged({
-								mScClick
-							})
+					#Initialize Shortcuts
+					mFillMyScTree
+
+					If ($Prop["_CopyMode"].value -eq $true) {
+						#add property reset or other action that apply for AutoCAD only here; there is a _CopyMode section before the switch for Windows.
 					}
+
 				}
 				$false {
 					if ($Prop["_EditMode"].Value -and $Document.IsReadOnly) {
@@ -308,7 +318,7 @@ function InitializeWindow {
 }
 
 function AddinLoaded {
-	#Executed when DataStandard is loaded in Inventor/AutoCAD
+	#activate or create the user's VDS profile
 	$m_File = "$($env:appdata)\Autodesk\DataStandard 2024\Folder2024.xml"
 	if (!(Test-Path $m_File)) {
 		$source = "$($env:ProgramData)\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Folder2024.xml"
@@ -318,6 +328,17 @@ function AddinLoaded {
 
 function AddinUnloaded {
 	#Executed when DataStandard is unloaded in Inventor/AutoCAD
+}
+
+function GetVaultRootFolder()
+{
+    $mappedRootPath = $Prop["_VaultVirtualPath"].Value + $Prop["_WorkspacePath"].Value
+    $mappedRootPath = $mappedRootPath -replace "\\", "/" -replace "//", "/"
+    if ($mappedRootPath -eq '')
+    {
+        $mappedRootPath = '$'
+    }
+    return $vault.DocumentService.GetFolderByPath($mappedRootPath)
 }
 
 function SetWindowTitle {
@@ -398,74 +419,74 @@ function InitializeInventorCategory {
 	$mDocSubType = $Document.SubType #differentiate part/sheet metal part and assembly/weldment assembly
 	switch ($mDocType) {
 		'12291' { #assembly 
-			$mCatName = GetCategories | Where { $_.Name -eq $UIString["MSDCE_CAT10"] } #assembly, available in PDMC-Sample Vault
+			$mCatName = $Global:mCategories | Where-Object { $_.Name -eq $UIString["MSDCE_CAT10"] } #assembly, available in PDMC-Sample Vault
 			IF ($mCatName) { 
 				$Prop["_Category"].Value = $UIString["MSDCE_CAT10"]
 			}
-			$mCatName = GetCategories | Where { $_.Name -eq $UIString["MSDCE_CAT02"] }
+			$mCatName = $Global:mCategories | Where-Object { $_.Name -eq $UIString["MSDCE_CAT02"] }
 			IF ($mCatName) { 
 				$Prop["_Category"].Value = $UIString["MSDCE_CAT02"] #3D Component, e.g. PDMC-Sample
 			}
 			Else {
-				$mCatName = GetCategories | Where { $_.Name -eq $UIString["CAT1"] } #"Engineering"
+				$mCatName = $Global:mCategories | Where-Object { $_.Name -eq $UIString["CAT1"] } #"Engineering"
 				IF ($mCatName) { 
 					$Prop["_Category"].Value = $UIString["CAT1"]
 				}
 			}
 			If ($mDocSubType -eq "{28EC8354-9024-440F-A8A2-0E0E55D635B0}") { #weldment assembly
-				$mCatName = GetCategories | Where { $_.Name -eq $UIString["MSDCE_CAT11"] } # weldment assembly
+				$mCatName = $Global:mCategories | Where-Object { $_.Name -eq $UIString["MSDCE_CAT11"] } # weldment assembly
 				IF ($mCatName) { 
 					$Prop["_Category"].Value = $UIString["MSDCE_CAT11"]
 				}
 			} 
 		}
 		'12290' { #part
-			$mCatName = GetCategories | Where { $_.Name -eq $UIString["MSDCE_CAT08"] } #Part, available PDMC-Sample Vault
+			$mCatName = $Global:mCategories | Where-Object { $_.Name -eq $UIString["MSDCE_CAT08"] } #Part, available PDMC-Sample Vault
 			IF ($mCatName) { 
 				$Prop["_Category"].Value = $UIString["MSDCE_CAT08"]
 			}
-			$mCatName = GetCategories | Where { $_.Name -eq $UIString["MSDCE_CAT02"] }
+			$mCatName = $Global:mCategories | Where-Object { $_.Name -eq $UIString["MSDCE_CAT02"] }
 			IF ($mCatName) { 
 				$Prop["_Category"].Value = $UIString["MSDCE_CAT02"] #3D Component, available in MFG-Sample Vault
 			}
 			Else {
-				$mCatName = GetCategories | Where { $_.Name -eq $UIString["CAT1"] } #"Engineering"
+				$mCatName = $Global:mCategories | Where-Object { $_.Name -eq $UIString["CAT1"] } #"Engineering"
 				IF ($mCatName) { 
 					$Prop["_Category"].Value = $UIString["CAT1"]
 				}
 			}
 			If ($mDocSubType -eq "{9C464203-9BAE-11D3-8BAD-0060B0CE6BB4}") {
-				$mCatName = GetCategories | Where { $_.Name -eq $UIString["MSDCE_CAT09"] } #sheet metal part, available PDMC-Sample Vault
+				$mCatName = $Global:mCategories | Where-Object { $_.Name -eq $UIString["MSDCE_CAT09"] } #sheet metal part, available PDMC-Sample Vault
 				IF ($mCatName) { 
 					$Prop["_Category"].Value = $UIString["MSDCE_CAT09"]
 				}
 			}
 			If ($Document.IsSubstitutePart -eq $true) { 
-				$mCatName = GetCategories | Where { $_.Name -eq $UIString["MSDCE_CAT12"] } #substitute, available PDMC-Sample Vault
+				$mCatName = $Global:mCategories | Where-Object { $_.Name -eq $UIString["MSDCE_CAT12"] } #substitute, available PDMC-Sample Vault
 				IF ($mCatName) { 
 					$Prop["_Category"].Value = $UIString["MSDCE_CAT12"]
 				}
 			}			
 		}
 		'12292' { #drawing
-			$mCatName = GetCategories | Where { $_.Name -eq $UIString["MSDCE_CAT00"] }
+			$mCatName = $Global:mCategories | Where-Object { $_.Name -eq $UIString["MSDCE_CAT00"] }
 			IF ($mCatName) { $Prop["_Category"].Value = $UIString["MSDCE_CAT00"] }
 			Else { # in case the current vault is not MFG-Sample (Quickstart, but a plain MFG default configuration
-				$mCatName = GetCategories | Where { $_.Name -eq $UIString["CAT1"] } #"Engineering"
+				$mCatName = $Global:mCategories | Where-Object { $_.Name -eq $UIString["CAT1"] } #"Engineering"
 				IF ($mCatName) { $Prop["_Category"].Value = $UIString["CAT1"] }
 			}
 		}
 		'12293' { #presentation
-			$mCatName = GetCategories | Where { $_.Name -eq $UIString["MSDCE_CAT13"] } #presentation, available PDMC-Sample Vault
+			$mCatName = $Global:mCategories | Where-Object { $_.Name -eq $UIString["MSDCE_CAT13"] } #presentation, available PDMC-Sample Vault
 			IF ($mCatName) { 
 				$Prop["_Category"].Value = $UIString["MSDCE_CAT13"]
 			}
-			$mCatName = GetCategories | Where { $_.Name -eq $UIString["MSDCE_CAT02"] } #3D Component, Quickstart, e.g. MFG-2019-PRO-EN
+			$mCatName = $Global:mCategories | Where-Object { $_.Name -eq $UIString["MSDCE_CAT02"] } #3D Component, Quickstart, e.g. MFG-2019-PRO-EN
 			IF ($mCatName) { 
 				$Prop["_Category"].Value = $UIString["MSDCE_CAT02"]
 			}
 			Else {
-				$mCatName = GetCategories | Where { $_.Name -eq $UIString["CAT1"] } #"Engineering"
+				$mCatName = $Global:mCategories | Where-Object { $_.Name -eq $UIString["CAT1"] } #"Engineering"
 				IF ($mCatName) { 
 					$Prop["_Category"].Value = $UIString["CAT1"]
 				}
@@ -485,7 +506,7 @@ function GetNumSchms {
 			[System.Collections.ArrayList]$numSchems = @($vault.NumberingService.GetNumberingSchemes('FILE', 'Activated'))
 
 			$_FilteredNumSchems = @()
-			$_Default = $numSchems | Where { $_.IsDflt -eq $true }
+			$_Default = $numSchems | Where-Object { $_.IsDflt -eq $true }
 			$_FilteredNumSchems += ($_Default)
 			if ($Prop["_NumSchm"].Value) { $Prop["_NumSchm"].Value = $_FilteredNumSchems[0].Name } #note - functional dialogs don't have the property _NumSchm, therefore we conditionally set the value
 			$dsWindow.FindName("NumSchms").IsEnabled = $true
@@ -534,7 +555,7 @@ function GetNumSchms {
 
 function GetCategories {
 	$mAllCats = $Prop["_Category"].ListValues
-	$mFDSFilteredCats = $mAllCats | Where { $_.Name -ne "Asset Library" }
+	$mFDSFilteredCats = $mAllCats | Where-Object { $_.Name -ne "Asset Library" }
 	return $mFDSFilteredCats | Sort-Object -Property "Name" #Ascending is default; no option required
 }
 
@@ -565,14 +586,18 @@ function OnPostCloseDialog {
 			}
 		}
 
-		"AutoCADWindow" {
-			$dc = $dsWindow.DataContext
+		"AutoCADWindow"
+		{
+			#rules applying for AutoCAD
 			if ($Prop["_CreateMode"]) {
+
 				mWriteLastUsedFolder
+
 				#the default ACM Titleblocks expect the file name and drawing number as attribute values; adjust property(=attribute) names for custom titleblock definitions
+				$dc = $dsWindow.DataContext
+				$Prop["GEN-TITLE-DWG"].Value = $dc.PathAndFileNameHandler.FileName
 				$Prop["GEN-TITLE-NR"].Value = $dc.PathAndFileNameHandler.FileNameNoExtension
 			}
-			$Prop["GEN-TITLE-DWG"].Value = $dc.PathAndFileNameHandler.FileName
 		}
 		default {
 			#rules applying for windows non specified
@@ -614,159 +639,6 @@ function mHelp ([Int] $mHContext) {
 	}
 }
 
-function mReadShortCuts {
-	if ($Prop["_CreateMode"].Value -eq $true) {
-		#$dsDiag.Trace(">> Looking for Shortcuts...")
-		$m_Server = ($VaultConnection.Server).Replace(":", "_").Replace("/", "_")
-		$m_Vault = $VaultConnection.Vault
-		$m_Path = "$($env:appdata)\Autodesk\VaultCommon\Servers\Services_Security_01_10_2023\$($m_Server)\Vaults\$($m_Vault)\Objects\"
-		$global:mScFile = $m_Path + "Shortcuts.xml"
-		if (Test-Path $global:mScFile) {
-			#$dsDiag.Trace(">> Start reading Shortcuts...")
-			$global:m_ScXML = New-Object XML 
-			$global:m_ScXML.Load($mScFile)
-			$m_ScAll = $m_ScXML.Shortcuts.Shortcut
-			#the shortcuts need to get filtered by type of document.folder and path information related to CAD workspace
-			$global:m_ScCAD = @{}
-			#$dsDiag.Trace("... Filtering Shortcuts...")
-			$m_ScAll | ForEach-Object {
-				if (($_.NavigationContextType -eq "Connectivity.Explorer.Document.DocFolder") -and ($_.NavigationContext.URI -like "*" + $global:CAx_Root + "/*")) {
-					try {
-						$_t = $global:m_ScCAD.Add($_.Name, $_.NavigationContext.URI)
-					}
-					catch {
-						$mErrorMsg = "... ERROR Filtering Shortcuts..."
-						[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowError($mErrorMsg, "VDS Sample Configuration")
-					}
-				}
-			}
-		}
-		return $global:m_ScCAD
-	}
-}
-
-function mScClick {
-	try {
-		$_key = $dsWindow.FindName("lstBoxShortCuts").SelectedValue
-		$_Val = $global:m_ScCAD.get_item($_key)
-		$_SPath = @()
-		$_SPath = $_Val.Split("/")
-
-		$m_DesignPathNames = $null
-		[System.Collections.ArrayList]$m_DesignPathNames = @()
-		#differentiate AutoCAD and Inventor: AutoCAD is able to start in $, but Inventor starts in it's mandatory Workspace folder (IPJ)
-		IF ($dsWindow.Name -eq "InventorWindow") { $indexStart = 2 }
-		If ($dsWindow.Name -eq "AutoCADWindow") { $indexStart = 1 }
-		for ($index = $indexStart; $index -lt $_SPath.Count; $index++) {
-			$m_DesignPathNames += $_SPath[$index]
-		}
-		if ($m_DesignPathNames.Count -eq 1) { $m_DesignPathNames += "." }
-		mActivateBreadCrumbCmbs $m_DesignPathNames
-		$global:expandBreadCrumb = $true
-	}
-	catch {
-		$mErrorMsg = "Selecting Shortcut - Error on reading/activating shortcut info."
-		[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowError($mErrorMsg, "VDS Sample Configuration")
-	}
-}
-
-function mAddSc {
-	try {
-		$mNewScName = $dsWindow.FindName("txtNewShortCut").Text
-		mAddShortCutByName ($mNewScName)
-		$dsWindow.FindName("lstBoxShortCuts").ItemsSource = mReadShortCuts
-	}
-	catch {
-		$mErrorMsg = "Adding a new shortcut failed. Contact your VDS Administrator"
-		[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowError($mErrorMsg, "VDS Sample Configuration")
-	}
-}
-
-function mRemoveSc {
-	try {
-		$_key = $dsWindow.FindName("lstBoxShortCuts").SelectedValue
-		mRemoveShortCutByName $_key
-		$dsWindow.FindName("lstBoxShortCuts").ItemsSource = mReadShortCuts
-	}
-	catch {
-		$mErrorMsg = "Removing shortcut failed. Contact your VDS Administrator"
-		[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowError($mErrorMsg, "VDS Sample Configuration")
-	}
-}
-
-function mAddShortCutByName([STRING] $mScName) {
-	try { #simply check that the name is unique
-		#$dsDiag.Trace(">> Start to add ShortCut, check for used name...")
-		$global:m_ScCAD.Add($mScName, "Dummy")
-		$global:m_ScCAD.Remove($mScName)
-	}
-	catch { #no reason to continue in case of existing name
-		[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowError($UIString["MSDCE_MSG01"], "VDS MFG Sample Client")
-		end function
-	}
-
-	try {
-		#$dsDiag.Trace(">> Continue to add ShortCut, creating new from template...")	
-		#read from template
-		$m_File = "$($env:appdata)\Autodesk\DataStandard 2024\Folder2024.xml"
-
-		if (Test-Path $m_File) {
-			#$dsDiag.Trace(">>-- Started to read Folder2024.xml...")
-			$global:m_XML = New-Object XML
-			$global:m_XML.Load($m_File)
-		}
-		$mShortCut = $global:m_XML.VDSUserProfile.Shortcut | Where-Object { $_.Name -eq "Template" }
-		#clone the template completely and update name attribute and navigationcontext element
-		$mNewSc = $mShortCut.Clone() #.CloneNode($true)
-		#rename "Template" to new name
-		$mNewSc.Name = $mScName 
-		
-		#derive the path from current selection
-		$breadCrumb = $dsWindow.FindName("BreadCrumb")
-		$newURI = "vaultfolderpath:" + $global:CAx_Root
-		foreach ($cmb in $breadCrumb.Children) {
-			if (($cmb.SelectedItem.Name.Length -gt 0) -and !($cmb.SelectedItem.Name -eq ".")) { 
-				$newURI = $newURI + "/" + $cmb.SelectedItem.Name
-				#$dsDiag.Trace(" - the updated URI  of the shortcut: $newURI")
-			}
-			else { break }
-		}
-		
-		#hand over the path in shortcut navigation format
-		$mNewSc.NavigationContext.URI = $newURI
-		#append the new shortcut and save back to file
-		$mImpNode = $global:m_ScXML.ImportNode($mNewSc, $true)
-		$global:m_ScXML.Shortcuts.AppendChild($mImpNode)
-		$global:m_ScXML.Save($mScFile)
-		$dsWindow.FindName("txtNewShortCut").Text = ""
-		#$dsDiag.Trace("..successfully added ShortCut <<")
-		return $true
-	}
-	catch {
-		$mErrorMsg = "Saving the new shortcut failed. Contact your VDS Administrator"
-		[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowError($mErrorMsg, "VDS Sample Configuration")
-		return $false
-	}
-}
-
-function mRemoveShortCutByName ([STRING] $mScName) {
-	try {
-		#$dsDiag.Trace(">> Start to remove ShortCut from list")
-		$mShortCut = @() #Vault allows multiple shortcuts equally named
-		$mShortCut = $global:m_ScXML.Shortcuts.Shortcut | where { $_.Name -eq $mScName }
-		$mShortCut | ForEach-Object {
-			$global:m_ScXML.Shortcuts.RemoveChild($_)
-		}
-		$global:m_ScXML.Save($global:mScFile)
-		#$dsDiag.Trace("..successfully removed ShortCut <<")
-		return $true
-	}
-	catch {
-		$mErrorMsg = "Saving the shortcut file failed. Contact your VDS Administrator."
-		[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowError($mErrorMsg, "VDS Sample Configuration")
-		return $false
-	}
-}
 
 #region functional dialogs
 #FrameDocuments[], FrameMemberDocuments[] and SkeletonDocuments[]
@@ -880,18 +752,347 @@ function mInitializeCHContext {
 }
 #endregion functional dialogs
 
-function GetTemplateFolders {
-	$xmldata = [xml](Get-Content "$env:programdata\Autodesk\Vault 2024\Extensions\DataStandard\Vault\Configuration\File.xml")
+#region Shortcuts
+function mFillMyScTree {
 
-	[string[]] $folderPath = $xmldata.DocTypeData.DocTypeInfo | foreach { $_.Path }
-	$folders = $vault.DocumentService.FindFoldersByPaths($folderPath)
+	# Define a custom class to represent the tree nodes
+	class TreeNode {
+		[string]$Name
+		[string]$IconSource
+		[System.Collections.ArrayList]$Children
+		[bool]$DeleteEnabled
 
-	return $xmldata.DocTypeData.DocTypeInfo | foreach {
-		$path = $_.Path
-		$folder = $folders | where { $_.FullName -eq $path } | Select -index 0
-		if ($folder -eq $null) {
-			return
+		TreeNode([string]$name, [string]$IconSource) {
+			$this.Name = $name
+			$this.IconSource = $IconSource
+			$this.Children = [System.Collections.ArrayList]::new()
+			$this.DeleteEnabled = $false
 		}
-		return $_
+
+		[void]AddChild([TreeNode]$child) {
+			$this.Children.Add($child)
+		}
+	}	
+	
+	#create a dictionary saving shortcut name and URI
+	$Global:m_ScDict = @{}
+
+	# Get the treeView element from the window
+	$treeView = $dsWindow.FindName("ScTree")
+
+	# Create a treeRoot node for the treeView
+	$IconSource = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\User_CO_16.png"
+	$treeRoot = [TreeNode]::new("UserRoot", "")
+	$MyScRoot = [TreeNode]::New("My Shortcuts", $IconSource)
+
+	#read the user shortcuts stored in appdata
+	[XML]$mUserScXML = mReadUserShortcuts
+	if ($null -ne $mUserScXML) {
+		if ($mUserScXML.Shortcuts.ChildNodes.Count -gt 0) {
+			foreach ($Node in $mUserScXML.Shortcuts.ChildNodes) {
+				mAddTreeNode $Node $MyScRoot $true
+			}
+		}
+	}
+
+	# add the user shortcuts to the tree's root
+	$treeRoot.AddChild($MyScRoot)
+
+	# Get the tree for distributed shortcuts
+	$IconSource = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\User_Admin_16.png"
+	$DstrbScRoot = [TreeNode]::new("Distributed Shortcuts", $IconSource)
+
+	#read the distributed shortcuts stored in the Vault
+	$mAdminScXML = [XML]$vault.KnowledgeVaultService.GetVaultOption("AdminShortcuts")
+	if ($null -ne $mAdminScXML) {		
+		if ($mAdminScXML.AdminShortcuts.ChildNodes.Count -gt 0) {
+
+			foreach ($Node in $mAdminScXML.AdminShortcuts.ChildNodes) {
+				mAddTreeNode $Node $DstrbScRoot $false
+			}			 
+		}		
+	}
+	
+	#add the distributed shortcuts to the tree's root
+	$treeRoot.AddChild($DstrbScRoot)
+	
+	#bind the tree items to the treeview
+	$treeView.ItemsSource = $treeRoot.Children
+
+	#enable the click event on tree items
+	$dsWindow.FindName("ScTree").add_SelectedItemChanged({
+		mClickScTreeItem
+	})
+
+}
+
+function mAddTreeNode($XmlNode, $TreeLevel, $EnableDelete) {
+	if ($XmlNode.LocalName -eq "Shortcut") {
+		if (($XmlNode.NavigationContextType -eq "Connectivity.Explorer.Document.DocFolder") -and ($XmlNode.NavigationContext.URI -like "*"+$global:CAx_Root + "/*")) {
+			#add the shortcut to the dictionary for instant read on selection change
+			$Global:m_ScDict.Add($XmlNode.Name, $XmlNode.NavigationContext.URI)				
+			#create a tree node
+			$IconSource = mGetIconSource($XmlNode.ImageMetaData)
+			$child = [TreeNode]::new($XmlNode.Name, $IconSource)
+			if ($true -eq $EnableDelete) {
+				$child.DeleteEnabled = $true
+			}			
+			$TreeLevel.AddChild($child)
+		}
+	}
+	if ($XmlNode.LocalName -eq "ShortcutGroup") {
+		$IconSource = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\FolderClosedMask_16.png"
+		if ($XmlNode.HasChildNodes -eq $true) {
+			$NextLevel = [TreeNode]::new($XmlNode.Name, $IconSource)
+			$XmlNode.ChildNodes | ForEach-Object {
+				mAddTreeNode -XmlNode $_ -TreeLevel $NextLevel $EnableDelete
+			}
+			$child = $NextLevel
+		}
+		else{
+			$child = [TreeNode]::new($XmlNode.Name, $IconSource)
+		}
+		#add the group to the tree		
+		$TreeLevel.AddChild($child)
 	}
 }
+
+function mGetIconSource {
+	param (
+		$ImageMetaData
+	)
+
+	[string]$ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\Unknown_Sc_16x16.png"
+
+	if ($ImageMetaData -like "*.iam?*") {
+		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\IAM_Sc_16x16.png" 
+	}
+	if ($ImageMetaData -like'*.ipt?*') {
+		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\IPT_Sc_16x16.png"
+	}
+	if ($ImageMetaData -like'*.ipn?*') {
+		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\IPN_Sc_16x16.png"
+	}
+	if ($ImageMetaData -like "*.idw?*") {
+		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\IDW_Sc_16x16.png"
+	}
+	if ($ImageMetaData -like'*.dwg?*') {
+		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\DWG_Sc_16x16.png"
+	}
+	if ($ImageMetaData -like '*TAG=Folder*') {
+		$FolderTemplate = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\FolderScToRecolor_16.png"
+		#extract ARGB part of ImageMetaData
+		$ARGB = [Regex]::Matches($ImageMetaData, "\[A\=\d{1,3}, R\=\d{1,3}, G\=\d{1,3}, B\=\d{1,3}\]")[0].Value.TrimStart("[").TrimEnd(']')
+		#create string array for ARGB values
+		$ARGBValues = [Regex]::Matches($ARGB, "\d{1,3}")
+		#build file name for recolored image
+		$FlrdArgbName = "$($env:appdata)\Autodesk\DataStandard 2024\FolderScColored-$($ARGBValues[0].Value)-$($ARGBValues[1].Value)-$($ARGBValues[2].Value)-$($ARGBValues[3].Value)_16.png"		
+		#check if file exists and create it if it doesn't
+		if (Test-Path $FlrdArgbName)
+		{
+			return $ImagePath = $FlrdArgbName
+		}
+		else {
+			#create a folder image with the ARGB values applied
+			$ImageRecolored = mReplaceColor -ImagePath $FolderTemplate -OldColor ([System.Drawing.Color]::FromArgb(255,255,0,0)) -NewColor ([System.Drawing.Color]::FromArgb($ARGBValues[0].Value, $ARGBValues[1].Value, $ARGBValues[2].Value, $ARGBValues[3].Value))
+			#save the recolored image the the user's temp folder
+			$ImageRecolored.Save($FlrdArgbName)
+			$ImageRecolored.Dispose()
+			return $FlrdArgbName
+		}	}	
+	
+	return $ImagePath
+}
+
+function mReplaceColor {
+    param (
+      [string]$ImagePath,
+      [System.Drawing.Color]$OldColor,
+      [System.Drawing.Color]$NewColor
+    )
+  
+    # Load the image from the file
+    $Image = [System.Drawing.Image]::FromFile($ImagePath)
+  
+    # Create a new bitmap object with the same size as the image
+    $Bitmap = New-Object System.Drawing.Bitmap($Image.Width, $Image.Height)
+  
+    # Loop through each pixel of the image
+    for ($x = 0; $x -lt $Image.Width; $x++) {
+      for ($y = 0; $y -lt $Image.Height; $y++) {
+  
+        # Check if the color matches the old color and replace in case
+        $PixelColor = $Image.GetPixel($x, $y)
+        if ($PixelColor.Name -eq $OldColor.Name) {  
+          $Bitmap.SetPixel($x, $y, $NewColor)
+        }
+        else {  
+          # keep the original color
+          $Bitmap.SetPixel($x, $y, $PixelColor)
+        }
+      }
+    }
+  
+    # Dispose the image object and return the new bitmap
+    $Image.Dispose()
+    return $Bitmap
+  }
+
+function mReadUserShortcuts {
+	$m_Server = ($VaultConnection.Server).Replace(":", "_").Replace("/", "_")
+	$m_Vault = $VaultConnection.Vault
+	$m_Path = "$($env:appdata)\Autodesk\VaultCommon\Servers\Services_Security_01_10_2023\$($m_Server)\Vaults\$($m_Vault)\Objects\"
+	$global:mScFile = $m_Path + "Shortcuts.xml"
+	if (Test-Path $global:mScFile) {
+		#$dsDiag.Trace(">> Start reading Shortcuts...")
+		$global:m_ScXML = New-Object XML 
+		$global:m_ScXML.Load($mScFile)
+	}
+	return $global:m_ScXML
+}
+
+
+function  mClickScTreeItem {
+	try {
+		$_key = $dsWindow.FindName("ScTree").SelectedItem.Name
+		if ($Global:m_ScDict.ContainsKey($_key)) {
+			$_Val = $Global:m_ScDict.get_item($_key)
+			$_SPath = @()
+			$_SPath = $_Val.Split("/")
+	
+			$m_DesignPathNames = $null
+			[System.Collections.ArrayList]$m_DesignPathNames = @()
+			#differentiate AutoCAD and Inventor: AutoCAD is able to start in $, but Inventor starts in it's mandatory Workspace folder (IPJ)
+			IF ($dsWindow.Name -eq "InventorWindow") { $indexStart = 2 }
+			If ($dsWindow.Name -eq "AutoCADWindow") { $indexStart = 1 }
+			for ($index = $indexStart; $index -lt $_SPath.Count; $index++) {
+				$m_DesignPathNames += $_SPath[$index]
+			}
+			if ($m_DesignPathNames.Count -eq 1) { $m_DesignPathNames += "." }
+			mActivateBreadCrumbCmbs $m_DesignPathNames
+			$global:expandBreadCrumb = $true
+		}
+	}
+	catch {
+		$dsDiag.Trace("mClickScTreeItem function - error reading selected value")
+	}
+	
+}
+
+function mAddSc {
+	try {
+		$mNewScName = $dsWindow.FindName("txtNewShortCut").Text
+		mAddShortCutByName ($mNewScName)		
+		#rebuild the tree view to include the new shortcut
+		mFillMyScTree
+	}
+	catch {}
+}
+
+function mRemoveSc {
+	try {
+		$_key = $dsWindow.FindName("ScTree").SelectedItem.Name
+		if ($true -eq $dsWindow.FindName("ScTree").SelectedItem.DeleteEnabled) {
+			mRemoveShortCutByName $_key
+			#rebuild the tree view to include the new shortcut
+			mFillMyScTree
+		}
+	}
+	catch { }
+}
+
+function mAddShortCutByName([STRING] $mScName)
+{
+	try #simply check that the name is unique
+	{
+		#$dsDiag.Trace(">> Start to add ShortCut, check for used name...")
+		$Global:m_ScDict.Add($mScName,"Dummy")
+		$global:m_ScDict.Remove($mScName)
+	}
+	catch #no reason to continue in case of existing name
+	{
+		[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowError($UIString["MSDCE_MSG01"], "VDS MFG Sample Client")
+		end function
+	}
+
+	try 
+	{
+		#$dsDiag.Trace(">> Continue to add ShortCut, creating new from template...")	
+		#read from template
+		$m_File = "$($env:appdata)\Autodesk\DataStandard 2024\Folder2024.xml"
+
+		if (Test-Path $m_File)
+		{
+			#$dsDiag.Trace(">>-- Started to read Folder2024.xml...")
+			$global:m_XML = New-Object XML
+			$global:m_XML.Load($m_File)
+		}
+		$mShortCut = $global:m_XML.VDSUserProfile.Shortcut | Where-Object { $_.Name -eq "Template"}
+		#clone the template completely and update name attribute and navigationcontext element
+		$mNewSc = $mShortCut.Clone() #.CloneNode($true)
+		#rename "Template" to new name
+		$mNewSc.Name = $mScName 
+
+		#derive the path from current selection
+		$breadCrumb = $dsWindow.FindName("BreadCrumb")
+		$newURI = "vaultfolderpath:" + $global:CAx_Root
+		foreach ($cmb in $breadCrumb.Children) 
+		{
+			if (($cmb.SelectedItem.Name.Length -gt 0) -and !($cmb.SelectedItem.Name -eq "."))
+			{ 
+				$newURI = $newURI + "/" + $cmb.SelectedItem.Name
+				#$dsDiag.Trace(" - the updated URI  of the shortcut: $newURI")
+			}
+			else { break}
+		}
+		
+		#hand over the path in shortcut navigation format
+		$mNewSc.NavigationContext.URI = $newURI
+
+		#get the navigation folder's color
+		$mFldrPath = $newURI.Replace("vaultfolderpath:", "")	
+		$mFldr = $vault.DocumentService.FindFoldersByPaths(@($mFldrPath))		
+		$mCatDef = $vault.CategoryService.GetCategoryById($mFldr[0].Cat.CatId)
+		$mFldrColor = [System.Drawing.Color]::FromArgb($mCatDef.Color)
+		#replace the ARGB colors in the template
+		$mImageNode = $mNewSc.ImageMetaData
+		$regex = '\[A=(\d+), R=(\d+), G=(\d+), B=(\d+)\]'
+		$mImageNode = $mImageNode -replace $regex, "[A=$mFldrColor.A, R=$mFldrColor.R, G=$mFldrColor.G, B=$mFldrColor.B]"
+		$mNewSc.ImageMetaData = $mImageNode
+
+		#append the new shortcut and save back to file
+		$mImpNode = $global:m_ScXML.ImportNode($mNewSc,$true)
+		$global:m_ScXML.Shortcuts.AppendChild($mImpNode)
+		$global:m_ScXML.Save($mScFile)
+		$dsWindow.FindName("txtNewShortCut").Text = ""
+		#$dsDiag.Trace("..successfully added ShortCut <<")
+		return $true
+	}
+	catch 
+	{
+		$dsDiag.Trace("..problem encountered adding ShortCut <<")
+		return $false
+	}
+}
+
+function mRemoveShortCutByName ([STRING] $mScName) {
+	try {
+		#catch all nodes; multiple shortcuts can be equally named
+		$mNodesToSelect = "//*[@Name='$($mScName)']"
+
+		$nodes = $global:m_ScXML.SelectNodes($mNodesToSelect)
+		$response = [Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowWarning("Are you sure you want to delete this shortcut?", "VDS-Sample-Configuration", "YesNo" )
+		if ($response -eq "Yes") {
+			foreach ($node in $nodes) {
+				$node.ParentNode.RemoveChild($node)
+			}
+		}
+		$global:m_ScXML.Save($global:mScFile)
+		return $true
+	}
+	catch {
+		return $false
+	}
+}
+#endregion Shortcuts
+

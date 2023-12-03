@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DocTypeData xmlns="">
+  <DocTypeInfo>
+    <DocName>Inventor</DocName>
+    <Path>$/Templates/Inventor</Path>
+  </DocTypeInfo>
+  <DocTypeInfo>
+    <DocName>AutoCAD Drawings</DocName>
+    <Path>$/Templates/AutoCAD</Path>
+  </DocTypeInfo>
+  <DocTypeInfo>
+    <DocName>Office Document</DocName>
+    <Path>$/Templates/Office</Path>
+  </DocTypeInfo>
+</DocTypeData>
