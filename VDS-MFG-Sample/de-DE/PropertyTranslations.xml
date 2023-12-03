@@ -19,9 +19,8 @@
   <PropertyTranslation Name="DATE VERSION CREATED">Version erstellt </PropertyTranslation>
 
   <!--VDS Sample-->
-  <PropertyTranslation Name="SUBJECT">Thema</PropertyTranslation>
-  <!--Note de-DE lists Author in the default section-->
   <PropertyTranslation Name="DESIGNER">Konstrukteur</PropertyTranslation>
+  <PropertyTranslation Name="SUBJECT">Thema</PropertyTranslation>
   <PropertyTranslation Name="PARTNUMBER">Teilenummer</PropertyTranslation>
   <PropertyTranslation Name="SEMIFINISHED">Halbzeug</PropertyTranslation>
   <PropertyTranslation Name="SPAREPART">EV-Kennung</PropertyTranslation>

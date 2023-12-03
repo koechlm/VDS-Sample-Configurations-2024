@@ -60,7 +60,6 @@ function ValidateFileName
 	{
 		return $true;
 	}
-	$dsDiag.Inspect()
 	return $false;
 }
 
@@ -89,19 +88,29 @@ function InitializeTabWindow
 }
 
 function InitializeWindow
-{	      
+{
 	#begin rules applying commonly
     InitializeWindowTitle
     InitializeNumSchm
     ADSK.QS.InitializeCategory
     InitializeNameValidation
 	#end rules applying commonly
+	
 	$mWindowName = $dsWindow.Name
 	switch($mWindowName)
 	{
-		"FileWindow"
+		"FileWindow" 
 		{
-			if($Prop["_CreateMode"].Value -eq $true) {
+			if ($Prop["_CreateMode"].Value -eq $true) {
+
+				if ($Prop["_CreateMode"].Value) {
+					if ($Prop["_IsOfficeClient"].Value) {
+						$Prop["_Category"].Value = $UIString["CAT2"]
+					}
+					else {
+						$Prop["_Category"].Value = $UIString["CAT1"]
+					}
+				}
 			
 				$dsWindow.FindName("TemplateCB").add_SelectionChanged({
 					#update the category = selected template's category
@@ -111,7 +120,7 @@ function InitializeWindow
 				#preset the author or designer with the current user
 				$mUser = $vault.AdminService.Session.User
 				if($Prop["_XLTN_DESIGNER"]){
-					$Prop["XLTN_DESIGNER"].Value = $mUser.Name
+					$Prop["_XLTN_DESIGNER"].Value = $mUser.Name
 				}
 				if($Prop["_XLTN_AUTHOR"]){
 					$Prop["_XLTN_AUTHOR"].Value = $mUser.Name
@@ -360,7 +369,6 @@ function OnTabContextChanged
 		$assocFiles = @(GetAssociatedFiles $itemids $([System.IO.Path]::GetDirectoryName($VaultContext.UserControl.XamlFile)))
 		$dsWindow.FindName("AssoicatedFiles").ItemsSource = $assocFiles
 	}
-
 }
 
 function GetNewCustomObjectName
@@ -615,6 +623,7 @@ function ItemDescription
 
  
 function m_TemplateChanged {
+	$dsDiag.Trace(">>m_TemplateChanged starts..")
 	#check if cmbTemplates is empty
 	if ($dsWindow.FindName("TemplateCB").ItemsSource.Count -lt 1)
 	{
@@ -622,8 +631,7 @@ function m_TemplateChanged {
 	}
 	$mContext = $dsWindow.DataContext
 	$mTemplatePath = $mContext.TemplatePath
-	$mTemplateFile = $mContext.SelectedTemplate
-	#$mTemplate = $mTemplatePath + "/" + $mTemplateFile
+	$mTemplateFile = $mContext.SelectedTemplate.Name
 	$mFolder = $vault.DocumentService.GetFolderByPath($mTemplatePath)
 	$mFiles = $vault.DocumentService.GetLatestFilesByFolderId($mFolder.Id,$false)
 	$mTemplateFile = $mFiles | Where-Object { $_.Name -eq $mTemplateFile }
@@ -634,7 +642,7 @@ function m_TemplateChanged {
 	{
 		$dsWindow.FindName("Categories").IsEnabled = $false #comment out this line if admins like to release the choice to the user
 	}
-	#$dsDiag.Trace(" ... TemplateChanged finished <<")
+	$dsDiag.Trace("<<...m_TemplateChanged finished.")
 }
 
 function m_CategoryChanged 
@@ -644,10 +652,25 @@ function m_CategoryChanged
 	{
 		"FileWindow"
 		{
-			#VDS MFG Sample uses the default numbering scheme for files; GoTo GetNumSchms function to disable this filter incase you'd like to apply numbering per category for files as well
-			If ($Prop['_XLTN_AUTHOR'])
+			#VDS-PDMC-Sample uses the default numbering scheme for files; GoTo GetNumSchms function to disable this filter incase you'd like to apply numbering per category for files as well
+
+			# write current user name to designer/author fields depending on the category
+			$DesignCats = @("Drawing Inventor", "Drawing AutoCAD", "Part", "Assembly", "Weldment Assembly", "Sheet Metal Part")
+			$OfficeCats = @("Office")
+			If($DesignCats -contains $Prop["_Category"].Value)
 			{
-				$Prop['_XLTN_AUTHOR'].Value = $VaultConnection.UserName
+				If ($null -eq $Prop['_XLTN_DESIGNER'].Value) 
+				{ 
+					$Prop['_XLTN_DESIGNER'].Value = $Vault.AdminService.Session.User.Name
+				}
+			}
+			
+			if($OfficeCats -contains $Prop["_Category"].Value)
+			{
+				If ($null -eq $Prop['_XLTN_AUTHOR'].Value) 
+				{
+					$Prop['_XLTN_AUTHOR'].Value = $Vault.AdminService.Session.User.Name
+				}
 			}
 		}
 
