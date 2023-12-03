@@ -1,0 +1,80 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            x:Name="MainWindow"
+            xmlns:behaviours="clr-namespace:Common.Wpf;assembly=Common"
+            xmlns:wpfUtilities="clr-namespace:Autodesk.DataManagement.Client.Framework.Forms.Controls.WPF.Utilities;assembly=Autodesk.DataManagement.Client.Framework.Forms"
+            xmlns:winFormTheme="clr-namespace:Autodesk.DataManagement.Client.Framework.Forms.SkinUtils;assembly=Autodesk.DataManagement.Client.Framework.Forms"
+            behaviours:TabTitleBehavior.TabTitle="$UIString[LBL37]">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Autodesk.DataManagement.Client.Framework.Forms;component/Controls/WPF/ControlTemplates/MergedResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <DataGrid Name="AssoicatedFiles" AutoGenerateColumns="False" IsReadOnly="True" ColumnWidth="Auto">
+        <DataGrid.Columns>
+            <DataGridTemplateColumn Header="..." MinWidth="25" MaxWidth="25" >
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Image Width="16" Source="{Binding link}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn Header="..." MinWidth="25" MaxWidth="25">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Image Width="16" Source="{Binding key}"/>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn Header="" MinWidth="25" MaxWidth="25" >
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Image Width="16" Source="{Binding componenttype}"/>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTextColumn Binding="{Binding filename}">
+                <DataGridTextColumn.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding DataContext.UIString[LBL6],
+                           RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                    </DataTemplate>
+                </DataGridTextColumn.HeaderTemplate>
+            </DataGridTextColumn>
+            <DataGridTextColumn Binding="{Binding title}">
+                <DataGridTextColumn.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding DataContext.UIString[LBL2],
+                       RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                    </DataTemplate>
+                </DataGridTextColumn.HeaderTemplate>
+            </DataGridTextColumn>
+            <DataGridTextColumn Binding="{Binding revision}" >
+                <DataGridTextColumn.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding DataContext.UIString[LBL12],
+                       RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                    </DataTemplate>
+                </DataGridTextColumn.HeaderTemplate>
+            </DataGridTextColumn>
+            <DataGridTextColumn Binding="{Binding version}">
+                <DataGridTextColumn.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding DataContext.UIString[LBL13],
+                       RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                    </DataTemplate>
+                </DataGridTextColumn.HeaderTemplate>
+            </DataGridTextColumn>
+            <DataGridTextColumn Binding="{Binding description}" Width="*">
+                <DataGridTextColumn.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding DataContext.UIString[LBL3],
+                       RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                    </DataTemplate>
+                </DataGridTextColumn.HeaderTemplate>
+            </DataGridTextColumn>
+        </DataGrid.Columns>
+    </DataGrid>
+</UserControl>
