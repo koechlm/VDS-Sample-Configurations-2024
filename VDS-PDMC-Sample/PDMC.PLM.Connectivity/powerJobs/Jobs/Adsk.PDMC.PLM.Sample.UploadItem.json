@@ -85,6 +85,11 @@
           "Function": null
         },
         {
+          "Flc": "Responsible Designer",
+          "Vault": "Last Updated By",
+          "Function": null
+        },
+        {
           "Flc": "Spare / Wear Part",
           "Vault": "Spare-Wear Part",
           "Function": null
@@ -96,22 +101,12 @@
         },
         {
           "Flc": "PDM Last Modification Date",
-          "Vault": "Latest Released Date",
+          "Vault": "Date Modified",
           "Function": null
         },
         {
           "Flc": "PDM Revision Notes",
           "Vault": "Comment",
-          "Function": null
-        },
-        {
-          "Flc": "Responsible Designer",
-          "Vault": "Last Updated By",
-          "Function": null
-        },
-        {
-          "Flc": "PDM_UNIT_OF_MEASURE",
-          "Vault": "Units",
           "Function": null
         },
         {
@@ -131,23 +126,38 @@
         },
         {
           "Flc": "PDM_SIZE",
-          "Vault": "Dimensions/Size",
+          "Vault": "Bounding Size",
+          "Function": null
+        },
+        {
+          "Flc": "PDM_UNIT_OF_MEASURE",
+          "Vault": "Units",
+          "Function": null
+        },
+        {
+          "Flc": "PDM_KEY_PARAMETERS",
+          "Vault": "Key Parameters",
           "Function": null
         },
         {
           "Flc": "PDM_ITEM_ID",
           "Vault": null,
-          "Function": "GetVaultPersistentId"
+          "Function": "GetEntityId"
         },
         {
-          "Flc": "VAULT_THICK_CLIENT_LINK",
+          "Flc": "PDM_MASTER_ID",
           "Vault": null,
-          "Function": "GetVaultThickClientLink"
+          "Function": "GetEntityMasterId"
         },
         {
-          "Flc": "VAULT_THIN_CLIENT_LINK",
+          "Flc": "PDM_OBJECT_ID",
           "Vault": null,
-          "Function": "GetVaultThinClientLink"
+          "Function": "GetObjectId"
+        },
+        {
+          "Flc": "PDM_VAULT_NAME",
+          "Vault": null,
+          "Function": "GetVaultName"
         }
       ],
       "IsSystem": false
@@ -176,7 +186,7 @@
       "VaultType": "File",
       "FieldMappings": [
         {
-          "Flc": "PDM Folder",
+          "Flc": "PDM Location",
           "Vault": "Folder Path",
           "Function": null
         },
@@ -188,11 +198,6 @@
         {
           "Flc": "Primary File Revision / Version",
           "Vault": "Revision",
-          "Function": null
-        },
-        {
-          "Flc": "PDM Last Modification Date",
-          "Vault": "Date Modified",
           "Function": null
         }
       ],

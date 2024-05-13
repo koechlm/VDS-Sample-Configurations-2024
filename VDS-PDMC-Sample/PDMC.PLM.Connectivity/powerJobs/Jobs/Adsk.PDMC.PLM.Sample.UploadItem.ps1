@@ -60,11 +60,15 @@ foreach($fieldMapping in ($workflow.Mappings | Where-Object { $_.Name -eq "Vault
 
 $entityBomRows = Get-VaultItemBom -Number $item._Number
 foreach ($entityBomRow in $entityBomRows) {
-    if (-not $entityBomRow.Bom_PositionNumber) {
+    #Show-Inspector("entityBomRow")
+    #if (-not $entityBomRow.Bom_PositionNumber) {
+    if (-not $entityBomRow.Bom_RowOrder) {
         throw "A BOM with empty Position numbers cannot be transferred to Fusion Lifecycle!"
     }
-    if (-not [int]::TryParse($entityBomRow.Bom_PositionNumber, [ref] $null)) {
-        throw "A BOM with Position number '$($entityBomRow.Bom_PositionNumber)' cannot be transferred to Fusion Lifecycle! The number must be numerical"
+    #if (-not [int]::TryParse($entityBomRow.Bom_PositionNumber, [ref] $null)) {
+    if (-not [int]::TryParse($entityBomRow.Bom_RowOrder, [ref] $null)) {
+        #throw "A BOM with Position number '$($entityBomRow.Bom_PositionNumber)' cannot be transferred to Fusion Lifecycle! The number must be numerical"
+        throw "A BOM with Position number '$($entityBomRow.Bom_RowOrder)' cannot be transferred to Fusion Lifecycle! The number must be numerical"
     }
 }
 
