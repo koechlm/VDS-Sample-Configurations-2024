@@ -95,6 +95,11 @@
           "Function": null
         },
         {
+          "Flc": "Unit of Measure",
+          "Vault": "Units",
+          "Function": null
+        },
+        {
           "Flc": "PDM Category",
           "Vault": "Category Name",
           "Function": null
@@ -127,11 +132,6 @@
         {
           "Flc": "PDM_SIZE",
           "Vault": "Bounding Size",
-          "Function": null
-        },
-        {
-          "Flc": "PDM_UNIT_OF_MEASURE",
-          "Vault": "Units",
           "Function": null
         },
         {
