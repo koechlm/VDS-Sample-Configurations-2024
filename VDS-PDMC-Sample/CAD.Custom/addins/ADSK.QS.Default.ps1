@@ -12,27 +12,34 @@
 
 function InitializeWindow {             
 
+	#$dsDiag.ShowLog()
+	#$dsDiag.Clear()
+
 	$dsWindow.Title = SetWindowTitle
 	$Global:mCategories = GetCategories
 
 	# leverage the current theme variable in theme dependent path names etc.
 	$Global:currentTheme = [Autodesk.DataManagement.Client.Framework.Forms.SkinUtils.WinFormsTheme]::Instance.CurrentTheme
 
-	#Copy Parent Project Number to file property "Project Number" if exists; be careful, not all dialogs might have the textbox, e.g. DA, FG,...
+	#Copy Parent Project Number to file property "Project Number" if exists; be careful, not all dialogs might have the textbox control 'txtPath', e.g. DA, FG,...
 	If ($Prop["Project"]) {
 		$Global:mPropTrans = mGetPropTranslations
+		$Global:mUIStrings = mGetUIStrings
 		if ($dsWindow.FindName("txtPath")) {
-			mGetProjectFolderPropToCADFile  "Name" $mPropTrans["Project"]
+			
+			#build a name/value map assigning each target property name the source's property name
+			$Global:mFld2FileMap = @{ $mPropTrans["PROJECT"] = "Name"; $mPropTrans["PROJECTNUMBER"] = "Project Number"}
+
+			#the control txtPath is empty during initialization and must dynamically change if the user selects another folder
 			$dsWindow.FindName("txtPath").add_TextChanged({		
-					mGetProjectFolderPropToCADFile  "Name" $mPropTrans["Project"]
+					$mSrc = mGetNewFileParentFldrByCat($mUIStrings["CAT6"]) #get the next folder of category "Project" iterating hierarchy inversely
+					mInheritProperties $mSrc.Id $mFld2FileMap 
 				})
 		}
 	}
 
-	#$dsDiag.ShowLog()
-	#$dsDiag.Clear()
-
-	if ($Prop["_CopyMode"].Value -eq $true) { #disabled as it causes another read-only edit dialog on drawing copies
+	if ($Prop["_CopyMode"].Value -eq $true) {
+		#disabled as it causes another read-only edit dialog on drawing copies
 		$_DataContext = $dsWindow.DataContext
 		$Prop["Source File"].Value = $_DataContext.PathAndFileNameHandler.OriginalFilename
 	}
@@ -93,7 +100,8 @@ function InitializeWindow {
 			}
 
 			#enable option to remove orphaned sheets in drawings
-			if (-not $Prop["_SaveCopyAsMode"].Value -eq $true) { #the SaveCopyAs.xaml does not have the option to remove orhaned sheets
+			if (-not $Prop["_SaveCopyAsMode"].Value -eq $true) {
+				#the SaveCopyAs.xaml does not have the option to remove orhaned sheets
 				if (@(".DWG", ".IDW") -contains $Prop["_FileExt"].Value) {
 					$dsWindow.FindName("RmOrphShts").Visibility = "Visible"
 				}
@@ -108,7 +116,8 @@ function InitializeWindow {
 					ResetRevisionProperties
 
 					#reset the part number for new files as Inventor writes the file name (no extension) as a default.
-					If ($Prop["Part Number"]) { #Inventor returns null if the Part Number has no custom value
+					If ($Prop["Part Number"]) {
+						#Inventor returns null if the Part Number has no custom value
 						if ($Prop["Part Number"].Value -ne "") {
 							$Prop["Part Number"].Value = ""
 						}
@@ -140,7 +149,8 @@ function InitializeWindow {
 
 						# FDS workflows with individual settings					
 						$dsWindow.FindName("Categories").add_SelectionChanged({
-								If ($Prop["_Category"].Value -eq "Factory Asset" -and $Document.FileSaveCounter -eq 0) { #don't localize name according FDU fixed naming
+								If ($Prop["_Category"].Value -eq "Factory Asset" -and $Document.FileSaveCounter -eq 0) {
+									#don't localize name according FDU fixed naming
 									$paths = @("Factory Asset Library Source")
 									mActivateBreadCrumbCmbs $paths
 									$dsWindow.FindName("NumSchms").SelectedIndex = 1
@@ -194,7 +204,8 @@ function InitializeWindow {
 								$Prop["Description"].Value = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName, "Description")
 								$_ModelPartNumber = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName, "Part Number")
 
-								if ($_ModelPartNumber -ne $null) { # must not write empty part numbers 
+								if ($_ModelPartNumber -ne $null) {
+									# must not write empty part numbers 
 									$Prop["Part Number"].Value = $_ModelPartNumber 
 								}
 							}
@@ -280,11 +291,12 @@ function InitializeWindow {
 
 					#set the active user as Designer for file property mapping or mechanical title attribute mapping
 					$mUser = $vault.AdminService.Session.User
-					if ($mUser.Name -ne $Prop["GEN-TITLE-NAME"].Value) { #if($Prop["Designer"])
+					if ($mUser.Name -ne $Prop["GEN-TITLE-NAME"].Value) {
+						#if($Prop["Designer"])
 						$Prop["GEN-TITLE-NAME"].Value = $mUser.Name #	$Prop["Designer"].Value = $mUser.Name
 					}
 					#set the current date as orig. Create Date
-					if ($Prop["GEN-TITLE-DAT"]){
+					if ($Prop["GEN-TITLE-DAT"]) {
 						$Prop["GEN-TITLE-DAT"].Value = (Get-Date).ToString('yyyy-MM-dd')
 					}
 
@@ -380,15 +392,13 @@ function AddinUnloaded {
 	#Executed when DataStandard is unloaded in Inventor/AutoCAD
 }
 
-function GetVaultRootFolder()
-{
-    $mappedRootPath = $Prop["_VaultVirtualPath"].Value + $Prop["_WorkspacePath"].Value
-    $mappedRootPath = $mappedRootPath -replace "\\", "/" -replace "//", "/"
-    if ($mappedRootPath -eq '')
-    {
-        $mappedRootPath = '$'
-    }
-    return $vault.DocumentService.GetFolderByPath($mappedRootPath)
+function GetVaultRootFolder() {
+	$mappedRootPath = $Prop["_VaultVirtualPath"].Value + $Prop["_WorkspacePath"].Value
+	$mappedRootPath = $mappedRootPath -replace "\\", "/" -replace "//", "/"
+	if ($mappedRootPath -eq '') {
+		$mappedRootPath = '$'
+	}
+	return $vault.DocumentService.GetFolderByPath($mappedRootPath)
 }
 
 function SetWindowTitle {
@@ -456,7 +466,8 @@ function InitializeInventorNumSchm {
 	if ($Prop["_SaveCopyAsMode"].Value -eq $true) {
 		$Prop["_NumSchm"].Value = $UIString["LBL77"]
 	}
-	if ($Prop["_Category"].Value -eq $UIString["MSDCE_CAT12"]) { #Substitutes, as reference parts should not retrieve individual new number
+	if ($Prop["_Category"].Value -eq $UIString["MSDCE_CAT12"]) {
+		#Substitutes, as reference parts should not retrieve individual new number
 		$Prop["_NumSchm"].Value = $UIString["LBL77"]
 	}
 	if ($dsWindow.Name -eq "InventorFrameWindow") {
@@ -468,7 +479,8 @@ function InitializeInventorCategory {
 	$mDocType = $Document.DocumentType
 	$mDocSubType = $Document.SubType #differentiate part/sheet metal part and assembly/weldment assembly
 	switch ($mDocType) {
-		'12291' { #assembly 
+		'12291' {
+			#assembly 
 			$mCatName = $Global:mCategories | Where-Object { $_.Name -eq $UIString["MSDCE_CAT10"] } #assembly, available in VDS-PDMC-Sample Advanced, e.g. INV-Samples Vault
 			IF ($mCatName) { 
 				$Prop["_Category"].Value = $UIString["MSDCE_CAT10"]
@@ -483,7 +495,8 @@ function InitializeInventorCategory {
 					$Prop["_Category"].Value = $UIString["CAT1"]
 				}
 			}
-			If ($mDocSubType -eq "{28EC8354-9024-440F-A8A2-0E0E55D635B0}") { #weldment assembly
+			If ($mDocSubType -eq "{28EC8354-9024-440F-A8A2-0E0E55D635B0}") {
+				#weldment assembly
 				$mCatName = $Global:mCategories | Where-Object { $_.Name -eq $UIString["MSDCE_CAT11"] } # weldment assembly
 				IF ($mCatName) { 
 					$Prop["_Category"].Value = $UIString["MSDCE_CAT11"]
@@ -491,7 +504,8 @@ function InitializeInventorCategory {
 				}
 			} 
 		}
-		'12290' { #part
+		'12290' {
+			#part
 			$mCatName = $Global:mCategories | Where-Object { $_.Name -eq $UIString["MSDCE_CAT08"] } #Part, available in VDS-PDMC-Sample Advanced, e.g. INV-Samples Vault
 			IF ($mCatName) { 
 				$Prop["_Category"].Value = $UIString["MSDCE_CAT08"]
@@ -519,15 +533,18 @@ function InitializeInventorCategory {
 				}
 			}			
 		}
-		'12292' { #drawing
+		'12292' {
+			#drawing
 			$mCatName = $Global:mCategories | Where-Object { $_.Name -eq $UIString["MSDCE_CAT00"] }
 			IF ($mCatName) { $Prop["_Category"].Value = $UIString["MSDCE_CAT00"] }
-			Else { # in case the current vault is not VDS-PDMC-Sample, but a plain MFG default configuration
+			Else {
+				# in case the current vault is not VDS-PDMC-Sample, but a plain MFG default configuration
 				$mCatName = $Global:mCategories | Where-Object { $_.Name -eq $UIString["CAT1"] } #"Engineering"
 				IF ($mCatName) { $Prop["_Category"].Value = $UIString["CAT1"] }
 			}
 		}
-		'12293' { #presentation
+		'12293' {
+			#presentation
 			$mCatName = $Global:mCategories | Where-Object { $_.Name -eq $UIString["MSDCE_CAT13"] } #presentation, available in VDS-PDMC-Sample Advanced, e.g. INV-Samples Vault
 			IF ($mCatName) { 
 				$Prop["_Category"].Value = $UIString["MSDCE_CAT13"]
@@ -621,7 +638,8 @@ function OnPostCloseDialog {
 				mWriteLastUsedFolder
 			}
 
-			if ($Prop["_CreateMode"].Value -and !$Prop["Part Number"].Value) { #we empty the part number on initialize: if there is no other function to provide part numbers we should apply the Inventor default
+			if ($Prop["_CreateMode"].Value -and !$Prop["Part Number"].Value) {
+				#we empty the part number on initialize: if there is no other function to provide part numbers we should apply the Inventor default
 				$Prop["Part Number"].Value = $Prop["DocNumber"].Value
 			}
 			#sketched drawings (no model view) don't get a Part Number from the model, but the part number is not empty and equals the displayname of the new drawing, e.g. "Drawing1"
@@ -640,8 +658,7 @@ function OnPostCloseDialog {
 			}
 		}
 
-		"AutoCADWindow"
-		{
+		"AutoCADWindow" {
 			#rules applying for AutoCAD
 			if ($Prop["_CreateMode"]) {
 
@@ -889,14 +906,14 @@ function mFillMyScTree {
 
 	#enable the click event on tree items
 	$dsWindow.FindName("ScTree").add_SelectedItemChanged({
-		mClickScTreeItem
-	})
+			mClickScTreeItem
+		})
 
 }
 
 function mAddTreeNode($XmlNode, $TreeLevel, $EnableDelete) {
 	if ($XmlNode.LocalName -eq "Shortcut") {
-		if (($XmlNode.NavigationContextType -eq "Connectivity.Explorer.Document.DocFolder") -and ($XmlNode.NavigationContext.URI -like "*"+$global:CAx_Root + "/*")) {
+		if (($XmlNode.NavigationContextType -eq "Connectivity.Explorer.Document.DocFolder") -and ($XmlNode.NavigationContext.URI -like "*" + $global:CAx_Root + "/*")) {
 			#add the shortcut to the dictionary for instant read on selection change
 			$Global:m_ScDict.Add($XmlNode.Name, $XmlNode.NavigationContext.URI)				
 			#create a tree node
@@ -917,7 +934,7 @@ function mAddTreeNode($XmlNode, $TreeLevel, $EnableDelete) {
 			}
 			$child = $NextLevel
 		}
-		else{
+		else {
 			$child = [TreeNode]::new($XmlNode.Name, $IconSource)
 		}
 		#add the group to the tree		
@@ -935,16 +952,16 @@ function mGetIconSource {
 	if ($ImageMetaData -like "*.iam?*") {
 		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\IAM_Sc_16x16.png" 
 	}
-	if ($ImageMetaData -like'*.ipt?*') {
+	if ($ImageMetaData -like '*.ipt?*') {
 		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\IPT_Sc_16x16.png"
 	}
-	if ($ImageMetaData -like'*.ipn?*') {
+	if ($ImageMetaData -like '*.ipn?*') {
 		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\IPN_Sc_16x16.png"
 	}
 	if ($ImageMetaData -like "*.idw?*") {
 		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\IDW_Sc_16x16.png"
 	}
-	if ($ImageMetaData -like'*.dwg?*') {
+	if ($ImageMetaData -like '*.dwg?*') {
 		return $ImagePath = "C:\ProgramData\Autodesk\Vault 2024\Extensions\DataStandard\Vault.Custom\Icons" + $Global:currentTheme + "\DWG_Sc_16x16.png"
 	}
 	if ($ImageMetaData -like '*TAG=Folder*') {
@@ -956,55 +973,55 @@ function mGetIconSource {
 		#build file name for recolored image
 		$FlrdArgbName = "$($env:appdata)\Autodesk\DataStandard 2024\FolderScColored-$($ARGBValues[0].Value)-$($ARGBValues[1].Value)-$($ARGBValues[2].Value)-$($ARGBValues[3].Value)_16.png"		
 		#check if file exists and create it if it doesn't
-		if (Test-Path $FlrdArgbName)
-		{
+		if (Test-Path $FlrdArgbName) {
 			return $ImagePath = $FlrdArgbName
 		}
 		else {
 			#create a folder image with the ARGB values applied
-			$ImageRecolored = mReplaceColor -ImagePath $FolderTemplate -OldColor ([System.Drawing.Color]::FromArgb(255,255,0,0)) -NewColor ([System.Drawing.Color]::FromArgb($ARGBValues[0].Value, $ARGBValues[1].Value, $ARGBValues[2].Value, $ARGBValues[3].Value))
+			$ImageRecolored = mReplaceColor -ImagePath $FolderTemplate -OldColor ([System.Drawing.Color]::FromArgb(255, 255, 0, 0)) -NewColor ([System.Drawing.Color]::FromArgb($ARGBValues[0].Value, $ARGBValues[1].Value, $ARGBValues[2].Value, $ARGBValues[3].Value))
 			#save the recolored image the the user's temp folder
 			$ImageRecolored.Save($FlrdArgbName)
 			$ImageRecolored.Dispose()
 			return $FlrdArgbName
-		}	}	
+		}	
+ }	
 	
 	return $ImagePath
 }
 
 function mReplaceColor {
-    param (
-      [string]$ImagePath,
-      [System.Drawing.Color]$OldColor,
-      [System.Drawing.Color]$NewColor
-    )
+	param (
+		[string]$ImagePath,
+		[System.Drawing.Color]$OldColor,
+		[System.Drawing.Color]$NewColor
+	)
   
-    # Load the image from the file
-    $Image = [System.Drawing.Image]::FromFile($ImagePath)
+	# Load the image from the file
+	$Image = [System.Drawing.Image]::FromFile($ImagePath)
   
-    # Create a new bitmap object with the same size as the image
-    $Bitmap = New-Object System.Drawing.Bitmap($Image.Width, $Image.Height)
+	# Create a new bitmap object with the same size as the image
+	$Bitmap = New-Object System.Drawing.Bitmap($Image.Width, $Image.Height)
   
-    # Loop through each pixel of the image
-    for ($x = 0; $x -lt $Image.Width; $x++) {
-      for ($y = 0; $y -lt $Image.Height; $y++) {
+	# Loop through each pixel of the image
+	for ($x = 0; $x -lt $Image.Width; $x++) {
+		for ($y = 0; $y -lt $Image.Height; $y++) {
   
-        # Check if the color matches the old color and replace in case
-        $PixelColor = $Image.GetPixel($x, $y)
-        if ($PixelColor.Name -eq $OldColor.Name) {  
-          $Bitmap.SetPixel($x, $y, $NewColor)
-        }
-        else {  
-          # keep the original color
-          $Bitmap.SetPixel($x, $y, $PixelColor)
-        }
-      }
-    }
+			# Check if the color matches the old color and replace in case
+			$PixelColor = $Image.GetPixel($x, $y)
+			if ($PixelColor.Name -eq $OldColor.Name) {  
+				$Bitmap.SetPixel($x, $y, $NewColor)
+			}
+			else {  
+				# keep the original color
+				$Bitmap.SetPixel($x, $y, $PixelColor)
+			}
+		}
+	}
   
-    # Dispose the image object and return the new bitmap
-    $Image.Dispose()
-    return $Bitmap
-  }
+	# Dispose the image object and return the new bitmap
+	$Image.Dispose()
+	return $Bitmap
+}
 
 function mReadUserShortcuts {
 	$m_Server = ($VaultConnection.Server).Replace(":", "_").Replace("/", "_")
@@ -1069,33 +1086,28 @@ function mRemoveSc {
 	catch { }
 }
 
-function mAddShortCutByName([STRING] $mScName)
-{
-	try #simply check that the name is unique
-	{
+function mAddShortCutByName([STRING] $mScName) {
+	try { #simply check that the name is unique
 		#$dsDiag.Trace(">> Start to add ShortCut, check for used name...")
-		$Global:m_ScDict.Add($mScName,"Dummy")
+		$Global:m_ScDict.Add($mScName, "Dummy")
 		$global:m_ScDict.Remove($mScName)
 	}
-	catch #no reason to continue in case of existing name
-	{
+	catch { #no reason to continue in case of existing name
 		[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowError($UIString["MSDCE_MSG01"], "VDS MFG Sample Client")
 		end function
 	}
 
-	try 
-	{
+	try {
 		#$dsDiag.Trace(">> Continue to add ShortCut, creating new from template...")	
 		#read from template
 		$m_File = "$($env:appdata)\Autodesk\DataStandard 2024\Folder2024.xml"
 
-		if (Test-Path $m_File)
-		{
+		if (Test-Path $m_File) {
 			#$dsDiag.Trace(">>-- Started to read Folder2024.xml...")
 			$global:m_XML = New-Object XML
 			$global:m_XML.Load($m_File)
 		}
-		$mShortCut = $global:m_XML.VDSUserProfile.Shortcut | Where-Object { $_.Name -eq "Template"}
+		$mShortCut = $global:m_XML.VDSUserProfile.Shortcut | Where-Object { $_.Name -eq "Template" }
 		#clone the template completely and update name attribute and navigationcontext element
 		$mNewSc = $mShortCut.Clone() #.CloneNode($true)
 		#rename "Template" to new name
@@ -1104,14 +1116,12 @@ function mAddShortCutByName([STRING] $mScName)
 		#derive the path from current selection
 		$breadCrumb = $dsWindow.FindName("BreadCrumb")
 		$newURI = "vaultfolderpath:" + $global:CAx_Root
-		foreach ($cmb in $breadCrumb.Children) 
-		{
-			if (($cmb.SelectedItem.Name.Length -gt 0) -and !($cmb.SelectedItem.Name -eq "."))
-			{ 
+		foreach ($cmb in $breadCrumb.Children) {
+			if (($cmb.SelectedItem.Name.Length -gt 0) -and !($cmb.SelectedItem.Name -eq ".")) { 
 				$newURI = $newURI + "/" + $cmb.SelectedItem.Name
 				#$dsDiag.Trace(" - the updated URI  of the shortcut: $newURI")
 			}
-			else { break}
+			else { break }
 		}
 		
 		#hand over the path in shortcut navigation format
@@ -1129,15 +1139,14 @@ function mAddShortCutByName([STRING] $mScName)
 		$mNewSc.ImageMetaData = $mImageNode
 
 		#append the new shortcut and save back to file
-		$mImpNode = $global:m_ScXML.ImportNode($mNewSc,$true)
+		$mImpNode = $global:m_ScXML.ImportNode($mNewSc, $true)
 		$global:m_ScXML.Shortcuts.AppendChild($mImpNode)
 		$global:m_ScXML.Save($mScFile)
 		$dsWindow.FindName("txtNewShortCut").Text = ""
 		#$dsDiag.Trace("..successfully added ShortCut <<")
 		return $true
 	}
-	catch 
-	{
+	catch {
 		$dsDiag.Trace("..problem encountered adding ShortCut <<")
 		return $false
 	}
