@@ -48,7 +48,7 @@ function mGetProjectFolderPropToCADFile ([String] $mFolderSourcePropertyName, [S
 					
 	#get local path of vault workspace path for Inventor
 	If($dsWindow.Name -eq "InventorWindow"){
-		$mCAxRoot = $mappedRootPath.Split("/.")[1]
+		$mCAxRoot = $mappedRootPath.Split("/")[1]
 	}
 	if ($dsWindow.Name -eq "AutoCADWindow") {
 		$mCAxRoot = ""
