@@ -106,8 +106,8 @@ function InitializeTabWindow
 
 function InitializeWindow
 {	      
-        #$dsDiag.ShowLog()
-        #$dsDiag.Clear()
+	#$dsDiag.ShowLog()
+	#$dsDiag.Clear()
 
 	#begin rules applying commonly
 	$Prop["_Category"].add_PropertyChanged({
@@ -138,13 +138,12 @@ function InitializeWindow
 				}
 			}
 
+			#region VDS-PDMC-Sample
+
 			$dsWindow.FindName("TemplateCB").add_SelectionChanged({
 				#update the category = selected template's category
 				m_TemplateChanged
 			})
-
-			
-			#region VDS-PDMC-Sample
 
 			if($dsWindow.FindName("tabItemProperties")) { mInitializeTabItemProps}
 
@@ -899,7 +898,7 @@ function ItemDescription
 
  
 function m_TemplateChanged {
-	
+		
 	#check if cmbTemplates is empty
 	if ($dsWindow.FindName("TemplateCB").ItemsSource.Count -lt 1)
 	{
@@ -908,6 +907,7 @@ function m_TemplateChanged {
 	$mContext = $dsWindow.DataContext
 	$mTemplatePath = $mContext.TemplatePath
 	$mTemplateFile = $mContext.SelectedTemplate.Name
+	$mTemplate = $mTemplatePath + "/" + $mTemplateFile
 	$mFolder = $vault.DocumentService.GetFolderByPath($mTemplatePath)
 	$mFiles = $vault.DocumentService.GetLatestFilesByFolderId($mFolder.Id,$false)
 	$mTemplateFile = $mFiles | Where-Object { $_.Name -eq $mTemplateFile }
@@ -926,8 +926,7 @@ function m_TemplateChanged {
 			$Prop[($UIString["ADSK-GoToNavigation_Prop01"])].Value = $mContext.SelectedTemplate.Name
 		}
 	}
-
-	#$dsDiag.Trace(" ... TemplateChanged finished <<")
+	#endregion
 }
 
 function m_CategoryChanged 
@@ -941,7 +940,7 @@ function m_CategoryChanged
 
 			# write current user name to designer/author fields depending on the category
 			$DesignCats = @("Drawing Inventor", "Drawing AutoCAD", "Part", "Assembly", "Weldment Assembly", "Sheet Metal Part")
-			$OfficeCats = @("Office")
+			$OfficeCats = @("Office")	
 			If($DesignCats -contains $Prop["_Category"].Value)
 			{
 				If ($Prop['_XLTN_DESIGNER'].Value -eq $null) 
@@ -960,7 +959,16 @@ function m_CategoryChanged
 			
 			#Copy Parent Project Number to file property "Project" if exists
 			If($Prop["_XLTN_PROJECT"]){
-				mGetProjectFolderPropToVaultFile -mFolderSourcePropertyName "Name" -mFileTargetPropertyName $Prop["_XLTN_PROJECT"].Name
+				
+				#build a name/value map assigning each target property name the source's property name
+				$Global:mFld2FileMap = @{ Project = "Name"; 'Project Number' = "Project Number" }
+
+				#get the next folder of category "Project" iterating hierarchy inversely
+				$mSrc = mGetParentFldrByCat($UIString["CAT6"])
+				if ($mSrc) {
+					#invoke library method to copy all property values 
+					mInheritProperties $mSrc.Id $mFld2FileMap
+				}
 			}
 			
 		}
