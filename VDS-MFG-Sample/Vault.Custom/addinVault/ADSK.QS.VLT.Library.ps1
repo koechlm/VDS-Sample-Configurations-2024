@@ -23,15 +23,32 @@ function mGetFolderPropValue ([Int64] $mFldID, [STRING] $mDispName)
 	Return $mPropVal
 }
 
+#Get parent folder object
+function mGetParentFldrByCat ($Category)
+{
+	$mPath = $Prop["_FilePath"].Value
+	$mFld = $vault.DocumentService.GetFolderByPath($mPath)
+
+	IF ($mFld.Cat.CatName -eq $Category) { $Global:mFldrFound = $true}
+	ElseIf ($mPath -ne "$"){
+		Do {
+			$mParID = $mFld.ParID
+			$mFld = $vault.DocumentService.GetFolderByID($mParID)
+			IF ($mFld.Cat.CatName -eq $Category) { $Global:mFldrFound = $true}
+		} Until (($mFld.Cat.CatName -eq $Category) -or ($mFld.FullName -eq "$"))
+	}
+	
+	If ($mFldrFound -eq $true) {
+		return $mFld
+	}
+	Else{
+		return $null
+	}
+}
+
 #retrieve the definition ID for given property by displayname
 function mGetFolderPropertyDefId ([STRING] $mDispName) {
-	$PropDefs = $vault.PropertyService.GetPropertyDefinitionsByEntityClassId("FLDR")
-	$propDefIds = @()
-	$PropDefs | ForEach-Object {
-		$propDefIds += $_.Id
-	} 
-	$mPropDef = $propDefs | Where-Object { $_.DispName -eq $mDispName}
-	Return $mPropDef.Id
+	return mGetPropertyDefId $mDispName "FLDR"
 }
 
 #retrieve property value given by displayname from Custom Object (ID)
@@ -54,7 +71,16 @@ function mGetCustentPropValue ([Int64] $mCentID, [STRING] $mDispName)
 
 #retrieve the definition ID for given property by displayname
 function mGetCustentPropertyDefId ([STRING] $mDispName) {
-	$PropDefs = $vault.PropertyService.GetPropertyDefinitionsByEntityClassId("CUSTENT")
+	return mGetPropertyDefId $mDispName "CUSTENT"
+}
+
+function mGetCOPropertyDefId ([STRING] $mDispName) {
+	Return mGetPropertyDefId $mDispName "CO"
+}
+
+#retrieve the definition ID for given property by displayname
+function mGetPropertyDefId ([STRING] $mDispName,[STRING] $EntityClassId ) {
+	$PropDefs = $vault.PropertyService.GetPropertyDefinitionsByEntityClassId("$EntityClassId")
 	$propDefIds = @()
 	$PropDefs | ForEach-Object {
 		$propDefIds += $_.Id
@@ -95,7 +121,7 @@ function ShowRunspaceID
 {
             $id = [runspace]::DefaultRunspace.Id
             $app = [System.Diagnostics.Process]::GetCurrentProcess()
-            [Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowMessage("application: $($app.name)"+[Environment]::NewLine+"runspace ID: $id", "VDS Step Into Debugging", "OK")
+            [System.Windows.Forms.MessageBox]::Show("application: $($app.name)"+[Environment]::NewLine+"runspace ID: $id")
 }
 
 #create folder structure based on seqential file numbering; 
@@ -287,6 +313,22 @@ function Adsk.GroupMemberOf([STRING]$mGroupName)
 	return $false
 }
 
+#function to check that the current user has a Vault behavior config permissions
+function Adsk.CheckCfgAdminPermission()
+{
+	$mAllPermissions = $vault.AdminService.GetPermissionsByUserId($vault.AdminService.Session.User.Id)
+	$mAllPermIds = @()
+	foreach ($item in $mAllPermissions)
+	{
+		$mAllPermIds += $item.Id
+	}
+	if ($mAllPermIds -contains 77 -and $mAllPermIds -contains 76) #76 = Vault Set Options; 77 = Vault Get Options
+	{
+		return $true
+	}
+	return $false
+}
+
 function mSearchCustentOfCat([String]$mCatDispName)
 {
 	$mSearchString = $mCatDispName
@@ -321,28 +363,35 @@ function mSearchCustentOfCat([String]$mCatDispName)
 	}
 }
 
-function mGetProjectFolderPropToVaultFile ([String] $mFolderSourcePropertyName, [String] $mFileTargetPropertyName)
+function mInheritProperties ($Id, $MappingTable) {
+	#read the source entity's properties
+	$mFldProps = @{}
+	$mFldProps += mGetAllFolderProperties($Id)
+	
+	#iterate the target properties and retrieve the value of the mapped source 
+	$MappingTable.GetEnumerator() | ForEach-Object {
+		$Prop[$_.Name].Value = $mFldProps[$_.Value]
+	}	
+}
+
+function mGetAllFolderProperties ([long] $mFldID)
 {
-	$mPath = $Prop["_FilePath"].Value
-	$mFld = $vault.DocumentService.GetFolderByPath($mPath)
-
-	IF ($mFld.Cat.CatName -eq $UIString["CAT6"]) { $Global:mProjectFound = $true}
-	ElseIf ($mPath -ne "$"){
-		Do {
-			$mParID = $mFld.ParID
-			$mFld = $vault.DocumentService.GetFolderByID($mParID)
-			IF ($mFld.Cat.CatName -eq $UIString["CAT6"]) { $Global:mProjectFound = $true}
-		} Until (($mFld.Cat.CatName -eq $UIString["CAT6"]) -or ($mFld.FullName -eq "$"))
+	$mResult = @{}
+	if (!$global:mFldrPropDefs) {
+		$global:mFldrPropDefs = $vault.PropertyService.GetPropertyDefinitionsByEntityClassId("FLDR")
 	}
-
-	If ($mProjectFound -eq $true) {
-		#Project's property Value copied to file property
-		$Prop[$mFileTargetPropertyName].Value = mGetFolderPropValue $mFld.Id $mFolderSourcePropertyName
-	}
-	Else{
-		#empty field value if file will not link to a project
-		$Prop[$mFileTargetPropertyName].Value = ""
-	}
+	$propDefIds = @()
+	$mFldrPropDefs | ForEach-Object {
+		$propDefIds += $_.Id
+	}	
+	$mEntIDs = @()
+	$mEntIDs += $mFldID
+	$mPropertyInstances = $vault.PropertyService.GetProperties("FLDR", $mEntIDs, $propDefIds)	
+	Foreach($mPropInst in $mPropertyInstances){		
+		$Name = ($mFldrPropDefs | Where-Object {$_.Id -eq $mPropInst.PropDefId}).DispName
+		$mResult.Add($Name, $mPropInst.Val)
+	}	
+	Return $mResult
 }
 
 #create folder structure based on a template;
@@ -389,6 +438,9 @@ function mRecursivelyCreateFolders($sourceFolder, $targetFolder, $inclACL)
 			if($inclACL -eq $true)
 			{
 				$mCopiedACL = mCopyEntACL -SourceEnt  $folder -TargetEnt  $newTargetSubFolder
+			}
+			if ($null -eq $mCopiedACL) {
+				<# Action to perform if the condition is true #>
 			}
 			#recursively iterate
 			mrecursivelyCreateFolders -targetFolder $newTargetSubFolder -sourceFolder $folder -inclACL $inclACL
