@@ -990,6 +990,20 @@ function m_CategoryChanged
 			{
 				$Prop["_XLTN_DATESTART"].Value = Get-Date -displayhint date
 			}
+
+			#Copy Parent Project Number to file property "Project" if exists
+			If($Prop["_XLTN_PROJECT"]){
+				
+				#build a name/value map assigning each target property name the source's property name
+				$Global:mFld2FileMap = @{ Project = "Name"; 'Project Number' = "Project Number" }
+
+				#get the next folder of category "Project" iterating hierarchy inversely
+				$mSrc = mGetParentFldrByCat($UIString["CAT6"])
+				if ($mSrc) {
+					#invoke library method to copy all property values 
+					mInheritProperties $mSrc.Id $mFld2FileMap
+				}
+			}
 		}
 
 		"CustomObjectWindow"
