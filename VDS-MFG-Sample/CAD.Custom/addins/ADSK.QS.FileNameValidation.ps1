@@ -1,4 +1,11 @@
-﻿function InitializeFileNameValidation() {
+﻿# DISCLAIMER:
+# ---------------------------------
+# In any case, code, templates, and snippets of this solution are of "work in progress" character.
+# Neither Markus Koechl, nor Autodesk represents that these samples are reliable, accurate, complete, or otherwise valid. 
+# Accordingly, those configuration samples are provided as is with no warranty of any kind, and you use the applications at your own risk.
+
+
+function InitializeFileNameValidation() {
     if ($Prop["_CreateMode"].Value) {
         if ($dsWindow.Name -eq 'InventorWindow') {
             if ($Prop["_SaveCopyAsMode"].Value -eq $true) {

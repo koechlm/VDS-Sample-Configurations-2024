@@ -1,14 +1,9 @@
-﻿#region disclaimer
-	#===============================================================================
-	# PowerShell script sample														
-	# Author: Markus Koechl															
-	# Copyright (c) Autodesk 2022													
-	#																				
-	# THIS SCRIPT/CODE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER     
-	# EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES   
-	# OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.    
-	#===============================================================================
-#endregion
+﻿# DISCLAIMER:
+# ---------------------------------
+# In any case, code, templates, and snippets of this solution are of "work in progress" character.
+# Neither Markus Koechl, nor Autodesk represents that these samples are reliable, accurate, complete, or otherwise valid. 
+# Accordingly, those configuration samples are provided as is with no warranty of any kind, and you use the applications at your own risk.
+
 
 #retrieve property value given by displayname from folder (ID)
 function mGetFolderPropValue ([Int64] $mFldID, [STRING] $mDispName)

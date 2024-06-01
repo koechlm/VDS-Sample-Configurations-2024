@@ -1,17 +1,9 @@
-#region disclaimer
-#=============================================================================
-#                                                                             
-# Copyright (c) Autodesk 2021 - All rights reserved.                               
-#                                                                             
-# THIS SCRIPT/CODE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER   
-# EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES 
-# OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.  
-#=============================================================================
-#endregion
+# DISCLAIMER:
+# ---------------------------------
+# In any case, code, templates, and snippets of this solution are of "work in progress" character.
+# Neither Markus Koechl, nor Autodesk represents that these samples are reliable, accurate, complete, or otherwise valid. 
+# Accordingly, those configuration samples are provided as is with no warranty of any kind, and you use the applications at your own risk.
 
-#region - version history
-# Latest change: mGetCUsPermissions -> switch from Dispname to Id for any language compatibility
-#endregion
 
 #retrieve property value given by displayname from folder (ID)
 function mGetFolderPropValue ([Int64] $mFldID, [STRING] $mDispName)
