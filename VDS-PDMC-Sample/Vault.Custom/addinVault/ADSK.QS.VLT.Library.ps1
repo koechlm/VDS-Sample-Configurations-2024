@@ -26,24 +26,38 @@ function mGetFolderPropValue ([Int64] $mFldID, [STRING] $mDispName)
 #Get parent folder object
 function mGetParentFldrByCat ($Category)
 {
-	$mPath = $Prop["_FilePath"].Value
-	$mFld = $vault.DocumentService.GetFolderByPath($mPath)
+	$mWindowName = $dsWindow.Name
+	switch ($mWindowName) {
+		"FileWindow" {
+			$mPath = $Prop["_FilePath"].Value
+		}
+		"FolderWindow" {
+			$mPath = $Prop["_FolderPath"].Value
+		}
+	}
 
-	IF ($mFld.Cat.CatName -eq $Category) { $Global:mFldrFound = $true}
-	ElseIf ($mPath -ne "$"){
-		Do {
-			$mParID = $mFld.ParID
-			$mFld = $vault.DocumentService.GetFolderByID($mParID)
-			IF ($mFld.Cat.CatName -eq $Category) { $Global:mFldrFound = $true}
-		} Until (($mFld.Cat.CatName -eq $Category) -or ($mFld.FullName -eq "$"))
-	}
+	$mFld = $vault.DocumentService.GetFolderByPath($mPath)
+	if ($mFld) {
+		IF ($mFld.Cat.CatName -eq $Category) { $Global:mFldrFound = $true}
+		ElseIf ($mPath -ne "$"){
+			Do {
+				$mParID = $mFld.ParID
+				$mFld = $vault.DocumentService.GetFolderByID($mParID)
+				IF ($mFld.Cat.CatName -eq $Category) { $Global:mFldrFound = $true}
+			} Until (($mFld.Cat.CatName -eq $Category) -or ($mFld.FullName -eq "$"))
+		}
 	
-	If ($mFldrFound -eq $true) {
-		return $mFld
+		If ($mFldrFound -eq $true) {
+			return $mFld
+		}
+		Else{
+			return $null
+		}
 	}
-	Else{
+	else{
 		return $null
 	}
+
 }
 
 #retrieve the definition ID for given property by displayname
