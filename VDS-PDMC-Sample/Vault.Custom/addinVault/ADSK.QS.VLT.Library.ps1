@@ -257,58 +257,42 @@ function mGetPropTranslations
 	return $mPrpTrnsltns
 }
 
+# create Thin Client Link for a file; VDS does not provide a file object in DataSheets but the full path in _EditMode
 function Adsk.CreateTcFileLink([string]$FileFullVaultPath )
 {
-    $FullPaths = @($FileFullVaultPath)
-
-    $Files = $vault.DocumentService.FindLatestFilesByPaths($FullPaths)
-
-    $IDs = @($Files[0].Id)
-     
-    $PersIDs = $vault.KnowledgeVaultService.GetPersistentIds("FILE", $IDs, [Autodesk.Connectivity.WebServices.EntPersistOpt]::Latest)
-    $PersID = $PersIDs[0].TrimEnd("=")
-
-    $serverUri = [System.Uri]$Vault.InformationService.Url
-
-    $vaultName = $VaultConnection.Vault
-    $Server = $VaultConnection.Server
-
-    $TCLink = $serverUri.Scheme + "://" + $Server + "/AutodeskTC/" + $Server + "/" + $vaultName + "/#/Entity/Details?id=m" + "$PersID" + "&itemtype=File"
-    
-    return $TCLink
+	$file = $vault.DocumentService.FindLatestFilesByPaths(@($FileFullVaultPath))[0]
+	$serverUri = [System.Uri]$Vault.InformationService.Url			
+	$TcFileMasterLink = "$($serverUri.Scheme)://$($VaultConnection.Server)/AutodeskTC/$($VaultConnection.Vault)/explore/file/$($file.MasterId)"
+	return $TcFileMasterLink
 }
 
+# create Thin Client Link for a folder; VDS does not provide a folder object DataSheets but the full path in _EditMode
 function Adsk.CreateTcFolderLink([string]$FolderFullVaultPath)
 {
-    $Folder = $vault.DocumentService.GetFolderByPath($FolderFullVaultPath)
-
-    $IDs = @($Folder.Id)
-     
-    $PersIDs = $vault.KnowledgeVaultService.GetPersistentIds("FLDR", $IDs, [Autodesk.Connectivity.WebServices.EntPersistOpt]::Latest)
-    $PersID = $PersIDs[0].TrimEnd("=")
-
-    $serverUri = [System.Uri]$Vault.InformationService.Url
-
-    $vaultName = $VaultConnection.Vault
-    $Server = $VaultConnection.Server
-
-    $TCLink = $serverUri.Scheme + "://" + $Server + "/AutodeskTC/" + $Server + "/" + $vaultName + "/#/Entity/Entities?folder=m" + "$PersID" + "&start=0"
-    return $TCLink
+	$folder = $vault.DocumentService.GetFolderByPath($FolderFullVaultPath)
+	$serverUri = [System.Uri]$Vault.InformationService.Url			
+	$TcFolderLink = "$($serverUri.Scheme)://$($VaultConnection.Server)/AutodeskTC/$($VaultConnection.Vault)/explore/folder/$($folder.Id)"
+	return $TcFolderLink
 }
 
-function Adsk.CreateTCItemLink ([Long]$ItemId)
+# create Thin Client Link for an item; 
+function Adsk.CreateTcItemLink ([Long]$ItemMasterId)
 {
-	$IDs = @($ItemId)
-    $PersIDs = $vault.KnowledgeVaultService.GetPersistentIds("ITEM", $IDs, [Autodesk.Connectivity.WebServices.EntPersistOpt]::Latest)
-    $PersID = $PersIDs[0].TrimEnd("=")
+	$serverUri = [System.Uri]$Vault.InformationService.Url
+	$TcItemMasterLink = "$($serverUri.Scheme)://$($VaultConnection.Server)/AutodeskTC/$($VaultConnection.Vault)/items/item/$($ItemMasterId)"
+	return $TcItemMasterLink
+}
 
-    $serverUri = [System.Uri]$Vault.InformationService.Url
-
-    $vaultName = $VaultConnection.Vault
-    $Server = $VaultConnection.Server
-
-    $TCLink = $serverUri.Scheme + "://" + $Server + "/AutodeskTC/" + $Server + "/" + $vaultName + "/#/Entity/Details?id=m" + "$PersID" + "&itemtype=Item"
-    return $TCLink
+# create Thin Client Link for an item of a given file
+function Adsk.CreateTcFileItemLink ([string]$FileFullVaultPath )
+{
+	$file = $vault.DocumentService.FindLatestFilesByPaths(@($FileFullVaultPath))[0]
+	#get item of the file
+	$item = $vault.ItemService.GetItemsByFileId($file.Id)[0]
+	#create TC link
+	$serverUri = [System.Uri]$Vault.InformationService.Url
+	$TcFileItemMasterLink = "$($serverUri.Scheme)://$($VaultConnection.Server)/AutodeskTC/$($VaultConnection.Vault)/items/item/$($item.MasterId)"
+	return $TcFileItemMasterLink
 }
 
 #function to check that the current user is member of a named group; returns true or false
