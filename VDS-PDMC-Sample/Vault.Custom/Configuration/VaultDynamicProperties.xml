@@ -13,14 +13,16 @@
     <DynamicProperty>Part Family</DynamicProperty>
     <DynamicProperty>Make or Buy</DynamicProperty>
     <DynamicProperty Hidden="True">Material</DynamicProperty>
-    <DynamicProperty>Dimensions/Size</DynamicProperty>
-    <DynamicProperty>Diam./Thickn.</DynamicProperty>
-    <DynamicProperty>Length (Cut)</DynamicProperty>
+    <DynamicProperty>Bounding Size</DynamicProperty>
+    <DynamicProperty>Length (Fx)</DynamicProperty>
+    <DynamicProperty>Width (Fx)</DynamicProperty>
+    <DynamicProperty>Height, Diameter (Fx)</DynamicProperty>
     <DynamicProperty>Mass</DynamicProperty>
     <DynamicProperty>Spare-Wear Part</DynamicProperty>
     <DynamicProperty>Stock Number</DynamicProperty>
     <DynamicProperty>Bestandsnummer</DynamicProperty>
-    <DynamicProperty>Semi-finished</DynamicProperty>
+    <DynamicProperty>Stock Description</DynamicProperty>
+    <DynamicProperty>Stock Qty</DynamicProperty>
     <DynamicProperty>Project Number</DynamicProperty>
     <DynamicProperty>Project</DynamicProperty>
     <DynamicProperty>Designer</DynamicProperty>
@@ -56,13 +58,15 @@
     <DynamicProperty>Part Family</DynamicProperty>
     <DynamicProperty>Make or Buy</DynamicProperty>
     <DynamicProperty Hidden="True">Material</DynamicProperty>
-    <DynamicProperty>Dimensions/Size</DynamicProperty>
-    <DynamicProperty>Diam./Thickn.</DynamicProperty>
-    <DynamicProperty>Length (Cut)</DynamicProperty>
+    <DynamicProperty>Bounding Size</DynamicProperty>
+    <DynamicProperty>Length (Fx)</DynamicProperty>
+    <DynamicProperty>Width (Fx)</DynamicProperty>
+    <DynamicProperty>Height, Diameter (Fx)</DynamicProperty>
     <DynamicProperty>Mass</DynamicProperty>
     <DynamicProperty>Spare-Wear Part</DynamicProperty>
     <DynamicProperty>Stock Number</DynamicProperty>
-    <DynamicProperty>Semi-finished</DynamicProperty>
+    <DynamicProperty>Stock Description</DynamicProperty>
+    <DynamicProperty>Stock Qty</DynamicProperty>
     <DynamicProperty>Project Number</DynamicProperty>
     <DynamicProperty>Project</DynamicProperty>
     <DynamicProperty>Designer</DynamicProperty>
@@ -92,13 +96,15 @@
     <DynamicProperty>Part Family</DynamicProperty>
     <DynamicProperty>Make or Buy</DynamicProperty>
     <DynamicProperty>Material</DynamicProperty>
-    <DynamicProperty>Dimensions/Size</DynamicProperty>
-    <DynamicProperty>Diam./Thickn.</DynamicProperty>
-    <DynamicProperty>Length (Cut)</DynamicProperty>
+    <DynamicProperty>Bounding Size</DynamicProperty>
+    <DynamicProperty>Length (Fx)</DynamicProperty>
+    <DynamicProperty>Width (Fx)</DynamicProperty>
+    <DynamicProperty>Height, Diameter (Fx)</DynamicProperty>
     <DynamicProperty>Mass</DynamicProperty>
     <DynamicProperty>Spare-Wear Part</DynamicProperty>
     <DynamicProperty>Stock Number</DynamicProperty>
-    <DynamicProperty>Semi-finished</DynamicProperty>
+    <DynamicProperty>Stock Description</DynamicProperty>
+    <DynamicProperty>Stock Qty</DynamicProperty>
     <DynamicProperty>Project Number</DynamicProperty>
     <DynamicProperty>Project</DynamicProperty>
     <DynamicProperty>Designer</DynamicProperty>
@@ -132,7 +138,8 @@
     <DynamicProperty>Mass</DynamicProperty>
     <DynamicProperty>Spare-Wear Part</DynamicProperty>
     <DynamicProperty>Stock Number</DynamicProperty>
-    <DynamicProperty>Semi-finished</DynamicProperty>
+    <DynamicProperty>Stock Description</DynamicProperty>
+    <DynamicProperty>Stock Qty</DynamicProperty>
     <DynamicProperty>Project Number</DynamicProperty>
     <DynamicProperty>Project</DynamicProperty>
     <DynamicProperty>Designer</DynamicProperty>
@@ -182,13 +189,15 @@
     <DynamicProperty>Part Family</DynamicProperty>
     <DynamicProperty>Make or Buy</DynamicProperty>
     <DynamicProperty>Material</DynamicProperty>
-    <DynamicProperty>Dimensions/Size</DynamicProperty>
-    <DynamicProperty>Diam./Thickn.</DynamicProperty>
-    <DynamicProperty>Length (Cut)</DynamicProperty>
+    <DynamicProperty>Bounding Size</DynamicProperty>
+    <DynamicProperty>Length (Fx)</DynamicProperty>
+    <DynamicProperty>Width (Fx)</DynamicProperty>
+    <DynamicProperty>Height, Diameter (Fx)</DynamicProperty>
     <DynamicProperty>Mass</DynamicProperty>
     <DynamicProperty>Spare-Wear Part</DynamicProperty>
     <DynamicProperty>Stock Number</DynamicProperty>
-    <DynamicProperty>Semi-finished</DynamicProperty>
+    <DynamicProperty>Stock Description</DynamicProperty>
+    <DynamicProperty>Stock Qty</DynamicProperty>
     <DynamicProperty>Project Number</DynamicProperty>
     <DynamicProperty>Project</DynamicProperty>
     <DynamicProperty>Designer</DynamicProperty>
@@ -199,6 +208,7 @@
     <DynamicProperty>Engr Approved By</DynamicProperty>
     <DynamicProperty>Engr Approved Date</DynamicProperty>
     <DynamicProperty>Source File</DynamicProperty>
+    <DynamicProperty>Replaced By</DynamicProperty>
     <DynamicProperty Hidden="True">MBD</DynamicProperty>
     <DynamicProperty Hidden="True">BOM Type</DynamicProperty>
     <DynamicProperty Hidden="True">FDS Key</DynamicProperty>
@@ -206,7 +216,6 @@
     <DynamicProperty Hidden="True">Key Parameters</DynamicProperty>
     <DynamicProperty Hidden="True">Comments</DynamicProperty>
     <DynamicProperty Hidden="True">Application Version</DynamicProperty>
-    <DynamicProperty>Replaced By</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Weldment Assembly" Type="File">
     <DynamicProperty>Title</DynamicProperty>
@@ -223,7 +232,8 @@
     <DynamicProperty>Mass</DynamicProperty>
     <DynamicProperty>Spare-Wear Part</DynamicProperty>
     <DynamicProperty>Stock Number</DynamicProperty>
-    <DynamicProperty>Semi-finished</DynamicProperty>
+    <DynamicProperty>Stock Description</DynamicProperty>
+    <DynamicProperty>Stock Qty</DynamicProperty>
     <DynamicProperty>Project Number</DynamicProperty>
     <DynamicProperty>Project</DynamicProperty>
     <DynamicProperty>Designer</DynamicProperty>

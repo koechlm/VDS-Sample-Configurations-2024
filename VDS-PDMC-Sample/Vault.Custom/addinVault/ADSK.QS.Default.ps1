@@ -951,7 +951,7 @@ function m_CategoryChanged
 				}
 			}
 			
-			#Copy Parent Project Number to file property "Project" if exists
+			#Copy Parent Project properites to file properties if exists
 			If($Prop["_XLTN_PROJECT"]){
 				
 				#build a name/value map assigning each target property name the source's property name
@@ -991,7 +991,7 @@ function m_CategoryChanged
 				$Prop["_XLTN_DATESTART"].Value = Get-Date -displayhint date
 			}
 
-			#Copy Parent Project Number to file property "Project" if exists
+			#Copy Parent Project properties to this folder's properties
 			If($Prop["_XLTN_PROJECT"]){
 				
 				#build a name/value map assigning each target property name the source's property name
