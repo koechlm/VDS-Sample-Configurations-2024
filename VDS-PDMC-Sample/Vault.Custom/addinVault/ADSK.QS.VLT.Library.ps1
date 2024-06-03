@@ -295,6 +295,18 @@ function Adsk.CreateTcFileItemLink ([string]$FileFullVaultPath )
 	return $TcFileItemMasterLink
 }
 
+# create Thin Client Link for ECO of a given file
+function Adsk.CreateTcFileEcoLink ([string]$FileFullVaultPath )
+{
+	$file = $vault.DocumentService.FindLatestFilesByPaths(@($FileFullVaultPath))[0]
+	#get change order
+	$changeOrder = $vault.ChangeOrderService.GetChangeOrderFilesByFileMasterId($file.MasterId)[0] 
+	#create TC link of CO
+	$serverUri = [System.Uri]$Vault.InformationService.Url
+	$TcChangeOrderLink = "$($serverUri.Scheme)://$($VaultConnection.Server)/AutodeskTC/$($VaultConnection.Vault)/changeorders/changeorder/$($changeOrder.ChangeOrder.Id)"
+	return $TcChangeOrderLink
+}
+
 #function to check that the current user is member of a named group; returns true or false
 function Adsk.GroupMemberOf([STRING]$mGroupName)
 {
