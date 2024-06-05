@@ -191,16 +191,21 @@
   <UIString ID="DwgType">DWG Type</UIString>
 
   <!--Inventor custom iProperties Displaynames for dynamic properties-->
-  <UIString ID="G_L">Length (Cut)</UIString>
-  <UIString ID="PL">Length (Cut)</UIString>
+  <UIString ID="G_L">Length (Fx G_L)</UIString>
+  <UIString ID="PL">Length (Fx G_L)</UIString>
+  <UIString ID="G_W">Width (Fx G_W)</UIString>
+  <UIString ID="G_H">Height, Diameter (Fx G_H)</UIString>
+  <UIString ID="G_T">Thickness (Fx G_T)</UIString>
+  <UIString ID="G_D">Bounding Size (Fx G_D)</UIString>
+  <UIString ID="Dimensions">Bounding Size (Fx G_D)</UIString>
+  <UIString ID="CUTDETAIL1">Cut Detail 1</UIString>
+  <UIString ID="CUTDETAIL2">Cut Detail 2</UIString>
+  <UIString ID="Area_FlatPattern">Area Flat Pattern</UIString>
   <UIString ID="Title_EN">Title EN</UIString>
   <!--<UIString ID="Mass">Mass</UIString>-->
   <UIString ID="Original">Source File</UIString>
   <UIString ID="Replacement">Replaced by</UIString>
-  <!--<UIString ID="Dimensions">Dimensions</UIString>-->
-  <!--<UIString ID="Thickness">Sheet Thickness</UIString>-->
   <UIString ID="Part Type name">Sub-Type</UIString>
-  <UIString ID="G_D">Diameter</UIString>
 
   <!--Vault Categories for de-DE database-->
   <!--<UIString ID="CAT1">Konstruktion</UIString>

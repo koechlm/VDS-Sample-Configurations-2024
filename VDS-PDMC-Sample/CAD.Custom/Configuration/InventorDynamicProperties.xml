@@ -1,5 +1,195 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <DynamicsProperties>
+  <DynamicPropertiesCategory Category="Base">
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Title</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Part">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Title DE</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Part Family</DynamicProperty>
+    <DynamicProperty>Stock Description</DynamicProperty>
+    <DynamicProperty>Stock Number</DynamicProperty>
+    <DynamicProperty>Spare-Wear Part</DynamicProperty>
+    <DynamicProperty>Material</DynamicProperty>
+    <DynamicProperty>Mass</DynamicProperty>
+    <DynamicProperty>Bounding Size (Fx G_D)</DynamicProperty>
+    <DynamicProperty>Length (Fx G_L)</DynamicProperty>
+    <DynamicProperty>Width (Fx G_W)</DynamicProperty>
+    <DynamicProperty>Height, Diameter (Fx G_H)</DynamicProperty>
+    <DynamicProperty>Thickness (Fx G_T)</DynamicProperty>
+    <DynamicProperty>Source File</DynamicProperty>
+    <DynamicProperty Hidden="True">Area Flat Pattern</DynamicProperty>
+    <DynamicProperty Hidden="True">Engr Approved by</DynamicProperty>
+    <DynamicProperty Hidden="True">Date Eng Approved</DynamicProperty>
+    <DynamicProperty Hidden="True">Part Type name</DynamicProperty>
+    <DynamicProperty Hidden="True">Has MBD</DynamicProperty>
+    <DynamicProperty Hidden="True">BOM Type</DynamicProperty>
+    <DynamicProperty Hidden="True">Key Parameters</DynamicProperty>
+    <DynamicProperty Hidden="True">Last Update with</DynamicProperty>
+    <DynamicProperty Hidden="True">InternalName</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Sheet Metal Part">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Title DE</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Part Family</DynamicProperty>
+    <DynamicProperty>Stock Description</DynamicProperty>
+    <DynamicProperty>Stock Number</DynamicProperty>
+    <DynamicProperty>Spare-Wear Part</DynamicProperty>
+    <DynamicProperty>Material</DynamicProperty>
+    <DynamicProperty>Mass</DynamicProperty>
+    <DynamicProperty>Bounding Size (Fx G_D)</DynamicProperty>
+    <DynamicProperty>Length (Fx G_L)</DynamicProperty>
+    <DynamicProperty>Width (Fx G_W)</DynamicProperty>
+    <DynamicProperty>Height, Diameter (Fx G_H)</DynamicProperty>
+    <DynamicProperty>Thickness (Fx G_T)</DynamicProperty>
+    <DynamicProperty>Area Flat Pattern</DynamicProperty>
+    <DynamicProperty>Source File</DynamicProperty>
+    <DynamicProperty Hidden="True">Engr Approved by</DynamicProperty>
+    <DynamicProperty Hidden="True">Date Eng Approved</DynamicProperty>
+    <DynamicProperty Hidden="True">Part Type name</DynamicProperty>
+    <DynamicProperty Hidden="True">Has MBD</DynamicProperty>
+    <DynamicProperty Hidden="True">BOM Type</DynamicProperty>
+    <DynamicProperty Hidden="True">Key Parameters</DynamicProperty>
+    <DynamicProperty Hidden="True">Last Update with</DynamicProperty>
+    <DynamicProperty Hidden="True">InternalName</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Assembly">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Title DE</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Project</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Part Family</DynamicProperty>
+    <DynamicProperty>Stock Number</DynamicProperty>
+    <DynamicProperty>Spare-Wear Part</DynamicProperty>
+    <DynamicProperty>Mass</DynamicProperty>
+    <DynamicProperty>Bounding Size (Fx G_D)</DynamicProperty>
+    <DynamicProperty>Length (Fx G_L)</DynamicProperty>
+    <DynamicProperty>Width (Fx G_W)</DynamicProperty>
+    <DynamicProperty>Height, Diameter (Fx G_H)</DynamicProperty>
+    <DynamicProperty>Thickness (Fx G_T)</DynamicProperty>
+    <DynamicProperty>Source File</DynamicProperty>
+    <DynamicProperty Hidden="True">Engr Approved by</DynamicProperty>
+    <DynamicProperty Hidden="True">Date Eng Approved</DynamicProperty>
+    <DynamicProperty Hidden="True">Part Type name</DynamicProperty>
+    <DynamicProperty Hidden="True">Has MBD</DynamicProperty>
+    <DynamicProperty Hidden="True">BOM Type</DynamicProperty>
+    <DynamicProperty Hidden="True">Key Parameters</DynamicProperty>
+    <DynamicProperty Hidden="True">Last Update with</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Drawing Inventor">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Title DE</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Format</DynamicProperty>
+    <DynamicProperty>Scale</DynamicProperty>
+    <DynamicProperty>Sheet</DynamicProperty>
+    <DynamicProperty>Dimensions</DynamicProperty>
+    <DynamicProperty>Project Type</DynamicProperty>
+    <DynamicProperty>Type</DynamicProperty>
+    <DynamicProperty>Drawing Type</DynamicProperty>
+    <DynamicProperty>Source File</DynamicProperty>
+    <DynamicProperty Hidden="True">Checked By</DynamicProperty>
+    <DynamicProperty Hidden="True">Checked Date</DynamicProperty>
+    <DynamicProperty Hidden="True">Engr Approved by</DynamicProperty>
+    <DynamicProperty Hidden="True">Date Eng Approved</DynamicProperty>
+    <DynamicProperty Hidden="True">Change Descr</DynamicProperty>
+    <DynamicProperty Hidden="True">Document Check Required</DynamicProperty>
+    <DynamicProperty Hidden="True">Customer Approval Required</DynamicProperty>
+    <DynamicProperty Hidden="True">Last Update with</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Weldment Assembly">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Title DE</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Project</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Part Family</DynamicProperty>
+    <DynamicProperty>Stock Number</DynamicProperty>
+    <DynamicProperty>Spare-Wear Part</DynamicProperty>
+    <DynamicProperty>Material</DynamicProperty>
+    <DynamicProperty>Mass</DynamicProperty>
+    <DynamicProperty>Bounding Size (Fx G_D)</DynamicProperty>
+    <DynamicProperty>Length (Fx G_L)</DynamicProperty>
+    <DynamicProperty>Width (Fx G_W)</DynamicProperty>
+    <DynamicProperty>Height, Diameter (Fx G_H)</DynamicProperty>
+    <DynamicProperty>Thickness (Fx G_T)</DynamicProperty>
+    <DynamicProperty>Source File</DynamicProperty>
+    <DynamicProperty Hidden="True">Engr Approved by</DynamicProperty>
+    <DynamicProperty Hidden="True">Date Eng Approved</DynamicProperty>
+    <DynamicProperty Hidden="True">Part Type name</DynamicProperty>
+    <DynamicProperty Hidden="True">Has MBD</DynamicProperty>
+    <DynamicProperty Hidden="True">BOM Type</DynamicProperty>
+    <DynamicProperty Hidden="True">Key Parameters</DynamicProperty>
+    <DynamicProperty Hidden="True">Last Update with</DynamicProperty>
+    <DynamicProperty Hidden="True">InternalName</DynamicProperty>
+    <DynamicProperty Hidden="True">Diameter</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Substitute">
+    <DynamicProperty>Part Type name</DynamicProperty>
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>BOM Type</DynamicProperty>
+    <DynamicProperty>Source File</DynamicProperty>
+    <DynamicProperty Hidden="True">Last Update with</DynamicProperty>
+    <DynamicProperty>Bounding Size (Fx G_D)</DynamicProperty>
+    <DynamicProperty>Width (Fx G_W)</DynamicProperty>
+    <DynamicProperty>Height, Diameter (Fx G_H)</DynamicProperty>
+    <DynamicProperty>Length (Fx G_L)</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Reference">
+    <DynamicProperty>Dimensions</DynamicProperty>
+    <DynamicProperty>Source File</DynamicProperty>
+    <DynamicProperty Hidden="True">Last Update with</DynamicProperty>
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Frame Member">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Stock Number</DynamicProperty>
+    <DynamicProperty>Material</DynamicProperty>
+    <DynamicProperty>Mass</DynamicProperty>
+    <DynamicProperty>Bounding Size (Fx G_D)</DynamicProperty>
+    <DynamicProperty>Length (Fx G_L)</DynamicProperty>
+    <DynamicProperty>Width (Fx G_W)</DynamicProperty>
+    <DynamicProperty>Height, Diameter (Fx G_H)</DynamicProperty>
+    <DynamicProperty>Thickness (Fx G_T)</DynamicProperty>
+    <DynamicProperty>Cut Detail 1</DynamicProperty>
+    <DynamicProperty>Cut Detail 2</DynamicProperty>
+    <DynamicProperty>Source File</DynamicProperty>
+    <DynamicProperty Hidden="True">Engr Approved by</DynamicProperty>
+    <DynamicProperty Hidden="True">Date Eng Approved</DynamicProperty>
+    <DynamicProperty Hidden="True">VLT_Material</DynamicProperty>
+    <DynamicProperty Hidden="True">Last Update with</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Purchased">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Title DE</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Stock Number</DynamicProperty>
+    <DynamicProperty>Spare-Wear Part</DynamicProperty>
+    <DynamicProperty>Material</DynamicProperty>
+    <DynamicProperty>Mass</DynamicProperty>
+    <DynamicProperty Hidden="True">VLT_Material</DynamicProperty>
+    <DynamicProperty Hidden="True">Last Update with</DynamicProperty>
+  </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Asset Library">
     <DynamicProperty>Stock Number</DynamicProperty>
     <DynamicProperty>Key Parameters</DynamicProperty>
@@ -23,224 +213,13 @@
     <DynamicProperty>Project Type</DynamicProperty>
     <DynamicProperty Hidden="True">Project Number</DynamicProperty>
   </DynamicPropertiesCategory>
-  <DynamicPropertiesCategory Category="Substitute">
-    <DynamicProperty Hidden="True">LastUpdatedWith</DynamicProperty>
-    <DynamicProperty>Dimensions</DynamicProperty>
-    <DynamicProperty>Source File</DynamicProperty>
-    <DynamicProperty>Part Type name</DynamicProperty>
+  <DynamicPropertiesCategory Category="Presentation">
     <DynamicProperty>Title</DynamicProperty>
     <DynamicProperty>Part Number</DynamicProperty>
     <DynamicProperty>Description</DynamicProperty>
-    <DynamicProperty>BOM Type</DynamicProperty>
     <DynamicProperty>Designer</DynamicProperty>
-  </DynamicPropertiesCategory>
-  <DynamicPropertiesCategory Category="Weldment Assembly">
-    <DynamicProperty>Title</DynamicProperty>
-    <DynamicProperty>Title DE</DynamicProperty>
-    <DynamicProperty>Description</DynamicProperty>
-    <DynamicProperty>Part Number</DynamicProperty>
-    <DynamicProperty>Part Family</DynamicProperty>
-    <DynamicProperty>Dimensions</DynamicProperty>
-    <DynamicProperty>Stock Number</DynamicProperty>
     <DynamicProperty>Spare-Wear Part</DynamicProperty>
-    <DynamicProperty Hidden="False">Material</DynamicProperty>
-    <DynamicProperty>Mass</DynamicProperty>
-    <DynamicProperty>Project</DynamicProperty>
-    <DynamicProperty>Designer</DynamicProperty>
-    <DynamicProperty>Engr Approved by</DynamicProperty>
-    <DynamicProperty>Date Eng Approved</DynamicProperty>
     <DynamicProperty>Source File</DynamicProperty>
-    <DynamicProperty Hidden="True">Part Type name</DynamicProperty>
-    <DynamicProperty Hidden="True">Has MBD</DynamicProperty>
-    <DynamicProperty Hidden="True">BOM Type</DynamicProperty>
-    <DynamicProperty Hidden="True">Key Parameters</DynamicProperty>
-    <DynamicProperty Hidden="True">LastUpdatedWith</DynamicProperty>
-    <DynamicProperty Hidden="True">InternalName</DynamicProperty>
-    <DynamicProperty Hidden="True">Diameter</DynamicProperty>
-  </DynamicPropertiesCategory>
-  <DynamicPropertiesCategory Category="Reference">
-    <DynamicProperty>Dimensions</DynamicProperty>
-    <DynamicProperty>Source File</DynamicProperty>
-    <DynamicProperty Hidden="True">LastUpdatedWith</DynamicProperty>
-    <DynamicProperty>Title</DynamicProperty>
-    <DynamicProperty>Description</DynamicProperty>
-  </DynamicPropertiesCategory>
-  <DynamicPropertiesCategory Category="Sheet Metal Part">
-    <DynamicProperty>Title</DynamicProperty>
-    <DynamicProperty>Title DE</DynamicProperty>
-    <DynamicProperty>Description</DynamicProperty>
-    <DynamicProperty>Part Number</DynamicProperty>
-    <DynamicProperty>Part Family</DynamicProperty>
-    <DynamicProperty>Material</DynamicProperty>
-    <DynamicProperty Hidden="True">VLT_Material</DynamicProperty>
-    <DynamicProperty>Dimensions</DynamicProperty>
-    <DynamicProperty>Thickness</DynamicProperty>
-    <DynamicProperty Hidden="True">Diameter</DynamicProperty>
-    <DynamicProperty>Length (Cut)</DynamicProperty>
-    <DynamicProperty>Stock Description</DynamicProperty>
-    <DynamicProperty>Stock Number</DynamicProperty>
-    <DynamicProperty>Spare-Wear Part</DynamicProperty>
-    <DynamicProperty>Mass</DynamicProperty>
-    <DynamicProperty>Designer</DynamicProperty>
-    <DynamicProperty>Engr Approved by</DynamicProperty>
-    <DynamicProperty>Date Eng Approved</DynamicProperty>
-    <DynamicProperty>Source File</DynamicProperty>
-    <DynamicProperty Hidden="True">Part Type name</DynamicProperty>
-    <DynamicProperty Hidden="True">Has MBD</DynamicProperty>
-    <DynamicProperty Hidden="True">BOM Type</DynamicProperty>
-    <DynamicProperty Hidden="True">Key Parameters</DynamicProperty>
-    <DynamicProperty Hidden="True">LastUpdatedWith</DynamicProperty>
-    <DynamicProperty Hidden="True">InternalName</DynamicProperty>
-  </DynamicPropertiesCategory>
-  <DynamicPropertiesCategory Category="Assembly">
-    <DynamicProperty>Title</DynamicProperty>
-    <DynamicProperty>Title DE</DynamicProperty>
-    <DynamicProperty>Description</DynamicProperty>
-    <DynamicProperty>Part Number</DynamicProperty>
-    <DynamicProperty>Part Family</DynamicProperty>
-    <DynamicProperty>Dimensions</DynamicProperty>
-    <DynamicProperty>Stock Number</DynamicProperty>
-    <DynamicProperty>Spare-Wear Part</DynamicProperty>
-    <DynamicProperty>Mass</DynamicProperty>
-    <DynamicProperty>Project</DynamicProperty>
-    <DynamicProperty>Designer</DynamicProperty>
-    <DynamicProperty>Engr Approved by</DynamicProperty>
-    <DynamicProperty>Date Eng Approved</DynamicProperty>
-    <DynamicProperty>Source File</DynamicProperty>
-    <DynamicProperty Hidden="True">Part Type name</DynamicProperty>
-    <DynamicProperty Hidden="True">Has MBD</DynamicProperty>
-    <DynamicProperty Hidden="True">BOM Type</DynamicProperty>
-    <DynamicProperty Hidden="True">Key Parameters</DynamicProperty>
-    <DynamicProperty Hidden="True">LastUpdatedWith</DynamicProperty>
-    <DynamicProperty Hidden="True">InternalName</DynamicProperty>
-    <DynamicProperty Hidden="True">Diameter</DynamicProperty>
-  </DynamicPropertiesCategory>
-  <DynamicPropertiesCategory Category="Frame Member">
-    <DynamicProperty>Title</DynamicProperty>
-    <DynamicProperty>Description</DynamicProperty>
-    <DynamicProperty>Part Number</DynamicProperty>
-    <DynamicProperty Hidden="False">Material</DynamicProperty>
-    <DynamicProperty Hidden="True">VLT_Material</DynamicProperty>
-    <DynamicProperty>Dimensions</DynamicProperty>
-    <DynamicProperty>CUTDETAIL1</DynamicProperty>
-    <DynamicProperty>CUTDETAIL2</DynamicProperty>
-    <DynamicProperty>G_L</DynamicProperty>
-    <DynamicProperty>G_W</DynamicProperty>
-    <DynamicProperty>G_H</DynamicProperty>
-    <DynamicProperty>Stock Number</DynamicProperty>
-    <DynamicProperty>Mass</DynamicProperty>
-    <DynamicProperty>Source File</DynamicProperty>
-    <DynamicProperty Hidden="True">LastUpdatedWith</DynamicProperty>
-  </DynamicPropertiesCategory>
-  <DynamicPropertiesCategory Category="Part">
-    <DynamicProperty>Title</DynamicProperty>
-    <DynamicProperty>Title DE</DynamicProperty>
-    <DynamicProperty>Description</DynamicProperty>
-    <DynamicProperty>Part Number</DynamicProperty>
-    <DynamicProperty>Part Family</DynamicProperty>
-    <DynamicProperty>Material</DynamicProperty>
-    <DynamicProperty>Dimensions</DynamicProperty>
-    <DynamicProperty>Diameter</DynamicProperty>
-    <DynamicProperty>Length (Cut)</DynamicProperty>
-    <DynamicProperty>Stock Description</DynamicProperty>
-    <DynamicProperty>Stock Number</DynamicProperty>
-    <DynamicProperty>Spare-Wear Part</DynamicProperty>
-    <DynamicProperty>Mass</DynamicProperty>
-    <DynamicProperty>Designer</DynamicProperty>
-    <DynamicProperty>Engr Approved by</DynamicProperty>
-    <DynamicProperty>Date Eng Approved</DynamicProperty>
-    <DynamicProperty>Source File</DynamicProperty>
-    <DynamicProperty Hidden="True">Part Type name</DynamicProperty>
-    <DynamicProperty Hidden="True">Has MBD</DynamicProperty>
-    <DynamicProperty Hidden="True">BOM Type</DynamicProperty>
-    <DynamicProperty Hidden="True">Key Parameters</DynamicProperty>
-    <DynamicProperty Hidden="True">LastUpdatedWith</DynamicProperty>
-    <DynamicProperty Hidden="True">InternalName</DynamicProperty>
-  </DynamicPropertiesCategory>
-  <DynamicPropertiesCategory Category="Purchased">
-    <DynamicProperty>Title</DynamicProperty>
-    <DynamicProperty>Title DE</DynamicProperty>
-    <DynamicProperty>Description</DynamicProperty>
-    <DynamicProperty>Part Number</DynamicProperty>
-    <DynamicProperty>Material</DynamicProperty>
-    <DynamicProperty>Stock Number</DynamicProperty>
-    <DynamicProperty Hidden="True">LastUpdatedWith</DynamicProperty>
-    <DynamicProperty>Mass</DynamicProperty>
-    <DynamicProperty Hidden="True">VLT_Material</DynamicProperty>
-    <DynamicProperty>Designer</DynamicProperty>
-  </DynamicPropertiesCategory>
-  <DynamicPropertiesCategory Category="Base">
-    <DynamicProperty>Description</DynamicProperty>
-    <DynamicProperty>Title</DynamicProperty>
-  </DynamicPropertiesCategory>
-  <DynamicPropertiesCategory Category="3D Component" />
-  <DynamicPropertiesCategory Category="Drawing Inventor">
-    <DynamicProperty>Title</DynamicProperty>
-    <DynamicProperty>Title DE</DynamicProperty>
-    <DynamicProperty>Description</DynamicProperty>
-    <DynamicProperty>Part Number</DynamicProperty>
-    <DynamicProperty>Format</DynamicProperty>
-    <DynamicProperty>Scale</DynamicProperty>
-    <DynamicProperty>Sheet</DynamicProperty>
-    <DynamicProperty>Source File</DynamicProperty>
-    <DynamicProperty Hidden="True">LastUpdatedWith</DynamicProperty>
-    <DynamicProperty>Dimensions</DynamicProperty>
-    <DynamicProperty>Project Type</DynamicProperty>
-    <DynamicProperty>Type</DynamicProperty>
-    <DynamicProperty>Drawing Type</DynamicProperty>
-    <DynamicProperty>Designer</DynamicProperty>
-    <DynamicProperty Hidden="True">Checked by</DynamicProperty>
-    <DynamicProperty Hidden="True">Date Checked</DynamicProperty>
-    <DynamicProperty Hidden="True">Engr Approved by</DynamicProperty>
-    <DynamicProperty Hidden="True">Date Eng Approved</DynamicProperty>
-    <DynamicProperty Hidden="True">Change Descr</DynamicProperty>
-    <DynamicProperty Hidden="True">Document Check Required</DynamicProperty>
-    <DynamicProperty Hidden="True">Customer Approval Required</DynamicProperty>
-  </DynamicPropertiesCategory>
-  <DynamicPropertiesCategory Category="Bauteil">
-    <DynamicProperty>Titel</DynamicProperty>
-    <DynamicProperty>Titel EN</DynamicProperty>
-    <DynamicProperty>Beschreibung</DynamicProperty>
-    <DynamicProperty>Bauteilnummer</DynamicProperty>
-    <DynamicProperty>Bestandsnummer</DynamicProperty>
-    <DynamicProperty>Halbzeug</DynamicProperty>
-    <DynamicProperty>Material</DynamicProperty>
-    <DynamicProperty>Gewicht</DynamicProperty>
-    <DynamicProperty>Länge (Zuschnitt)</DynamicProperty>
-    <DynamicProperty>Abmessungen</DynamicProperty>
-    <DynamicProperty>EV-Kennung</DynamicProperty>
-    <DynamicProperty>Entstanden aus</DynamicProperty>
-    <DynamicProperty>Ersetzt durch</DynamicProperty>
-    <DynamicProperty>Werksnorm</DynamicProperty>
-    <DynamicProperty Hidden="True">Letzte Aktualisierung mit</DynamicProperty>
-  </DynamicPropertiesCategory>
-  <DynamicPropertiesCategory Category="Zeichnung Inventor">
-    <DynamicProperty>Titel</DynamicProperty>
-    <DynamicProperty>Beschreibung</DynamicProperty>
-    <DynamicProperty>Bauteilnummer</DynamicProperty>
-    <DynamicProperty>Blatt</DynamicProperty>
-    <DynamicProperty>Size</DynamicProperty>
-    <DynamicProperty>Scale</DynamicProperty>
-    <DynamicProperty>Entstanden aus</DynamicProperty>
-    <DynamicProperty>Ersetzt durch</DynamicProperty>
-    <DynamicProperty Hidden="True">Letzte Aktualisierung mit</DynamicProperty>
-  </DynamicPropertiesCategory>
-  <DynamicPropertiesCategory Category="Blechteil">
-    <DynamicProperty>Titel</DynamicProperty>
-    <DynamicProperty>Titel EN</DynamicProperty>
-    <DynamicProperty>Beschreibung</DynamicProperty>
-    <DynamicProperty>Bauteilnummer</DynamicProperty>
-    <DynamicProperty>Bestandsnummer</DynamicProperty>
-    <DynamicProperty>Halbzeug</DynamicProperty>
-    <DynamicProperty>Material</DynamicProperty>
-    <DynamicProperty>Gewicht</DynamicProperty>
-    <DynamicProperty>Blechstärke</DynamicProperty>
-    <DynamicProperty>Länge (Zuschnitt)</DynamicProperty>
-    <DynamicProperty>Abmessungen</DynamicProperty>
-    <DynamicProperty>EV-Kennung</DynamicProperty>
-    <DynamicProperty>Entstanden aus</DynamicProperty>
-    <DynamicProperty>Ersetzt durch</DynamicProperty>
-    <DynamicProperty>Werksnorm</DynamicProperty>
-    <DynamicProperty Hidden="True">Letzte Aktualisierung mit</DynamicProperty>
+    <DynamicProperty Hidden="True">Last Update with</DynamicProperty>
   </DynamicPropertiesCategory>
 </DynamicsProperties>

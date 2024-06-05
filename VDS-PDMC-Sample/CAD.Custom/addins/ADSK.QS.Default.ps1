@@ -12,6 +12,9 @@ function InitializeWindow {
 
 	$dsWindow.Title = SetWindowTitle
 	$Global:mCategories = GetCategories
+	if ($document.FileSaveCounter -ne 0) {
+		$Global:mReadOnly = (Get-Item $document.FullFileName).IsReadOnly
+	}
 
 	# leverage the current theme variable in theme dependent path names etc.
 	$Global:currentTheme = [Autodesk.DataManagement.Client.Framework.Forms.SkinUtils.WinFormsTheme]::Instance.CurrentTheme
@@ -105,165 +108,159 @@ function InitializeWindow {
 				}
 			}
 
-			switch ($Prop["_CreateMode"].Value) {
-				$true {
-					#create mode is relevant for copies; reset revision data
-					ResetRevisionProperties
+			if ($Prop["_CreateMode"].Value -eq $true) {
 
-					#reset the part number for new files as Inventor writes the file name (no extension) as a default.
-					If ($Prop["Part Number"]) {
-						#Inventor returns null if the Part Number has no custom value
-						if ($Prop["Part Number"].Value -ne "") {
-							$Prop["Part Number"].Value = ""
+				#create mode is relevant for copies; reset revision data
+				ResetRevisionProperties
+
+				#reset the part number for new files as Inventor writes the file name (no extension) as a default.
+				If ($Prop["Part Number"]) {
+					#Inventor returns null if the Part Number has no custom value
+					if ($Prop["Part Number"].Value -ne "") {
+						$Prop["Part Number"].Value = ""
+					}
+				}
+				InitializeInventorCategory
+				InitializeInventorNumSchm
+				#Initialize Shortcuts
+				mFillMyScTree
+
+				#set the active user as Inventor Designer
+				$mUser = $vault.AdminService.Session.User
+				if ($mUser.Name -ne $Prop["Designer"].Value) {
+					$Prop["Designer"].Value = $mUser.Name
+				}
+
+				#region FDU Support --------------------------------------------------------------------------
+				
+				# Read FDS related internal meta data; required to manage particular workflows
+				If ($_mInvHelpers.m_FDUActive($Application) -ne $false) {
+					$_mFdsKeys = $_mInvHelpers.m_GetFdsKeys($Application, @{})
+
+					# some FDS workflows require VDS cancellation; add the conditions to the event handler _Loaded below
+					$dsWindow.add_Loaded({
+							IF ($mSkipVDS -eq $true) {
+								$dsWindow.CancelWindowCommand.Execute($this)
+								#$dsDiag.Trace("FDU-VDS EventHandler: Skip Dialog executed")	
+							}
+						})
+
+					# FDS workflows with individual settings					
+					$dsWindow.FindName("Categories").add_SelectionChanged({
+							If ($Prop["_Category"].Value -eq "Factory Asset" -and $Document.FileSaveCounter -eq 0) {
+								#don't localize name according FDU fixed naming
+								$paths = @("Factory Asset Library Source")
+								mActivateBreadCrumbCmbs $paths
+								$dsWindow.FindName("NumSchms").SelectedIndex = 1
+							}
+						})
+			
+					If ($_mFdsKeys.ContainsKey("FdsType") -and $Document.FileSaveCounter -eq 0 ) {
+						#$dsDiag.Trace(" FDS File Type detected")
+						# for new assets we suggest to use the source file folder name, nothing else
+						If ($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Asset") {
+							# only the MSDCE FDS configuration template provides a category for assets, check for this otherwise continue with the selection done before
+							$mCatName = $Global:mCategories | Where-Object { $_.Name -eq "Factory Asset" }
+							IF ($mCatName) { $Prop["_Category"].Value = "Factory Asset" }
 						}
-					}
-					InitializeInventorCategory
-					InitializeInventorNumSchm
-					#Initialize Shortcuts
-					mFillMyScTree
+						# skip for publishing the 3D temporary file save event for VDS
+						If ($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Asset" -and $Application.SilentOperation -eq $true) { 
+							#$dsDiag.Trace(" FDS publishing 3D - using temporary assembly silent mode: need to skip VDS!")
+							$global:mSkipVDS = $true
+						}
+						If ($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Asset" -and $Document.InternalName -ne $Application.ActiveDocument.InternalName) {
+							#$dsDiag.Trace(" FDS publishing 3D: ActiveDoc.InternalName different from VDSDoc.Internalname: Verbose VDS")
+							$global:mSkipVDS = $true
+						}
 
-					#set the active user as Inventor Designer
-					$mUser = $vault.AdminService.Session.User
-					if ($mUser.Name -ne $Prop["Designer"].Value) {
-						$Prop["Designer"].Value = $mUser.Name
-					}
+						# 
+						If ($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Layout" -and $_mFdsKeys.Count -eq 1) {
+							#$dsDiag.Trace("3DLayout, not synced")
+							# only the MSDCE FDS configuration template provides a category for layouts, check for this otherwise continue with the selection done before
+							$mCatName = $Global:mCategories | Where-Object { $_.Name -eq "Factory Layout" }
+							IF ($mCatName) { $Prop["_Category"].Value = "Factory Layout" }
+						}
 
-					#region FDU Support --------------------------------------------------------------------------
-					
-					# Read FDS related internal meta data; required to manage particular workflows
-					If ($_mInvHelpers.m_FDUActive($Application) -ne $false) {
-						$_mFdsKeys = $_mInvHelpers.m_GetFdsKeys($Application, @{})
-
-						# some FDS workflows require VDS cancellation; add the conditions to the event handler _Loaded below
-						$dsWindow.add_Loaded({
-								IF ($mSkipVDS -eq $true) {
+						# FDU 2019.22.0.2 and later allow to skip dynamically, instead of skipping in general by the SkipVDSon1stSave.IAM template
+						If ($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Layout" -and $_mFdsKeys.Count -gt 1 -and $Document.FileSaveCounter -eq 0) {
+							#$dsDiag.Trace("3DLayout not saved yet, but already synced")
+							$dsWindow.add_Loaded({
 									$dsWindow.CancelWindowCommand.Execute($this)
 									#$dsDiag.Trace("FDU-VDS EventHandler: Skip Dialog executed")	
-								}
-							})
-
-						# FDS workflows with individual settings					
-						$dsWindow.FindName("Categories").add_SelectionChanged({
-								If ($Prop["_Category"].Value -eq "Factory Asset" -and $Document.FileSaveCounter -eq 0) {
-									#don't localize name according FDU fixed naming
-									$paths = @("Factory Asset Library Source")
-									mActivateBreadCrumbCmbs $paths
-									$dsWindow.FindName("NumSchms").SelectedIndex = 1
-								}
-							})
-				
-						If ($_mFdsKeys.ContainsKey("FdsType") -and $Document.FileSaveCounter -eq 0 ) {
-							#$dsDiag.Trace(" FDS File Type detected")
-							# for new assets we suggest to use the source file folder name, nothing else
-							If ($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Asset") {
-								# only the MSDCE FDS configuration template provides a category for assets, check for this otherwise continue with the selection done before
-								$mCatName = $Global:mCategories | Where-Object { $_.Name -eq "Factory Asset" }
-								IF ($mCatName) { $Prop["_Category"].Value = "Factory Asset" }
-							}
-							# skip for publishing the 3D temporary file save event for VDS
-							If ($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Asset" -and $Application.SilentOperation -eq $true) { 
-								#$dsDiag.Trace(" FDS publishing 3D - using temporary assembly silent mode: need to skip VDS!")
-								$global:mSkipVDS = $true
-							}
-							If ($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Asset" -and $Document.InternalName -ne $Application.ActiveDocument.InternalName) {
-								#$dsDiag.Trace(" FDS publishing 3D: ActiveDoc.InternalName different from VDSDoc.Internalname: Verbose VDS")
-								$global:mSkipVDS = $true
-							}
-
-							# 
-							If ($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Layout" -and $_mFdsKeys.Count -eq 1) {
-								#$dsDiag.Trace("3DLayout, not synced")
-								# only the MSDCE FDS configuration template provides a category for layouts, check for this otherwise continue with the selection done before
-								$mCatName = $Global:mCategories | Where-Object { $_.Name -eq "Factory Layout" }
-								IF ($mCatName) { $Prop["_Category"].Value = "Factory Layout" }
-							}
-
-							# FDU 2019.22.0.2 and later allow to skip dynamically, instead of skipping in general by the SkipVDSon1stSave.IAM template
-							If ($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Layout" -and $_mFdsKeys.Count -gt 1 -and $Document.FileSaveCounter -eq 0) {
-								#$dsDiag.Trace("3DLayout not saved yet, but already synced")
-								$dsWindow.add_Loaded({
-										$dsWindow.CancelWindowCommand.Execute($this)
-										#$dsDiag.Trace("FDU-VDS EventHandler: Skip Dialog executed")	
-									})
-							}
+								})
 						}
 					}
-					#endregion FDU Support --------------------------------------------------------------------------
-
-					#retrieve 3D model properties (Inventor captures these also, but too late; we are currently before save event transfers model properties to drawing properties) 
-					# but don't do this, if the copy mode is active
-					if ($Prop["_CopyMode"].Value -eq $false) {	
-						if (($Prop["_FileExt"].Value -eq ".IDW") -or ($Prop["_FileExt"].Value -eq ".DWG" )) {
-							if ($_ModelFullFileName -ne $null) {
-								$Prop["Title"].Value = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName, "Title")
-								$Prop["Description"].Value = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName, "Description")
-								$_ModelPartNumber = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName, "Part Number")
-
-								if ($_ModelPartNumber -ne $null) {
-									# must not write empty part numbers 
-									$Prop["Part Number"].Value = $_ModelPartNumber 
-								}
-							}
-						}
-
-						if ($Prop["_FileExt"].Value -eq ".IPN") {
-							
-							if ($_ModelFullFileName -ne $null) {
-								$Prop["Title"].Value = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName, "Title")
-								$Prop["Description"].Value = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName, "Description")
-								$Prop["Part Number"].Value = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName, "Part Number")
-								$Prop["Stock Number"].Value = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName, "Stock Number")
-								# for custom properties there is always a risk that any does not exist
-								try {
-									$Prop[$_iPropSemiFinished].Value = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName, $_iPropSemiFinished)
-									$_t1 = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName, $_iPropSpearWearPart)
-									if ($_t1 -ne "") {
-										$Prop[$_iPropSpearWearPart].Value = $_t1
-									}
-								} 
-								catch {
-									$mErrorMsg = "Set path, filename and properties for IPN: Failed to write a custom property."
-									[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowError($mErrorMsg, "VDS Sample Configuration")
-								}
-							}
-						}
-
-					} # end of copy mode = false check
-
-					#overridden display names will change suggested file names. Reset overrides!
-					if ($Prop["_CopyMode"].Value) {
-						$Document.DisplayNameOverridden = $false
-					}
-
-					if ($Prop["_CopyMode"].Value -and @(".DWG", ".IDW", ".IPN") -contains $Prop["_FileExt"].Value) {
-						$Prop["DocNumber"].Value = $Prop["DocNumber"].Value.TrimStart($UIString["CFG2"])
-					}
-					
 				}
-				$false { 
-					# EditMode = True
-					if ((Get-Item $document.FullFileName).IsReadOnly) {
-						#disable the OK button
-						$dsWindow.FindName("btnOK").IsEnabled = $false
+				#endregion FDU Support --------------------------------------------------------------------------
+
+				#retrieve 3D model properties (Inventor captures these also, but too late; we are currently before save event transfers model properties to drawing properties) 
+				# but don't do this, if the copy mode is active
+				if ($Prop["_CopyMode"].Value -eq $false) {	
+					if (($Prop["_FileExt"].Value -eq ".IDW") -or ($Prop["_FileExt"].Value -eq ".DWG" )) {
+						if ($_ModelFullFileName -ne $null) {
+							$Prop["Title"].Value = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName, "Title")
+							$Prop["Description"].Value = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName, "Description")
+							$_ModelPartNumber = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName, "Part Number")
+
+							if ($_ModelPartNumber -ne $null) {
+								# must not write empty part numbers 
+								$Prop["Part Number"].Value = $_ModelPartNumber 
+							}
+						}
 					}
-					else {	
-						#VDS MFG Sample - handle weldbead material" 
-						$mCat = $Global:mCategories | Where-Object { $_.Name -eq $UIString["MSDCE_CAT11"] } # weldment assembly
-						IF ($Prop["_Category"].Value -eq $mCat.Name) { 
+
+					if ($Prop["_FileExt"].Value -eq ".IPN") {
+						
+						if ($_ModelFullFileName -ne $null) {
+							$Prop["Title"].Value = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName, "Title")
+							$Prop["Description"].Value = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName, "Description")
+							$Prop["Part Number"].Value = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName, "Part Number")
+							$Prop["Stock Number"].Value = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName, "Stock Number")
+							# for custom properties there is always a risk that any does not exist
 							try {
-								$Prop["Material"].Value = $Document.ComponentDefinition.WeldBeadMaterial.DisplayName
-							}
+								$_iPropSpearWearPart = $mPropTrans["SPAREPART"]
+								$_t1 = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName, $_iPropSpearWearPart)
+								if ($_t1 -ne "") {
+									$Prop[$_iPropSpearWearPart].Value = $_t1
+								}
+							} 
 							catch {
-								$dsDiag.Trace("Failed reading weld bead material; most likely the assembly subtype is not an weldment.")
+								$mWarningMsg = "Set path, filename and properties for IPN: Failed to write a custom property."
+								[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowWarning($mWarningMsg, "VDS Sample Configuration")
 							}
 						}
 					}
 
-				}
-				default {
+				} # end of copy mode = false check
 
+				#overridden display names will change suggested file names. Reset overrides!
+				if ($Prop["_CopyMode"].Value) {
+					$Document.DisplayNameOverridden = $false
 				}
-			} #end switch Create / Edit Mode
+
+				if ($Prop["_CopyMode"].Value -and @(".DWG", ".IDW", ".IPN") -contains $Prop["_FileExt"].Value) {
+					$Prop["DocNumber"].Value = $Prop["DocNumber"].Value.TrimStart($UIString["CFG2"])
+				}
+				
+			}
+			Else { 
+				# EditMode = True
+				if ($mReadOnly -eq $true) {
+					#disable the OK button
+					$dsWindow.FindName("btnOK").IsEnabled = $false
+				}					
+			}
+				
+			#VDS MFG/PDMC Sample - handle weldbead material" 
+			$mCat = $Global:mCategories | Where-Object { $_.Name -eq $UIString["MSDCE_CAT11"] } # weldment assembly
+			IF ($Prop["_Category"].Value -eq $mCat.Name) {
+				try {
+					$Prop["Material"].Value = $Document.ComponentDefinition.WeldBeadMaterial.DisplayName
+				}
+				catch {
+					$dsDiag.Trace("Failed reading weld bead material; most likely the assembly subtype is not an weldment.")
+				}
+			}
 
 		}
 		"InventorFrameWindow" {

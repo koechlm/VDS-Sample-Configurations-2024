@@ -117,13 +117,69 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate>
-                                    <ComboBox ItemsSource="{Binding ListValues}" Text="{WPF:ValidatedBinding Value}"
-                                  IsEditable="False" BorderThickness="0" IsHitTestVisible="False"  ToolTipService.ShowOnDisabled="True" ToolTip="Weldment Material derives from weld bead material setting."/>
+                                    <TextBox Text="{WPF:ValidatedBinding Value}" BorderThickness="0" 
+                                    ToolTip="{Binding DataContext.UIString[LBL27], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, FallbackValue='[Assigned]'}" 
+                                    IsReadOnly="True" IsTabStop="False"/>
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
                     </MultiDataTrigger>
                     <DataTrigger Binding="{Binding Name}" Value="Part Number">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <TextBox Text="{WPF:ValidatedBinding Value}" BorderThickness="0" 
+                                    ToolTip="{Binding DataContext.UIString[LBL27], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, FallbackValue='[Assigned]'}" 
+                                    IsReadOnly="True" IsTabStop="False"/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Name}" Value="G_L">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <TextBox Text="{Binding Value}" BorderThickness="0" 
+                                    ToolTip="{Binding DataContext.UIString[LBL27], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, FallbackValue='[Assigned]'}" 
+                                    IsReadOnly="True" IsTabStop="False"/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Name}" Value="G_W">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <TextBox Text="{WPF:ValidatedBinding Value}" BorderThickness="0" 
+                                    ToolTip="{Binding DataContext.UIString[LBL27], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, FallbackValue='[Assigned]'}" 
+                                    IsReadOnly="True" IsTabStop="False"/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Name}" Value="G_H">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <TextBox Text="{WPF:ValidatedBinding Value}" BorderThickness="0" 
+                                    ToolTip="{Binding DataContext.UIString[LBL27], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, FallbackValue='[Assigned]'}" 
+                                    IsReadOnly="True" IsTabStop="False"/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Name}" Value="G_T">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <TextBox Text="{WPF:ValidatedBinding Value}" BorderThickness="0" 
+                                    ToolTip="{Binding DataContext.UIString[LBL27], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, FallbackValue='[Assigned]'}" 
+                                    IsReadOnly="True" IsTabStop="False"/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Name}" Value="G_D">
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate>
