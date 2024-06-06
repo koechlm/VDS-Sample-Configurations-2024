@@ -190,16 +190,21 @@
   <UIString ID="DwgType">DWG Typ</UIString>
   
   <!--Inventor custom iProperties Displaynames for dynamic properties-->
-  <UIString ID="G_L">Länge (Zuschnitt)</UIString>
-  <UIString ID="PL">Länge (Zuschnitt)</UIString>
+  <UIString ID="G_L">Länge (Fx G_L)</UIString>
+  <UIString ID="PL">Länge (Fx G_L)</UIString>
+  <UIString ID="G_W">Breite (Fx G_W)</UIString>
+  <UIString ID="G_H">Höhe, Durchmesser (Fx G_H)</UIString>
+  <UIString ID="G_T">Stärke (Fx G_T)</UIString>
+  <UIString ID="G_D">Abmessungen (Fx G_D)</UIString>
+  <UIString ID="Dimensions">Abmessungen (Fx G_D)</UIString>
+  <UIString ID="CUTDETAIL1">Zuschnitt Detail 1</UIString>
+  <UIString ID="CUTDETAIL2">Zuschnitt Detail 2</UIString>
+  <UIString ID="Area_FlatPattern">Fläche Abwicklung</UIString>
   <UIString ID="Title_EN">Titel EN</UIString>
   <UIString ID="Mass">Gewicht</UIString>
   <UIString ID="Original">Entstanden aus</UIString>
   <UIString ID="Replacement">Ersetzt durch</UIString>
-  <UIString ID="Dimensions">Abmessungen</UIString>
-  <UIString ID="Thickness">Blechstärke</UIString>
   <UIString ID="Part Type name">Modell Typ</UIString>
-  <UIString ID="G_D">Durchmesser</UIString>
 
   <!--Vault Categories for de-DE database-->
   <!--<UIString ID="CAT1">Konstruktion</UIString>

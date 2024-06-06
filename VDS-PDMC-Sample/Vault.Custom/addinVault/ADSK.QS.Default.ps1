@@ -1,15 +1,9 @@
-﻿
-#=============================================================================#
-# PowerShell script sample for Vault Data Standard                            
-#			 Autodesk Vault - VDS-PDMC-Sample 2022  								  
-# This sample is based on VDS 2023 RTM and adds functionality and rules		  
-#                                                                             
-# Copyright (c) Autodesk - All rights reserved.                               
-#                                                                             
-# THIS SCRIPT/CODE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER   
-# EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES 
-# OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.  
-#=============================================================================#
+﻿# DISCLAIMER:
+# ---------------------------------
+# In any case, code, templates, and snippets of this solution are of "work in progress" character.
+# Neither Markus Koechl, nor Autodesk represents that these samples are reliable, accurate, complete, or otherwise valid. 
+# Accordingly, those configuration samples are provided as is with no warranty of any kind, and you use the applications at your own risk.
+
 
 #this function will be called to check if the Ok button can be enabled
 function ActivateOkButton
@@ -106,8 +100,8 @@ function InitializeTabWindow
 
 function InitializeWindow
 {	      
-        #$dsDiag.ShowLog()
-        #$dsDiag.Clear()
+	#$dsDiag.ShowLog()
+	#$dsDiag.Clear()
 
 	#begin rules applying commonly
 	$Prop["_Category"].add_PropertyChanged({
@@ -138,13 +132,12 @@ function InitializeWindow
 				}
 			}
 
+			#region VDS-PDMC-Sample
+
 			$dsWindow.FindName("TemplateCB").add_SelectionChanged({
 				#update the category = selected template's category
 				m_TemplateChanged
 			})
-
-			
-			#region VDS-PDMC-Sample
 
 			if($dsWindow.FindName("tabItemProperties")) { mInitializeTabItemProps}
 
@@ -899,7 +892,7 @@ function ItemDescription
 
  
 function m_TemplateChanged {
-	
+		
 	#check if cmbTemplates is empty
 	if ($dsWindow.FindName("TemplateCB").ItemsSource.Count -lt 1)
 	{
@@ -908,6 +901,7 @@ function m_TemplateChanged {
 	$mContext = $dsWindow.DataContext
 	$mTemplatePath = $mContext.TemplatePath
 	$mTemplateFile = $mContext.SelectedTemplate.Name
+	$mTemplate = $mTemplatePath + "/" + $mTemplateFile
 	$mFolder = $vault.DocumentService.GetFolderByPath($mTemplatePath)
 	$mFiles = $vault.DocumentService.GetLatestFilesByFolderId($mFolder.Id,$false)
 	$mTemplateFile = $mFiles | Where-Object { $_.Name -eq $mTemplateFile }
@@ -926,8 +920,7 @@ function m_TemplateChanged {
 			$Prop[($UIString["ADSK-GoToNavigation_Prop01"])].Value = $mContext.SelectedTemplate.Name
 		}
 	}
-
-	#$dsDiag.Trace(" ... TemplateChanged finished <<")
+	#endregion
 }
 
 function m_CategoryChanged 
@@ -941,7 +934,7 @@ function m_CategoryChanged
 
 			# write current user name to designer/author fields depending on the category
 			$DesignCats = @("Drawing Inventor", "Drawing AutoCAD", "Part", "Assembly", "Weldment Assembly", "Sheet Metal Part")
-			$OfficeCats = @("Office")
+			$OfficeCats = @("Office")	
 			If($DesignCats -contains $Prop["_Category"].Value)
 			{
 				If ($Prop['_XLTN_DESIGNER'].Value -eq $null) 
@@ -958,9 +951,18 @@ function m_CategoryChanged
 				}
 			}
 			
-			#Copy Parent Project Number to file property "Project" if exists
+			#Copy Parent Project properites to file properties if exists
 			If($Prop["_XLTN_PROJECT"]){
-				mGetProjectFolderPropToVaultFile -mFolderSourcePropertyName "Name" -mFileTargetPropertyName $Prop["_XLTN_PROJECT"].Name
+				
+				#build a name/value map assigning each target property name the source's property name
+				$Global:mFld2FileMap = @{ Project = "Name"; 'Project Number' = "Project Number" }
+
+				#get the next folder of category "Project" iterating hierarchy inversely
+				$mSrc = mGetParentFldrByCat($UIString["CAT6"])
+				if ($mSrc) {
+					#invoke library method to copy all property values 
+					mInheritProperties $mSrc.Id $mFld2FileMap
+				}
 			}
 			
 		}
@@ -987,6 +989,20 @@ function m_CategoryChanged
 			If ($Prop["_Category"].Value -eq $UIString["CAT6"] -and $Prop["_XLTN_DATESTART"] )		
 			{
 				$Prop["_XLTN_DATESTART"].Value = Get-Date -displayhint date
+			}
+
+			#Copy Parent Project properties to this folder's properties
+			If($Prop["_XLTN_PROJECT"]){
+				
+				#build a name/value map assigning each target property name the source's property name
+				$Global:mFld2FileMap = @{ Project = "Name"; 'Project Number' = "Project Number" }
+
+				#get the next folder of category "Project" iterating hierarchy inversely
+				$mSrc = mGetParentFldrByCat($UIString["CAT6"])
+				if ($mSrc) {
+					#invoke library method to copy all property values 
+					mInheritProperties $mSrc.Id $mFld2FileMap
+				}
 			}
 		}
 

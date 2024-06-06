@@ -1,24 +1,9 @@
-#region disclaimer =============================================================================
-# PowerShell script sample for Vault Data Standard
-#			 Autodesk Vault - VDS-PDMC-Sample 2022
-# This sample is based on VDS 2023 RTM and adds functionality and rules
-#
-# Copyright (c) Autodesk - All rights reserved.
-#
-# THIS SCRIPT/CODE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER
-# EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
-# OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.
-#endregion =============================================================================
+# DISCLAIMER:
+# ---------------------------------
+# In any case, code, templates, and snippets of this solution are of "work in progress" character.
+# Neither Markus Koechl, nor Autodesk represents that these samples are reliable, accurate, complete, or otherwise valid. 
+# Accordingly, those configuration samples are provided as is with no warranty of any kind, and you use the applications at your own risk.
 
-#region - version history
-
-#Version Info - VDS-PDMC-Sample Revision Management 2022.2.0
-# removed workarounds required by RTM and 2022.1 and fixed by pre-liminary patch and 2022.2
-
-#Version Info - VDS-PDMC-Sample Revision Management 2022.0.0
-# initial version
-
-#endregion
 
 function InvertReadOnly {
 	if ($Prop["_EditMode"].Value -eq $true) {

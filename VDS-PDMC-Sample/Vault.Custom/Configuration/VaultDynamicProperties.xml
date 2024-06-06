@@ -8,23 +8,25 @@
     <DynamicProperty>Description</DynamicProperty>
     <DynamicProperty>Beschreibung</DynamicProperty>
     <DynamicProperty>Description 2</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Konstrukteur</DynamicProperty>
     <DynamicProperty>Part Number</DynamicProperty>
     <DynamicProperty>Teilenummer</DynamicProperty>
     <DynamicProperty>Part Family</DynamicProperty>
     <DynamicProperty>Make or Buy</DynamicProperty>
-    <DynamicProperty Hidden="True">Material</DynamicProperty>
-    <DynamicProperty>Dimensions/Size</DynamicProperty>
-    <DynamicProperty>Diam./Thickn.</DynamicProperty>
-    <DynamicProperty>Length (Cut)</DynamicProperty>
-    <DynamicProperty>Mass</DynamicProperty>
+    <DynamicProperty>Material</DynamicProperty>
     <DynamicProperty>Spare-Wear Part</DynamicProperty>
     <DynamicProperty>Stock Number</DynamicProperty>
     <DynamicProperty>Bestandsnummer</DynamicProperty>
-    <DynamicProperty>Semi-finished</DynamicProperty>
+    <DynamicProperty>Stock Description</DynamicProperty>
+    <DynamicProperty>Stock Qty</DynamicProperty>
+    <DynamicProperty>Mass</DynamicProperty>
+    <DynamicProperty>Bounding Size</DynamicProperty>
+    <DynamicProperty>Length (Fx)</DynamicProperty>
+    <DynamicProperty>Width (Fx)</DynamicProperty>
+    <DynamicProperty>Height, Diameter (Fx)</DynamicProperty>
     <DynamicProperty>Project Number</DynamicProperty>
     <DynamicProperty>Project</DynamicProperty>
-    <DynamicProperty>Designer</DynamicProperty>
-    <DynamicProperty>Konstrukteur</DynamicProperty>
     <DynamicProperty>Engineer</DynamicProperty>
     <DynamicProperty>Manager</DynamicProperty>
     <DynamicProperty>Checked By</DynamicProperty>
@@ -41,7 +43,6 @@
     <DynamicProperty Hidden="True">Comments</DynamicProperty>
     <DynamicProperty Hidden="True">Application Version</DynamicProperty>
     <DynamicProperty Hidden="True">Anwendungsversion</DynamicProperty>
-    <DynamicProperty>FX-TITLE</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Sheet Metal Part" Type="File">
     <DynamicProperty>Title</DynamicProperty>
@@ -51,29 +52,33 @@
     <DynamicProperty>Description</DynamicProperty>
     <DynamicProperty>Beschreibung</DynamicProperty>
     <DynamicProperty>Description 2</DynamicProperty>
-    <DynamicProperty>Part Number</DynamicProperty>
-    <DynamicProperty>Teilenummer</DynamicProperty>
-    <DynamicProperty>Part Family</DynamicProperty>
-    <DynamicProperty>Make or Buy</DynamicProperty>
-    <DynamicProperty Hidden="True">Material</DynamicProperty>
-    <DynamicProperty>Dimensions/Size</DynamicProperty>
-    <DynamicProperty>Diam./Thickn.</DynamicProperty>
-    <DynamicProperty>Length (Cut)</DynamicProperty>
-    <DynamicProperty>Mass</DynamicProperty>
-    <DynamicProperty>Spare-Wear Part</DynamicProperty>
-    <DynamicProperty>Stock Number</DynamicProperty>
-    <DynamicProperty>Semi-finished</DynamicProperty>
-    <DynamicProperty>Project Number</DynamicProperty>
-    <DynamicProperty>Project</DynamicProperty>
     <DynamicProperty>Designer</DynamicProperty>
     <DynamicProperty>Konstrukteur</DynamicProperty>
     <DynamicProperty>Engineer</DynamicProperty>
     <DynamicProperty>Manager</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Teilenummer</DynamicProperty>
+    <DynamicProperty>Part Family</DynamicProperty>
+    <DynamicProperty>Make or Buy</DynamicProperty>
+    <DynamicProperty>Spare-Wear Part</DynamicProperty>
+    <DynamicProperty>Stock Number</DynamicProperty>
+    <DynamicProperty>Stock Description</DynamicProperty>
+    <DynamicProperty>Stock Qty</DynamicProperty>
+    <DynamicProperty>Material</DynamicProperty>
+    <DynamicProperty>Mass</DynamicProperty>
+    <DynamicProperty>Bounding Size</DynamicProperty>
+    <DynamicProperty>Length (Fx)</DynamicProperty>
+    <DynamicProperty>Width (Fx)</DynamicProperty>
+    <DynamicProperty>Height, Diameter (Fx)</DynamicProperty>
+    <DynamicProperty>Thickness (Fx)</DynamicProperty>
+    <DynamicProperty>Project Number</DynamicProperty>
+    <DynamicProperty>Project</DynamicProperty>
     <DynamicProperty>Checked By</DynamicProperty>
     <DynamicProperty>Checked Date</DynamicProperty>
     <DynamicProperty>Engr Approved By</DynamicProperty>
     <DynamicProperty>Engr Approved Date</DynamicProperty>
     <DynamicProperty>Source File</DynamicProperty>
+    <DynamicProperty>Replaced By</DynamicProperty>
     <DynamicProperty Hidden="True">MBD</DynamicProperty>
     <DynamicProperty Hidden="True">BOM Type</DynamicProperty>
     <DynamicProperty Hidden="True">FDS Key</DynamicProperty>
@@ -88,22 +93,27 @@
     <DynamicProperty>Title DE</DynamicProperty>
     <DynamicProperty>Description</DynamicProperty>
     <DynamicProperty>Description 2</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Engineer</DynamicProperty>
+    <DynamicProperty>Manager</DynamicProperty>
     <DynamicProperty>Part Number</DynamicProperty>
     <DynamicProperty>Part Family</DynamicProperty>
     <DynamicProperty>Make or Buy</DynamicProperty>
     <DynamicProperty>Material</DynamicProperty>
-    <DynamicProperty>Dimensions/Size</DynamicProperty>
-    <DynamicProperty>Diam./Thickn.</DynamicProperty>
-    <DynamicProperty>Length (Cut)</DynamicProperty>
-    <DynamicProperty>Mass</DynamicProperty>
     <DynamicProperty>Spare-Wear Part</DynamicProperty>
     <DynamicProperty>Stock Number</DynamicProperty>
-    <DynamicProperty>Semi-finished</DynamicProperty>
+    <DynamicProperty>Stock Description</DynamicProperty>
+    <DynamicProperty>Stock Qty</DynamicProperty>
+    <DynamicProperty>Mass</DynamicProperty>
+    <DynamicProperty>Bounding Size</DynamicProperty>
+    <DynamicProperty>Length (Fx)</DynamicProperty>
+    <DynamicProperty>Width (Fx)</DynamicProperty>
+    <DynamicProperty>Height, Diameter (Fx)</DynamicProperty>
+    <DynamicProperty>Thickness (Fx)</DynamicProperty>
+    <DynamicProperty>Cut Detail 1</DynamicProperty>
+    <DynamicProperty>Cut Detail 2</DynamicProperty>
     <DynamicProperty>Project Number</DynamicProperty>
     <DynamicProperty>Project</DynamicProperty>
-    <DynamicProperty>Designer</DynamicProperty>
-    <DynamicProperty>Engineer</DynamicProperty>
-    <DynamicProperty>Manager</DynamicProperty>
     <DynamicProperty>Checked By</DynamicProperty>
     <DynamicProperty>Checked Date</DynamicProperty>
     <DynamicProperty>Engr Approved By</DynamicProperty>
@@ -122,27 +132,31 @@
     <DynamicProperty>Title DE</DynamicProperty>
     <DynamicProperty>Description</DynamicProperty>
     <DynamicProperty>Description 2</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Engineer</DynamicProperty>
+    <DynamicProperty>Manager</DynamicProperty>
     <DynamicProperty>Part Number</DynamicProperty>
     <DynamicProperty>Part Family</DynamicProperty>
     <DynamicProperty>Make or Buy</DynamicProperty>
     <DynamicProperty>Material</DynamicProperty>
-    <DynamicProperty>Dimensions/Size</DynamicProperty>
-    <DynamicProperty>Diam./Thickn.</DynamicProperty>
-    <DynamicProperty>Length (Cut)</DynamicProperty>
     <DynamicProperty>Mass</DynamicProperty>
     <DynamicProperty>Spare-Wear Part</DynamicProperty>
     <DynamicProperty>Stock Number</DynamicProperty>
-    <DynamicProperty>Semi-finished</DynamicProperty>
+    <DynamicProperty>Stock Description</DynamicProperty>
+    <DynamicProperty>Stock Qty</DynamicProperty>
+    <DynamicProperty>Bounding Size</DynamicProperty>
+    <DynamicProperty>Length (Fx)</DynamicProperty>
+    <DynamicProperty>Width (Fx)</DynamicProperty>
+    <DynamicProperty>Height, Diameter (Fx)</DynamicProperty>
+    <DynamicProperty>Thickness (Fx)</DynamicProperty>
     <DynamicProperty>Project Number</DynamicProperty>
     <DynamicProperty>Project</DynamicProperty>
-    <DynamicProperty>Designer</DynamicProperty>
-    <DynamicProperty>Engineer</DynamicProperty>
-    <DynamicProperty>Manager</DynamicProperty>
     <DynamicProperty>Checked By</DynamicProperty>
     <DynamicProperty>Checked Date</DynamicProperty>
     <DynamicProperty>Engr Approved By</DynamicProperty>
     <DynamicProperty>Engr Approved Date</DynamicProperty>
     <DynamicProperty>Source File</DynamicProperty>
+    <DynamicProperty>Replaced By</DynamicProperty>
     <DynamicProperty Hidden="True">MBD</DynamicProperty>
     <DynamicProperty Hidden="True">BOM Type</DynamicProperty>
     <DynamicProperty Hidden="True">FDS Key</DynamicProperty>
@@ -150,55 +164,50 @@
     <DynamicProperty Hidden="True">Key Parameters</DynamicProperty>
     <DynamicProperty Hidden="True">Comments</DynamicProperty>
     <DynamicProperty Hidden="True">Application Version</DynamicProperty>
-    <DynamicProperty>Replaced By</DynamicProperty>
-  </DynamicPropertiesCategory>
-  <DynamicPropertiesCategory Category="Purchased" Type="File">
-    <DynamicProperty>Title</DynamicProperty>
-    <DynamicProperty>Description</DynamicProperty>
-    <DynamicProperty>Material</DynamicProperty>
-    <DynamicProperty>Part Number</DynamicProperty>
-    <DynamicProperty>Designer</DynamicProperty>
-    <DynamicProperty>Application Version</DynamicProperty>
-    <DynamicProperty>Mass</DynamicProperty>
-    <DynamicProperty>BOM Type</DynamicProperty>
-    <DynamicProperty>Title DE</DynamicProperty>
-    <DynamicProperty>Stock Number</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Reference" Type="FILE">
     <DynamicProperty>Title</DynamicProperty>
     <DynamicProperty>Description</DynamicProperty>
     <DynamicProperty>Designer</DynamicProperty>
-    <DynamicProperty>Application Version</DynamicProperty>
-    <DynamicProperty>Dimensions/Size</DynamicProperty>
+    <DynamicProperty>Bounding Size</DynamicProperty>
+    <DynamicProperty>Length (Fx)</DynamicProperty>
+    <DynamicProperty>Width (Fx)</DynamicProperty>
+    <DynamicProperty>Height, Diameter (Fx)</DynamicProperty>
+    <DynamicProperty>Thickness (Fx)</DynamicProperty>
     <DynamicProperty>Source File</DynamicProperty>
     <DynamicProperty Hidden="True">BOM Type</DynamicProperty>
+    <DynamicProperty Hidden="True">Application Version</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Assembly" Type="File">
     <DynamicProperty>Title</DynamicProperty>
     <DynamicProperty>Title DE</DynamicProperty>
     <DynamicProperty>Description</DynamicProperty>
     <DynamicProperty>Description 2</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Engineer</DynamicProperty>
+    <DynamicProperty>Manager</DynamicProperty>
     <DynamicProperty>Part Number</DynamicProperty>
     <DynamicProperty>Part Family</DynamicProperty>
     <DynamicProperty>Make or Buy</DynamicProperty>
     <DynamicProperty>Material</DynamicProperty>
-    <DynamicProperty>Dimensions/Size</DynamicProperty>
-    <DynamicProperty>Diam./Thickn.</DynamicProperty>
-    <DynamicProperty>Length (Cut)</DynamicProperty>
-    <DynamicProperty>Mass</DynamicProperty>
     <DynamicProperty>Spare-Wear Part</DynamicProperty>
     <DynamicProperty>Stock Number</DynamicProperty>
-    <DynamicProperty>Semi-finished</DynamicProperty>
+    <DynamicProperty>Stock Description</DynamicProperty>
+    <DynamicProperty>Stock Qty</DynamicProperty>    
+    <DynamicProperty>Mass</DynamicProperty>
+    <DynamicProperty>Bounding Size</DynamicProperty>
+    <DynamicProperty>Length (Fx)</DynamicProperty>
+    <DynamicProperty>Width (Fx)</DynamicProperty>
+    <DynamicProperty>Height, Diameter (Fx)</DynamicProperty>
+    <DynamicProperty>Thickness (Fx)</DynamicProperty>
     <DynamicProperty>Project Number</DynamicProperty>
     <DynamicProperty>Project</DynamicProperty>
-    <DynamicProperty>Designer</DynamicProperty>
-    <DynamicProperty>Engineer</DynamicProperty>
-    <DynamicProperty>Manager</DynamicProperty>
     <DynamicProperty>Checked By</DynamicProperty>
     <DynamicProperty>Checked Date</DynamicProperty>
     <DynamicProperty>Engr Approved By</DynamicProperty>
     <DynamicProperty>Engr Approved Date</DynamicProperty>
     <DynamicProperty>Source File</DynamicProperty>
+    <DynamicProperty>Replaced By</DynamicProperty>
     <DynamicProperty Hidden="True">MBD</DynamicProperty>
     <DynamicProperty Hidden="True">BOM Type</DynamicProperty>
     <DynamicProperty Hidden="True">FDS Key</DynamicProperty>
@@ -206,7 +215,6 @@
     <DynamicProperty Hidden="True">Key Parameters</DynamicProperty>
     <DynamicProperty Hidden="True">Comments</DynamicProperty>
     <DynamicProperty Hidden="True">Application Version</DynamicProperty>
-    <DynamicProperty>Replaced By</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Weldment Assembly" Type="File">
     <DynamicProperty>Title</DynamicProperty>
@@ -216,14 +224,17 @@
     <DynamicProperty>Part Number</DynamicProperty>
     <DynamicProperty>Part Family</DynamicProperty>
     <DynamicProperty>Make or Buy</DynamicProperty>
-    <DynamicProperty Hidden="True">Material</DynamicProperty>
-    <DynamicProperty>Dimensions/Size</DynamicProperty>
-    <DynamicProperty>Diam./Thickn.</DynamicProperty>
-    <DynamicProperty>Length (Cut)</DynamicProperty>
-    <DynamicProperty>Mass</DynamicProperty>
+    <DynamicProperty>Material</DynamicProperty>
     <DynamicProperty>Spare-Wear Part</DynamicProperty>
     <DynamicProperty>Stock Number</DynamicProperty>
-    <DynamicProperty>Semi-finished</DynamicProperty>
+    <DynamicProperty>Stock Description</DynamicProperty>
+    <DynamicProperty>Stock Qty</DynamicProperty>
+    <DynamicProperty>Mass</DynamicProperty>
+    <DynamicProperty>Bounding Size</DynamicProperty>
+    <DynamicProperty>Length (Fx)</DynamicProperty>
+    <DynamicProperty>Width (Fx)</DynamicProperty>
+    <DynamicProperty>Height, Diameter (Fx)</DynamicProperty>
+    <DynamicProperty>Thickness (Fx)</DynamicProperty>
     <DynamicProperty>Project Number</DynamicProperty>
     <DynamicProperty>Project</DynamicProperty>
     <DynamicProperty>Designer</DynamicProperty>
@@ -243,8 +254,6 @@
     <DynamicProperty Hidden="True">Application Version</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Office" Type="File">
-    <DynamicProperty>Object Designation</DynamicProperty>
-    <DynamicProperty>Classification Code</DynamicProperty>
     <DynamicProperty>Title</DynamicProperty>
     <DynamicProperty>Subject</DynamicProperty>
     <DynamicProperty>Document ID</DynamicProperty>
@@ -252,64 +261,39 @@
     <DynamicProperty Hidden="True">Comments</DynamicProperty>
     <DynamicProperty>Engr Approved By</DynamicProperty>
     <DynamicProperty>Keywords</DynamicProperty>
+    <DynamicProperty>Object Designation</DynamicProperty>
+    <DynamicProperty>Classification Code</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Base" Type="File">
-    <DynamicProperty>Author</DynamicProperty>
-    <DynamicProperty>Manager</DynamicProperty>
-    <DynamicProperty>Engr Approved By</DynamicProperty>
-    <DynamicProperty>Engineer</DynamicProperty>
-    <DynamicProperty>Designer</DynamicProperty>
-    <DynamicProperty>Stock Number</DynamicProperty>
-    <DynamicProperty>Part Number</DynamicProperty>
-    <DynamicProperty>Mfg Approved By</DynamicProperty>
-    <DynamicProperty>Material</DynamicProperty>
-    <DynamicProperty>Cost</DynamicProperty>
-    <DynamicProperty>Company</DynamicProperty>
     <DynamicProperty>Title</DynamicProperty>
     <DynamicProperty>Subject</DynamicProperty>
     <DynamicProperty>Keywords</DynamicProperty>
     <DynamicProperty>Comments</DynamicProperty>
     <DynamicProperty>Description</DynamicProperty>
     <DynamicProperty>Project</DynamicProperty>
-  </DynamicPropertiesCategory>
-  <DynamicPropertiesCategory Category="Engineering" Type="File">
     <DynamicProperty>Author</DynamicProperty>
     <DynamicProperty>Manager</DynamicProperty>
-    <DynamicProperty>Engr Approved By</DynamicProperty>
-    <DynamicProperty>Engineer</DynamicProperty>
-    <DynamicProperty>Designer</DynamicProperty>
-    <DynamicProperty>Stock Number</DynamicProperty>
     <DynamicProperty>Part Number</DynamicProperty>
-    <DynamicProperty>Material</DynamicProperty>
-    <DynamicProperty>Description</DynamicProperty>
-    <DynamicProperty>Cost</DynamicProperty>
-    <DynamicProperty>Checked By</DynamicProperty>
     <DynamicProperty>Company</DynamicProperty>
-    <DynamicProperty>Title</DynamicProperty>
-    <DynamicProperty>Subject</DynamicProperty>
-    <DynamicProperty>Keywords</DynamicProperty>
-    <DynamicProperty>Comments</DynamicProperty>
-    <DynamicProperty>Mfg Approved By</DynamicProperty>
-    <DynamicProperty>Project</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Standard" Type="File">
-    <DynamicProperty>Author</DynamicProperty>
-    <DynamicProperty>Manager</DynamicProperty>
-    <DynamicProperty>Engr Approved By</DynamicProperty>
-    <DynamicProperty>Engineer</DynamicProperty>
-    <DynamicProperty>Designer</DynamicProperty>
-    <DynamicProperty>Stock Number</DynamicProperty>
-    <DynamicProperty>Part Number</DynamicProperty>
-    <DynamicProperty>Mfg Approved By</DynamicProperty>
-    <DynamicProperty>Material</DynamicProperty>
-    <DynamicProperty>Cost</DynamicProperty>
-    <DynamicProperty>Company</DynamicProperty>
     <DynamicProperty>Title</DynamicProperty>
     <DynamicProperty>Subject</DynamicProperty>
     <DynamicProperty>Keywords</DynamicProperty>
     <DynamicProperty>Comments</DynamicProperty>
     <DynamicProperty>Description</DynamicProperty>
     <DynamicProperty>Project</DynamicProperty>
+    <DynamicProperty>Stock Number</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Author</DynamicProperty>
+    <DynamicProperty>Manager</DynamicProperty>
+    <DynamicProperty>Engr Approved By</DynamicProperty>
+    <DynamicProperty>Engineer</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Mfg Approved By</DynamicProperty>
+    <DynamicProperty>Material</DynamicProperty>
+    <DynamicProperty>Cost</DynamicProperty>
+    <DynamicProperty>Company</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Organisation" Type="CustomObject">
     <DynamicProperty>Title</DynamicProperty>
@@ -347,6 +331,7 @@
     <DynamicProperty>Title</DynamicProperty>
     <DynamicProperty>Title DE</DynamicProperty>
     <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
     <DynamicProperty>Document ID</DynamicProperty>
     <DynamicProperty>Material</DynamicProperty>
     <DynamicProperty>Part Number</DynamicProperty>
@@ -357,7 +342,6 @@
     <DynamicProperty>Scale</DynamicProperty>
     <DynamicProperty>Sheet</DynamicProperty>
     <DynamicProperty Hidden="True">DWG Type</DynamicProperty>
-    <DynamicProperty>Designer</DynamicProperty>
     <DynamicProperty>Document Type</DynamicProperty>
     <DynamicProperty Hidden="True">Change Description</DynamicProperty>
     <DynamicProperty Hidden="True">Make or Buy</DynamicProperty>
@@ -375,8 +359,6 @@
   <DynamicPropertiesCategory Category="Folder" Type="Folder">
     <DynamicProperty>Title</DynamicProperty>
     <DynamicProperty>Description</DynamicProperty>
-    <DynamicProperty>FLCwsID</DynamicProperty>
-    <DynamicProperty>FLCdmsID</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Task" Type="CustomObject">
     <DynamicProperty>Title</DynamicProperty>
@@ -393,12 +375,15 @@
     <DynamicProperty>Title</DynamicProperty>
     <DynamicProperty>Title DE</DynamicProperty>
     <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
     <DynamicProperty>Part Number</DynamicProperty>
     <DynamicProperty>Document Type</DynamicProperty>
     <DynamicProperty>Format</DynamicProperty>
     <DynamicProperty>Scale</DynamicProperty>
     <DynamicProperty>Sheet</DynamicProperty>
-    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Source File</DynamicProperty>
+    <DynamicProperty>Replaced By</DynamicProperty>
+    <DynamicProperty>Document Class</DynamicProperty>
     <DynamicProperty Hidden="True">Document Check Required</DynamicProperty>
     <DynamicProperty Hidden="True">Checked By</DynamicProperty>
     <DynamicProperty Hidden="True">Checked Date</DynamicProperty>
@@ -408,10 +393,8 @@
     <DynamicProperty Hidden="True">Customer Approval Required</DynamicProperty>
     <DynamicProperty Hidden="True">Customer Approved By</DynamicProperty>
     <DynamicProperty Hidden="True">Customer Approved Date</DynamicProperty>
-    <DynamicProperty>Source File</DynamicProperty>
     <DynamicProperty Hidden="True">DWG Type</DynamicProperty>
     <DynamicProperty Hidden="True">Application Version</DynamicProperty>
-    <DynamicProperty>Replaced By</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Managed Asset" Type="File">
     <DynamicProperty>Author</DynamicProperty>
@@ -475,5 +458,13 @@
   <DynamicPropertiesCategory Category="Group" Type="CustomObject">
     <DynamicProperty>Segment</DynamicProperty>
     <DynamicProperty>Main Group</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Presentation" Type="File">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Designer</DynamicProperty>
+    <DynamicProperty>Source File</DynamicProperty>
+    <DynamicProperty Hidden="True">Application Version</DynamicProperty>
   </DynamicPropertiesCategory>
 </DynamicProperties>

@@ -1,17 +1,9 @@
-#region disclaimer
-#=============================================================================
-#                                                                             
-# Copyright (c) Autodesk 2021 - All rights reserved.                               
-#                                                                             
-# THIS SCRIPT/CODE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER   
-# EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES 
-# OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.  
-#=============================================================================
-#endregion
+# DISCLAIMER:
+# ---------------------------------
+# In any case, code, templates, and snippets of this solution are of "work in progress" character.
+# Neither Markus Koechl, nor Autodesk represents that these samples are reliable, accurate, complete, or otherwise valid. 
+# Accordingly, those configuration samples are provided as is with no warranty of any kind, and you use the applications at your own risk.
 
-#region - version history
-# Latest change: mGetCUsPermissions -> switch from Dispname to Id for any language compatibility
-#endregion
 
 #retrieve property value given by displayname from folder (ID)
 function mGetFolderPropValue ([Int64] $mFldID, [STRING] $mDispName)
@@ -31,27 +23,41 @@ function mGetFolderPropValue ([Int64] $mFldID, [STRING] $mDispName)
 	Return $mPropVal
 }
 
-#Get parent project folder object
-function mGetParentProjectFldr
+#Get parent folder object
+function mGetParentFldrByCat ($Category)
 {
-	$mPath = $Prop["_FilePath"].Value
-	$mFld = $vault.DocumentService.GetFolderByPath($mPath)
+	$mWindowName = $dsWindow.Name
+	switch ($mWindowName) {
+		"FileWindow" {
+			$mPath = $Prop["_FilePath"].Value
+		}
+		"FolderWindow" {
+			$mPath = $Prop["_FolderPath"].Value
+		}
+	}
 
-	IF ($mFld.Cat.CatName -eq $UIString["CAT6"]) { $Global:mProjectFound = $true}
-	ElseIf ($mPath -ne "$"){
-		Do {
-			$mParID = $mFld.ParID
-			$mFld = $vault.DocumentService.GetFolderByID($mParID)
-			IF ($mFld.Cat.CatName -eq $UIString["CAT6"]) { $Global:mProjectFound = $true}
-		} Until (($mFld.Cat.CatName -eq $UIString["CAT6"]) -or ($mFld.FullName -eq "$"))
-	}
+	$mFld = $vault.DocumentService.GetFolderByPath($mPath)
+	if ($mFld) {
+		IF ($mFld.Cat.CatName -eq $Category) { $Global:mFldrFound = $true}
+		ElseIf ($mPath -ne "$"){
+			Do {
+				$mParID = $mFld.ParID
+				$mFld = $vault.DocumentService.GetFolderByID($mParID)
+				IF ($mFld.Cat.CatName -eq $Category) { $Global:mFldrFound = $true}
+			} Until (($mFld.Cat.CatName -eq $Category) -or ($mFld.FullName -eq "$"))
+		}
 	
-	If ($mProjectFound -eq $true) {
-		return $mFld
+		If ($mFldrFound -eq $true) {
+			return $mFld
+		}
+		Else{
+			return $null
+		}
 	}
-	Else{
+	else{
 		return $null
 	}
+
 }
 
 #retrieve the definition ID for given property by displayname
@@ -251,58 +257,54 @@ function mGetPropTranslations
 	return $mPrpTrnsltns
 }
 
+# create Thin Client Link for a file; VDS does not provide a file object in DataSheets but the full path in _EditMode
 function Adsk.CreateTcFileLink([string]$FileFullVaultPath )
 {
-    $FullPaths = @($FileFullVaultPath)
-
-    $Files = $vault.DocumentService.FindLatestFilesByPaths($FullPaths)
-
-    $IDs = @($Files[0].Id)
-     
-    $PersIDs = $vault.KnowledgeVaultService.GetPersistentIds("FILE", $IDs, [Autodesk.Connectivity.WebServices.EntPersistOpt]::Latest)
-    $PersID = $PersIDs[0].TrimEnd("=")
-
-    $serverUri = [System.Uri]$Vault.InformationService.Url
-
-    $vaultName = $VaultConnection.Vault
-    $Server = $VaultConnection.Server
-
-    $TCLink = $serverUri.Scheme + "://" + $Server + "/AutodeskTC/" + $Server + "/" + $vaultName + "/#/Entity/Details?id=m" + "$PersID" + "&itemtype=File"
-    
-    return $TCLink
+	$file = $vault.DocumentService.FindLatestFilesByPaths(@($FileFullVaultPath))[0]
+	$serverUri = [System.Uri]$Vault.InformationService.Url			
+	$TcFileMasterLink = "$($serverUri.Scheme)://$($VaultConnection.Server)/AutodeskTC/$($VaultConnection.Vault)/explore/file/$($file.MasterId)"
+	return $TcFileMasterLink
 }
 
+# create Thin Client Link for a folder; VDS does not provide a folder object DataSheets but the full path in _EditMode
 function Adsk.CreateTcFolderLink([string]$FolderFullVaultPath)
 {
-    $Folder = $vault.DocumentService.GetFolderByPath($FolderFullVaultPath)
-
-    $IDs = @($Folder.Id)
-     
-    $PersIDs = $vault.KnowledgeVaultService.GetPersistentIds("FLDR", $IDs, [Autodesk.Connectivity.WebServices.EntPersistOpt]::Latest)
-    $PersID = $PersIDs[0].TrimEnd("=")
-
-    $serverUri = [System.Uri]$Vault.InformationService.Url
-
-    $vaultName = $VaultConnection.Vault
-    $Server = $VaultConnection.Server
-
-    $TCLink = $serverUri.Scheme + "://" + $Server + "/AutodeskTC/" + $Server + "/" + $vaultName + "/#/Entity/Entities?folder=m" + "$PersID" + "&start=0"
-    return $TCLink
+	$folder = $vault.DocumentService.GetFolderByPath($FolderFullVaultPath)
+	$serverUri = [System.Uri]$Vault.InformationService.Url			
+	$TcFolderLink = "$($serverUri.Scheme)://$($VaultConnection.Server)/AutodeskTC/$($VaultConnection.Vault)/explore/folder/$($folder.Id)"
+	return $TcFolderLink
 }
 
-function Adsk.CreateTCItemLink ([Long]$ItemId)
+# create Thin Client Link for an item; 
+function Adsk.CreateTcItemLink ([Long]$ItemMasterId)
 {
-	$IDs = @($ItemId)
-    $PersIDs = $vault.KnowledgeVaultService.GetPersistentIds("ITEM", $IDs, [Autodesk.Connectivity.WebServices.EntPersistOpt]::Latest)
-    $PersID = $PersIDs[0].TrimEnd("=")
+	$serverUri = [System.Uri]$Vault.InformationService.Url
+	$TcItemMasterLink = "$($serverUri.Scheme)://$($VaultConnection.Server)/AutodeskTC/$($VaultConnection.Vault)/items/item/$($ItemMasterId)"
+	return $TcItemMasterLink
+}
 
-    $serverUri = [System.Uri]$Vault.InformationService.Url
+# create Thin Client Link for an item of a given file
+function Adsk.CreateTcFileItemLink ([string]$FileFullVaultPath )
+{
+	$file = $vault.DocumentService.FindLatestFilesByPaths(@($FileFullVaultPath))[0]
+	#get item of the file
+	$item = $vault.ItemService.GetItemsByFileId($file.Id)[0]
+	#create TC link
+	$serverUri = [System.Uri]$Vault.InformationService.Url
+	$TcFileItemMasterLink = "$($serverUri.Scheme)://$($VaultConnection.Server)/AutodeskTC/$($VaultConnection.Vault)/items/item/$($item.MasterId)"
+	return $TcFileItemMasterLink
+}
 
-    $vaultName = $VaultConnection.Vault
-    $Server = $VaultConnection.Server
-
-    $TCLink = $serverUri.Scheme + "://" + $Server + "/AutodeskTC/" + $Server + "/" + $vaultName + "/#/Entity/Details?id=m" + "$PersID" + "&itemtype=Item"
-    return $TCLink
+# create Thin Client Link for ECO of a given file
+function Adsk.CreateTcFileEcoLink ([string]$FileFullVaultPath )
+{
+	$file = $vault.DocumentService.FindLatestFilesByPaths(@($FileFullVaultPath))[0]
+	#get change order
+	$changeOrder = $vault.ChangeOrderService.GetChangeOrderFilesByFileMasterId($file.MasterId)[0] 
+	#create TC link of CO
+	$serverUri = [System.Uri]$Vault.InformationService.Url
+	$TcChangeOrderLink = "$($serverUri.Scheme)://$($VaultConnection.Server)/AutodeskTC/$($VaultConnection.Vault)/changeorders/changeorder/$($changeOrder.ChangeOrder.Id)"
+	return $TcChangeOrderLink
 }
 
 #function to check that the current user is member of a named group; returns true or false
@@ -371,28 +373,35 @@ function mSearchCustentOfCat([String]$mCatDispName)
 	}
 }
 
-function mGetProjectFolderPropToVaultFile ([String] $mFolderSourcePropertyName, [String] $mFileTargetPropertyName)
+function mInheritProperties ($Id, $MappingTable) {
+	#read the source entity's properties
+	$mFldProps = @{}
+	$mFldProps += mGetAllFolderProperties($Id)
+	
+	#iterate the target properties and retrieve the value of the mapped source 
+	$MappingTable.GetEnumerator() | ForEach-Object {
+		$Prop[$_.Name].Value = $mFldProps[$_.Value]
+	}	
+}
+
+function mGetAllFolderProperties ([long] $mFldID)
 {
-	$mPath = $Prop["_FilePath"].Value
-	$mFld = $vault.DocumentService.GetFolderByPath($mPath)
-
-	IF ($mFld.Cat.CatName -eq $UIString["CAT6"]) { $Global:mProjectFound = $true}
-	ElseIf ($mPath -ne "$"){
-		Do {
-			$mParID = $mFld.ParID
-			$mFld = $vault.DocumentService.GetFolderByID($mParID)
-			IF ($mFld.Cat.CatName -eq $UIString["CAT6"]) { $Global:mProjectFound = $true}
-		} Until (($mFld.Cat.CatName -eq $UIString["CAT6"]) -or ($mFld.FullName -eq "$"))
+	$mResult = @{}
+	if (!$global:mFldrPropDefs) {
+		$global:mFldrPropDefs = $vault.PropertyService.GetPropertyDefinitionsByEntityClassId("FLDR")
 	}
-
-	If ($mProjectFound -eq $true) {
-		#Project's property Value copied to file property
-		$Prop[$mFileTargetPropertyName].Value = mGetFolderPropValue $mFld.Id $mFolderSourcePropertyName
-	}
-	Else{
-		#empty field value if file will not link to a project
-		$Prop[$mFileTargetPropertyName].Value = ""
-	}
+	$propDefIds = @()
+	$mFldrPropDefs | ForEach-Object {
+		$propDefIds += $_.Id
+	}	
+	$mEntIDs = @()
+	$mEntIDs += $mFldID
+	$mPropertyInstances = $vault.PropertyService.GetProperties("FLDR", $mEntIDs, $propDefIds)	
+	Foreach($mPropInst in $mPropertyInstances){		
+		$Name = ($mFldrPropDefs | Where-Object {$_.Id -eq $mPropInst.PropDefId}).DispName
+		$mResult.Add($Name, $mPropInst.Val)
+	}	
+	Return $mResult
 }
 
 #create folder structure based on a template;
