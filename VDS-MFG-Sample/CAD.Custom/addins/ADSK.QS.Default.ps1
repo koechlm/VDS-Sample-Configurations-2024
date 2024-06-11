@@ -74,7 +74,7 @@ function InitializeWindow {
 			if ($Prop["_CreateMode"].Value -eq $true) {
 
 				#create mode is relevant for copies; reset revision data
-				ResetRevisionProperties
+				#ResetRevisionProperties #PDMC-Sample configuration only
 
 				#reset the part number for new files as Inventor writes the file name (no extension) as a default.
 				If ($Prop["Part Number"]) {
@@ -181,15 +181,15 @@ function InitializeWindow {
 							$Prop["Stock Number"].Value = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName, "Stock Number")
 							# for custom properties there is always a risk that any does not exist
 							try {
-								$_iPropSpearWearPart = $mPropTrans["SPAREPART"]
+<# 								$_iPropSpearWearPart = $mPropTrans["SPAREPART"] #available in PDMC-Sample Vault only
 								$_t1 = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName, $_iPropSpearWearPart)
 								if ($_t1 -ne "") {
 									$Prop[$_iPropSpearWearPart].Value = $_t1
-								}
+								} #>
 							} 
 							catch {
 								$mWarningMsg = "Set path, filename and properties for IPN: Failed to write a custom property."
-								[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowWarning($mWarningMsg, "VDS Sample Configuration")
+								[Autodesk.DataManagement.Client.Framework.Forms.Library]::ShowWarning($mWarningMsg, "VDS Sample Configuration", "OK")
 							}
 						}
 					}
