@@ -56,11 +56,11 @@
                             </Setter.Value>
                         </Setter>
                     </DataTrigger>
-                    <DataTrigger Binding="{Binding Typ}" Value="Boolean">
+                    <DataTrigger Binding="{Binding Typ}" Value="Boolean" >
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate>
-                                    <ComboBox Text="{WPF:ValidatedBinding Value}" BorderThickness="0">
+                                    <ComboBox Text="{WPF:ValidatedBinding Value}" BorderThickness="0" IsEditable="True">
                                         <ComboBoxItem Content="True" />
                                         <ComboBoxItem Content="False" />
                                     </ComboBox>
