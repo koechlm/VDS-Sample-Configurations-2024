@@ -193,7 +193,7 @@
     <DynamicProperty>Spare-Wear Part</DynamicProperty>
     <DynamicProperty>Stock Number</DynamicProperty>
     <DynamicProperty>Stock Description</DynamicProperty>
-    <DynamicProperty>Stock Qty</DynamicProperty>    
+    <DynamicProperty>Stock Qty</DynamicProperty>
     <DynamicProperty>Mass</DynamicProperty>
     <DynamicProperty>Bounding Size</DynamicProperty>
     <DynamicProperty>Length (Fx)</DynamicProperty>

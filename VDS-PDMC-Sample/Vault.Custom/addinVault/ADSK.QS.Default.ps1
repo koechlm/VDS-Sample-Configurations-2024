@@ -209,7 +209,7 @@ function InitializeWindow
 					$Prop["_NumSchm"].Value = $Prop["_Category"].Value
 				#endregion
 
-				if($Prop["_Category"].Value -eq "Person")
+				if($Prop["_Category"].Value -eq "Member")
 				{
 					$dsWindow.FindName("CUSTOMOBJECTNAME").add_LostFocus({
 						$Prop["First Name"].Value = ($dsWindow.FindName("CUSTOMOBJECTNAME").Text).Split(" ")[0]
@@ -228,7 +228,7 @@ function InitializeWindow
 					$dsWindow.FindName("CUSTOMOBJECTNAME").ToolTip = "Name derives from First and Last Name."
 				}
 
-				if($Prop["_Category"].Value -eq "Organisation")
+				if($Prop["_Category"].Value -eq "Company")
                 {
                     $dsWindow.FindName("CUSTOMOBJECTNAME").add_LostFocus({
                         $Prop["Company"].Value = $dsWindow.FindName("CUSTOMOBJECTNAME").Text
@@ -613,7 +613,7 @@ function GetNewCustomObjectName
 		$m_Cat = $Prop["_Category"].Value
 		switch ($m_Cat)
 		{
-			$UIString["MSDCE_CO02"] #Person
+			$UIString["MSDCE_CO02"] #Member
 			{
 				if($dsWindow.FindName("DSNumSchmsCtrl").NumSchmFieldsEmpty -eq $false)
 				{

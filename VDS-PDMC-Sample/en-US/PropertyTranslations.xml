@@ -43,7 +43,7 @@
   <PropertyTranslation Name="EMAILATTACHM">Email Attachment</PropertyTranslation>
   <PropertyTranslation Name="FIRSTNAME">First Name</PropertyTranslation>
   <PropertyTranslation Name="LASTNAME">Last Name</PropertyTranslation>
-  <PropertyTranslation Name="CONTACTNAME">Contact Person</PropertyTranslation>
+  <PropertyTranslation Name="CONTACTNAME">Contact Member</PropertyTranslation>
   <!--VDS-PDMC-Sample 2019 end-->
   
   <!--VDS-PDMC-Sample Extensions start-->

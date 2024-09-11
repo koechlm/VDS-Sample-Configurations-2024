@@ -131,14 +131,14 @@ MultiSelectEnabled: If true, command is active for multiple selections, can be t
       Image="Task-edit.ico" ToolbarPaintStyle="TextAndGlyph" NavigationTypes="Task" MultiSelectEnabled="False" />
 
     <newOrganisationObject Label = "$UIString[MSDCE_MNU08]" Description = "$UIString[MSDCE_MNU07]" Hint = "$UIString[MSDCE_MNU08]" PSFile = "ADSK.QS.CreateCustomObject.ps1"
-      Image="factory-add.ico" ToolbarPaintStyle = "TextAndGlyph" NavigationTypes ="Organisation" MultiSelectEnabled = "false"/>
+      Image="factory-add.ico" ToolbarPaintStyle = "TextAndGlyph" NavigationTypes ="Company" MultiSelectEnabled = "false"/>
     <editOrganisationObject Label = "$UIString[MSDCE_MNU10]" Description = "$UIString[MSDCE_MNU09]" Hint = "$UIString[MSDCE_MNU10]" PSFile = "ADSK.QS.EditCustomObject.ps1"
-      Image="factory-edit.ico" ToolbarPaintStyle = "TextAndGlyph" NavigationTypes ="Organisation" MultiSelectEnabled = "false"/>
+      Image="factory-edit.ico" ToolbarPaintStyle = "TextAndGlyph" NavigationTypes ="Company" MultiSelectEnabled = "false"/>
 
     <newPersonObject Label = "$UIString[MSDCE_MNU12]" Description = "$UIString[MSDCE_MNU11]" Hint = "$UIString[MSDCE_MNU12]" PSFile = "ADSK.QS.CreateCustomObject.ps1"
-      Image="user-w-add.ico" ToolbarPaintStyle = "TextAndGlyph" NavigationTypes ="Person" MultiSelectEnabled = "false"/>
+      Image="user-w-add.ico" ToolbarPaintStyle = "TextAndGlyph" NavigationTypes ="Member" MultiSelectEnabled = "false"/>
     <editPersonObject Label = "$UIString[MSDCE_MNU14]" Description = "$UIString[MSDCE_MNU13]" Hint = "$UIString[MSDCE_MNU14]" PSFile = "ADSK.QS.EditCustomObject.ps1"
-      Image="user-w-edit.ico" ToolbarPaintStyle = "TextAndGlyph" NavigationTypes ="Person" MultiSelectEnabled = "false"/>
+      Image="user-w-edit.ico" ToolbarPaintStyle = "TextAndGlyph" NavigationTypes ="Member" MultiSelectEnabled = "false"/>
 
     <!--VDS-PDMC-Sample Menu items end-->
 
@@ -218,11 +218,11 @@ MultiSelectEnabled: If true, command is active for multiple selections, can be t
       <Item Name="AboutDialog"></Item>
       <Item Name="showCustomHelp"></Item>
     </HelpMenu>
-    <CustomObject Label="$UIString[MSDCE_CO01]" DeployAsPullDown="False" Location="Organisation">
+    <CustomObject Label="$UIString[MSDCE_CO01]" DeployAsPullDown="False" Location="Company">
       <Item Name="newOrganisationObject"></Item>
       <Item Name="editOrganisationObject"></Item>
     </CustomObject>
-    <CustomObject Label="$UIString[MSDCE_CO02]" DeployAsPullDown="False" Location="Person">
+    <CustomObject Label="$UIString[MSDCE_CO02]" DeployAsPullDown="False" Location="Member">
       <Item Name="newPersonObject"></Item>
       <Item Name="editPersonObject"></Item>
     </CustomObject>

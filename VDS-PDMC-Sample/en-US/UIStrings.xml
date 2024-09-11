@@ -268,8 +268,8 @@
   <!--VDS-PDMC-Sample Functional Dialogs (FG, DA, TP, CH) end-->
 
   <!--VDS-PDMC-Sample Custom Object Names-->
-  <UIString ID="MSDCE_CO01">Organisation</UIString>
-  <UIString ID="MSDCE_CO02">Person</UIString>
+  <UIString ID="MSDCE_CO01">Company</UIString>
+  <UIString ID="MSDCE_CO02">Member</UIString>
   <UIString ID="MSDCE_CO03">Task</UIString>
   <UIString ID="MSDCE_CO04">Transmittal</UIString>
   <!--VDS-PDMC-Sample Custom Object Context Menu Items-->
@@ -277,16 +277,16 @@
   <UIString ID="MSDCE_MNU02">Create New Task</UIString>
   <UIString ID="MSDCE_MNU04">Edit Task...</UIString>
   <UIString ID="MSDCE_MNU05">Edit Existing Task</UIString>
-  <!--Organisation-->
-  <UIString ID="MSDCE_MNU07">New Organisation...</UIString>
-  <UIString ID="MSDCE_MNU08">Create New Organisation</UIString>
-  <UIString ID="MSDCE_MNU09">Edit Organisation...</UIString>
-  <UIString ID="MSDCE_MNU10">Edit Existing Organisation</UIString>
-  <!--Person-->
-  <UIString ID="MSDCE_MNU11">New Person...</UIString>
-  <UIString ID="MSDCE_MNU12">Create New Person</UIString>
-  <UIString ID="MSDCE_MNU13">Edit Person...</UIString>
-  <UIString ID="MSDCE_MNU14">Edit Existing Person</UIString>
+  <!--Company-->
+  <UIString ID="MSDCE_MNU07">New Company...</UIString>
+  <UIString ID="MSDCE_MNU08">Create New Company</UIString>
+  <UIString ID="MSDCE_MNU09">Edit Company...</UIString>
+  <UIString ID="MSDCE_MNU10">Edit Existing Company</UIString>
+  <!--Member-->
+  <UIString ID="MSDCE_MNU11">New Member...</UIString>
+  <UIString ID="MSDCE_MNU12">Create New Member</UIString>
+  <UIString ID="MSDCE_MNU13">Edit Member...</UIString>
+  <UIString ID="MSDCE_MNU14">Edit Existing Member</UIString>
   <!--Transmittal-->
   <UIString ID="MSDCE_MNU15">New Transmittal...</UIString>
   <UIString ID="MSDCE_MNU16">Create New Transmittal</UIString>
@@ -379,17 +379,17 @@
   <UIString ID="ADSK-InsertInvCopy_00">Insert CAD: Component Copy</UIString>
   <!--Insert CAD Copy-->
 
-  <!--Cascading Organisation/Person selection & link creation-->
+  <!--Cascading Company/Member selection & link creation-->
   <UIString ID="Adsk.Org.Pers.Link_00">Contact</UIString>
   <UIString ID="Adsk.Org.Pers.Link_01">Contacts</UIString>
   <UIString ID="Adsk.Org.Pers.Link_02">Primary</UIString>
   <UIString ID="Adsk.Org.Pers.Link_03">Create/Update Link</UIString>
   <UIString ID="Adsk.Org.Pers.Link_04">Enable to create links to any selected item on project creation.</UIString>
-  <UIString ID="Adsk.Org.Pers.Link_05">Select from Organisations/Persons lists. Persons must be linked to an Organisation.</UIString>
-  <UIString ID="Adsk.Org.Pers.Link_06">Select Customer and Contact from "Organisations" Workspace</UIString>
-  <UIString ID="Adsk.Org.Pers.Link_07">Open selection list 'Organisations'</UIString>
+  <UIString ID="Adsk.Org.Pers.Link_05">Select from Companys/Members lists. Members must be linked to an Company.</UIString>
+  <UIString ID="Adsk.Org.Pers.Link_06">Select Customer and Contact from "Companys" Workspace</UIString>
+  <UIString ID="Adsk.Org.Pers.Link_07">Open selection list 'Companys'</UIString>
   <UIString ID="Adsk.Org.Pers.Link_08">Click ... to activate selection from list.</UIString>
-  <!--Cascading Organisation/Person selection & link creation END-->
+  <!--Cascading Company/Member selection & link creation END-->
 
   <!--ItemMaster Search and Item Tab START-->
   <UIString ID="Adsk.QS.ItemSearch_00">Item Master</UIString>
