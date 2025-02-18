@@ -515,6 +515,13 @@ function GetNumSchms {
 			if ($dsWindow.Name -eq "InventorWindow" -and $global:mShrnkWrp -eq $true) {
 				if ($Prop["_NumSchm"].Value) { $Prop["_NumSchm"].Value = $_FilteredNumSchems[1].Name } # None 	
 			}
+			
+			# Inventor Open From ContentCenter -> Custom Part command either gets a file number from Vault or has a standard based file name
+			if ($Document.FilePropertySets[6][1]) {
+				if ($Document.FilePropertySets[6][1].Value -eq "1") {
+					if ($Prop["_NumSchm"].Value) { $Prop["_NumSchm"].Value = $_FilteredNumSchems[1].Name } # None
+				}
+			}
 
 			#reverse order for these cases; none is added latest; reverse the list, if None is pre-set to index = 0
 			#If($dsWindow.Name-eq "InventorWindow" -and $Prop["DocNumber"].Value -notlike "Assembly*" -and $Prop["_FileExt"].Value -eq ".iam") #you might find better criteria based on then numbering scheme
